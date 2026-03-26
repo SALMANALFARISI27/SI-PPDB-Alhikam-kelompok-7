@@ -37,6 +37,7 @@
 	<select name="jenis_berita" class="form-control">
 		<option value="Berita">Berita</option>
 		<option value="Profil">Profil</option>
+		<option value="Profil">Keunggulan</option>
 	</select>
 	<span class="input-group-append">
 		<button type="submit" name="submit" value="Update" class="btn btn-warning">
