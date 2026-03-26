@@ -22,8 +22,14 @@
 		<input type="file" name="gambar" class="form-control" placeholder="Gambar/ Logo" value="<?php echo $kategori_prestasi->gambar ?>">
 	</div>
 	<div class="col-1">
-		<?php if($kategori_prestasi->gambar=="") { echo '-'; }else{ ?>
-					<img src="<?php echo base_url('assets/upload/image/thumbs/'.$kategori_prestasi->gambar) ?>" class="img img-thumbnail">
+		<?php if($kategori_prestasi->gambar=="") { echo '-'; }else{ 
+					$img_dipublic = FCPATH . 'assets/upload/image/' . $kategori_prestasi->gambar;
+					$img_diluar = FCPATH . '../assets/upload/image/' . $kategori_prestasi->gambar;
+					if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
+					    @copy($img_diluar, $img_dipublic);
+					}
+				?>
+					<img src="<?php echo base_url('assets/upload/image/'.$kategori_prestasi->gambar) ?>" class="img img-thumbnail">
 				<?php } ?>
 	</div>
 </div>
