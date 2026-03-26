@@ -132,7 +132,7 @@ foreach($nav_menu as $nav_menu) {
                 
                 <?php if($site_setting->menu_home=='Publish') { ?>
                 <li class="nav-item">
-                  <a class="nav-link text-uppercase" href="<?php echo base_url() ?>">Home</a>
+                  <a class="nav-link text-uppercase" href="<?php echo base_url() ?>">Beranda</a>
                 </li>
                 <?php } if($site_setting->letak_menu=='Home') { echo $menu_tambahan; } if($site_setting->menu_berita=='Publish') { ?>
                 <li class="nav-item dropdown">
@@ -141,7 +141,7 @@ foreach($nav_menu as $nav_menu) {
                     <?php foreach($nav_berita as $nav_berita) { ?>
                     <li class="nav-item"><a class="dropdown-item text-white" href="<?php echo base_url('berita/kategori/'.$nav_berita->slug_kategori) ?>"><?php echo $nav_berita->nama_kategori ?></a></li>
                     <?php } ?>
-                    <li class="nav-item"><a class="dropdown-item text-warning" href="<?php echo base_url('berita') ?>">Indeks Berita</a></li>
+                    <li class="nav-item"><a class="dropdown-item text-warning" href="<?php echo base_url('berita') ?>">Semua Berita</a></li>
                    
                   </ul>
                 </li>
