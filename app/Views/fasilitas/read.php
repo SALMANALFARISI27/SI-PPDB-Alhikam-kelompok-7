@@ -51,18 +51,24 @@
                 <tbody>
                   
                   <tr>
-                    <td class="bg-light">Penanggung Jawab</td>
-                    <td><?php echo $fasilitas->kondisi_fasilitas ?></td>
-                  </tr>
-                  <tr>
                     <td class="bg-light">Kategori</td>
                     <td><?php echo $fasilitas->nama_kategori_fasilitas ?></td>
                   </tr>
                   
-                  
+                  <tr>
+                   <td class="bg-light">Kondisi Fasilitas</td>
+                   <td><?php echo $fasilitas->kondisi_fasilitas ?></td>
+                  </tr>
+                  <tr>
+                   <td class="bg-light">Tahun dan Tanggal Fasilitas</td>
+                   <td><?php echo $fasilitas->tanggal_fasilitas ?></td>
+                  </tr>
+                  <tr>
+                   <td class="bg-light">Deskripsi Fasilitas</td>
+                   <td><?php echo $fasilitas->isi ?></td>
+                  </tr>
                 </tbody>
               </table>
-              <?php echo $fasilitas->isi ?>
             </div>
             <div class="card-footer">
               Tanggal: <?php echo $this->website->tanggal_bulan_menit($fasilitas->tanggal) ?>

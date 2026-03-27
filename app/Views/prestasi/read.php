@@ -58,7 +58,7 @@
                     <td><?php echo $prestasi->hadiah_prestasi ?></td>
                   </tr>
                   <tr>
-                    <td class="bg-light">Info lain</td>
+                    <td class="bg-light">Deskripsi Prestasi</td>
                     <td><?php echo $prestasi->isi ?></td>
                   </tr>
                 </tbody>

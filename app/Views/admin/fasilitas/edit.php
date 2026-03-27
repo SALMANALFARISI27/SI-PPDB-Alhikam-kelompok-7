@@ -44,13 +44,10 @@ echo csrf_field();
 		</select>
 		<small class="text-secondary">Kondisi Fasilitas</small>
 	</div>
-	<div class="col-md-2">
-		<input type="number" name="tahun_fasilitas" class="form-control" value="<?php echo $fasilitas->tahun_fasilitas ?>">
-		<small class="text-secondary">Tahun Fasilitas</small>
-	</div>
+
 	<div class="col-md-2">
 		<input type="text" name="tanggal_fasilitas" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($fasilitas->tanggal_fasilitas) ?>">
-		<small class="text-secondary">Tanggal Fasilitas</small>
+		<small class="text-secondary">Tahun dan Tanggal Fasilitas</small>
 	</div>
 </div>
 
