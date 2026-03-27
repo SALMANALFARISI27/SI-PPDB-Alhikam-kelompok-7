@@ -49,7 +49,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  
+                  <tr>
+                   <td class="bg-light">kode fasilitas</td>
+                   <td><?php echo $fasilitas->kode_nomor_fasilitas ?></td>
+                  </tr>
                   <tr>
                     <td class="bg-light">Kategori</td>
                     <td><?php echo $fasilitas->nama_kategori_fasilitas ?></td>
