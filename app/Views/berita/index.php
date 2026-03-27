@@ -62,7 +62,7 @@
                   </div>
                   <!--/.card-body -->
                   <div class="card-footer">
-                    <ul class="post-meta d-flex mb-0">
+                     <ul class="post-meta d-flex flex-wrap gap-3 mb-0">
                       <li class="post-date"><i class="uil uil-calendar-alt"></i><span><?php echo $this->website->tanggal_bulan_menit($berita->tanggal_publish) ?></span></li>
                       <li class="post-author"><a href="#"><i class="uil uil-user"></i><span><?php echo $berita->nama ?></span></a></li>
                       <li class="post-comments"><a href="#"><i class="fa fa-eye"></i><span> Dibaca <?php echo $berita->hits ?> kali</span></a></li>
