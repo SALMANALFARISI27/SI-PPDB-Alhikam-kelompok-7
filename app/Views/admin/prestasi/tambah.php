@@ -50,13 +50,13 @@ echo csrf_field();
 		</select>
 		<small class="text-secondary">Jenjang Prestasi</small>
 	</div>
-	<div class="col-md-2">
-		<input type="number" name="tahun_prestasi" class="form-control" value="<?php if(isset($_POST['tahun_prestasi'])) { echo set_value('tahun_prestasi'); }else{ echo date('Y'); } ?>">
-		<small class="text-secondary">Tahun Prestasi</small>
-	</div>
+	
+
+
+	
 	<div class="col-md-2">
 		<input type="text" name="tanggal_prestasi" class="form-control tanggal" value="<?php if(isset($_POST['tanggal_prestasi'])) { echo set_value('tanggal_prestasi'); }else{ echo date('d-m-Y'); } ?>">
-		<small class="text-secondary">Tanggal Prestasi</small>
+		<small class="text-secondary">Tahun dan Tanggal Prestasi</small>
 	</div>
 </div>
 

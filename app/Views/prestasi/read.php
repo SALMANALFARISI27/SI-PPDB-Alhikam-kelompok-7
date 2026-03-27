@@ -42,8 +42,8 @@
                     <td><?php echo $prestasi->penyelenggara ?></td>
                   </tr>
                   <tr>
-                    <td class="bg-light">Tahun</td>
-                    <td><?php echo $prestasi->tahun_prestasi ?></td>
+                    <td class="bg-light">Tahun dan Tanggal Prestasi</td>
+                    <td><?php echo $prestasi->tanggal_prestasi ?></td>
                   </tr>
                   <tr>
                     <td class="bg-light">Tingkat</td>

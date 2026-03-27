@@ -43,13 +43,13 @@ echo csrf_field();
 		</select>
 		<small class="text-secondary">Jenjang Prestasi</small>
 	</div>
-	<div class="col-md-2">
-		<input type="number" name="tahun_prestasi" class="form-control" value="<?php echo $prestasi->tahun_prestasi ?>">
-		<small class="text-secondary">Tahun Prestasi</small>
-	</div>
+
+
+
+
 	<div class="col-md-2">
 		<input type="text" name="tanggal_prestasi" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($prestasi->tanggal_prestasi) ?>">
-		<small class="text-secondary">Tanggal Prestasi</small>
+		<small class="text-secondary">Tahun dan Tanggal Prestasi</small>
 	</div>
 </div>
 
