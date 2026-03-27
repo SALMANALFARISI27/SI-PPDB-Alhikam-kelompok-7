@@ -81,7 +81,7 @@
 			<td>
 				<?php if($portfolio->gambar=="") { echo '-'; }else{ 
 					$img_dipublic = FCPATH . 'assets/upload/image/thumbs/' . $portfolio->gambar;
-					$img_diluar = FCPATH . '../assets/upload/image/thumbs/' . $portfolio->gambar;
+					$img_diluar = FCPATH . 'thumbs/' . $portfolio->gambar;
 					if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
 					    @copy($img_diluar, $img_dipublic);
 					}

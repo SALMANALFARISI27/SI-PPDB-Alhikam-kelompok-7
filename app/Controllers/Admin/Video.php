@@ -28,12 +28,12 @@ class Video extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$judulbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$judulbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$judulbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$judulbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$judulbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$judulbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$judulbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('judul')));
 				$data = [	'id_user'			=> $this->session->get('id_user'),
@@ -99,12 +99,12 @@ class Video extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$judulbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$judulbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$judulbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$judulbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$judulbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$judulbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$judulbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('judul')));
 				$data = [	'id_video'		=> $id_video,

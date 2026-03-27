@@ -58,7 +58,7 @@ echo csrf_field();
 	<div class="col-3">
 		<?php if($konfigurasi->banner=="") { echo '-'; }else{ 
 			$img_dipublic = FCPATH . 'assets/upload/image/' . $konfigurasi->banner;
-			$img_diluar = FCPATH . '../assets/upload/image/' . $konfigurasi->banner;
+			$img_diluar = FCPATH . '' . $konfigurasi->banner;
 			if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
 			    @copy($img_diluar, $img_dipublic);
 			}

@@ -21,7 +21,7 @@
 			<td class="text-center">
 				<?php if($kategori_staff->gambar=="") { echo '-'; }else{ 
 					$img_dipublic = FCPATH . 'assets/upload/image/thumbs/' . $kategori_staff->gambar;
-					$img_diluar = FCPATH . '../assets/upload/image/thumbs/' . $kategori_staff->gambar;
+					$img_diluar = FCPATH . 'thumbs/' . $kategori_staff->gambar;
 					if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
 					    @copy($img_diluar, $img_dipublic);
 					}

@@ -223,12 +223,12 @@ class Konfigurasi extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('banner');
 				$namabaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$namabaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$namabaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$namabaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$namabaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$namabaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
 				// masuk database
 				$data = [	'id_konfigurasi'	=> $konfigurasi->id_konfigurasi,
 							'id_user'			=> $this->session->get('id_user'),
@@ -339,20 +339,20 @@ class Konfigurasi extends BaseController
 	        $namabaru = $avatar->getRandomName();
 
 	        // Pindahkan file ke folder yang ditentukan
-	        $avatar->move(WRITEPATH . '../assets/upload/image/', $namabaru);
+	        $avatar->move(FCPATH . 'assets/upload/image/', $namabaru);
 
 	        // Create thumbnail
 	        $image = \Config\Services::image()
-	            ->withFile(WRITEPATH . '../assets/upload/image/' . $namabaru)
+	            ->withFile(FCPATH . 'assets/upload/image/' . $namabaru)
 	            ->fit(100, 100, 'center')
-	            ->save(WRITEPATH . '../assets/upload/image/thumbs/' . $namabaru);
+	            ->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
 
 	        // Hapus file lama jika ada (opsional)
-	        if (!empty($konfigurasi->logo) && file_exists(WRITEPATH . '../assets/upload/image/' . $konfigurasi->logo)) {
-	            unlink(WRITEPATH . '../assets/upload/image/' . $konfigurasi->logo);
+	        if (!empty($konfigurasi->logo) && file_exists(FCPATH . 'assets/upload/image/' . $konfigurasi->logo)) {
+	            unlink(FCPATH . 'assets/upload/image/' . $konfigurasi->logo);
 	        }
-	        if (!empty($konfigurasi->logo) && file_exists(WRITEPATH . '../assets/upload/image/thumbs/' . $konfigurasi->logo)) {
-	            unlink(WRITEPATH . '../assets/upload/image/thumbs/' . $konfigurasi->logo);
+	        if (!empty($konfigurasi->logo) && file_exists(FCPATH . 'assets/upload/image/thumbs/' . $konfigurasi->logo)) {
+	            unlink(FCPATH . 'assets/upload/image/thumbs/' . $konfigurasi->logo);
 	        }
 
 	        // Update database dengan nama file baru
@@ -400,20 +400,20 @@ class Konfigurasi extends BaseController
 	        $namabaru = $avatar->getRandomName();
 
 	        // Pindahkan file ke folder yang ditentukan
-	        $avatar->move(WRITEPATH . '../assets/upload/image/', $namabaru);
+	        $avatar->move(FCPATH . 'assets/upload/image/', $namabaru);
 
 	        // Create thumbnail
 	        $image = \Config\Services::image()
-	            ->withFile(WRITEPATH . '../assets/upload/image/' . $namabaru)
+	            ->withFile(FCPATH . 'assets/upload/image/' . $namabaru)
 	            ->fit(100, 100, 'center')
-	            ->save(WRITEPATH . '../assets/upload/image/thumbs/' . $namabaru);
+	            ->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
 
 	        // Hapus file lama jika ada (opsional)
-	        if (!empty($konfigurasi->login) && file_exists(WRITEPATH . '../assets/upload/image/' . $konfigurasi->login)) {
-	            unlink(WRITEPATH . '../assets/upload/image/' . $konfigurasi->login);
+	        if (!empty($konfigurasi->login) && file_exists(FCPATH . 'assets/upload/image/' . $konfigurasi->login)) {
+	            unlink(FCPATH . 'assets/upload/image/' . $konfigurasi->login);
 	        }
-	        if (!empty($konfigurasi->login) && file_exists(WRITEPATH . '../assets/upload/image/thumbs/' . $konfigurasi->login)) {
-	            unlink(WRITEPATH . '../assets/upload/image/thumbs/' . $konfigurasi->login);
+	        if (!empty($konfigurasi->login) && file_exists(FCPATH . 'assets/upload/image/thumbs/' . $konfigurasi->login)) {
+	            unlink(FCPATH . 'assets/upload/image/thumbs/' . $konfigurasi->login);
 	        }
 
 	        // Update database dengan nama file baru
@@ -462,20 +462,20 @@ class Konfigurasi extends BaseController
 	        $namabaru = $avatar->getRandomName();
 
 	        // Pindahkan file ke folder yang ditentukan
-	        $avatar->move(WRITEPATH . '../assets/upload/image/', $namabaru);
+	        $avatar->move(FCPATH . 'assets/upload/image/', $namabaru);
 
 	        // Create thumbnail
 	        $image = \Config\Services::image()
-	            ->withFile(WRITEPATH . '../assets/upload/image/' . $namabaru)
+	            ->withFile(FCPATH . 'assets/upload/image/' . $namabaru)
 	            ->fit(100, 100, 'center')
-	            ->save(WRITEPATH . '../assets/upload/image/thumbs/' . $namabaru);
+	            ->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
 
 	        // Hapus file icon lama jika ada
-	        if (!empty($konfigurasi->icon) && file_exists(WRITEPATH . '../assets/upload/image/' . $konfigurasi->icon)) {
-	            unlink(WRITEPATH . '../assets/upload/image/' . $konfigurasi->icon);
+	        if (!empty($konfigurasi->icon) && file_exists(FCPATH . 'assets/upload/image/' . $konfigurasi->icon)) {
+	            unlink(FCPATH . 'assets/upload/image/' . $konfigurasi->icon);
 	        }
-	        if (!empty($konfigurasi->icon) && file_exists(WRITEPATH . '../assets/upload/image/thumbs/' . $konfigurasi->icon)) {
-	            unlink(WRITEPATH . '../assets/upload/image/thumbs/' . $konfigurasi->icon);
+	        if (!empty($konfigurasi->icon) && file_exists(FCPATH . 'assets/upload/image/thumbs/' . $konfigurasi->icon)) {
+	            unlink(FCPATH . 'assets/upload/image/thumbs/' . $konfigurasi->icon);
 	        }
 
 	        // Update database dengan nama file baru

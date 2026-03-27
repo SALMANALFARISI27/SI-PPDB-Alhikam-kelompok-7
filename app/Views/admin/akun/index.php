@@ -17,7 +17,7 @@
     if($user->gambar != '') {
         // Cek file di dalam FCPATH
         $img_dipublic = FCPATH . 'assets/upload/image/' . $user->gambar;
-        $img_diluar = FCPATH . '../assets/upload/image/' . $user->gambar;
+        $img_diluar = FCPATH . '' . $user->gambar;
         
         // Jika file tidak ada di dalam tetapi ada di luar, copy ke dalam
         if (!file_exists($img_dipublic) && file_exists($img_diluar)) {

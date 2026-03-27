@@ -28,12 +28,12 @@ class Kategori_prestasi extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_kategori_prestasibaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_prestasibaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_prestasibaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_prestasibaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_prestasibaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_prestasibaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_prestasibaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_prestasi')));
 				$data = [	'id_user'					=> $this->session->get('id_user'),
@@ -95,12 +95,12 @@ class Kategori_prestasi extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_kategori_prestasibaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_prestasibaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_prestasibaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_prestasibaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_prestasibaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_prestasibaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_prestasibaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_prestasi')));
 				$data = [	'id_kategori_prestasi'		=> $id_kategori_prestasi,

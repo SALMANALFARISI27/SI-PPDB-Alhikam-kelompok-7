@@ -28,12 +28,12 @@ class Kategori_portfolio extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_kategori_portfoliobaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_portfoliobaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_portfoliobaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_portfoliobaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_portfoliobaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_portfoliobaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_portfoliobaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_portfolio')));
 				$data = [	'id_user'					=> $this->session->get('id_user'),
@@ -95,12 +95,12 @@ class Kategori_portfolio extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_kategori_portfoliobaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_portfoliobaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_portfoliobaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_portfoliobaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_portfoliobaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_portfoliobaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_portfoliobaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_portfolio')));
 				$data = [	'id_kategori_portfolio'		=> $id_kategori_portfolio,

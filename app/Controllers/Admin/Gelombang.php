@@ -233,12 +233,12 @@ class Gelombang extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$judulbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$judulbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$judulbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$judulbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$judulbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$judulbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$judulbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('judul')));
 				$data = [	'id_user'					=> $this->session->get('id_user'),
@@ -309,12 +309,12 @@ class Gelombang extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$judulbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$judulbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$judulbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$judulbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$judulbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$judulbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$judulbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('judul')));
 				$data = [	'id_gelombang'				=> $id_gelombang,
@@ -422,12 +422,12 @@ class Gelombang extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_siswabaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_siswabaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_siswabaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_siswabaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_siswabaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_siswabaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_siswabaru);
 	        	// masuk database
 	        	$slug_siswa 	= strtolower(url_title($this->request->getVar('nama_siswa'))).'-'.strtoupper(random_string('alnum', 8));
 				$data = [	'id_user'				=> $this->session->get('id_user'),
@@ -650,12 +650,12 @@ class Gelombang extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_siswabaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_siswabaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_siswabaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_siswabaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_siswabaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_siswabaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_siswabaru);
 	        	// masuk database
 	        	$slug_siswa 	= strtolower(url_title($this->request->getVar('nama_siswa'))).'-'.strtoupper(random_string('alnum', 8));
 				$data = [	'id_siswa'				=> $siswa->id_siswa,
@@ -880,7 +880,7 @@ class Gelombang extends BaseController
 			$namabaru 	= $avatar->getRandomName();
 			$file_ext 	= $avatar->guessExtension();
 			$file_size 	= $avatar->getSizeByUnit('mb');
-            $avatar->move(WRITEPATH . '../assets/upload/pendaftaran/',$namabaru);
+            $avatar->move(FCPATH . 'assets/upload/pendaftaran/',$namabaru);
         	// masuk database
 		    $data = array(
         		'id_akun'				=> $akun->id_akun,

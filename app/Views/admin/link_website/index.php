@@ -20,7 +20,7 @@
 			<td class="text-center">
 				<?php if($link_website->gambar=="") { echo '-'; }else{ 
 					$img_dipublic = FCPATH . 'assets/upload/image/thumbs/' . $link_website->gambar;
-					$img_diluar = FCPATH . '../assets/upload/image/thumbs/' . $link_website->gambar;
+					$img_diluar = FCPATH . 'thumbs/' . $link_website->gambar;
 					if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
 					    @copy($img_diluar, $img_dipublic);
 					}

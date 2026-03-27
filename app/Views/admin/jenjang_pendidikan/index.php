@@ -67,7 +67,7 @@
 			<td>
 				<?php if($jenjang_pendidikan->gambar=="") { echo '-'; }else{ 
 					$img_dipublic = FCPATH . 'assets/upload/image/thumbs/' . $jenjang_pendidikan->gambar;
-					$img_diluar = FCPATH . '../assets/upload/image/thumbs/' . $jenjang_pendidikan->gambar;
+					$img_diluar = FCPATH . 'thumbs/' . $jenjang_pendidikan->gambar;
 					if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
 					    @copy($img_diluar, $img_dipublic);
 					}

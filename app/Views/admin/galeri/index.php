@@ -77,13 +77,7 @@
 				<?php echo $no ?>
 			</td>
 			<td>
-				<?php if($galeri->gambar=="") { echo '-'; }else{ 
-					$img_dipublic = FCPATH . 'assets/upload/image/' . $galeri->gambar;
-					$img_diluar = FCPATH . '../assets/upload/image/' . $galeri->gambar;
-					if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
-					    @copy($img_diluar, $img_dipublic);
-					}
-				?>
+				<?php if($galeri->gambar=="") { echo '-'; }else{ ?>
 					<img src="<?php echo base_url('assets/upload/image/'.$galeri->gambar) ?>" class="img img-thumbnail">
 				<?php } ?>
 			</td>

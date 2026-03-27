@@ -28,12 +28,12 @@ class Kategori_fasilitas extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_kategori_fasilitasbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_fasilitasbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_fasilitasbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_fasilitasbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_fasilitasbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_fasilitasbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_fasilitasbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_fasilitas')));
 				$data = [	'id_user'					=> $this->session->get('id_user'),
@@ -95,12 +95,12 @@ class Kategori_fasilitas extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_kategori_fasilitasbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_fasilitasbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_fasilitasbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_fasilitasbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_fasilitasbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_fasilitasbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_fasilitasbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_fasilitas')));
 				$data = [	'id_kategori_fasilitas'		=> $id_kategori_fasilitas,

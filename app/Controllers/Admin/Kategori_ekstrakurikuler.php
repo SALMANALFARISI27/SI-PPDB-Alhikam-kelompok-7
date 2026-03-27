@@ -28,12 +28,12 @@ class Kategori_ekstrakurikuler extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_kategori_ekstrakurikulerbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_ekstrakurikulerbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_ekstrakurikulerbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_ekstrakurikulerbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_ekstrakurikulerbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_ekstrakurikulerbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_ekstrakurikulerbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_ekstrakurikuler')));
 				$data = [	'id_user'					=> $this->session->get('id_user'),
@@ -95,12 +95,12 @@ class Kategori_ekstrakurikuler extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_kategori_ekstrakurikulerbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_ekstrakurikulerbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_ekstrakurikulerbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_ekstrakurikulerbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_ekstrakurikulerbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_ekstrakurikulerbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_ekstrakurikulerbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_ekstrakurikuler')));
 				$data = [	'id_kategori_ekstrakurikuler'		=> $id_kategori_ekstrakurikuler,

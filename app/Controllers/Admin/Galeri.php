@@ -81,12 +81,12 @@ class Galeri extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$namabaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$namabaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$namabaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$namabaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$namabaru)
 			    ->fit(300, 300, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$namabaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
 	        	// masuk database
 	        	$data = array(
 	        		'id_user'			=> $this->session->get('id_user'),
@@ -201,12 +201,12 @@ class Galeri extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$namabaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$namabaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$namabaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$namabaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$namabaru)
 			    ->fit(300, 300, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$namabaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
 	        	// masuk database
 			    $data = array(
 	        		'id_galeri'			=> $id_galeri,

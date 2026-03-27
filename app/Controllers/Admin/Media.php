@@ -66,7 +66,7 @@ class Media extends BaseController
 				$namabaru 	= $avatar->getRandomName();
 				$file_ext 	= $avatar->guessExtension();
 				$file_size 	= $avatar->getSizeByUnit('mb');
-	            $avatar->move(WRITEPATH . '../assets/upload/file/',$namabaru);
+	            $avatar->move(FCPATH . 'assets/upload/file/',$namabaru);
 	        	// masuk database
 			    $data = array(
 	        		'id_user'				=> $this->session->get('id_user'),

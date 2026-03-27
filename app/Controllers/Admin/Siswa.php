@@ -127,7 +127,7 @@ class Siswa extends BaseController
 			// File upload
 			$avatar  		= $this->request->getFile('file_excel');
 			$namabaru 		= $avatar->getName();
-            $avatar->move(WRITEPATH . '../assets/upload/file/',$namabaru);
+            $avatar->move(FCPATH . 'assets/upload/file/',$namabaru);
            	// Masuk database
 	        $reader     	= \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
 	        $reader->setReadDataOnly(TRUE);
@@ -374,12 +374,12 @@ class Siswa extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_siswabaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_siswabaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_siswabaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_siswabaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_siswabaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_siswabaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_siswabaru);
 	        	// masuk database
 	        	$slug_siswa 	= strtolower(url_title($this->request->getVar('nama_siswa'))).'-'.$this->request->getPost('nis').'-'.$this->request->getPost('nisn');
 				$data = [	'id_user'				=> $this->session->get('id_user'),
@@ -566,12 +566,12 @@ class Siswa extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_siswabaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_siswabaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_siswabaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_siswabaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_siswabaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_siswabaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_siswabaru);
 	        	// masuk database
 	        	$slug_siswa 	= strtolower(url_title($this->request->getVar('nama_siswa'))).$this->request->getVar('nis');
 				$data = [	'id_siswa'				=> $id_siswa,

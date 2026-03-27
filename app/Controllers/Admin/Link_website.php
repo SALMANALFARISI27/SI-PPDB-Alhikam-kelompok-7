@@ -29,12 +29,12 @@ class Link_website extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_link_websitebaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_link_websitebaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_link_websitebaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_link_websitebaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_link_websitebaru)
 			    ->fit(300,200, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_link_websitebaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_link_websitebaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_link_website')));
 				$data = [	'id_user'					=> $this->session->get('id_user'),
@@ -100,12 +100,12 @@ class Link_website extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_link_websitebaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_link_websitebaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_link_websitebaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_link_websitebaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_link_websitebaru)
 			    ->fit(300,200, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_link_websitebaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_link_websitebaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_link_website')));
 				$data = [	'id_link_website'		=> $id_link_website,

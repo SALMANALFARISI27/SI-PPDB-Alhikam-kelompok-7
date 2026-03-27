@@ -28,12 +28,12 @@ class Kategori_galeri extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_kategori_galeribaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_galeribaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_galeribaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_galeribaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_galeribaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_galeribaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_galeribaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_galeri')));
 				$data = [	'id_user'					=> $this->session->get('id_user'),
@@ -95,12 +95,12 @@ class Kategori_galeri extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_kategori_galeribaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_galeribaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_galeribaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_galeribaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_galeribaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_galeribaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_galeribaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_galeri')));
 				$data = [	'id_kategori_galeri'		=> $id_kategori_galeri,

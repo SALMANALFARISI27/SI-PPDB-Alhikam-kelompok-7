@@ -28,12 +28,12 @@ class Kategori_download extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_kategori_downloadbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_downloadbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_downloadbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_downloadbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_downloadbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_downloadbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_downloadbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_download')));
 				$data = [	'id_user'					=> $this->session->get('id_user'),
@@ -95,12 +95,12 @@ class Kategori_download extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_kategori_downloadbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_kategori_downloadbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_kategori_downloadbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_kategori_downloadbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_kategori_downloadbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_kategori_downloadbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_downloadbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_download')));
 				$data = [	'id_kategori_download'		=> $id_kategori_download,

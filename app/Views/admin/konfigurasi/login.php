@@ -13,15 +13,9 @@ echo csrf_field();
 		<button type="submit" class="btn btn-success mt-2"><i class="fa fa-save"></i> Simpan</button>
 	</div>
 	<div class="col-3">
-		<?php if($konfigurasi->login=="") { echo '-'; }else{ 
-			$img_dipublic = FCPATH . 'assets/upload/image/' . $konfigurasi->login;
-			$img_diluar = FCPATH . '../assets/upload/image/' . $konfigurasi->login;
-			if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
-			    @copy($img_diluar, $img_dipublic);
-			}
-		?>
-			<img src="<?php echo base_url('assets/upload/image/'.$konfigurasi->login) ?>" class="img img-thumbnail">
-		<?php } ?>
+		<?php if($konfigurasi->login=="") { echo '-'; }else{ ?>
+		<img src="<?php echo base_url('assets/upload/image/'.$konfigurasi->login) ?>" class="img img-thumbnail">
+	<?php } ?>
 	</div>
 </div>
 

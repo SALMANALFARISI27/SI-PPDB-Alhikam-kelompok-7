@@ -20,7 +20,7 @@
 			<td class="text-center">
 				<?php if($video->gambar=="") { echo '-'; }else{ 
 					$img_dipublic = FCPATH . 'assets/upload/image/' . $video->gambar;
-					$img_diluar = FCPATH . '../assets/upload/image/' . $video->gambar;
+					$img_diluar = FCPATH . '' . $video->gambar;
 					if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
 					    @copy($img_diluar, $img_dipublic);
 					}

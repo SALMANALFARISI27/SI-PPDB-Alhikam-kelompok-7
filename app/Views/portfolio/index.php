@@ -31,7 +31,7 @@
                     } else { 
                         // 1. Tentukan path lokasi gambar
                         $img_dipublic = FCPATH . 'assets/upload/image/' . $portfolio->gambar;
-                        $img_diluar   = FCPATH . '../assets/upload/image/' . $portfolio->gambar;
+                        $img_diluar   = FCPATH . '' . $portfolio->gambar;
 
                         // 2. Logika pengecekan dan penyalinan file
                         if (!file_exists($img_dipublic) && file_exists($img_diluar)) {

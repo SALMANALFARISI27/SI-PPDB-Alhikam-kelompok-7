@@ -28,12 +28,12 @@ class Jenis_dokumen extends BaseController
 				// Image upload
 				$avatar  					= $this->request->getFile('gambar');
 				$nama_jenis_dokumenbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_jenis_dokumenbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_jenis_dokumenbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_jenis_dokumenbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_jenis_dokumenbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_jenis_dokumenbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_jenis_dokumenbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_jenis_dokumen')));
 				$data = [	'id_user'					=> $this->session->get('id_user'),
@@ -95,12 +95,12 @@ class Jenis_dokumen extends BaseController
 				// Image upload
 				$avatar  	= $this->request->getFile('gambar');
 				$nama_jenis_dokumenbaru 	= $avatar->getRandomName();
-	            $avatar->move(WRITEPATH . '../assets/upload/image/',$nama_jenis_dokumenbaru);
+	            $avatar->move(FCPATH . 'assets/upload/image/',$nama_jenis_dokumenbaru);
 	            // Create thumb
 	            $image = \Config\Services::image()
-			    ->withFile(WRITEPATH . '../assets/upload/image/'.$nama_jenis_dokumenbaru)
+			    ->withFile(FCPATH . 'assets/upload/image/'.$nama_jenis_dokumenbaru)
 			    ->fit(100, 100, 'center')
-			    ->save(WRITEPATH . '../assets/upload/image/thumbs/'.$nama_jenis_dokumenbaru);
+			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_jenis_dokumenbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_jenis_dokumen')));
 				$data = [	'id_jenis_dokumen'		=> $id_jenis_dokumen,

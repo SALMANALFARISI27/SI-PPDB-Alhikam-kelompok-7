@@ -27,7 +27,7 @@
                   <a href="<?php echo base_url('prestasi/read/'.$prestasi->slug_prestasi) ?>">
                     <?php
                       $img_dipublic = FCPATH . 'assets/upload/image/' . $prestasi->gambar;
-                      $img_diluar = FCPATH . '../assets/upload/image/' . $prestasi->gambar;
+                      $img_diluar = FCPATH . '' . $prestasi->gambar;
                       if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
                           @copy($img_diluar, $img_dipublic);
                       }
