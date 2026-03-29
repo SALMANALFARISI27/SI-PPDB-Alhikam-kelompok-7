@@ -103,7 +103,6 @@
 			<td><small>
 				<i class="fa fa-phone"></i> <?php echo $staff->telepon ?>
 				<br><i class="fa fa-envelope"></i> <?php echo $staff->email ?>
-				<br><i class="fa fa-globe"></i> <?php echo $staff->website ?>
 				<br><i class="fa fa-map"></i> <?php echo $staff->alamat ?>
 				</small>
 			</td>

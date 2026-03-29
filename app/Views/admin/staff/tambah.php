@@ -75,10 +75,7 @@
 </div>
 
 <div class="form-group row">
-	<label class="col-3">Upload Foto dan Website</label>
-	<div class="col-4">
-		<input type="text" name="website" class="form-control" placeholder="Website" value="<?php echo set_value('website') ?>">
-	</div>
+	<label class="col-3">Upload Foto</label>
 	<div class="col-5">
 		<input type="file" name="gambar" class="form-control" placeholder="gambar" value="<?php echo set_value('gambar') ?>">
 	</div>

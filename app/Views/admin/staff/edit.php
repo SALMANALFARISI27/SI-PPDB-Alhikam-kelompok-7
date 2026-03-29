@@ -62,21 +62,17 @@
 </div>
 
 <div class="form-group row">
-	<label class="col-3">Upload Foto dan Website</label>
+	<label class="col-3">Email dan Telepon</label>
+		<div class="col-5">
+		<input type="text" name="email" class="form-control" placeholder="Email staff" value="<?php echo $staff->email ?>">
+	</div>
 	<div class="col-4">
 		<input type="text" name="telepon" class="form-control" placeholder="Telepon" value="<?php echo $staff->telepon ?>">
 	</div>
-	<div class="col-5">
-		<input type="text" name="email" class="form-control" placeholder="Email staff" value="<?php echo $staff->email ?>">
-	</div>
-	
 </div>
 
 <div class="form-group row">
-	<label class="col-3">Website dan logo</label>
-	<div class="col-4">
-		<input type="text" name="website" class="form-control" placeholder="Website" value="<?php echo $staff->website ?>">
-	</div>
+	<label class="col-3">Upload Foto</label>
 	<div class="col-4">
 		<input type="file" name="gambar" class="form-control" placeholder="gambar" value="<?php echo $staff->gambar ?>">
 	</div>

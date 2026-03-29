@@ -93,12 +93,7 @@ echo csrf_field();
 	</div>
 </div>
 
-<div class="form-group row">
-	<label class="col-md-2">Link/URL untuk Banner</label>
-	<div class="col-md-10">
-		<input type="text" name="website" class="form-control" value="<?php echo $ekstrakurikuler->website ?>">
-	</div>
-</div>
+
 
 <div class="form-group row">
 	<label class="col-md-2"></label>
