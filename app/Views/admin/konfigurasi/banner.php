@@ -15,37 +15,8 @@ echo csrf_field();
 <div class="form-group row">
 	<label class="col-3">Tentang Website <span class="text-danger">*</span></label>
 	<div class="col-9">
-		<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-media">
-			<i class="fa fa-plus-circle"></i> Upload &amp; Kelola Media/File
-		</button>
-		<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-galeri">
-			<i class="fa fa-image"></i> Lihat Galeri
-		</button>
-		<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-download">
-			<i class="fa fa-download"></i> Lihat File
-		</button>
+		
 		<textarea name="tentang" class="form-control konten" rows="5"><?php echo $konfigurasi->tentang ?></textarea>
-	</div>
-</div>
-
-<div class="form-group row">
-	<label class="col-3">Text Link About Website <span class="text-danger">*</span></label>
-	<div class="col-9">
-		<input type="text" name="link_text" class="form-control" value="<?php echo $konfigurasi->link_text ?>" required>
-	</div>
-</div>
-
-<div class="form-group row">
-	<label class="col-3">Link About Website <span class="text-danger">*</span></label>
-	<div class="col-9">
-		<input type="text" name="link_website" class="form-control" value="<?php echo $konfigurasi->link_website ?>" required>
-	</div>
-</div>
-
-<div class="form-group row">
-	<label class="col-3">Link Video Profil <span class="text-danger">*</span></label>
-	<div class="col-9">
-		<input type="text" name="link_video" class="form-control" value="<?php echo $konfigurasi->link_video ?>">
 	</div>
 </div>
 

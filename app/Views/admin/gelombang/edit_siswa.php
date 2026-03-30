@@ -22,7 +22,6 @@
         use App\Models\Jenjang_model;
         use App\Models\Pekerjaan_model;
         use App\Models\Hubungan_model;
-        use App\Models\Kelas_model;
         use App\Models\Tahun_model;
         use App\Models\Jenjang_pendidikan_model;
         $m_agama    = new Agama_model();
@@ -30,7 +29,6 @@
         $m_pekerjaan  = new Pekerjaan_model();
         $m_hubungan   = new Hubungan_model();
         $m_tahun    = new Tahun_model();
-        $m_kelas    = new Kelas_model();
         $m_jenjang_pendidikan   = new Jenjang_pendidikan_model();
 
         echo form_open_multipart(base_url('admin/gelombang/edit_siswa/'.$siswa->slug_siswa));

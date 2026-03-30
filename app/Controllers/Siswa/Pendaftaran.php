@@ -6,13 +6,10 @@ use App\Models\Konfigurasi_model;
 use App\Models\Galeri_model;
 use App\Models\Berita_model;
 use App\Models\Siswa_model;
-use App\Models\Rombel_model;
-use App\Models\Kelas_model;
 use App\Models\Tahun_model;
 use App\Models\Jenjang_model;
 use App\Models\Pekerjaan_model;
 use App\Models\Hubungan_model;
-use App\Models\Siswa_rombel_model;
 use App\Models\Agama_model;
 use App\Models\Akun_model;
 use App\Models\Jenis_dokumen_model;
@@ -125,7 +122,6 @@ class Pendaftaran extends BaseController
 							'id_jenjang_ibu'		=> $this->request->getPost('id_jenjang_ibu'),
 							'id_jenjang_wali'		=> $id_jenjang_wali,
 							'id_tahun'				=> $this->request->getPost('id_tahun'),
-							'id_kelas'				=> $this->request->getPost('id_kelas'),
 							'id_jenjang'			=> $this->request->getPost('id_jenjang'),
 							'id_hubungan'			=> $this->request->getPost('id_hubungan'),
 							'id_akun'				=> $akun->id_akun,
@@ -198,7 +194,6 @@ class Pendaftaran extends BaseController
 							'id_jenjang_ibu'		=> $this->request->getPost('id_jenjang_ibu'),
 							'id_jenjang_wali'		=> $id_jenjang_wali,
 							'id_tahun'				=> $this->request->getPost('id_tahun'),
-							'id_kelas'				=> $this->request->getPost('id_kelas'),
 							'id_jenjang'			=> $this->request->getPost('id_jenjang'),
 							'id_hubungan'			=> $this->request->getPost('id_hubungan'),
 							'id_akun'				=> $akun->id_akun,
@@ -359,7 +354,6 @@ class Pendaftaran extends BaseController
 							'id_jenjang_ibu'		=> $this->request->getPost('id_jenjang_ibu'),
 							'id_jenjang_wali'		=> $id_jenjang_wali,
 							'id_tahun'				=> $this->request->getPost('id_tahun'),
-							'id_kelas'				=> $this->request->getPost('id_kelas'),
 							'id_jenjang'			=> $this->request->getPost('id_jenjang'),
 							'id_hubungan'			=> $this->request->getPost('id_hubungan'),
 							'id_akun'				=> $akun->id_akun,
@@ -428,7 +422,6 @@ class Pendaftaran extends BaseController
 							'id_jenjang_ibu'		=> $this->request->getPost('id_jenjang_ibu'),
 							'id_jenjang_wali'		=> $id_jenjang_wali,
 							'id_tahun'				=> $this->request->getPost('id_tahun'),
-							'id_kelas'				=> $this->request->getPost('id_kelas'),
 							'id_jenjang'			=> $this->request->getPost('id_jenjang'),
 							'id_hubungan'			=> $this->request->getPost('id_hubungan'),
 							'id_akun'				=> $akun->id_akun,

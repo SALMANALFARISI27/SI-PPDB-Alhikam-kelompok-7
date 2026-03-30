@@ -276,7 +276,7 @@ class Konfigurasi extends BaseController
 					];
 		$mpdf = new \Mpdf\Mpdf([
 						'default_font_size' => 11,
-						'default_font' => 'nunito-regular'
+						'default_font' => 'dejavusans'
 					]);
 		$html = view('admin/konfigurasi/cetak',$data);
 		$mpdf->WriteHTML($html);

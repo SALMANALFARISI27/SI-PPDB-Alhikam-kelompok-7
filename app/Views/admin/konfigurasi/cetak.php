@@ -23,7 +23,7 @@ $this->website          = new Website();
 				</td>
 				<td>
 					<h1>INFORMASI SEKOLAH
-						<br><?php echo $sekolah->nama_sekolah ?>
+						<br><?php echo $sekolah->nama_yayasan?>
 					</h1>
 				</td>
 			</tr>
@@ -38,15 +38,12 @@ $this->website          = new Website();
 	  </tr>
 		<tr>
 			<td class="bg-light" width="30%">Nama lengkap sekolah</td>
-			<td><?php echo $sekolah->nama_sekolah ?></td>
+			<td><?php echo $sekolah->nama_yayasan ?></td>
 		</tr>
+
 		<tr>
-			<td class="bg-light">Nama Singkat</td>
-			<td><?php echo $sekolah->nama_singkat ?></td>
-		</tr>
-		<tr>
-			<td class="bg-light">NPSN/NSS/NISN</td>
-			<td><?php echo $sekolah->nis ?></td>
+			<td class="bg-light">NSP</td>
+			<td><?php echo $sekolah->nsp ?></td>
 		</tr>
 		<tr>
 			<td class="bg-light">Status Sekolah</td>
@@ -106,10 +103,7 @@ $this->website          = new Website();
 			<td class="bg-light">Nama Kepala Sekolah</td>
 			<td><?php echo $sekolah->nama_kepsek ?></td>
 		</tr>
-		<tr>
-			<td class="bg-light">Jumlah Rombel</td>
-			<td><?php echo $sekolah->jumlah_rombel ?></td>
-		</tr>
+	
 		<tr>
 			<td class="bg-light">Jumlah Siswa</td>
 			<td><?php echo $sekolah->jumlah_murid ?></td>

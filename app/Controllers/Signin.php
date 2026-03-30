@@ -75,16 +75,19 @@ class Signin extends BaseController
 	            $subject    = 'Reset Password - ' . $this->website->namaweb();
 
 	            // Konfigurasi SMTP
+	            $clean_host = str_replace(['ssl://', 'tls://'], '', $konfigurasi->smtp_host);
 	            $email_config = [
-	                'protocol'  => $konfigurasi->protocol,
-	                'SMTPHost'  => $konfigurasi->smtp_host,
-	                'SMTPUser'  => $konfigurasi->smtp_user,
-	                'SMTPPass'  => $konfigurasi->smtp_pass,
-	                'SMTPPort'  => (int) $konfigurasi->smtp_port,
-	                'SMTPTimeout' => (int) $konfigurasi->smtp_timeout,
-	                'mailType'  => 'html',
-	                'charset'   => 'utf-8',
-	                'newline'   => "\r\n"
+	                'protocol'   => strtolower($konfigurasi->protocol),
+	                'SMTPHost'   => $clean_host,
+	                'SMTPUser'   => $konfigurasi->smtp_user,
+	                'SMTPPass'   => $konfigurasi->smtp_pass,
+	                'SMTPPort'   => (int) $konfigurasi->smtp_port,
+	                'SMTPCrypto' => ((int)$konfigurasi->smtp_port == 465) ? 'ssl' : (((int)$konfigurasi->smtp_port == 587) ? 'tls' : ''),
+	                'SMTPTimeout'=> (int) $konfigurasi->smtp_timeout,
+	                'mailType'   => 'html',
+	                'charset'    => 'utf-8',
+	                'CRLF'       => "\r\n",
+	                'newline'    => "\r\n"
 	            ];
 
 	            // Isi email
@@ -107,7 +110,9 @@ class Signin extends BaseController
 	            if ($email_service->send()) {
 	                $this->session->setFlashdata('sukses', 'Link Reset Telah Dikirimkan ke Email Anda. Silakan klik link tersebut untuk mengganti password.');
 	            } else {
-	                $this->session->setFlashdata('warning', 'Gagal mengirim email. Silakan coba lagi.');
+	                // Logging details ke error_log jika email gagal untuk panduan debug lanjutan
+	                file_put_contents(WRITEPATH . 'email_error.txt', $email_service->printDebugger());
+	                $this->session->setFlashdata('warning', 'Gagal mengirim email. Silakan coba lagi. Pastikan konfigurasi SMTP Anda valid.');
 	            }
 
 	            return redirect()->to(base_url('signin/reset'));

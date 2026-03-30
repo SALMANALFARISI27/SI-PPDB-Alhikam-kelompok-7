@@ -1,0 +1,43 @@
+Unable to send email using SMTP. Your server might not be configured to send mail using this method.<br><pre>Date: Mon, 30 Mar 2026 13:35:20 +0000
+From: &quot;YAYASAN AL-HIKAMUSSALAFIE&quot; &lt;ppdb@haqi.sch.id&gt;
+Return-Path: &lt;ppdb@haqi.sch.id&gt;
+To: salmanlaptop12345@gmail.com
+Subject: =?UTF-8?Q?Reset=20Password=20-=20YAYASAN=20AL-HIKAMUSSALAFIE?=
+Reply-To: &lt;ppdb@haqi.sch.id&gt;
+User-Agent: CodeIgniter
+X-Sender: ppdb@haqi.sch.id
+X-Mailer: CodeIgniter
+X-Priority: 3 (Normal)
+Message-ID: &lt;69ca7c1843ef68.14540428@haqi.sch.id&gt;
+Mime-Version: 1.0
+
+
+Content-Type: multipart/alternative; boundary=&quot;B_ALT_69ca7c1843f0d2.16135389&quot;
+
+This is a multi-part message in MIME format.
+Your email application may not support this format.
+
+--B_ALT_69ca7c1843f0d2.16135389
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Hai salman,Kami menerima permintaan untuk mengatur ulang kata sandi
+Anda.Silakan klik link di bawah ini untuk mengatur ulang kata sandi
+Anda:Reset PasswordJika Anda tidak meminta pengaturan ulang kata sandi,
+abaikan email ini.Terima kasih,Tim YAYASAN AL-HIKAMUSSALAFIE
+
+
+--B_ALT_69ca7c1843f0d2.16135389
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+&lt;p&gt;Hai &lt;strong&gt;salman&lt;/strong&gt;,&lt;/p&gt;&lt;p&gt;Kami menerima permintaan untuk mengat=
+ur ulang kata sandi Anda.&lt;/p&gt;&lt;p&gt;Silakan klik link di bawah ini untuk mengat=
+ur ulang kata sandi Anda:&lt;/p&gt;&lt;p&gt;&lt;a href=3D&#039;http://localhost:8080/signin/pas=
+sword/5L4Xb4M4W4JLOwEy5sCVxKBk2nvLnaKYMgBF9sgcIoaWKoazRjw4aUOZYzMHJktH&#039; sty=
+le=3D&#039;background-color: #28a745; color: #ffffff; padding: 10px 20px; text-d=
+ecoration: none;&#039;&gt;Reset Password&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Jika Anda tidak meminta pengatur=
+an ulang kata sandi, abaikan email ini.&lt;/p&gt;&lt;p&gt;Terima kasih,&lt;br&gt;Tim YAYASAN =
+AL-HIKAMUSSALAFIE&lt;/p&gt;
+
+--B_ALT_69ca7c1843f0d2.16135389--</pre>

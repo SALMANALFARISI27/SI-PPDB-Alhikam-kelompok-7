@@ -23,7 +23,7 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
+                 
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -39,7 +39,7 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
+   
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -65,7 +65,7 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
+                
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -81,7 +81,7 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
+    
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -108,7 +108,7 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
+               
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -124,7 +124,7 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
+     
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -165,7 +165,7 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
+              
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -181,7 +181,7 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
+  
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -248,7 +248,7 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
+                     
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -264,7 +264,7 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
+    
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -291,7 +291,7 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
+                 
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -307,7 +307,7 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
+   
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -379,7 +379,7 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
+                  
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -395,7 +395,7 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
+    
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -422,7 +422,7 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
+               
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -438,7 +438,7 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
+   
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -467,7 +467,7 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
+   
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -483,7 +483,7 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
+
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -512,7 +512,6 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -528,7 +527,6 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
@@ -555,7 +553,6 @@ class Siswa_model extends Model
         $builder->select('siswa.*,
                         jenjang.nama_jenjang,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        kelas.nama_kelas,
                         agama.nama_agama,
                         a.nama_agama AS agama_ayah,
                         b.nama_agama AS agama_ibu,
@@ -571,7 +568,6 @@ class Siswa_model extends Model
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
         $builder->join('jenjang','jenjang.id_jenjang = siswa.id_jenjang','LEFT');
-        $builder->join('kelas','kelas.id_kelas = siswa.id_kelas','LEFT');
         $builder->join('agama','agama.id_agama = siswa.id_agama','LEFT');
         $builder->join('agama a','a.id_agama = siswa.id_agama_ayah','LEFT');
         $builder->join('agama b','b.id_agama = siswa.id_agama_ibu','LEFT');
