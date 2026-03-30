@@ -979,11 +979,11 @@ class Gelombang extends BaseController
 	{
 		$m_dokumen 			= new Dokumen_model();
 		$dokumen 			= $m_dokumen->kode_dokumen($kode_dokumen);
-		if(!file_exists('../assets/upload/pendaftaran/'.$dokumen->gambar)) {
+		if(!file_exists(FCPATH . 'assets/upload/pendaftaran/'.$dokumen->gambar)) {
 			$this->session->setFlashdata('warning','Mohon maaf, file tidak ditemukan.');
-			return redirect()->to(base_url('pendaftaran/dokumen/'.$kode_siswa));
+			return redirect()->to(base_url('admin/gelombang/dokumen/'.$kode_siswa));
 		}else{
-			return $this->response->download('../assets/upload/pendaftaran/'.$dokumen->gambar, null);
+			return $this->response->download(FCPATH . 'assets/upload/pendaftaran/'.$dokumen->gambar, null);
 		}
 	}
 

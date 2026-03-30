@@ -75,7 +75,7 @@ class Website
 	{
 		$m_konfigurasi 	= new Sekolah_model();
 		$konfigurasi 	= $m_konfigurasi->listing();
-		return $konfigurasi->nama_sekolah;
+		return $konfigurasi->nama_yayasan;
 	}
 
 	// alamat
@@ -134,21 +134,6 @@ class Website
 		return $konfigurasi->nama_instagram;
 	}
 
-	// github
-	public function twitter()
-	{
-		$m_konfigurasi 	= new Konfigurasi_model();
-		$konfigurasi 	= $m_konfigurasi->listing();
-		return $konfigurasi->twitter;
-	}
-
-	// nama_github
-	public function nama_twitter()
-	{
-		$m_konfigurasi 	= new Konfigurasi_model();
-		$konfigurasi 	= $m_konfigurasi->listing();
-		return $konfigurasi->nama_twitter;
-	}
 
 	// website
 	public function websitenya()

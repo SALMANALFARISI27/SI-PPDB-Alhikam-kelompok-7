@@ -7,8 +7,7 @@ $this->website          = new Website();
 <head>
 <meta charset="utf-8">
 <title><?php echo $title ?></title>
-<link href="<?php echo ROOTPATH . 'assets/css/css-print.css' ?>" rel="stylesheet" media="print">
-<link href="<?php echo ROOTPATH . 'assets/css/css-print.css' ?>" rel="stylesheet" media="screen">
+<style><?php echo file_get_contents(FCPATH . 'assets/css/css-print.css'); ?></style>
 </head>
 
 <body>
@@ -19,7 +18,17 @@ $this->website          = new Website();
 		<tbody>
 			<tr>
 				<td style="width: 1.8cm;">
-					<img src="<?php echo ROOTPATH . 'assets/upload/image/' . $konfigurasi->icon ?>" style="width: 1.5cm; height: auto;">
+					<?php
+					$icon_url = $this->website->icon();
+					// Convert URL ke path file untuk mPDF
+					$icon_path = str_replace(base_url(), FCPATH, $icon_url);
+					if(file_exists($icon_path)) {
+					$icon_src = $icon_path;
+					} else {
+					$icon_src = $icon_url;
+					}
+					?>
+					<img src="<?php echo $icon_src ?>" style="width: 1.5cm; height: auto;">
 				</td>
 				<td>
 					<h1>INFORMASI PENDAFTARAN PESERTA DIDIK BARU

@@ -316,11 +316,11 @@ class Download extends BaseController
 		$m_download 			= new Download_model();
 		$kategori_download 		= $m_kategori_download->listing();
 		$download 				= $m_download->detail($id_download);
-		if(!file_exists('../assets/upload/file/'.$download->gambar)) {
+		if(!file_exists(FCPATH . 'assets/upload/file/'.$download->gambar)) {
 			$this->session->setFlashdata('warning','Mohon maaf, file tidak ditemukan.');
 			return redirect()->to(base_url('admin/download'));
 		}else{
-			return $this->response->download('../assets/upload/file/'.$download->gambar, null);
+			return $this->response->download(FCPATH . 'assets/upload/file/'.$download->gambar, null);
 		}
 	}
 	

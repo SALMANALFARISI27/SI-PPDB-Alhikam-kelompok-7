@@ -1,7 +1,6 @@
 <?php 
 namespace App\Libraries;
 use App\Models\User_model;
-use App\Models\Client_model;
 use App\Models\Siswa_model;
 use App\Models\Akun_model;
 
@@ -110,30 +109,6 @@ class Simple_login
 	        exit;
 		}
 	}
-
-	// check login
-	public function login_client($username,$password)
-	{
-		$this->session  = \Config\Services::session();
-		$uri            = service('uri');
-		$m_client 		= new Client_model();
-		$user 			= $m_client->login($username,$password);
-		if($user) 
-		{
-			// Jika username password benar
-			$this->session->set('username_client',$username);
-			$this->session->set('id_client',$user->id_client);
-			$this->session->set('nama_client',$user->nama);
-			$this->session->set('akses_level','Client');
-			header("Location: client/dasbor");			
-            exit;
-		}else{
-			// jika username password salah
-			$this->session->setFlashdata('warning','Username atau password salah');
-			return redirect()->to(base_url('signin'));
-		}
-	}
-
 	// check login
 	public function checklogin()
 	{
@@ -148,19 +123,7 @@ class Simple_login
 		}
 	}
 
-	// check login
-	public function checklogin_client()
-	{
-		$this->session  = \Config\Services::session();
-		if($this->session->get('username_client')=='') 
-		{
-			$pengalihan = str_replace('index.php/','',current_url());
-			$this->session->set('pengalihan_siswa',$pengalihan);
-			$this->session->setFlashdata('warning','Anda belum login');
-			header("Location: ".base_url('signin')).'?redirect='.$pengalihan;
-	        exit;
-		}
-	}
+	
 
 	// check logout
 	public function logout()

@@ -131,7 +131,7 @@ class Siswa extends BaseController
            	// Masuk database
 	        $reader     	= \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
 	        $reader->setReadDataOnly(TRUE);
-	        $spreadsheet  	= $reader->load('../assets/upload/file/'.$namabaru);
+	        $spreadsheet  	= $reader->load(FCPATH . 'assets/upload/file/'.$namabaru);
 	        $worksheet    	= $spreadsheet->getActiveSheet();
 	        $i=1;
 	        $rows[]="";
