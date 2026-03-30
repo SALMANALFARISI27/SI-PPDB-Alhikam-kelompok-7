@@ -7,7 +7,7 @@
         <h1 class="display-2 text-white mb-4"><?php echo $video->judul ?></h1>
         <p class="lead fs-24 lh-sm text-white mb-7 pe-md-18 pe-lg-0 pe-xxl-15"><?php echo $video->keterangan ?></p>
         <div>
-          <a class="btn btn-lg btn-primary rounded" href="<?php echo base_url('kontak') ?>">Hubungi Kami</a>
+          <a class="btn btn-lg btn-primary rounded" href="<?php echo base_url('video') ?>">Lihat video Lainnya....</a>
         </div>
       </div>
       <!-- /column -->

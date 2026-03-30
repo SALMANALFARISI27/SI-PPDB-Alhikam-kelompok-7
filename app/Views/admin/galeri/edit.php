@@ -43,7 +43,6 @@ echo csrf_field();
 		<select name="jenis_galeri" class="form-control">
 			<option value="Galeri">Galeri</option>
 			<option value="Homepage" <?php if($galeri->jenis_galeri=="Homepage") { echo 'selected'; } ?>>Homepage Slider</option>
-			<option value="Header" <?php if($galeri->jenis_galeri=="Header") { echo 'selected'; } ?>>Header Halaman</option>
 			<option value="Pop Up" <?php if($galeri->jenis_galeri=="Pop Up") { echo 'selected'; } ?>>Pop Up Homepage</option>
 		</select>
 		<small class="text-secondary">Jenis konten</small>
@@ -72,12 +71,7 @@ echo csrf_field();
 	</div>
 </div>
 
-<div class="form-group row">
-	<label class="col-md-3">Link/URL untuk Banner</label>
-	<div class="col-md-9">
-		<input type="text" name="website" class="form-control" value="<?php echo $galeri->website ?>">
-	</div>
-</div>
+
 
 <div class="form-group row">
 	<label class="col-md-3"></label>
