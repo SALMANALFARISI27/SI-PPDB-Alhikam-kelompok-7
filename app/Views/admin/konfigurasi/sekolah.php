@@ -15,30 +15,79 @@ echo csrf_field();
 <table class="table table-sm table-bordered">
 	<tbody>
 		<tr>
-		  <td colspan="2" class="bg-secondary text-center"><h3>DATA DASAR SEKOLAH</h3></td>
+		  <td colspan="2" class="bg-secondary text-center"><h3>INFORMASI, AKREDITASI DAN YAYASAN</h3></td>
 	  </tr>
 		<tr>
-			<td class="bg-light" width="25%">Nama lengkap sekolah</td>
-			<td><input type="text" name="nama_sekolah" class="form-control" value="<?php echo $sekolah->nama_sekolah ?>"></td>
+			<td class="bg-light" width="25%">Nama Yayasan</td>
+			<td><input type="text" name="nama_yayasan" class="form-control" value="<?php echo $sekolah->nama_yayasan ?>"></td>
+		</tr>
+		
+		<tr>
+			<td class="bg-light">Nama Yayasan Cover Rapor</td>
+			<td><input type="text" name="nama_cover" class="form-control" value="<?php echo $sekolah->nama_cover ?>"></td>
 		</tr>
 		<tr>
-			<td class="bg-light" width="25%">Nama lengkap sekolah cover</td>
-			<td><input type="text" name="nama_sekolah_cover" class="form-control" value="<?php echo $sekolah->nama_sekolah_cover ?>"></td>
+			<td class="bg-light">Nama Kota Cover Rapor</td>
+			<td><input type="text" name="kota_cover" class="form-control" value="<?php echo $sekolah->kota_cover ?>"></td>
 		</tr>
 		<tr>
-			<td class="bg-light">Nama Singkat</td>
-			<td><input type="text" name="nama_singkat" class="form-control" value="<?php echo $sekolah->nama_singkat ?>"></td>
+			<td class="bg-light">Nama Yayasan Tampil di Footer Rapor</td>
+			<td><input type="text" name="nama_footer" class="form-control" value="<?php echo $sekolah->nama_footer ?>"></td>
+		</tr>
+
+		<tr>
+			<td class="bg-light">Tanggal berdiri Yayasan</td>
+			<td><input type="text" name="tanggal_berdiri" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($sekolah->tanggal_berdiri) ?>"></td>
 		</tr>
 		<tr>
-			<td class="bg-light">NPSN/NSS/NISN</td>
-			<td><input type="text" name="nis" class="form-control" value="<?php echo $sekolah->nis ?>"></td>
+			<td class="bg-light">NSP</td>
+			<td><input type="text" name="nis" class="form-control" value="<?php echo $sekolah->nsp ?>"></td>
 		</tr>
 		<tr>
-			<td class="bg-light">Status Sekolah</td>
+			<td class="bg-light">Status Yayasan</td>
 			<td><input type="text" name="status_sekolah" class="form-control" value="<?php echo $sekolah->status_sekolah ?>"></td>
 		</tr>
 		<tr>
-		  <td colspan="2" class="bg-secondary text-center"><h3>KONTAK DAN ALAMAT SEKOLAH</h3></td>
+			<td class="bg-light">Nama Kepala Yayasan</td>
+			<td><input type="text" name="nama_kepsek" class="form-control" value="<?php echo $sekolah->nama_kepsek ?>"></td>
+		</tr>
+		<tr>
+			<td class="bg-light">Jumlah Siswa</td>
+			<td><input type="text" name="jumlah_murid" class="form-control" value="<?php echo $sekolah->jumlah_murid ?>"></td>
+		</tr>
+		<tr>
+			<td class="bg-light">Jumlah Pegawai</td>
+			<td><input type="text" name="jumlah_pegawai" class="form-control" value="<?php echo $sekolah->jumlah_pegawai ?>"></td>
+		</tr>
+		<tr>
+			<td class="bg-light">Jumlah Akreditasi</td>
+			<td>
+				<select name="nilai_akreditasi" class="form-control">
+					<option value="A">A</option>
+					<option value="B" <?php if($sekolah->nilai_akreditasi=='B') { echo 'selected'; } ?>>B</option>
+					<option value="C" <?php if($sekolah->nilai_akreditasi=='C') { echo 'selected'; } ?>>C</option>
+					<option value="D" <?php if($sekolah->nilai_akreditasi=='D') { echo 'selected'; } ?>>D</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="bg-light">Tahun Akreditasi</td>
+			<td><input type="text" name="tanggal_berlaku" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($sekolah->tanggal_berlaku) ?>"></td>
+		</tr>
+		<tr>
+			<td class="bg-light">Tanggal Kadaluarsa Akreditasi</td>
+			<td><input type="text" name="tanggal_kadaluarsa" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($sekolah->tanggal_kadaluarsa) ?>"></td>
+		</tr>
+		<tr>
+			<td class="bg-light">Nomor Izin Sekolah</td>
+			<td><input type="text" name="nomor_izin" class="form-control" value="<?php echo $sekolah->nomor_izin ?>"></td>
+		</tr>
+		<tr>
+			<td class="bg-light">Keterangan lain</td>
+			<td><textarea name="keterangan" class="form-control"><?php echo $sekolah->keterangan ?></textarea></td>
+		</tr>
+		<tr>
+		  <td colspan="2" class="bg-secondary text-center"><h3>KONTAK DAN ALAMAT YAYASAN</h3></td>
 	  </tr>
 		<tr>
 			<td class="bg-light">Alamat</td>
@@ -75,73 +124,6 @@ echo csrf_field();
 		<tr>
 			<td class="bg-light">Website</td>
 			<td><input type="text" name="website" class="form-control" value="<?php echo $sekolah->website ?>"></td>
-		</tr>
-		<tr>
-		  <td colspan="2" class="bg-secondary text-center"><h3>INFORMASI, AKREDITASI DAN YAYASAN</h3></td>
-	  </tr>
-		<tr>
-			<td class="bg-light">Nama Yayasan</td>
-			<td><input type="text" name="nama_yayasan" class="form-control" value="<?php echo $sekolah->nama_yayasan ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Nama Yayasan Cover Rapor</td>
-			<td><input type="text" name="nama_cover" class="form-control" value="<?php echo $sekolah->nama_cover ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Nama Kota Cover Rapor</td>
-			<td><input type="text" name="kota_cover" class="form-control" value="<?php echo $sekolah->kota_cover ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Nama Yayasan Tampil di Footer Rapor</td>
-			<td><input type="text" name="nama_footer" class="form-control" value="<?php echo $sekolah->nama_footer ?>"></td>
-		</tr>
-
-		<tr>
-			<td class="bg-light">Tanggal berdiri Yayasan/Sekolah</td>
-			<td><input type="text" name="tanggal_berdiri" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($sekolah->tanggal_berdiri) ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Nama Kepala Sekolah</td>
-			<td><input type="text" name="nama_kepsek" class="form-control" value="<?php echo $sekolah->nama_kepsek ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Jumlah Rombel</td>
-			<td><input type="text" name="jumlah_rombel" class="form-control" value="<?php echo $sekolah->jumlah_rombel ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Jumlah Siswa</td>
-			<td><input type="text" name="jumlah_murid" class="form-control" value="<?php echo $sekolah->jumlah_murid ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Jumlah Pegawai</td>
-			<td><input type="text" name="jumlah_pegawai" class="form-control" value="<?php echo $sekolah->jumlah_pegawai ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Jumlah Akreditasi</td>
-			<td>
-				<select name="nilai_akreditasi" class="form-control">
-					<option value="A">A</option>
-					<option value="B" <?php if($sekolah->nilai_akreditasi=='B') { echo 'selected'; } ?>>B</option>
-					<option value="C" <?php if($sekolah->nilai_akreditasi=='C') { echo 'selected'; } ?>>C</option>
-					<option value="D" <?php if($sekolah->nilai_akreditasi=='D') { echo 'selected'; } ?>>D</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td class="bg-light">Tahun Akreditasi</td>
-			<td><input type="text" name="tanggal_berlaku" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($sekolah->tanggal_berlaku) ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Tanggal Kadaluarsa Akreditasi</td>
-			<td><input type="text" name="tanggal_kadaluarsa" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($sekolah->tanggal_kadaluarsa) ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Nomor Izin Sekolah</td>
-			<td><input type="text" name="nomor_izin" class="form-control" value="<?php echo $sekolah->nomor_izin ?>"></td>
-		</tr>
-		<tr>
-			<td class="bg-light">Keterangan lain</td>
-			<td><textarea name="keterangan" class="form-control"><?php echo $sekolah->keterangan ?></textarea></td>
 		</tr>
 		<tr>
 		  <td colspan="2" class="bg-secondary text-center"><h3>INFORMASI TANAH DAN BANGUNAN</h3></td>

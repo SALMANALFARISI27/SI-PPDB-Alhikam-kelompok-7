@@ -82,15 +82,7 @@ echo csrf_field();
 <div class="form-group row">
 	<label class="col-md-3">Isi Fasilitas</label>
 	<div class="col-md-9">
-		<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-media">
-							<i class="fa fa-plus-circle"></i> Upload &amp; Kelola Media/File
-						</button>
-						<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-galeri">
-							<i class="fa fa-image"></i> Lihat Galeri
-						</button>
-						<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-download">
-							<i class="fa fa-download"></i> Lihat File
-						</button>
+		
 		<textarea name="isi" class="form-control konten"><?php echo $fasilitas->isi ?></textarea>
 	</div>
 </div>
