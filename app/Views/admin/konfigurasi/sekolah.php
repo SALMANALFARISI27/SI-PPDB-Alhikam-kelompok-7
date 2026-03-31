@@ -21,24 +21,7 @@ echo csrf_field();
 		</tr>
 		<tr>
 			<td class="bg-light" width="25%">Nama Yayasan</td>
-			<td><input type="text" name="nama_yayasan" class="form-control"
-					value="<?php echo $sekolah->nama_yayasan ?>"></td>
-		</tr>
-
-		<tr>
-			<td class="bg-light">Nama Yayasan Cover Rapor</td>
-			<td><input type="text" name="nama_cover" class="form-control" value="<?php echo $sekolah->nama_cover ?>">
-			</td>
-		</tr>
-		<tr>
-			<td class="bg-light">Nama Kota Cover Rapor</td>
-			<td><input type="text" name="kota_cover" class="form-control" value="<?php echo $sekolah->kota_cover ?>">
-			</td>
-		</tr>
-		<tr>
-			<td class="bg-light">Nama Yayasan Tampil di Footer Rapor</td>
-			<td><input type="text" name="nama_footer" class="form-control" value="<?php echo $sekolah->nama_footer ?>">
-			</td>
+			<td><input type="text" name="nama_yayasan" class="form-control" value="<?php echo $sekolah->nama_yayasan ?>"></td>
 		</tr>
 
 		<tr>
@@ -48,7 +31,7 @@ echo csrf_field();
 		</tr>
 		<tr>
 			<td class="bg-light">NSP</td>
-			<td><input type="text" name="nis" class="form-control" value="<?php echo $sekolah->nsp ?>"></td>
+			<td><input type="text" name="nsp" class="form-control" value="<?php echo $sekolah->nsp ?>"></td>
 		</tr>
 		<tr>
 			<td class="bg-light">Status Yayasan</td>

@@ -149,15 +149,12 @@ class Konfigurasi extends BaseController
 		// Start validasi
 		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
-            'nama_sekolah' 	=> 'required|min_length[3]',
+            'nama_yayasan' 	=> 'required|min_length[3]',
         	])) {
 			// masuk database
 			$data = [	'id_sekolah'		=> $sekolah->id_sekolah,
 						'id_user'			=> $this->session->get('id_user'),
-						'nama_sekolah'		=> $this->request->getPost('nama_sekolah'),
-						'nama_sekolah_cover'=> $this->request->getPost('nama_sekolah_cover'),
-						'nama_singkat'		=> $this->request->getPost('nama_singkat'),
-						'nis'				=> $this->request->getPost('nis'),
+						'nsp'				=> $this->request->getPost('nsp'),
 						'status_sekolah'	=> $this->request->getPost('status_sekolah'),
 						'alamat'			=> $this->request->getPost('alamat'),
 						'kelurahan'			=> $this->request->getPost('kelurahan'),
@@ -177,7 +174,6 @@ class Konfigurasi extends BaseController
 						'tanggal_berdiri'	=> $this->website->tanggal_input($this->request->getPost('tanggal_berdiri')),
 						'tahun_berdiri'		=> $this->request->getPost('tahun_berdiri'),
 						'nama_kepsek'		=> $this->request->getPost('nama_kepsek'),
-						'jumlah_rombel'		=> $this->request->getPost('jumlah_rombel'),
 						'jumlah_murid'		=> $this->request->getPost('jumlah_murid'),
 						'jumlah_pegawai'	=> $this->request->getPost('jumlah_pegawai'),
 						'nilai_akreditasi'	=> $this->request->getPost('nilai_akreditasi'),
