@@ -42,7 +42,7 @@ echo csrf_field();
 	<div class="col-md-3">
 		<select name="jenis_galeri" class="form-control">
 			<option value="Galeri">Galeri</option>
-			<option value="Homepage">Homepage Slider</option>
+			<option value="Homepage">Homepage</option>
 			<option value="Pop Up">Pop Up Homepage</option>
 		</select>
 		<small class="text-secondary">Jenis konten</small>
@@ -60,6 +60,13 @@ echo csrf_field();
 	<label class="col-md-3">Isi Galeri</label>
 	<div class="col-md-9">
 		<textarea name="isi" class="form-control konten"><?php echo set_value('isi') ?></textarea>
+	</div>
+</div>
+
+<div class="form-group row">
+	<label class="col-md-3">Link/URL Website</label>
+	<div class="col-md-9">
+		<input type="text" name="website" class="form-control" value="<?php echo set_value('website') ?>" placeholder="http://...">
 	</div>
 </div>
 

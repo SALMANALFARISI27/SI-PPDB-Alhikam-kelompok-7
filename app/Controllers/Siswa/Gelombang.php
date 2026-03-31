@@ -6,7 +6,6 @@ use App\Models\Konfigurasi_model;
 use App\Models\Galeri_model;
 use App\Models\Berita_model;
 use App\Models\Siswa_model;
-use App\Models\Tahun_model;
 use App\Models\Jenjang_model;
 use App\Models\Pekerjaan_model;
 use App\Models\Hubungan_model;

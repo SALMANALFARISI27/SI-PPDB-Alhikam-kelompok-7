@@ -7,9 +7,6 @@ echo csrf_field();
 	<a href="<?php echo base_url('admin/konfigurasi/unduh') ?>" class="btn btn-outline-danger" target="_blank">
 		<i class="fa fa-file-pdf"></i> Cetak/Unduh
 	</a>
-	<button type="submit" class="btn btn-success" name="submit" value="submit">
-		<i class="fa fa-save"></i> Simpan dan Update
-	</button>
 </p>
 
 <table class="table table-sm table-bordered">
@@ -166,7 +163,7 @@ echo csrf_field();
 			<td class="bg-light"></td>
 			<td>
 				<button type="submit" class="btn btn-success" name="submit" value="submit">
-					<i class="fa fa-save"></i> Simpan
+					<i class="fa fa-save"></i> Simpan dan Update
 				</button>
 			</td>
 		</tr>
