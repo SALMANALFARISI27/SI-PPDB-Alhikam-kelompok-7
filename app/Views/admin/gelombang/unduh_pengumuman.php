@@ -90,12 +90,13 @@ $this->website          = new Website();
         <thead>
           <tr>
             <th width="5%" class="text-center align-middle">NO</th>
-            <th width="20%" class="align-middle">SISWA</th>
+            <th width="20%" class="align-middle">Calon Peserta Didik</th>
             <th width="6%" class="align-middle">L/P</th>
             <th width="20%" class="align-middle text-center">TTL</th>
             <th width="20%" class="align-middle">PROGRAM/JENJANG</th>
             <th width="6%" class="align-middle">Status</th>
         </tr>
+        
   </thead>
   <tbody>
     <?php 
@@ -127,6 +128,10 @@ $this->website          = new Website();
     <?php $i++; } ?>
   </tbody>
 </table>
+  <br>
+<p style="font-size: 12px; text-align: justify;">
+  <strong>Nb :</strong> Bagi calon peserta didik yang diterima harap cek pengumuman untuk jadwal tahap seleksi dan informasi lainnya.
+</p>
 </div>
 </page>
 </body>

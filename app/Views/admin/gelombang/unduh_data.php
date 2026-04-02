@@ -174,6 +174,12 @@ $this->website          = new Website();
     <?php $i++; } ?>
   </tbody>
 </table>
+
+<br>
+<p style="font-size: 12px;">
+  <strong>Nb :</strong> Bagi calon peserta didik yang diterima harap cek pengumuman untuk jadwal tahap seleksi dan informasi lainnya.
+</p>
+
 </div>
 </page>
 </body>
