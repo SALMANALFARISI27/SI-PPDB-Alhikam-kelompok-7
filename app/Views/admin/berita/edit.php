@@ -103,12 +103,6 @@ echo csrf_field();
 	</div>
 </div>
 
-<div class="form-group row">
-	<label class="col-md-2">Keyword Berita (untuk SEO Google)</label>
-	<div class="col-md-10">
-		<textarea name="keywords" class="form-control"><?php echo $berita->keywords ?></textarea>
-	</div>
-</div>
 
 <div class="form-group row">
 	<label class="col-md-2"></label>

@@ -81,7 +81,7 @@
 				<small>
 					<br><i class="fa fa-calendar-check"></i> <?php echo $this->website->tanggal_bulan_menit($jenjang_pendidikan->tanggal_publish) ?>
 					<br><i class="fa fa-calendar-plus"></i> <?php echo $this->website->tanggal_bulan_menit($jenjang_pendidikan->tanggal_post) ?>
-					<br><i class="fa fa-eye"></i> <?php echo $jenjang_pendidikan->hits ?> | <i class="fa fa-sort-numeric-up"></i> <?php echo $jenjang_pendidikan->urutan ?> | <i class="<?php echo $jenjang_pendidikan->icon ?>"></i> <?php echo $jenjang_pendidikan->icon ?>
+					<br><i class="fa fa-eye"></i> <?php echo $jenjang_pendidikan->hits ?> | <i class="fa fa-sort-numeric-up"></i> <?php echo $jenjang_pendidikan->urutan ?>
 				</small>
 			</td>
 			<td><small>

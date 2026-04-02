@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Models;
 
 use CodeIgniter\Model;
@@ -11,7 +11,7 @@ class Nav_model extends Model
     public function berita()
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.id_kategori, MAX(berita.icon) AS icon, MAX(berita.ringkasan) AS ringkasan, MAX(berita.gambar) AS gambar, kategori.nama_kategori, kategori.slug_kategori');
+        $builder->select('berita.id_kategori, MAX(berita.ringkasan) AS ringkasan, MAX(berita.gambar) AS gambar, kategori.nama_kategori, kategori.slug_kategori');
         $builder->join('kategori', 'kategori.id_kategori = berita.id_kategori');
         $builder->where(array('status_berita' => 'Publish', 'jenis_berita' => 'Berita'));
         $builder->groupBy('berita.id_kategori');
@@ -23,7 +23,7 @@ class Nav_model extends Model
     public function jenjang_pendidikan()
     {
         $builder = $this->db->table('jenjang_pendidikan');
-        $builder->select('jenjang_pendidikan.id_jenjang_pendidikan,  MAX(jenjang_pendidikan.judul_jenjang_pendidikan) AS judul_jenjang_pendidikan, MAX(jenjang_pendidikan.slug_jenjang_pendidikan) AS slug_jenjang_pendidikan, MAX(jenjang_pendidikan.icon) AS icon, MAX(jenjang_pendidikan.ringkasan) AS ringkasan, MAX(jenjang_pendidikan.gambar) AS gambar, jenjang.nama_jenjang, jenjang.id_jenjang');
+        $builder->select('jenjang_pendidikan.id_jenjang_pendidikan,  MAX(jenjang_pendidikan.judul_jenjang_pendidikan) AS judul_jenjang_pendidikan, MAX(jenjang_pendidikan.slug_jenjang_pendidikan) AS slug_jenjang_pendidikan, MAX(jenjang_pendidikan.ringkasan) AS ringkasan, MAX(jenjang_pendidikan.gambar) AS gambar, jenjang.nama_jenjang, jenjang.id_jenjang');
         $builder->join('jenjang', 'jenjang.id_jenjang = jenjang_pendidikan.id_jenjang');
         $builder->where(array('status_jenjang_pendidikan' => 'Publish'));
         $builder->where(array('jenis_jenjang_pendidikan' => 'Jenjang'));
@@ -36,8 +36,8 @@ class Nav_model extends Model
     public function profil($jenis_berita)
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.judul_berita, berita.hits,berita.icon, berita.ringkasan, berita.gambar, berita.slug_berita, berita.id_berita');
-        $builder->where(array('status_berita'    => 'Publish','jenis_berita' => $jenis_berita));
+        $builder->select('berita.judul_berita, berita.hits, berita.ringkasan, berita.gambar, berita.slug_berita, berita.id_berita');
+        $builder->where(array('status_berita' => 'Publish', 'jenis_berita' => $jenis_berita));
         $query = $builder->get();
         return $query->getResult();
     }
@@ -48,7 +48,7 @@ class Nav_model extends Model
         $builder = $this->db->table('download');
         $builder->select('download.id_kategori_download, MAX(download.gambar) AS gambar, kategori_download.nama_kategori_download, kategori_download.slug_kategori_download');
         $builder->join('kategori_download', 'kategori_download.id_kategori_download = download.id_kategori_download');
-        $builder->where('download.jenis_download','Download');
+        $builder->where('download.jenis_download', 'Download');
         $builder->groupBy('download.id_kategori_download');
         $query = $builder->get();
         return $query->getResult();
@@ -72,9 +72,9 @@ class Nav_model extends Model
         $builder = $this->db->table('fasilitas');
         $builder->select('fasilitas.judul_fasilitas, fasilitas.slug_fasilitas, fasilitas.hits, fasilitas.gambar, fasilitas.id_fasilitas, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas');
         $builder->join('kategori_fasilitas', 'kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas');
-        $builder->where(array('fasilitas.status_fasilitas'    => 'Publish'));
+        $builder->where(array('fasilitas.status_fasilitas' => 'Publish'));
         $builder->limit(15);
-        $builder->orderBy('kategori_fasilitas.urutan','ASC');
+        $builder->orderBy('kategori_fasilitas.urutan', 'ASC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -96,9 +96,9 @@ class Nav_model extends Model
     {
         $builder = $this->db->table('kreatif');
         $builder->select('kreatif.*, kategori_kreatif.nama_kategori_kreatif, kategori_kreatif.slug_kategori_kreatif, users.nama');
-        $builder->join('kategori_kreatif','kategori_kreatif.id_kategori_kreatif = kreatif.id_kategori_kreatif','LEFT');
-        $builder->join('users','users.id_user = kreatif.id_user','LEFT');
-        $builder->orderBy('kreatif.urutan','ASC');
+        $builder->join('kategori_kreatif', 'kategori_kreatif.id_kategori_kreatif = kreatif.id_kategori_kreatif', 'LEFT');
+        $builder->join('users', 'users.id_user = kreatif.id_user', 'LEFT');
+        $builder->orderBy('kreatif.urutan', 'ASC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -107,42 +107,20 @@ class Nav_model extends Model
     public function jenis_berita($jenis_berita)
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.judul_berita, berita.icon, berita.ringkasan, berita.gambar, berita.slug_berita, berita.id_berita');
-        $builder->where(array('status_berita'    => 'Publish','jenis_berita' => $jenis_berita));
+        $builder->select('berita.judul_berita, berita.ringkasan, berita.gambar, berita.slug_berita, berita.id_berita');
+        $builder->where(array('status_berita' => 'Publish', 'jenis_berita' => $jenis_berita));
         $query = $builder->get();
         return $query->getResult();
     }
 
-    // Nav menu
-    public function menu()
-    {
-        $builder = $this->db->table('menu');
-        $builder->select('*');
-        $builder->where(array('status_menu'    => 'Publish'));
-        $builder->orderBy('urutan','ASC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
-
-    // Nav menu
-    public function sub_menu($id_menu)
-    {
-        $builder = $this->db->table('sub_menu');
-        $builder->select('*');
-        $builder->where(array(  'status_sub_menu'   => 'Publish',
-                                'id_menu'           => $id_menu));
-        $builder->orderBy('urutan','ASC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
 
     // Nav profil
     public function faq()
     {
         $builder = $this->db->table('berita');
-        $builder->select('berita.judul_berita, berita.icon, berita.ringkasan, berita.gambar, berita.slug_berita, berita.id_berita');
-        $builder->where(array('status_berita'    => 'Publish','jenis_berita' => 'FAQ'));
-        $builder->orderBy('urutan','ASC');
+        $builder->select('berita.judul_berita, berita.ringkasan, berita.gambar, berita.slug_berita, berita.id_berita');
+        $builder->where(array('status_berita' => 'Publish', 'jenis_berita' => 'FAQ'));
+        $builder->orderBy('urutan', 'ASC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -152,18 +130,8 @@ class Nav_model extends Model
     {
         $builder = $this->db->table('link_website');
         $builder->select('*');
-        $builder->where('status_link_website',$status_link_website);
-        $builder->orderBy('urutan','ASC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
-
-    // Nav layanan
-    public function layanan()
-    {
-        $builder = $this->db->table('berita');
-        $builder->select('berita.judul_berita, berita.icon, berita.ringkasan, berita.gambar, berita.slug_berita, berita.id_berita');
-        $builder->where(array('status_berita'    => 'Publish','jenis_berita' => 'Layanan'));
+        $builder->where('status_link_website', $status_link_website);
+        $builder->orderBy('urutan', 'ASC');
         $query = $builder->get();
         return $query->getResult();
     }

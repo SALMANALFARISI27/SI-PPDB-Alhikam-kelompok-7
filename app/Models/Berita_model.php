@@ -44,7 +44,6 @@ class Berita_model extends Model
         $this->join('users','users.id_user = berita.id_user','LEFT');
         $this->like('berita.judul_berita',$keywords,'BOTH');
         $this->orLike('berita.isi',$keywords,'BOTH');
-        $this->orLike('berita.keywords',$keywords,'BOTH');
         $this->orLike('berita.ringkasan',$keywords,'BOTH');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('berita.id_berita','DESC');
@@ -61,7 +60,6 @@ class Berita_model extends Model
         $this->join('users','users.id_user = berita.id_user','LEFT');
         $this->like('berita.judul_berita',$keywords,'BOTH');
         $this->orLike('berita.isi',$keywords,'BOTH');
-        $this->orLike('berita.keywords',$keywords,'BOTH');
         $this->orLike('berita.ringkasan',$keywords,'BOTH');
         $this->orderBy('berita.id_berita','DESC');
         $query = $this->get();

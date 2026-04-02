@@ -180,8 +180,6 @@ class Jenjang_pendidikan extends BaseController
 					'isi'				=> $this->request->getVar('isi'),
 					'status_jenjang_pendidikan'		=> $this->request->getVar('status_jenjang_pendidikan'),
 					'jenis_jenjang_pendidikan'		=> $this->request->getVar('jenis_jenjang_pendidikan'),
-					'keywords'			=> $this->request->getVar('keywords'),
-					'icon'				=> $this->request->getVar('icon'),
 					'gambar' 			=> $namabaru,
 					'urutan'			=> $this->request->getVar('urutan'),
 					'tanggal_post'		=> date('Y-m-d H:i:s'),
@@ -199,8 +197,6 @@ class Jenjang_pendidikan extends BaseController
 					'isi'				=> $this->request->getVar('isi'),
 					'status_jenjang_pendidikan'		=> $this->request->getVar('status_jenjang_pendidikan'),
 					'jenis_jenjang_pendidikan'		=> $this->request->getVar('jenis_jenjang_pendidikan'),
-					'keywords'			=> $this->request->getVar('keywords'),
-					'icon'				=> $this->request->getVar('icon'),
 					'urutan'			=> $this->request->getVar('urutan'),
 					'tanggal_post'		=> date('Y-m-d H:i:s'),
 					'tanggal_publish'	=> date('Y-m-d',strtotime($this->request->getVar('tanggal_publish'))).' '.date('H:i',strtotime($this->request->getVar('jam')))
@@ -257,7 +253,6 @@ class Jenjang_pendidikan extends BaseController
 					'status_jenjang_pendidikan'		=> $this->request->getVar('status_jenjang_pendidikan'),
 					'jenis_jenjang_pendidikan'		=> $this->request->getVar('jenis_jenjang_pendidikan'),
 					'keywords'			=> $this->request->getVar('keywords'),
-					'icon'				=> $this->request->getVar('icon'),
 					'urutan'			=> $this->request->getVar('urutan'),
 					'gambar' 			=> $namabaru,
 					'tanggal_publish'	=> date('Y-m-d',strtotime($this->request->getVar('tanggal_publish'))).' '.date('H:i',strtotime($this->request->getVar('jam')))
@@ -275,8 +270,6 @@ class Jenjang_pendidikan extends BaseController
 					'isi'				=> $this->request->getVar('isi'),
 					'status_jenjang_pendidikan'		=> $this->request->getVar('status_jenjang_pendidikan'),
 					'jenis_jenjang_pendidikan'		=> $this->request->getVar('jenis_jenjang_pendidikan'),
-					'keywords'			=> $this->request->getVar('keywords'),
-					'icon'				=> $this->request->getVar('icon'),
 					'urutan'			=> $this->request->getVar('urutan'),
 					'tanggal_publish'	=> date('Y-m-d',strtotime($this->request->getVar('tanggal_publish'))).' '.date('H:i',strtotime($this->request->getVar('jam')))
 	        	);

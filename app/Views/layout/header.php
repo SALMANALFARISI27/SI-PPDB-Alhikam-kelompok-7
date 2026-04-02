@@ -16,27 +16,6 @@ $nav_fasilitas          = $m_nav->fasilitas();
 $nav_link_website       = $m_nav->link_website('Publish');
 $nav_download           = $m_nav->download();
 $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
-$nav_menu               = $m_nav->menu();
-
-$menu_tambahan          = '';
-foreach($nav_menu as $nav_menu) {
-  $sub_menu             = $m_nav->sub_menu($nav_menu->id_menu);
-  if($sub_menu) {
-    $sub_menu_tambahan = '';
-    foreach($sub_menu as $sub_menu) {
-      $sub_menu_tambahan .= '<li><a class="dropdown-item" href="'.$sub_menu->link.'">'.$sub_menu->nama_sub_menu.'</a></li>';
-    }
-    $menu_tambahan        .= '<li class="nav-item dropdown">
-                  <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">'.$nav_menu->nama_menu.'</a>
-                  <ul class="dropdown-menu">'.$sub_menu_tambahan.' </ul>
-                </li>';
-  }else{
-    $menu_tambahan        .= '<li class="nav-item">
-                  <a class="nav-link text-uppercase" href="'.$nav_menu->link.'">'.$nav_menu->nama_menu.'</a>
-                </li>';
-  }
-}
-// echo $menu_tambahan;
 ?>
  <div class="content-wrapper">
     <header class="wrapper bg-light">
@@ -134,7 +113,7 @@ foreach($nav_menu as $nav_menu) {
                 <li class="nav-item">
                   <a class="nav-link text-uppercase" href="<?php echo base_url() ?>">Beranda</a>
                 </li>
-                <?php } if($site_setting->letak_menu=='Home') { echo $menu_tambahan; } if($site_setting->menu_berita=='Publish') { ?>
+                <?php } if($site_setting->menu_berita=='Publish') { ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Berita</a>
                   <ul class="dropdown-menu bg-dark">
@@ -145,7 +124,7 @@ foreach($nav_menu as $nav_menu) {
                    
                   </ul>
                 </li>
-                <?php }  if($site_setting->letak_menu=='Berita') { echo $menu_tambahan; } if($site_setting->menu_profil=='Publish') { ?>
+                <?php } if($site_setting->menu_profil=='Publish') { ?>
                 <li class="nav-item dropdown dropdown-mega">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Profil</a>
                   <ul class="dropdown-menu mega-menu mega-menu-dark">
@@ -208,7 +187,7 @@ foreach($nav_menu as $nav_menu) {
                   </ul>
                   <!--/.dropdown-menu -->
                 </li>
-                <?php }  if($site_setting->letak_menu=='Profil') { echo $menu_tambahan; } if($site_setting->menu_prestasi=='Publish') { ?>
+                <?php } if($site_setting->menu_prestasi=='Publish') { ?>
 
                   <li class="nav-item dropdown">
                     <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Prestasi</a>
@@ -221,7 +200,7 @@ foreach($nav_menu as $nav_menu) {
                   </li>
 
                 
-              <?php }  if($site_setting->letak_menu=='Prestasi') { echo $menu_tambahan; } if($site_setting->menu_galeri=='Publish') { ?>
+              <?php } if($site_setting->menu_galeri=='Publish') { ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Galeri</a>
                   <ul class="dropdown-menu bg-dark">
@@ -231,7 +210,7 @@ foreach($nav_menu as $nav_menu) {
                    
                   </ul>
                 </li>
-              <?php }  if($site_setting->letak_menu=='Galeri') { echo $menu_tambahan; }  if($site_setting->menu_unduhan=='Publish') { ?>
+              <?php } if($site_setting->menu_unduhan=='Publish') { ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Unduhan</a>
                   <ul class="dropdown-menu bg-dark">
@@ -243,7 +222,7 @@ foreach($nav_menu as $nav_menu) {
                    
                   </ul>
                 </li>
-              <?php }  if($site_setting->letak_menu=='Jenjang') { echo $menu_tambahan; }  if($site_setting->menu_jenjang=='Publish') { ?>
+              <?php } if($site_setting->menu_jenjang=='Publish') { ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Jenjang</a>
                   <ul class="dropdown-menu bg-dark">
@@ -255,7 +234,7 @@ foreach($nav_menu as $nav_menu) {
                    
                   </ul>
                 </li>
-              <?php }  if($site_setting->letak_menu=='Unduhan') { echo $menu_tambahan; } if($site_setting->menu_tautan=='Publish') { ?>
+              <?php } if($site_setting->menu_tautan=='Publish') { ?>
                 <li class="nav-item dropdown dropdown-mega">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Tautan</a>
                   <ul class="dropdown-menu mega-menu mega-menu-dark mega-menu-img">
@@ -279,7 +258,7 @@ foreach($nav_menu as $nav_menu) {
                   </ul>
                   <!--/.dropdown-menu -->
                 </li>
-              <?php }  if($site_setting->letak_menu=='Tautan') { echo $menu_tambahan; } ?>
+              <?php } ?>
               <?php if($site_setting->menu_kontak=='Publish') { ?>
                 <li class="nav-item">
                   <a class="nav-link text-uppercase" href="<?php echo base_url('kontak') ?>">Kontak</a>

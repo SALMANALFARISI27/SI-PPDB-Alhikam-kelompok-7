@@ -4,7 +4,6 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
 use App\Models\Galeri_model;
-use App\Models\Menu_model;
 
 class Galeri extends BaseController
 {

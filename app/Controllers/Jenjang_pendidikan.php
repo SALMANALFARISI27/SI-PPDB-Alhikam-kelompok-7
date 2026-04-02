@@ -17,14 +17,15 @@ class Jenjang_pendidikan extends BaseController
         $status_jenjang_pendidikan = 'Publish';
         $jenis_jenjang_pendidikan = 'Jenjang';
         $total = $m_jenjang_pendidikan->total_jenis_status_jenjang_pendidikan($jenis_jenjang_pendidikan, $status_jenjang_pendidikan);
-        $page = (int)($this->request->getGet('page') ?? 1);
+        $page = (int) ($this->request->getGet('page') ?? 1);
         $perPage = $this->website->paginasi_depan();
         $total = $total;
         $pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
         $page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
         $jenjang_pendidikan = $m_jenjang_pendidikan->jenis_status_jenjang_pendidikan_all($jenis_jenjang_pendidikan, $status_jenjang_pendidikan, $perPage, $page);
 
-        $data = ['title' => 'Program Unggulan',
+        $data = [
+            'title' => 'Program Unggulan',
             'description' => 'Program Unggulan',
             'keywords' => 'Program Unggulan',
             'site' => $site,
@@ -48,7 +49,7 @@ class Jenjang_pendidikan extends BaseController
         $status_jenjang_pendidikan = 'Publish';
         $jenis_jenjang_pendidikan = 'Jenjang';
         $total = $m_jenjang_pendidikan->total_jenjang_status_jenis($id_jenjang, $jenis_jenjang_pendidikan, $status_jenjang_pendidikan, );
-        $page = (int)($this->request->getGet('page') ?? 1);
+        $page = (int) ($this->request->getGet('page') ?? 1);
         $perPage = $this->website->paginasi_depan();
         $total = $total;
         $pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
@@ -56,7 +57,8 @@ class Jenjang_pendidikan extends BaseController
         $jenjang_pendidikan = $m_jenjang_pendidikan->jenjang_status_jenis_all($id_jenjang, $jenis_jenjang_pendidikan, $status_jenjang_pendidikan, $perPage, $page);
 
 
-        $data = ['title' => $jenjang->nama_jenjang,
+        $data = [
+            'title' => $jenjang->nama_jenjang,
             'description' => $jenjang->nama_jenjang,
             'keywords' => $jenjang->nama_jenjang,
             'site' => $site,
@@ -83,15 +85,17 @@ class Jenjang_pendidikan extends BaseController
 
         $news = $m_jenjang_pendidikan->sidebar();
         // print_r($jenjang_pendidikan);
-        $data = array('id_jenjang_pendidikan' => $jenjang_pendidikan->id_jenjang_pendidikan,
+        $data = array(
+            'id_jenjang_pendidikan' => $jenjang_pendidikan->id_jenjang_pendidikan,
             'hits' => $jenjang_pendidikan->hits + 1
         );
         $m_jenjang_pendidikan->edit($data);
 
 
-        $data = ['title' => $jenjang_pendidikan->judul_jenjang_pendidikan,
+        $data = [
+            'title' => $jenjang_pendidikan->judul_jenjang_pendidikan,
             'description' => $jenjang_pendidikan->ringkasan,
-            'keywords' => $jenjang_pendidikan->judul_jenjang_pendidikan . ', ' . $jenjang_pendidikan->keywords,
+
             'jenjang_pendidikan' => $jenjang_pendidikan,
             'news' => $news,
             'content' => 'jenjang_pendidikan/read'
@@ -112,12 +116,14 @@ class Jenjang_pendidikan extends BaseController
 
         $news = $m_nav->profil('Profil');
 
-        $data = array('id_jenjang_pendidikan' => $jenjang_pendidikan->id_jenjang_pendidikan,
+        $data = array(
+            'id_jenjang_pendidikan' => $jenjang_pendidikan->id_jenjang_pendidikan,
             'hits' => $jenjang_pendidikan->hits + 1
         );
         $m_jenjang_pendidikan->edit($data);
 
-        $data = ['title' => $jenjang_pendidikan->judul_jenjang_pendidikan,
+        $data = [
+            'title' => $jenjang_pendidikan->judul_jenjang_pendidikan,
             'description' => $jenjang_pendidikan->ringkasan,
             'keywords' => $jenjang_pendidikan->judul_jenjang_pendidikan . ', ' . $jenjang_pendidikan->keywords,
             'jenjang_pendidikan' => $jenjang_pendidikan,
@@ -131,21 +137,23 @@ class Jenjang_pendidikan extends BaseController
     public function layanan($id_jenjang_pendidikan)
     {
         $m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-        $m_menu = new Menu_model();
+        $m_nav = new Nav_model();
         $jenjang_pendidikan = $m_jenjang_pendidikan->read($id_jenjang_pendidikan);
 
         if (!$jenjang_pendidikan) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        $news = $m_menu->profil('Layanan');
+        $news = $m_nav->profil('Layanan');
 
-        $data = array('id_jenjang_pendidikan' => $jenjang_pendidikan->id_jenjang_pendidikan,
+        $data = array(
+            'id_jenjang_pendidikan' => $jenjang_pendidikan->id_jenjang_pendidikan,
             'hits' => $jenjang_pendidikan->hits + 1
         );
         $m_jenjang_pendidikan->edit($data);
 
-        $data = ['title' => $jenjang_pendidikan->judul_jenjang_pendidikan,
+        $data = [
+            'title' => $jenjang_pendidikan->judul_jenjang_pendidikan,
             'description' => $jenjang_pendidikan->ringkasan,
             'keywords' => $jenjang_pendidikan->judul_jenjang_pendidikan . ', ' . $jenjang_pendidikan->keywords,
             'jenjang_pendidikan' => $jenjang_pendidikan,

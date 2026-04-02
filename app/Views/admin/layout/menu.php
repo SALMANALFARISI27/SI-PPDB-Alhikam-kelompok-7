@@ -371,13 +371,6 @@
 
         <?php if(Session()->get('akses_level')=='Admin') { ?>
 
-          <!-- Menu Website -->
-          <li class="nav-item">
-            <a href="<?php echo base_url('admin/menu') ?>" class="nav-link <?php if($uri->getSegment(2)=="menu"){echo 'active';}?>">
-              <i class="nav-icon fa fa-sitemap"></i>
-              <p>Menu Website</p>
-            </a>
-          </li>
 
           <!-- pengguna -->
           <li class="nav-item">

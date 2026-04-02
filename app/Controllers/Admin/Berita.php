@@ -183,8 +183,6 @@ class Berita extends BaseController
 					'isi'				=> $this->request->getVar('isi'),
 					'status_berita'		=> $this->request->getVar('status_berita'),
 					'jenis_berita'		=> $this->request->getVar('jenis_berita'),
-					'keywords'			=> $this->request->getVar('keywords'),
-
 					'gambar' 			=> $namabaru,
 					'urutan'			=> $this->request->getVar('urutan'),
 					'tanggal_post'		=> date('Y-m-d H:i:s'),
@@ -202,8 +200,6 @@ class Berita extends BaseController
 					'isi'				=> $this->request->getVar('isi'),
 					'status_berita'		=> $this->request->getVar('status_berita'),
 					'jenis_berita'		=> $this->request->getVar('jenis_berita'),
-					'keywords'			=> $this->request->getVar('keywords'),
-	
 					'urutan'			=> $this->request->getVar('urutan'),
 					'tanggal_post'		=> date('Y-m-d H:i:s'),
 					'tanggal_publish'	=> date('Y-m-d',strtotime($this->request->getVar('tanggal_publish'))).' '.date('H:i',strtotime($this->request->getVar('jam')))

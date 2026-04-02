@@ -44,7 +44,6 @@ class Jenjang_pendidikan_model extends Model
         $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
         $this->like('jenjang_pendidikan.judul_jenjang_pendidikan',$keywords,'BOTH');
         $this->orLike('jenjang_pendidikan.isi',$keywords,'BOTH');
-        $this->orLike('jenjang_pendidikan.keywords',$keywords,'BOTH');
         $this->orLike('jenjang_pendidikan.ringkasan',$keywords,'BOTH');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
@@ -61,7 +60,6 @@ class Jenjang_pendidikan_model extends Model
         $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
         $this->like('jenjang_pendidikan.judul_jenjang_pendidikan',$keywords,'BOTH');
         $this->orLike('jenjang_pendidikan.isi',$keywords,'BOTH');
-        $this->orLike('jenjang_pendidikan.keywords',$keywords,'BOTH');
         $this->orLike('jenjang_pendidikan.ringkasan',$keywords,'BOTH');
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
         $query = $this->get();
