@@ -86,8 +86,6 @@ class Ekstrakurikuler extends BaseController
 					'nama_penanggung_jawab'			=> $this->request->getVar('nama_penanggung_jawab'),
 					'isi'							=> $this->request->getVar('isi'),
 					'gambar' 						=> $namabaru,
-					'website'						=> $this->request->getVar('website'),
-					'text_website'					=> $this->request->getVar('text_website'),
 					'status_text'					=> $this->request->getVar('status_text'),
 					'status_ekstrakurikuler'		=> $this->request->getVar('status_ekstrakurikuler'),
 					'tanggal_post'					=> date('Y-m-d H:i:s')
@@ -102,8 +100,6 @@ class Ekstrakurikuler extends BaseController
 					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),
 					'nama_penanggung_jawab'			=> $this->request->getVar('nama_penanggung_jawab'),
 					'isi'							=> $this->request->getVar('isi'),
-					'website'						=> $this->request->getVar('website'),
-					'text_website'					=> $this->request->getVar('text_website'),
 					'status_text'					=> $this->request->getVar('status_text'),
 					'status_ekstrakurikuler'		=> $this->request->getVar('status_ekstrakurikuler'),
 					'tanggal_post'					=> date('Y-m-d H:i:s')
@@ -212,8 +208,6 @@ class Ekstrakurikuler extends BaseController
 					'nama_penanggung_jawab'			=> $this->request->getVar('nama_penanggung_jawab'),
 					'isi'							=> $this->request->getVar('isi'),
 					'gambar' 						=> $namabaru,
-					'website'						=> $this->request->getVar('website'),
-					'text_website'					=> $this->request->getVar('text_website'),
 					'status_text'					=> $this->request->getVar('status_text'),
 					'status_ekstrakurikuler'		=> $this->request->getVar('status_ekstrakurikuler'),
 	        	);
@@ -228,8 +222,6 @@ class Ekstrakurikuler extends BaseController
 					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),
 					'nama_penanggung_jawab'			=> $this->request->getVar('nama_penanggung_jawab'),
 					'isi'							=> $this->request->getVar('isi'),
-					'website'						=> $this->request->getVar('website'),
-					'text_website'					=> $this->request->getVar('text_website'),
 					'status_text'					=> $this->request->getVar('status_text'),
 					'status_ekstrakurikuler'		=> $this->request->getVar('status_ekstrakurikuler'),
 	        	);

@@ -6,71 +6,72 @@
       </div>
       <div class="card-body">
         <table class="tabelku table-sm">
-    <thead>
-      <tr>
-        <th colspan="2" class="bg-secondary text-white text-center">DATA DASAR CALON PESERTA DIDIK</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="font-bold" width="35%">Nama</td>
-        <td><?php echo strtoupper($calon_peserta_didik->nama_calon_peserta_didik) ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">Panggilan</td>
-        <td><?php echo $calon_peserta_didik->nama_panggilan ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">NIS / NISN</td>
-        <td><?php echo $calon_peserta_didik->nis ?> / <?php echo $calon_peserta_didik->nisn ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">L/P</td>
-        <td><?php if($calon_peserta_didik->jenis_kelamin=='L') { echo 'Laki-laki'; }else{ echo 'Perempuan'; } ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">TTL</td>
-        <td><?php echo $calon_peserta_didik->tempat_lahir ?>, <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">Kode</td>
-        <td><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">Periode</td>
-        <td><?php echo $calon_peserta_didik->judul ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">Tahun Ajaran</td>
-        <td><?php echo $calon_peserta_didik->tahun_ajaran ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">Program/Jenjang</td>
-        <td><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">Status Anak</td>
-        <td><?php echo $calon_peserta_didik->nama_hubungan ?></td>
-      </tr>
-      <tr>
-        <td class="font-bold">Anak ke</td>
-        <td><?php echo $calon_peserta_didik->anak_ke ?> dari <?php echo $calon_peserta_didik->jumlah_saudara ?> Saudara</td>
-      </tr>
-      <tr>
-        <td class="font-bold">Alamat</td>
-        <td><?php echo nl2br($calon_peserta_didik->alamat) ?></td>
-      </tr>
-      
-      <tr>
-        <td class="font-bold">Telepon</td>
-        <td><?php echo $calon_peserta_didik->telepon ?></td>
-      </tr>
-       <tr>
-        <td class="font-bold">Email</td>
-        <td><?php echo $calon_peserta_didik->email ?></td>
-      </tr>
-    </tbody>
-  </table>
+          <thead>
+            <tr>
+              <th colspan="2" class="bg-secondary text-white text-center">DATA DASAR CALON PESERTA DIDIK</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-bold" width="35%">Nama</td>
+              <td><?php echo strtoupper($calon_peserta_didik->nama_calon_peserta_didik) ?></td>
+            </tr>
+
+            <tr>
+              <td class="font-bold">NIS / NISN</td>
+              <td><?php echo $calon_peserta_didik->nis ?> / <?php echo $calon_peserta_didik->nisn ?></td>
+            </tr>
+            <tr>
+              <td class="font-bold">L/P</td>
+              <td><?php if ($calon_peserta_didik->jenis_kelamin == 'L') {
+                echo 'Laki-laki';
+              } else {
+                echo 'Perempuan';
+              } ?>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-bold">TTL</td>
+              <td><?php echo $calon_peserta_didik->tempat_lahir ?>,
+                <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Kode</td>
+              <td><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Periode</td>
+              <td><?php echo $calon_peserta_didik->judul ?></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Tahun Ajaran</td>
+              <td><?php echo $calon_peserta_didik->tahun_ajaran ?></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Program/Jenjang</td>
+              <td><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?></td>
+            </tr>
+
+            <tr>
+              <td class="font-bold">Anak ke</td>
+              <td><?php echo $calon_peserta_didik->anak_ke ?> dari <?php echo $calon_peserta_didik->jumlah_saudara ?>
+                Saudara</td>
+            </tr>
+            <tr>
+              <td class="font-bold">Alamat</td>
+              <td><?php echo nl2br($calon_peserta_didik->alamat) ?></td>
+            </tr>
+
+            <tr>
+              <td class="font-bold">Telepon</td>
+              <td><?php echo $calon_peserta_didik->telepon ?></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Email</td>
+              <td><?php echo $calon_peserta_didik->email ?></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -81,138 +82,144 @@
         UNGGAH DOKUMEN PENDUKUNG
       </div>
       <div class="card-body">
-    <p class="lead mb-6 text-start">Masukkan data Anda dengan benar dan lengkap.</p>
+        <p class="lead mb-6 text-start">Masukkan data Anda dengan benar dan lengkap.</p>
 
-          <?php 
-          $validation = \Config\Services::validation();
-              $errors = $validation->getErrors();
-              if(!empty($errors))
-              {
-                  echo '<span class="text-danger">'.$validation->listErrors().'</span>';
-              }
-          if (session('msg')) : 
+        <?php
+        $validation = \Config\Services::validation();
+        $errors = $validation->getErrors();
+        if (!empty($errors)) {
+          echo '<span class="text-danger">' . $validation->listErrors() . '</span>';
+        }
+        if (session('msg')):
           ?>
-               <div class="alert alert-info alert-dismissible">
-                   <?= session('msg') ?>
-                   <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
-               </div>
-           <?php endif ?>
+          <div class="alert alert-info alert-dismissible">
+            <?= session('msg') ?>
+            <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+          </div>
+        <?php endif ?>
 
-         
 
-      <table class="table tabelku table-sm">
-        <thead>
-          <tr>
-            <th width="5%" class="text-left">No</th>
-            <th width="30%" class="text-left">Nama Dokumen</th>
-            <th width="10%" class="text-center">Status Wajib</th>
-            <th width="20%" class="text-center">Status Unggah</th>
-            <th class="text-center">Unggah</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php 
-          $id_calon_peserta_didik     = $calon_peserta_didik->id_calon_peserta_didik;
-          $no           = 1; 
-          $data_total   = 1;
-          foreach($jenis_dokumen as $jenis_dokumen) { 
-            $id_jenis_dokumen     = $jenis_dokumen->id_jenis_dokumen;
-            $check_dokumen        = $m_dokumen->check($id_calon_peserta_didik,$id_jenis_dokumen);
-            if($jenis_dokumen->status_jenis_dokumen=='Wajib') {
-                if($check_dokumen) {
+
+        <table class="table tabelku table-sm">
+          <thead>
+            <tr>
+              <th width="5%" class="text-left">No</th>
+              <th width="30%" class="text-left">Nama Dokumen</th>
+              <th width="10%" class="text-center">Status Wajib</th>
+              <th width="20%" class="text-center">Status Unggah</th>
+              <th class="text-center">Unggah</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $id_calon_peserta_didik = $calon_peserta_didik->id_calon_peserta_didik;
+            $no = 1;
+            $data_total = 1;
+            foreach ($jenis_dokumen as $jenis_dokumen) {
+              $id_jenis_dokumen = $jenis_dokumen->id_jenis_dokumen;
+              $check_dokumen = $m_dokumen->check($id_calon_peserta_didik, $id_jenis_dokumen);
+              if ($jenis_dokumen->status_jenis_dokumen == 'Wajib') {
+                if ($check_dokumen) {
                   $data_id = 1;
-                }else{
+                } else {
                   $data_id = 0;
                 }
-            }else{
+              } else {
                 $data_id = 1;
-            }
-            $data_total+=$data_id;
-          ?>
-          <tr data-id="<?php echo $data_id ?>">
-            <td class="text-center"><?php echo $no ?></td>
-            
-            <td><?php echo $jenis_dokumen->nama_jenis_dokumen ?>
-              <small>
-                <br><?php echo $jenis_dokumen->keterangan ?>
-              </small>
-            </td>
-            <td>
-              <?php if($jenis_dokumen->status_jenis_dokumen=='Wajib') { ?>
-                <span class="badge bg-info">
-                  <i class="fa fa-check-circle"></i> <?php echo $jenis_dokumen->status_jenis_dokumen ?>
-                </span>
-              <?php }else{ ?>
-                <span class="badge bg-secondary">
-                  <i class="fa fa-times-circle"></i> <?php echo $jenis_dokumen->status_jenis_dokumen ?>
-                </span>
-              <?php } ?>
-            </td>
-            <td>
-                 
-              <?php if($check_dokumen) { ?>
-                <span class="badge bg-info">
-                  <i class="fa fa-check-circle"></i> Sudah
-                </span>
-              <?php }else{ ?>
-                <span class="badge bg-secondary">
-                  <i class="fa fa-times-circle"></i> Belum
-                </span>
-              <?php } ?>
-            </td>                
-            <td>
-              <?php if($check_dokumen) { ?>
-                <a class="btn btn-dark btn-xs mb-1" href="<?php echo base_url('calon_peserta_didik/pendaftaran/unduh/'.$check_dokumen->kode_dokumen.'/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" target="_blank">
-                  <i class="fa fa-download"></i>&nbsp;  Unduh
+              }
+              $data_total += $data_id;
+              ?>
+              <tr data-id="<?php echo $data_id ?>">
+                <td class="text-center"><?php echo $no ?></td>
+
+                <td><?php echo $jenis_dokumen->nama_jenis_dokumen ?>
+                  <small>
+                    <br><?php echo $jenis_dokumen->keterangan ?>
+                  </small>
+                </td>
+                <td>
+                  <?php if ($jenis_dokumen->status_jenis_dokumen == 'Wajib') { ?>
+                    <span class="badge bg-info">
+                      <i class="fa fa-check-circle"></i> <?php echo $jenis_dokumen->status_jenis_dokumen ?>
+                    </span>
+                  <?php } else { ?>
+                    <span class="badge bg-secondary">
+                      <i class="fa fa-times-circle"></i> <?php echo $jenis_dokumen->status_jenis_dokumen ?>
+                    </span>
+                  <?php } ?>
+                </td>
+                <td>
+
+                  <?php if ($check_dokumen) { ?>
+                    <span class="badge bg-info">
+                      <i class="fa fa-check-circle"></i> Sudah
+                    </span>
+                  <?php } else { ?>
+                    <span class="badge bg-secondary">
+                      <i class="fa fa-times-circle"></i> Belum
+                    </span>
+                  <?php } ?>
+                </td>
+                <td>
+                  <?php if ($check_dokumen) { ?>
+                    <a class="btn btn-dark btn-xs mb-1"
+                      href="<?php echo base_url('calon_peserta_didik/pendaftaran/unduh/' . $check_dokumen->kode_dokumen . '/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
+                      target="_blank">
+                      <i class="fa fa-download"></i>&nbsp; Unduh
+                    </a>
+                    <a class="btn btn-secondary btn-xs mb-1 delete-link"
+                      href="<?php echo base_url('calon_peserta_didik/pendaftaran/hapus/' . $check_dokumen->kode_dokumen . '/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>">
+                      <i class="fa fa-trash"></i>&nbsp; Hapus
+                    </a>
+                  <?php } else { ?>
+                    <?php
+                    echo form_open_multipart(base_url('calon_peserta_didik/pendaftaran/dokumen/' . $calon_peserta_didik->slug_calon_peserta_didik));
+                    echo csrf_field();
+                    ?>
+
+                    <input type="hidden" name="id_jenis_dokumen" value="<?php echo $jenis_dokumen->id_jenis_dokumen ?>">
+
+                    <div class="row">
+                      <div class="col-md-8">
+                        <input type="file" name="gambar" class="form-control form-control-sm" placeholder="Unggah" value=""
+                          required>
+                      </div>
+                      <div class="col-md-4">
+                        <button type="submit" name="submit" value="Cari" class="btn btn-success btn-sm mb-1">
+                          <i class="fa fa-upload"></i>&nbsp; Unggah
+                        </button>
+
+                      </div>
+                    </div>
+
+                    <?php echo form_close();
+                  } ?>
+                </td>
+              </tr>
+              <?php $no++;
+            } ?>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5" class="text-right">
+                <a href="<?php echo base_url('calon_peserta_didik/pendaftaran') ?>" class="btn btn-outline-info">
+                  <i class="fa fa-arrow-left"></i> Kembali
                 </a>
-                <a class="btn btn-secondary btn-xs mb-1 delete-link" href="<?php echo base_url('calon_peserta_didik/pendaftaran/hapus/'.$check_dokumen->kode_dokumen.'/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>">
-                  <i class="fa fa-trash"></i>&nbsp;  Hapus
-                </a>
-              <?php }else{ ?>
-                <?php 
-                echo form_open_multipart(base_url('calon_peserta_didik/pendaftaran/dokumen/'.$calon_peserta_didik->slug_calon_peserta_didik));
-                echo csrf_field(); 
-                ?>
-
-                <input type="hidden" name="id_jenis_dokumen" value="<?php echo $jenis_dokumen->id_jenis_dokumen ?>">
-
-                <div class="row">
-                  <div class="col-md-8">
-                    <input type="file" name="gambar" class="form-control form-control-sm" placeholder="Unggah" value="" required>
-                  </div>
-                  <div class="col-md-4">
-                    <button type="submit" name="submit" value="Cari" class="btn btn-success btn-sm mb-1">
-                      <i class="fa fa-upload"></i>&nbsp; Unggah
-                    </button>
-                
-                  </div>
-                </div>
-
-                <?php echo form_close();} ?>
-            </td>
-          </tr>
-          <?php $no++; } ?>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5" class="text-right">
-              <a href="<?php echo base_url('calon_peserta_didik/pendaftaran') ?>" class="btn btn-outline-info">
-                <i class="fa fa-arrow-left"></i> Kembali
-              </a>
-              <?php if($no==$data_total) { ?>
-                  <a href="<?php echo base_url('calon_peserta_didik/pendaftaran/selesai/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-danger text-white">
+                <?php if ($no == $data_total) { ?>
+                  <a href="<?php echo base_url('calon_peserta_didik/pendaftaran/selesai/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
+                    class="btn btn-danger text-white">
                     Simpan dan Selesaikan Pendaftaran&nbsp;<i class="fa fa-arrow-right"></i>
                   </a>
-              <?php }else{ ?>
+                <?php } else { ?>
                   <div class="alert alert-info">
                     Dokumen masih kurang, silakan lengkapi.
                   </div>
-              <?php } ?>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+                <?php } ?>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 </div>

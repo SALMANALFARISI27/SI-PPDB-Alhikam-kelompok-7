@@ -82,7 +82,6 @@ class Galeri_model extends Model
         $this->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
         $this->join('users','users.id_user = galeri.id_user','LEFT');
         $this->like('galeri.judul_galeri',$keywords,'BOTH');
-        $this->orLike('galeri.website',$keywords,'BOTH');
         $this->orLike('galeri.isi',$keywords,'BOTH');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('galeri.id_galeri','DESC');
@@ -98,7 +97,6 @@ class Galeri_model extends Model
         $this->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
         $this->join('users','users.id_user = galeri.id_user','LEFT');
         $this->like('galeri.judul_galeri',$keywords,'BOTH');
-        $this->orLike('galeri.website',$keywords,'BOTH');
         $this->orLike('galeri.isi',$keywords,'BOTH');
         $this->orderBy('galeri.id_galeri','DESC');
         $query = $this->get();

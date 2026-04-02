@@ -10,7 +10,7 @@ if($popup) {
             <div class="row">
               <div class="col-md-12 text-center">
                 <figure class="mb-6">
-                    <a href="<?php echo $popup->website ?>" target="_blank">
+                    <a>
                         <img src="<?php echo base_url('assets/upload/image/thumbs/'.$popup->gambar) ?>" srcset="<?php echo base_url('assets/upload/image/thumbs/'.$popup->gambar) ?> 2x" alt="<?php echo $popup->judul_galeri ?>" class="img-thumbnail rounded" />
                     </a>
                 </figure>
@@ -18,7 +18,7 @@ if($popup) {
               <!-- /column -->
             </div>
             <!-- /.row -->
-            <h3><a href="<?php echo $popup->website ?>" target="_blank"><?php echo $popup->judul_galeri ?></a></h3>
+            <h3><a><?php echo $popup->judul_galeri ?></a></h3>
             <div class="mb-6">
                 <?php echo $popup->isi ?>
             </div>
@@ -30,9 +30,6 @@ if($popup) {
                     <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
                         <i class="fa fa-times"></i> &nbsp; Close
                     </button>
-                    <a href="<?php echo $popup->website ?>" class="btn btn-primary" target="_blank">
-                        Lihat detail &nbsp;<i class="fa fa-chevron-right"></i>
-                    </a>
                   </div>
                   <!--End mc_embed_signup-->
                 </div>
@@ -67,9 +64,6 @@ Hero Area
                             Hubungi Kami <i class="fa fa-arrow-right"></i>
                         </a>
 
-                        <a href="<?php echo $slider->website ?>" target="_blank" class="btn btn-warning rounded-pill btn-lg"> 
-                            <?php echo $slider->text_website ?> <i class="fa fa-arrow-right"></i>
-                        </a>
                     </span>
                      
                     </div>
@@ -117,8 +111,7 @@ About Area
                         <?php echo $site->tentang ?>
                     </div>
                     <div class="btn-group">
-                        <a href="<?php echo$site->link_website ?>" class="as-btn"><?php echo$site->link_text ?><i class="fas fa-arrow-right ms-2"></i></a>
-                        
+                        <a href="<?php echo base_url('profil') ?>" class="as-btn">Selengkapnya<i class="fas fa-arrow-right ms-2"></i></a>
                     </div>
                 </div>
             </div>

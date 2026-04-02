@@ -86,13 +86,9 @@ class Prestasi extends BaseController
 					'penyelenggara'			=> $this->request->getVar('penyelenggara'),
 					'hadiah_prestasi'		=> $this->request->getVar('hadiah_prestasi'),
 					'jenjang_prestasi'		=> $this->request->getVar('jenjang_prestasi'),
-					'tahun_prestasi'		=> $this->request->getVar('tahun_prestasi'),
 					'tanggal_prestasi'		=> $this->website->tanggal_input($this->request->getVar('tanggal_prestasi')),
 					'isi'					=> $this->request->getVar('isi'),
 					'gambar' 				=> $namabaru,
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
-					'status_text'			=> $this->request->getVar('status_text'),
 					'status_prestasi'		=> $this->request->getVar('status_prestasi'),
 					'tanggal_post'			=> date('Y-m-d H:i:s')
 	        	);
@@ -108,12 +104,8 @@ class Prestasi extends BaseController
 					'penyelenggara'			=> $this->request->getVar('penyelenggara'),
 					'hadiah_prestasi'		=> $this->request->getVar('hadiah_prestasi'),
 					'jenjang_prestasi'		=> $this->request->getVar('jenjang_prestasi'),
-					'tahun_prestasi'		=> $this->request->getVar('tahun_prestasi'),
 					'tanggal_prestasi'		=> $this->website->tanggal_input($this->request->getVar('tanggal_prestasi')),
 					'isi'					=> $this->request->getVar('isi'),
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
-					'status_text'			=> $this->request->getVar('status_text'),
 					'status_prestasi'		=> $this->request->getVar('status_prestasi'),
 					'tanggal_post'			=> date('Y-m-d H:i:s')
 	        	);
@@ -221,13 +213,9 @@ class Prestasi extends BaseController
 					'penyelenggara'			=> $this->request->getVar('penyelenggara'),
 					'hadiah_prestasi'		=> $this->request->getVar('hadiah_prestasi'),
 					'jenjang_prestasi'		=> $this->request->getVar('jenjang_prestasi'),
-					'tahun_prestasi'		=> $this->request->getVar('tahun_prestasi'),
 					'tanggal_prestasi'		=> $this->website->tanggal_input($this->request->getVar('tanggal_prestasi')),
 					'isi'					=> $this->request->getVar('isi'),
 					'gambar' 				=> $namabaru,
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
-					'status_text'			=> $this->request->getVar('status_text'),
 					'status_prestasi'		=> $this->request->getVar('status_prestasi'),
 	        	);
 	        	$m_prestasi->edit($data);
@@ -243,12 +231,8 @@ class Prestasi extends BaseController
 					'penyelenggara'			=> $this->request->getVar('penyelenggara'),
 					'hadiah_prestasi'		=> $this->request->getVar('hadiah_prestasi'),
 					'jenjang_prestasi'		=> $this->request->getVar('jenjang_prestasi'),
-					'tahun_prestasi'		=> $this->request->getVar('tahun_prestasi'),
 					'tanggal_prestasi'		=> $this->website->tanggal_input($this->request->getVar('tanggal_prestasi')),
 					'isi'					=> $this->request->getVar('isi'),
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
-					'status_text'			=> $this->request->getVar('status_text'),
 					'status_prestasi'		=> $this->request->getVar('status_prestasi'),
 	        	);
 	        	$m_prestasi->edit($data);

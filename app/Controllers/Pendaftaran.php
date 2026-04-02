@@ -8,7 +8,6 @@ use App\Models\Berita_model;
 use App\Models\Calon_peserta_didik_model;
 use App\Models\Jenjang_model;
 use App\Models\Pekerjaan_model;
-use App\Models\Hubungan_model;
 use App\Models\Agama_model;
 use App\Models\Akun_model;
 use App\Models\Jenis_dokumen_model;
@@ -34,7 +33,7 @@ class Pendaftaran extends BaseController
 		$data = [
 			'title' => 'Periode Pendaftaran',
 			'description' => 'Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
-			'keywords' => 'Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->keywords,
+
 			'konfigurasi' => $konfigurasi,
 			'gelombang' => $gelombang,
 			'gelombang2' => $gelombang,
@@ -131,8 +130,7 @@ class Pendaftaran extends BaseController
 			$data = [
 				'title' => 'Buat Akun',
 				'description' => 'Buat Akun Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
-				'keywords' => 'Buat Akun Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->keywords,
-				'konfigurasi' => $konfigurasi,
+
 				'content' => 'pendaftaran/akun'
 			];
 			echo view('layout/wrapper-pendaftaran', $data);
@@ -236,7 +234,6 @@ class Pendaftaran extends BaseController
 					'id_jenjang_wali' => $id_jenjang_wali,
 					'id_tahun' => $this->request->getPost('id_tahun'),
 					'id_jenjang' => $this->request->getPost('id_jenjang'),
-					'id_hubungan' => $this->request->getPost('id_hubungan'),
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
 					'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
@@ -308,7 +305,6 @@ class Pendaftaran extends BaseController
 					'id_jenjang_wali' => $id_jenjang_wali,
 					'id_tahun' => $this->request->getPost('id_tahun'),
 					'id_jenjang' => $this->request->getPost('id_jenjang'),
-					'id_hubungan' => $this->request->getPost('id_hubungan'),
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
 					'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),

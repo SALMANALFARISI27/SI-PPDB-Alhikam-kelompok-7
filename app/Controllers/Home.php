@@ -17,6 +17,14 @@ use App\Models\Jenjang_pendidikan_model;
 
 class Home extends BaseController
 {
+    protected $konfigurasi_model;
+    protected $galeri_model;
+    protected $berita_model;
+    protected $staff_model;
+    protected $prestasi_model;
+    protected $video_model;
+    protected $jenjang_pendidikan_model;
+
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
@@ -46,7 +54,6 @@ class Home extends BaseController
 
         $data = [   'title'         => $site->namaweb.' | '.$site->tagline,
                     'description'   => $site->deskripsi,
-                    'keywords'      => $site->keywords,
                     'site'          => $site,
                     'slider'        => $galeri,
                     'popup'         => $popup,
@@ -69,7 +76,6 @@ class Home extends BaseController
         $site       = $m_site->listing();
         $data = [   'title'         => 'Oops... Mohon Maaf',
                     'description'   => 'Oops... Mohon Maaf',
-                    'keywords'      => 'Oops... Mohon Maaf',
                     'site'          => $site,
                     'content'       => 'home/oops'
                 ];

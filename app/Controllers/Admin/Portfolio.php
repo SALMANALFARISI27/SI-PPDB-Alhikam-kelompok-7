@@ -85,8 +85,6 @@ class Portfolio extends BaseController
 					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
 					'isi'					=> $this->request->getVar('isi'),
 					'gambar' 				=> $namabaru,
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
 					'status_text'			=> $this->request->getVar('status_text'),
 					'status_portfolio'		=> $this->request->getVar('status_portfolio'),
 					'tanggal_post'			=> date('Y-m-d H:i:s')
@@ -100,8 +98,6 @@ class Portfolio extends BaseController
 					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
 					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
 					'isi'					=> $this->request->getVar('isi'),
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
 					'status_text'			=> $this->request->getVar('status_text'),
 					'status_portfolio'		=> $this->request->getVar('status_portfolio'),
 					'tanggal_post'			=> date('Y-m-d H:i:s')
@@ -208,8 +204,6 @@ class Portfolio extends BaseController
 					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
 					'isi'					=> $this->request->getVar('isi'),
 					'gambar' 				=> $namabaru,
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
 					'status_text'			=> $this->request->getVar('status_text'),
 					'status_portfolio'		=> $this->request->getVar('status_portfolio'),
 	        	);
@@ -223,8 +217,6 @@ class Portfolio extends BaseController
 					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
 					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
 					'isi'					=> $this->request->getVar('isi'),
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
 					'status_text'			=> $this->request->getVar('status_text'),
 					'status_portfolio'		=> $this->request->getVar('status_portfolio'),
 	        	);

@@ -79,7 +79,7 @@ class Register extends BaseController
 	    }else{
 			$data = [	'title'			=> 'Pembuatan Akun',
 						'description'	=> 'Pembuatan Akun '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-						'keywords'		=> 'Pembuatan Akun '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+						'keywords'		=> 'Pembuatan Akun '.$konfigurasi->namaweb,
 						'session'		=> $session,
 						'content'		=> 'register/index'
 					];

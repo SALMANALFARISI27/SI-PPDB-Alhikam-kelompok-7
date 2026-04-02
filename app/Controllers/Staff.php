@@ -19,7 +19,7 @@ class Staff extends BaseController
 
 		$data = [	'title'				=> 'Guru, Staff, dan Pimpinan',
 					'description'		=> 'Guru, Staff, dan Pimpinan '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-					'keywords'			=> 'Guru, Staff, dan Pimpinan '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+					'keywords'			=> 'Guru, Staff, dan Pimpinan '.$konfigurasi->namaweb,
 					'kategori_staff'	=> $kategori_staff,
 					'm_staff'			=> $m_staff,
 					'konfigurasi'		=> $konfigurasi,

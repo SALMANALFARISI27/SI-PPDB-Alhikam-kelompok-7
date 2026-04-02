@@ -95,8 +95,6 @@ class Galeri extends BaseController
 					'jenis_galeri'		=> $this->request->getVar('jenis_galeri'),
 					'isi'				=> $this->request->getVar('isi'),
 					'gambar' 			=> $namabaru,
-					'website'			=> $this->request->getVar('website'),
-					'text_website'		=> $this->request->getVar('text_website'),
 					'status_text'		=> $this->request->getVar('status_text'),
 					'tanggal_post'		=> date('Y-m-d H:i:s')
 	        	);
@@ -109,8 +107,6 @@ class Galeri extends BaseController
 					'judul_galeri'		=> $this->request->getVar('judul_galeri'),
 					'jenis_galeri'		=> $this->request->getVar('jenis_galeri'),
 					'isi'				=> $this->request->getVar('isi'),
-					'website'			=> $this->request->getVar('website'),
-					'text_website'		=> $this->request->getVar('text_website'),
 					'status_text'		=> $this->request->getVar('status_text'),
 					'tanggal_post'		=> date('Y-m-d H:i:s')
 	        	);
@@ -216,8 +212,6 @@ class Galeri extends BaseController
 					'jenis_galeri'		=> $this->request->getVar('jenis_galeri'),
 					'isi'				=> $this->request->getVar('isi'),
 					'gambar' 			=> $namabaru,
-					'website'			=> $this->request->getVar('website'),
-					'text_website'		=> $this->request->getVar('text_website'),
 					'status_text'		=> $this->request->getVar('status_text'),
 	        	);
 	        	$m_galeri->edit($data);
@@ -230,8 +224,6 @@ class Galeri extends BaseController
 					'judul_galeri'		=> $this->request->getVar('judul_galeri'),
 					'jenis_galeri'		=> $this->request->getVar('jenis_galeri'),
 					'isi'				=> $this->request->getVar('isi'),
-					'website'			=> $this->request->getVar('website'),
-					'text_website'		=> $this->request->getVar('text_website'),
 					'status_text'		=> $this->request->getVar('status_text'),
 	        	);
 	        	$m_galeri->edit($data);

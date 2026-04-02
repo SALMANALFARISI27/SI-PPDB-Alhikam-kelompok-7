@@ -94,7 +94,7 @@
                       <?php echo $prestasi->judul_prestasi ?>
                     </a>
                   </h5>
-                  <p class="mb-0"><?php echo $prestasi->jenjang_prestasi ?> | <?php echo $prestasi->tahun_prestasi ?></p>
+                  <p class="mb-0"><?php echo $prestasi->jenjang_prestasi ?></p>
                 </div>
                 <!--/.card-body -->
               </div>

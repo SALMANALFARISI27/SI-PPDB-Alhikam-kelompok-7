@@ -34,7 +34,6 @@ class Jenjang_pendidikan extends BaseController
 			$title 			= 'Jenjang Pendidikan ('.$total.')';
 	        $page    		= (int) ($this->request->getGet('page') ?? 1);
 	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
 	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
 	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
 	        $jenjang_pendidikan 		= $m_jenjang_pendidikan->paginasi_admin($perPage, $page);
@@ -69,7 +68,6 @@ class Jenjang_pendidikan extends BaseController
 		$pager 			= service('pager');
         $page    		= (int) ($this->request->getGet('page') ?? 1);
         $perPage 		= $this->website->paginasi();
-        $total   		= $total;
         $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
         $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
         $jenjang_pendidikan 		= $m_jenjang_pendidikan->jenjang_all($id_jenjang,$perPage, $page);
@@ -91,7 +89,6 @@ class Jenjang_pendidikan extends BaseController
 		$pager 			= service('pager');
         $page    		= (int) ($this->request->getGet('page') ?? 1);
         $perPage 		= $this->website->paginasi();
-        $total   		= $total;
         $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
         $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
         $jenjang_pendidikan 		= $m_jenjang_pendidikan->jenis_jenjang_pendidikan_all($jenis_jenjang_pendidikan,$perPage, $page);
@@ -114,7 +111,6 @@ class Jenjang_pendidikan extends BaseController
 		$pager 			= service('pager');
         $page    		= (int) ($this->request->getGet('page') ?? 1);
         $perPage 		= $this->website->paginasi();
-        $total   		= $total;
         $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
         $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
         $jenjang_pendidikan 		= $m_jenjang_pendidikan->status_jenjang_pendidikan_all($status_jenjang_pendidikan,$perPage, $page);

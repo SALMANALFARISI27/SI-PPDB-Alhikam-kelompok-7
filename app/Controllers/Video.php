@@ -24,7 +24,7 @@ class Video extends BaseController
 
 		$data = [	'title'			=> 'Galeri Video',
 					'description'	=> 'Galeri Video '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-					'keywords'		=> 'Galeri Video '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+					'keywords'		=> 'Galeri Video '.$konfigurasi->namaweb,
 					'video'			=> $video,
 					'konfigurasi'	=> $konfigurasi,
 					'pagination'    => $pager_links,

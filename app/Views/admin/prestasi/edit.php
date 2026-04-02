@@ -30,7 +30,7 @@ echo csrf_field();
 </div>
 
 <div class="form-group row">
-	<label class="col-md-3">Level, Tahun &amp; Tanggal</label>
+	<label class="col-md-3">Level &amp; Tanggal</label>
 	<div class="col-md-2">
 		<select name="jenjang_prestasi" class="form-control">
 			<option value="Sekolah">Sekolah</option>
@@ -49,7 +49,7 @@ echo csrf_field();
 
 	<div class="col-md-2">
 		<input type="text" name="tanggal_prestasi" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($prestasi->tanggal_prestasi) ?>">
-		<small class="text-secondary">Tahun dan Tanggal Prestasi</small>
+		<small class="text-secondary">Tanggal Prestasi</small>
 	</div>
 </div>
 
@@ -72,13 +72,6 @@ echo csrf_field();
 			<option value="Draft" <?php if($prestasi->status_prestasi=="Draft") { echo 'selected'; } ?>>Draft</option>
 		</select>
 		<small class="text-secondary">Status Tampil</small>
-	</div>
-	<div class="col-md-2">
-		<select name="status_text" class="form-control">
-			<option value="Ya">Aktif</option>
-			<option value="Tidak" <?php if($prestasi->status_text=="Tidak") { echo 'selected'; } ?>>Tidak Aktif</option>
-		</select>
-		<small class="text-secondary">Text pada slider</small>
 	</div>
 </div>
 
@@ -106,12 +99,6 @@ echo csrf_field();
 	</div>
 </div>
 
-<div class="form-group row">
-	<label class="col-md-3">Text untuk tombol link</label>
-	<div class="col-md-9">
-		<input type="text" name="text_website" class="form-control" value="<?php echo $prestasi->text_website ?>">
-	</div>
-</div>
 
 
 <div class="form-group row">

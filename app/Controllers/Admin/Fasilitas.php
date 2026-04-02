@@ -89,8 +89,6 @@ class Fasilitas extends BaseController
 					'tanggal_fasilitas'		=> $this->website->tanggal_input($this->request->getVar('tanggal_fasilitas')),
 					'isi'					=> $this->request->getVar('isi'),
 					'gambar' 				=> $namabaru,
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
 					'status_text'			=> $this->request->getVar('status_text'),
 					'status_fasilitas'		=> $this->request->getVar('status_fasilitas'),
 					'tanggal_post'			=> date('Y-m-d H:i:s')
@@ -108,8 +106,6 @@ class Fasilitas extends BaseController
 					'tahun_fasilitas'		=> $this->request->getVar('tahun_fasilitas'),
 					'tanggal_fasilitas'		=> $this->website->tanggal_input($this->request->getVar('tanggal_fasilitas')),
 					'isi'					=> $this->request->getVar('isi'),
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
 					'status_text'			=> $this->request->getVar('status_text'),
 					'status_fasilitas'		=> $this->request->getVar('status_fasilitas'),
 					'tanggal_post'			=> date('Y-m-d H:i:s')
@@ -221,8 +217,6 @@ class Fasilitas extends BaseController
 					'tanggal_fasilitas'		=> $this->website->tanggal_input($this->request->getVar('tanggal_fasilitas')),
 					'isi'					=> $this->request->getVar('isi'),
 					'gambar' 				=> $namabaru,
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
 					'status_text'			=> $this->request->getVar('status_text'),
 					'status_fasilitas'		=> $this->request->getVar('status_fasilitas'),
 	        	);
@@ -240,8 +234,6 @@ class Fasilitas extends BaseController
 					'tahun_fasilitas'		=> $this->request->getVar('tahun_fasilitas'),
 					'tanggal_fasilitas'		=> $this->website->tanggal_input($this->request->getVar('tanggal_fasilitas')),
 					'isi'					=> $this->request->getVar('isi'),
-					'website'				=> $this->request->getVar('website'),
-					'text_website'			=> $this->request->getVar('text_website'),
 					'status_text'			=> $this->request->getVar('status_text'),
 					'status_fasilitas'		=> $this->request->getVar('status_fasilitas'),
 	        	);

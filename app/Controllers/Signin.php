@@ -40,7 +40,7 @@ class Signin extends BaseController
 		// End validasi
 		$data = [	'title'			=> 'Login ',
 					'description'	=> 'Login CALON PESERTA DIDIK/Calon Peserta Didik '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-					'keywords'		=> 'Login CALON PESERTA DIDIK/Calon Peserta Didik '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+					'keywords'		=> 'Login CALON PESERTA DIDIK/Calon Peserta Didik '.$konfigurasi->namaweb,
 					'session'		=> $session,
 					'content'		=> 'signin/index'
 				];
@@ -126,7 +126,7 @@ class Signin extends BaseController
 	    $data = [
 	        'title'       => 'Reset Password',
 	        'description' => 'Reset Password ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
-	        'keywords'    => 'Reset Password ' . $konfigurasi->namaweb . ', ' . $konfigurasi->keywords,
+	        'keywords'    => 'Reset Password ' . $konfigurasi->namaweb,
 	        'content'     => 'signin/reset'
 	    ];
 	    echo view('layout/wrapper-pendaftaran', $data);

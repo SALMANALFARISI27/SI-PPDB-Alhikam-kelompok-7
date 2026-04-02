@@ -8,7 +8,6 @@ use App\Models\Berita_model;
 use App\Models\Calon_peserta_didik_model;
 use App\Models\Jenjang_model;
 use App\Models\Pekerjaan_model;
-use App\Models\Hubungan_model;
 use App\Models\Agama_model;
 use App\Models\Akun_model;
 use App\Models\Jenis_dokumen_model;
@@ -28,7 +27,7 @@ class Check extends BaseController
 		
 		$data = [	'title'			=> 'Cek Status Pendaftaran',
 					'description'	=> 'Cek Status Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-					'keywords'		=> 'Cek Status Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+					'keywords'		=> 'Cek Status Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb,
 					'm_calon_peserta_didik'		=> new Calon_peserta_didik_model(),
 					'konfigurasi'	=> $konfigurasi,
 					'content'		=> 'check/index'

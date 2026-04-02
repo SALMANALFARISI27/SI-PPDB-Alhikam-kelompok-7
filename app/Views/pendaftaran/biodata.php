@@ -30,14 +30,12 @@
         use App\Models\Agama_model;
         use App\Models\Jenjang_model;
         use App\Models\Pekerjaan_model;
-        use App\Models\Hubungan_model;
         use App\Models\Kelas_model;
         use App\Models\Tahun_model;
         use App\Models\Jenjang_pendidikan_model;
         $m_agama    = new Agama_model();
         $m_jenjang    = new Jenjang_model();
         $m_pekerjaan  = new Pekerjaan_model();
-        $m_hubungan   = new Hubungan_model();
         $m_tahun    = new Tahun_model();
         $m_kelas    = new Kelas_model();
         $m_jenjang_pendidikan   = new Jenjang_pendidikan_model();
@@ -133,23 +131,12 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Status/Hubungan Anak dengan Wali<span class="text-danger">*</span></label>
-              <div class="col-md-3">
-                <?php $hubungan = $m_hubungan->listing(); ?>
-                <select name="id_hubungan" class="form-control  form-select">
-                  <?php foreach($hubungan as $hubungan) { ?>
-                    <option value="<?php echo $hubungan->id_hubungan ?>" <?php if(set_value('id_hubungan')==$hubungan->id_hubungan) { echo 'selected'; } ?>>
-                      <?php echo $hubungan->nama_hubungan ?>
-                    </option>
-                  <?php } ?>
-                </select>
-                <small class="text-secondary">Status Anak</small>
-              </div>
-              <div class="col-md-3">
+              <label class="col-md-3 text-dark">Urutan Keluarga<span class="text-danger">*</span></label>
+              <div class="col-md-4">
                 <input type="number" name="anak_ke" class="form-control" placeholder="Anak nomor ke?" value="<?php echo set_value('anak_ke') ?>" required>
                 <small class="text-secondary">Anak nomor ke</small>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-5">
                 <input type="number" name="jumlah_saudara" class="form-control" placeholder="Jumlah saudara" value="<?php echo set_value('jumlah_saudara') ?>" required>
                 <small class="text-secondary">Jumlah saudara</small>
               </div>

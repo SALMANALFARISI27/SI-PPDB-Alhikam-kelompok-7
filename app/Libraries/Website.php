@@ -29,13 +29,6 @@ class Website
 		return $konfigurasi->website;
 	}
 
-	// metatext
-	public function metatext()
-	{
-		$m_konfigurasi 	= new Konfigurasi_model();
-		$konfigurasi 	= $m_konfigurasi->listing();
-		return $konfigurasi->metatext;
-	}
 
 	// fitur_pendaftaran
 	public function fitur_pendaftaran()
@@ -143,13 +136,6 @@ class Website
 		return $konfigurasi->website;
 	}
 
-	// keywords
-	public function keywords()
-	{
-		$m_konfigurasi 	= new Konfigurasi_model();
-		$konfigurasi 	= $m_konfigurasi->listing();
-		return $konfigurasi->keywords;
-	}
 
 	// description
 	public function description()

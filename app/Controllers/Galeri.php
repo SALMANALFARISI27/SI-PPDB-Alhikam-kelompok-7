@@ -24,7 +24,7 @@ class Galeri extends BaseController
 
 		$data = [	'title'			=> 'Galeri Gambar',
 					'description'	=> 'Galeri Gambar '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-					'keywords'		=> 'Galeri Gambar '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+					'keywords'		=> 'Galeri Gambar '.$konfigurasi->namaweb,
 					'galeri'		=> $galeri,
 					'pagination'    => $pager_links,
 					'konfigurasi'	=> $konfigurasi,

@@ -31,13 +31,15 @@ abstract class BaseController extends Controller
     protected $request;
 
     /**
-     * An array of helpers to be loaded automatically upon
-     * class instantiation. These helpers will be available
-     * to all other controllers that extend BaseController.
-     *
      * @var array
      */
     protected $helpers = ['form','website', 'text'];
+
+    protected $session;
+    protected $db;
+    protected $pager;
+    protected $simple_login;
+    protected $website;
 
     /**
      * Constructor.

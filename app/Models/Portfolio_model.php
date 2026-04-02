@@ -134,7 +134,6 @@ class Portfolio_model extends Model
         $this->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
         $this->join('users','users.id_user = portfolio.id_user','LEFT');
         $this->like('portfolio.judul_portfolio',$keywords,'BOTH');
-        $this->orLike('portfolio.website',$keywords,'BOTH');
         $this->orLike('portfolio.isi',$keywords,'BOTH');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('portfolio.id_portfolio','DESC');
@@ -150,7 +149,6 @@ class Portfolio_model extends Model
         $this->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
         $this->join('users','users.id_user = portfolio.id_user','LEFT');
         $this->like('portfolio.judul_portfolio',$keywords,'BOTH');
-        $this->orLike('portfolio.website',$keywords,'BOTH');
         $this->orLike('portfolio.isi',$keywords,'BOTH');
         $this->orderBy('portfolio.id_portfolio','DESC');
         $query = $this->get();

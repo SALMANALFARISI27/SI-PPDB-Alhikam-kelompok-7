@@ -18,7 +18,7 @@ class Kontak extends BaseController
 
 		$data = [	'title'			=> 'Kontak Kami',
 					'description'	=> 'Kontak Kami '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-					'keywords'		=> 'Kontak Kami '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+					'keywords'		=> 'Kontak Kami '.$konfigurasi->namaweb,
 					'slider'		=> $slider,
 					'konfigurasi'	=> $konfigurasi,
 					'content'		=> 'kontak/index'

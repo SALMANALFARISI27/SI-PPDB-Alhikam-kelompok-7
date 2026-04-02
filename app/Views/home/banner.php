@@ -7,9 +7,11 @@
             <div class="col-lg-6" data-cues="slideInDown" data-group="page-title" data-delay="900">
               <h1 class="display-4 mb-4 me-xl-5 me-xxl-0"
                 style="color: #FFD700; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-weight: bold;">
-                <?php echo $slider->judul_galeri ?></h1>
+                <?php echo $slider->judul_galeri ?>
+              </h1>
               <p class="lead fs-23 lh-sm mb-7 pe-xxl-15 text-white" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
-                <?php echo strip_tags($slider->isi) ?></p>
+                <?php echo strip_tags($slider->isi) ?>
+              </p>
             </div>
             <!--/column -->
             <div class="col-lg-6">
@@ -39,8 +41,10 @@
       <div class="modal-body">
         <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="ratio ratio-16x9 rounded shadow-lg border border-secondary p-2">
-          <iframe src="https://www.youtube.com/embed/<?php echo $site->link_video ?>"
+          <?php if($video) { ?>
+          <iframe src="https://www.youtube.com/embed/<?php echo $video->video ?>"
             title="<?php echo $this->website->namaweb() ?>" allowfullscreen></iframe>
+          <?php } ?>
         </div>
       </div>
 

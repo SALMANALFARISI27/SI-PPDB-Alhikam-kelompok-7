@@ -91,9 +91,7 @@
 			</td>
 			<td><?php echo $portfolio->judul_portfolio ?>
 				<small>
-					<br><i class="fa fa-link"></i> <?php echo $portfolio->website ?>
 					<br><i class="fa fa-tasks"></i> <?php echo $portfolio->status_text ?>
-					<br><i class="fa fa-thumbs"></i> <?php echo $portfolio->text_website ?>
 					<textarea title="Copy link gambar/file ini" class="form-control"><?php echo base_url('assets/upload/image/'.$portfolio->gambar) ?></textarea>
 				</small>
 			</td>

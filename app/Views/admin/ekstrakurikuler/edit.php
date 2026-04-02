@@ -86,13 +86,6 @@ echo csrf_field();
 	</div>
 </div>
 
-<div class="form-group row">
-	<label class="col-md-2">Text untuk tombol link</label>
-	<div class="col-md-10">
-		<input type="text" name="text_website" class="form-control" value="<?php echo $ekstrakurikuler->text_website ?>">
-	</div>
-</div>
-
 
 
 <div class="form-group row">

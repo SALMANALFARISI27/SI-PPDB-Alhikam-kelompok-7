@@ -134,7 +134,6 @@ class Fasilitas_model extends Model
         $this->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
         $this->join('users','users.id_user = fasilitas.id_user','LEFT');
         $this->like('fasilitas.judul_fasilitas',$keywords,'BOTH');
-        $this->orLike('fasilitas.website',$keywords,'BOTH');
         $this->orLike('fasilitas.isi',$keywords,'BOTH');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('fasilitas.id_fasilitas','DESC');
@@ -150,7 +149,6 @@ class Fasilitas_model extends Model
         $this->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
         $this->join('users','users.id_user = fasilitas.id_user','LEFT');
         $this->like('fasilitas.judul_fasilitas',$keywords,'BOTH');
-        $this->orLike('fasilitas.website',$keywords,'BOTH');
         $this->orLike('fasilitas.isi',$keywords,'BOTH');
         $this->orderBy('fasilitas.id_fasilitas','DESC');
         $query = $this->get();
