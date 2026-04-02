@@ -1,5 +1,5 @@
 <?php 
-namespace App\Controllers\Siswa;
+namespace App\Controllers\Calon_peserta_didik;
 
 use CodeIgniter\Controller;
 
@@ -10,8 +10,8 @@ class Profil extends BaseController
 		$data = [   'title'     	=> 'Data Profil',
 					'description'   => 'Data Profil',
                     'keywords'      => 'Data Profil',
-					'content'		=> 'siswa/profil/index'
+					'content'		=> 'calon_peserta_didik/profil/index'
                 ];
-        return view('siswa/layout/wrapper',$data);
+        return view('calon_peserta_didik/layout/wrapper',$data);
 	}
 }

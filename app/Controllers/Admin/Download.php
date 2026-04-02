@@ -31,7 +31,7 @@ class Download extends BaseController
 	        $download 		= $m_download->paginasi_admin_cari($keywords,$perPage, $page);
 		}else{
 			$total 			= $m_download->total();
-			$title 			= 'Download, Profil dan Layanan ('.$total.')';
+			$title 			= 'Download ('.$total.')';
 	        $page    		= (int) ($this->request->getGet('page') ?? 1);
 	        $perPage 		= $this->website->paginasi();
 	        $total   		= $total;

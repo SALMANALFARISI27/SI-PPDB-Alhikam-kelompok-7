@@ -1,8 +1,8 @@
 <?php
 $id_gelombang 	= $gelombang->id_gelombang;
-$menunggu 		= $m_siswa->status_siswa_gelombang('Menunggu',$id_gelombang);
-$ditolak 		= $m_siswa->status_siswa_gelombang('Ditolak',$id_gelombang);
-$diterima 		= $m_siswa->status_siswa_gelombang('Diterima',$id_gelombang);
+$menunggu 		= $m_calon_peserta_didik->status_calon_peserta_didik_gelombang('Menunggu',$id_gelombang);
+$ditolak 		= $m_calon_peserta_didik->status_calon_peserta_didik_gelombang('Ditolak',$id_gelombang);
+$diterima 		= $m_calon_peserta_didik->status_calon_peserta_didik_gelombang('Diterima',$id_gelombang);
 ?>
 <p>
 	<a href="<?php echo base_url('admin/pendaftar/gelombang/'.$gelombang->id_gelombang.'/Menunggu') ?>" class="btn btn-warning btn-xs">

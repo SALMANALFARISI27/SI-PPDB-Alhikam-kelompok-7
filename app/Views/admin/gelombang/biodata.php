@@ -1,4 +1,4 @@
-<p class="lead mb-2 text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>, masukkan data Calon Calon Peserta Didik dengan benar dan lengkap.
+<p class="lead mb-2 text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>, masukkan data Calon Peserta Didik dengan benar dan lengkap.
                 <br>Anda sedang mendaftar pada <strong><?php echo $gelombang->judul ?></strong> Tahun Ajaran <strong><?php echo $gelombang->tahun_ajaran ?></strong>.
               </p>
 
@@ -31,14 +31,14 @@
         $m_tahun    = new Tahun_model();
         $m_jenjang_pendidikan   = new Jenjang_pendidikan_model();
 
-        echo form_open_multipart(base_url('siswa/pendaftaran/biodata/'.$gelombang->id_gelombang));
+        echo form_open_multipart(base_url('calon_peserta_didik/pendaftaran/biodata/'.$gelombang->id_gelombang));
         echo csrf_field(); 
         ?>
         <p><span class="text-danger">*</span> Wajib diisi</p>
-        <!-- data dasar siswa -->
+        <!-- data dasar CALON PESERTA DIDIK -->
         <div class="card mb-2">
           <div class="card-header bg-dark text-white mb-2">
-            DATA DASAR SISWA
+            DATA DASAR CALON PESERTA DIDIK
           </div>
           <div class="card-body">
 
@@ -73,7 +73,7 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Nama Lengkap<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <input type="text" name="nama_siswa" class="form-control form-control-lg" placeholder="Nama lengkap siswa" value="<?php echo set_value('nama_siswa') ?>" required>
+                <input type="text" name="nama_calon_peserta_didik" class="form-control form-control-lg" placeholder="Nama lengkap CALON PESERTA DIDIK" value="<?php echo set_value('nama_calon_peserta_didik') ?>" required>
                 <small class="text-warning">Nama lengkap Calon Peserta Didik</small>
               </div>
             </div>
@@ -206,9 +206,9 @@
           </div>
           
         </div>
-        <!-- data dasar siswa -->
+        <!-- data dasar CALON PESERTA DIDIK -->
 
-        <!-- data dasar siswa -->
+        <!-- data dasar CALON PESERTA DIDIK -->
         <div class="card mb-2">
           <div class="card-header bg-dark text-white mb-2">
             DATA PENERIMAAN DI SEKOLAH
@@ -222,11 +222,11 @@
                 <!-- radio -->
                 <div class="form-group">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="jenis_siswa" value="Langsung"<?php if(set_value('jenis_siswa')=='Tidak') { echo 'checked'; }else{ echo 'checked'; } ?>>
+                    <input class="form-check-input" type="radio" name="jenis_calon_peserta_didik" value="Langsung"<?php if(set_value('jenis_calon_peserta_didik')=='Tidak') { echo 'checked'; }else{ echo 'checked'; } ?>>
                     <label class="form-check-label">Langsung</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="jenis_siswa" value="Pindahan" <?php if(set_value('jenis_siswa')=='Pindahan') { echo 'checked'; } ?>>
+                    <input class="form-check-input" type="radio" name="jenis_calon_peserta_didik" value="Pindahan" <?php if(set_value('jenis_calon_peserta_didik')=='Pindahan') { echo 'checked'; } ?>>
                     <label class="form-check-label">Pindahan</label>
                   </div>
                 </div>
@@ -255,7 +255,7 @@
               <label class="col-md-3 text-dark">Tanggal Pindah (Sesuai Surat Pindah)</label>
               <div class="col-md-9">
                 <input type="text" name="tanggal_pindah" class="form-control tanggal" placeholder="Tanggal pindah" value="<?php echo set_value('tanggal_pindah') ?>">
-                <small class="text-secondary">Tanggal pindah (Jika siswa pindahan). Format: dd-mm-yyyy</small>
+                <small class="text-secondary">Tanggal pindah (Jika CALON PESERTA DIDIK pindahan). Format: dd-mm-yyyy</small>
               </div>
             </div>
 
@@ -263,22 +263,22 @@
           
         </div>
 
-        <!-- data dasar siswa -->
+        <!-- data dasar CALON PESERTA DIDIK -->
         <div class="card mb-2">
           <div class="card-header bg-dark text-white mb-2">
-            DATA KESEHATAN DAN INFORMASI SISWA LAINNYA
+            DATA KESEHATAN DAN INFORMASI CALON PESERTA DIDIK LAINNYA
           </div>
           <div class="card-body">
 
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Golongan Darah Calon Peserta Didik</label>
               <div class="col-md-9">
-                <select name="goldar_siswa" class="form-control  form-select" required>
+                <select name="goldar_calon_peserta_didik" class="form-control  form-select" required>
                   <option value="">Pilih Golongan Darah</option>
-                  <option value="A" <?php if(set_value('goldar_siswa')=='A') { echo 'selected'; } ?>>A</option>
-                  <option value="B" <?php if(set_value('goldar_siswa')=='B') { echo 'selected'; } ?>>B</option>
-                  <option value="AB" <?php if(set_value('goldar_siswa')=='AB') { echo 'selected'; } ?>>AB</option>
-                  <option value="O" <?php if(set_value('goldar_siswa')=='O') { echo 'selected'; } ?>>O</option>
+                  <option value="A" <?php if(set_value('goldar_calon_peserta_didik')=='A') { echo 'selected'; } ?>>A</option>
+                  <option value="B" <?php if(set_value('goldar_calon_peserta_didik')=='B') { echo 'selected'; } ?>>B</option>
+                  <option value="AB" <?php if(set_value('goldar_calon_peserta_didik')=='AB') { echo 'selected'; } ?>>AB</option>
+                  <option value="O" <?php if(set_value('goldar_calon_peserta_didik')=='O') { echo 'selected'; } ?>>O</option>
                 </select>
               </div>
             </div>
@@ -298,14 +298,14 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Penyakit yang pernah/sedang diderita Calon Peserta Didik</label>
               <div class="col-md-9">
-                <textarea name="penyakit_siswa" class="form-control" placeholder="Penyakit yang pernah/sedang diderita Calon Peserta Didik"><?php echo set_value('penyakit_siswa') ?></textarea>
+                <textarea name="penyakit_calon_peserta_didik" class="form-control" placeholder="Penyakit yang pernah/sedang diderita Calon Peserta Didik"><?php echo set_value('penyakit_calon_peserta_didik') ?></textarea>
               </div>
             </div>
 
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Hobi Calon Peserta Didik</label>
               <div class="col-md-9">
-                <textarea name="hobi_siswa" class="form-control" placeholder="Hobi siswa"><?php echo set_value('hobi_siswa') ?></textarea>
+                <textarea name="hobi_calon_peserta_didik" class="form-control" placeholder="Hobi CALON PESERTA DIDIK"><?php echo set_value('hobi_calon_peserta_didik') ?></textarea>
               </div>
             </div>
 
@@ -342,7 +342,7 @@
         <!-- data ayah -->
         <div class="card mb-2">
           <div class="card-header bg-dark text-white mb-2">
-            DATA ORANG TUA SISWA - AYAH
+            DATA ORANG TUA CALON PESERTA DIDIK - AYAH
           </div>
           <div class="card-body">
 
@@ -421,7 +421,7 @@
         <!-- data ibu -->
         <div class="card mb-2">
           <div class="card-header bg-dark text-white mb-2">
-            DATA ORANG TUA SISWA - IBU
+            DATA ORANG TUA CALON PESERTA DIDIK - IBU
           </div>
           <div class="card-body">
 
@@ -500,7 +500,7 @@
         <!-- data wali -->
         <div class="card">
           <div class="card-header bg-dark text-white mb-2">
-            DATA ORANG TUA SISWA - WALI MURID
+            DATA ORANG TUA CALON PESERTA DIDIK - WALI MURID
           </div>
           <div class="card-body">
 

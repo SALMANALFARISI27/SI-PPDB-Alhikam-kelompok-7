@@ -57,7 +57,7 @@ foreach($nav_menu as $nav_menu) {
                 </p>
               </div>
 
-              <?php if(Session()->get('username_siswa') !='') { ?>
+              <?php if(Session()->get('username_calon_peserta_didik') !='') { ?>
                 <div class="d-flex flex-row align-items-center me-6">
                   <p class="mb-0">
                     <a href="<?php echo base_url('pendaftaran') ?>" class="text-white hover">
@@ -68,7 +68,7 @@ foreach($nav_menu as $nav_menu) {
 
                 <div class="d-flex flex-row align-items-center me-6">
                   <p class="mb-0">
-                    <a href="<?php echo base_url('siswa/dasbor') ?>" class="text-white hover">
+                    <a href="<?php echo base_url('calon_peserta_didik/dasbor') ?>" class="text-white hover">
                      <i class="fa fa-tachometer-alt"></i> Dashboard
                     </a>
                   </p>
@@ -164,7 +164,7 @@ foreach($nav_menu as $nav_menu) {
                           <ul class="list-unstyled">
                             
                             <li><a class="dropdown-item"  href="<?php echo base_url('pendaftaran') ?>">Pendaftaran Online</a></li>
-                            <li><a class="dropdown-item"  href="<?php echo base_url('signin') ?>">Login Calon Peserta Didik/Calon Calon Peserta Didik</a></li>
+                            <li><a class="dropdown-item"  href="<?php echo base_url('signin') ?>">Login Calon Peserta Didik/Calon Peserta Didik</a></li>
                             <li><a class="dropdown-item"  href="<?php echo base_url('check') ?>">Cek Status Pendaftaran Online</a></li>
                            
                           </ul>

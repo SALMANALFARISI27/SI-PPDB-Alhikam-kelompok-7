@@ -3,25 +3,25 @@
 		<i class="fa fa-arrow-left"></i> Kembali
 	</a>
 	<a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Semua/Semua') ?>" class="btn btn-warning btn-xs mb-1">
-      	<i class="fa fa-users"></i> Semua Jenjang (<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Semua','Semua')->total); ?>)
+      	<i class="fa fa-users"></i> Semua Jenjang (<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Semua','Semua')->total); ?>)
       </a>
       <?php if($id_jenjang_pendidikan != 'Semua') { ?>
       <a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Semua/'.$id_jenjang_pendidikan) ?>" class="btn btn-info btn-xs mb-1">
-            <i class="fa fa-user-check"></i> <?php echo $judul_jenjang_pendidikan ?> (<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Semua',$id_jenjang_pendidikan)->total); ?>)
+            <i class="fa fa-user-check"></i> <?php echo $judul_jenjang_pendidikan ?> (<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Semua',$id_jenjang_pendidikan)->total); ?>)
       </a>
     <?php } ?>
 
       <a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Menunggu/'.$id_jenjang_pendidikan) ?>" class="btn btn-dark btn-xs mb-1">
-      	<i class="fa fa-tasks"></i> Menunggu (<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Menunggu',$id_jenjang_pendidikan)->total); ?>)
+      	<i class="fa fa-tasks"></i> Menunggu (<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Menunggu',$id_jenjang_pendidikan)->total); ?>)
       </a>
       <a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Diterima/'.$id_jenjang_pendidikan) ?>" class="btn btn-success btn-xs mb-1">
-      	<i class="fa fa-check-circle"></i> Diterima (<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Diterima',$id_jenjang_pendidikan)->total); ?>)
+      	<i class="fa fa-check-circle"></i> Diterima (<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Diterima',$id_jenjang_pendidikan)->total); ?>)
       </a>
       <a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Tidak-Diterima/'.$id_jenjang_pendidikan) ?>" class="btn btn-warning btn-xs mb-1">
-      	<i class="fa fa-times-circle"></i> Tidak Diterima (<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Tidak-Diterima',$id_jenjang_pendidikan)->total); ?>)
+      	<i class="fa fa-times-circle"></i> Tidak Diterima (<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Tidak-Diterima',$id_jenjang_pendidikan)->total); ?>)
       </a>
       <a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Diperiksa/'.$id_jenjang_pendidikan) ?>" class="btn btn-secondary btn-xs mb-1">
-      	<i class="fa fa-edit"></i> Diperiksa (<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Diperiksa',$id_jenjang_pendidikan)->total); ?>)
+      	<i class="fa fa-edit"></i> Diperiksa (<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Diperiksa',$id_jenjang_pendidikan)->total); ?>)
       </a>
 	<a href="<?php echo base_url('admin/gelombang/export/'.$gelombang->id_gelombang.'/'.$status_pendaftaran.'/'.$id_jenjang_pendidikan) ?>" class="btn btn-success btn-xs mb-1" target="_blank"><i class="fa fa-file-excel"></i> Ekspor Calon Peserta Didik</a>
 	<a href="<?php echo base_url('admin/gelombang/unduh_data/'.$gelombang->id_gelombang.'/'.$status_pendaftaran.'/'.$id_jenjang_pendidikan) ?>" class="btn btn-danger btn-xs mb-1" target="_blank"><i class="fa fa-file-pdf"></i> Cetak</a>
@@ -94,35 +94,35 @@
 			<td class="text-center" width="5%"><i class="fa fa-user-check"></i></td>
 			<td>Jumlah Pendaftar</td>
 			<td>
-				<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Semua',$id_jenjang_pendidikan)->total); ?>
+				<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Semua',$id_jenjang_pendidikan)->total); ?>
 			</td>
 		</tr>
 		<tr>
 			<td class="text-center"><i class="fa fa-tasks"></i></td>
 			<td>Jumlah Menunggu</td>
 			<td>
-				<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Menunggu',$id_jenjang_pendidikan)->total); ?>
+				<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Menunggu',$id_jenjang_pendidikan)->total); ?>
 			</td>
 		</tr>
 		<tr>
 			<td class="text-center"><i class="fa fa-check-circle"></i></td>
 			<td>Jumlah Diterima</td>
 			<td>
-				<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Diterima',$id_jenjang_pendidikan)->total); ?>
+				<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Diterima',$id_jenjang_pendidikan)->total); ?>
 			</td>
 		</tr>
 		<tr>
 			<td class="text-center"><i class="fa fa-times-circle"></i></td>
 			<td>Jumlah Tidak Diterima</td>
 			<td>
-				<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Tidak-Diterima',$id_jenjang_pendidikan)->total); ?>
+				<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Tidak-Diterima',$id_jenjang_pendidikan)->total); ?>
 			</td>
 		</tr>
 		<tr>
 			<td class="text-center"><i class="fa fa-edit"></i></td>
 			<td>Jumlah Diperiksa</td>
 			<td>
-				<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Diperiksa',$id_jenjang_pendidikan)->total); ?>
+				<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Diperiksa',$id_jenjang_pendidikan)->total); ?>
 			</td>
 		</tr>
 	</tbody>
@@ -153,7 +153,7 @@
                     <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $akumulasi->status_pendaftaran ?></span>
                   <?php } ?>
 						</td>
-						<td><?php echo $this->website->angka($akumulasi->jumlah_siswa) ?></td>
+						<td><?php echo $this->website->angka($akumulasi->jumlah_calon_peserta_didik) ?></td>
 						<td>
 							<a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/'.$akumulasi->status_pendaftaran.'/'.$akumulasi->id_jenjang_pendidikan) ?>" class="btn btn-secondary btn-xs mb-1">
 				      	<i class="fa fa-user-check"></i> Lihat
@@ -199,7 +199,7 @@
         <button type="submit" class="btn btn-info" name="submit" value="update"><i class="fa fa-save"></i> Update Status PPDB</button>
       </span>
       <a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Semua/Semua') ?>" class="btn btn-warning">
-      	<i class="fa fa-users"></i> Lihat Semua Jenjang (<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Semua','Semua')->total); ?>)
+      	<i class="fa fa-users"></i> Lihat Semua Jenjang (<?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Semua','Semua')->total); ?>)
       </a>
     </div>
   </div>
@@ -236,32 +236,32 @@
 	</thead>
 	<tbody>
 		<?php 
-		$i=1; foreach($siswa as $siswa) { 
+		$i=1; foreach($calon_peserta_didik as $calon_peserta_didik) { 
 			$wajib 					= $m_jenis_dokumen->group_status_jenis_dokumen_detail('Wajib');
 			$tidak_wajib 			= $m_jenis_dokumen->group_status_jenis_dokumen_detail('Tidak Wajib');
-			$dokumen_wajib 			= $m_dokumen->total_check($siswa->id_calon_peserta_didik,$wajib->status_jenis_dokumen); 
-			$dokumen_tidak_wajib 	= $m_dokumen->total_check($siswa->id_calon_peserta_didik,$tidak_wajib->status_jenis_dokumen);
+			$dokumen_wajib 			= $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik,$wajib->status_jenis_dokumen); 
+			$dokumen_tidak_wajib 	= $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik,$tidak_wajib->status_jenis_dokumen);
 		?>
 		<tr>
 			<td class="text-center">
             <div class="icheck-primary">
-              <input type="checkbox" name="id_calon_peserta_didik[]" value="<?php echo $siswa->id_calon_peserta_didik ?>" id="check<?php echo $i ?>">
+              <input type="checkbox" name="id_calon_peserta_didik[]" value="<?php echo $calon_peserta_didik->id_calon_peserta_didik ?>" id="check<?php echo $i ?>">
               <label for="check<?php echo $i ?>"></label>
             </div>
           </td>
-			<td><strong><?php echo $siswa->nama_siswa ?></strong>
+			<td><strong><?php echo $calon_peserta_didik->nama_calon_peserta_didik ?></strong>
 				<small>
-					<br><span class="text-secondary">Program:</span> <strong><?php echo $siswa->judul_jenjang_pendidikan ?></strong>
-					<br><span class="text-secondary">Kode:</span> <strong><?php echo $siswa->kode_siswa ?></strong>
-					<br><span class="text-secondary">NIS/NISN:</span> <?php echo $siswa->nis ?>/<?php echo $siswa->nisn ?>
-		          	<br><span class="text-secondary">Panggilan:</span> <?php echo $siswa->nama_panggilan ?>
-					<br><span class="text-secondary">TTL:</span> <?php echo $siswa->tempat_lahir ?>, <?php echo $this->website->tanggal_id($siswa->tanggal_lahir) ?>
-					<br><span class="text-secondary">Kelamin:</span> <?php if($siswa->jenis_kelamin=='L') { echo 'Laki-laki'; }else{ echo 'Perempuan'; } ?>
-					<br><span class="text-secondary">Wali:</span><?php echo $siswa->nama_wali ?>
+					<br><span class="text-secondary">Program:</span> <strong><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?></strong>
+					<br><span class="text-secondary">Kode:</span> <strong><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></strong>
+					<br><span class="text-secondary">NIS/NISN:</span> <?php echo $calon_peserta_didik->nis ?>/<?php echo $calon_peserta_didik->nisn ?>
+		         
+					<br><span class="text-secondary">TTL:</span> <?php echo $calon_peserta_didik->tempat_lahir ?>, <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?>
+					<br><span class="text-secondary">Kelamin:</span> <?php if($calon_peserta_didik->jenis_kelamin=='L') { echo 'Laki-laki'; }else{ echo 'Perempuan'; } ?>
+					<br><span class="text-secondary">Wali:</span><?php echo $calon_peserta_didik->nama_wali ?>
 		          	<br><span class="text-secondary">Usia:</span> 
 			          <?php 
 			          // jeda
-			          $date1 = $siswa->tanggal_lahir;
+			          $date1 = $calon_peserta_didik->tanggal_lahir;
 			          $date2 = date('Y-m-d');
 
 			          $diff   = abs(strtotime($date2) - strtotime($date1));
@@ -274,10 +274,10 @@
 		          
 				</small>
 			</td>
-      		<td><?php echo $siswa->alamat ?>
+      		<td><?php echo $calon_peserta_didik->alamat ?>
       			<small>
-      				<br><span class="text-secondary">Telepon:</span> <?php echo $siswa->telepon ?>
-      				<br><span class="text-secondary">Email:</span> <?php echo $siswa->email ?>
+      				<br><span class="text-secondary">Telepon:</span> <?php echo $calon_peserta_didik->telepon ?>
+      				<br><span class="text-secondary">Email:</span> <?php echo $calon_peserta_didik->email ?>
       			</small>
       		</td>
       		<td class="text-center"><?php echo $wajib->total ?></td>
@@ -286,25 +286,25 @@
       		<td class="text-center <?php if($dokumen_tidak_wajib >= $tidak_wajib->total) { echo 'text-success'; }else{ echo 'text-danger'; } ?>"><?php  echo $dokumen_tidak_wajib; ?></td>
       		
 		    <td>
-		        <?php if($siswa->status_pendaftaran=='Menunggu') { ?>
-                    <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
-                  <?php }elseif($siswa->status_pendaftaran=='Diterima') { ?>
-                    <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
-                  <?php }elseif($siswa->status_pendaftaran=='Tidak-Diterima') { ?>
-                    <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
+		        <?php if($calon_peserta_didik->status_pendaftaran=='Menunggu') { ?>
+                    <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
+                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Diterima') { ?>
+                    <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
+                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Tidak-Diterima') { ?>
+                    <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
                   <?php }else{ ?>
-                    <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
+                    <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
                   <?php } ?>
 		    </td>
 			<td>
-				<!-- <a href="<?php echo base_url('admin/gelombang/review/'.$siswa->slug_siswa) ?>" class="btn btn-success btn-xs mb-1" title="Edit"><i class="fa fa-tasks"></i> Review</a> -->
+				<!-- <a href="<?php echo base_url('admin/gelombang/review/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-success btn-xs mb-1" title="Edit"><i class="fa fa-tasks"></i> Review</a> -->
 
-					<a href="<?php echo base_url('admin/gelombang/dokumen/'.$siswa->slug_siswa) ?>" class="btn btn-info btn-xs mb-1" title="Edit"><i class="fa fa-tasks"></i> Review</a>
+					<a href="<?php echo base_url('admin/gelombang/dokumen/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-info btn-xs mb-1" title="Edit"><i class="fa fa-tasks"></i> Review</a>
 
-			        <a href="<?php echo base_url('admin/gelombang/cetak/'.$siswa->slug_siswa) ?>" class="btn btn-danger btn-xs mb-1" title="Unduh" target="_blank"><i class="fa fa-file-pdf"></i></a>
-			        <a href="<?php echo base_url('admin/gelombang/edit_siswa/'.$siswa->slug_siswa) ?>" class="btn btn-warning btn-xs mb-1" title="Edit"><i class="fa fa-edit"></i></a>
-        			<?php if($siswa->status_pendaftaran=='Menunggu') { ?>
-						<a href="<?php echo base_url('admin/gelombang/delete_siswa/'.$siswa->slug_siswa.'/'.$siswa->id_gelombang) ?>" class="btn btn-secondary btn-xs delete-link mb-1" title="Hapus"><i class="fa fa-trash"></i></a>
+			        <a href="<?php echo base_url('admin/gelombang/cetak/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-danger btn-xs mb-1" title="Unduh" target="_blank"><i class="fa fa-file-pdf"></i></a>
+			        <a href="<?php echo base_url('admin/gelombang/edit_calon_peserta_didik/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-warning btn-xs mb-1" title="Edit"><i class="fa fa-edit"></i></a>
+        			<?php if($calon_peserta_didik->status_pendaftaran=='Menunggu') { ?>
+						<a href="<?php echo base_url('admin/gelombang/delete_calon_peserta_didik/'.$calon_peserta_didik->slug_calon_peserta_didik.'/'.$calon_peserta_didik->id_gelombang) ?>" class="btn btn-secondary btn-xs delete-link mb-1" title="Hapus"><i class="fa fa-trash"></i></a>
 					<?php } ?>
 			</td>
 		</tr>

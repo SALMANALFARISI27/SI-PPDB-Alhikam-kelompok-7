@@ -1,5 +1,5 @@
 <div class="callout callout-success">
-	Hai <strong><?php echo Session()->get('nama_siswa') ?></strong>, 
+	Hai <strong><?php echo Session()->get('nama_calon_peserta_didik') ?></strong>, 
 	Selamat datang di <strong><?php echo $this->website->namaweb() ?></strong>
 </div>
 
@@ -14,7 +14,7 @@
       <div class="info-box-content">
         <span class="info-box-text">Periode PPDB</span>
         <span class="info-box-number">
-          <a href="<?php echo base_url('siswa/gelombang') ?>" class="btn btn-info btn-xs">
+          <a href="<?php echo base_url('calon_peserta_didik/gelombang') ?>" class="btn btn-info btn-xs">
           	<i class="fa fa-eye"></i> Lihat Periode
           </a>
         </span>
@@ -33,7 +33,7 @@
       <div class="info-box-content">
         <span class="info-box-text">Data Pendaftaran Saya</span>
         <span class="info-box-number">
-        	<a href="<?php echo base_url('siswa/pendaftaran') ?>" class="btn btn-info btn-xs">
+        	<a href="<?php echo base_url('calon_peserta_didik/pendaftaran') ?>" class="btn btn-info btn-xs">
           	<i class="fa fa-eye"></i> Kelola Pendaftaran
           </a>
         </span>
@@ -53,7 +53,7 @@
       <div class="info-box-content">
         <span class="info-box-text">Akun Saya</span>
         <span class="info-box-number">
-        	<a href="<?php echo base_url('siswa/akun') ?>" class="btn btn-info btn-xs">
+        	<a href="<?php echo base_url('calon_peserta_didik/akun') ?>" class="btn btn-info btn-xs">
           	<i class="fa fa-eye"></i> Kelola Akun
           </a>
         </span>

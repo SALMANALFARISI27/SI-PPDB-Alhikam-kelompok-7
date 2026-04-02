@@ -8,7 +8,7 @@
         <div class="card">
           <div class="card-body p-5">
 
-              <?php if (Session()->get('username_siswa') != '') { ?>
+              <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
                 <p class="text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>. Anda sudah berhasil login. 
                   <br>Silakan klik Tombol <strong class="text-danger">Daftar Online</strong> untuk melakukan Proses PPDB.</p>
 
@@ -44,8 +44,8 @@
                                             data-bs-target="#Gelombang<?php echo $gelombang->id_gelombang ?>">
                                         Lihat Detail &nbsp;<i class="fa fa-eye"></i>
                                     </button>
-                                    <?php if (Session()->get('username_siswa') != '') { ?>
-                                        <a href="<?php echo base_url('siswa/pendaftaran/biodata/' . $gelombang->id_gelombang) ?>" 
+                                    <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
+                                        <a href="<?php echo base_url('calon_peserta_didik/pendaftaran/biodata/' . $gelombang->id_gelombang) ?>" 
                                            class="btn btn-danger btn-sm text-white mb-1">
                                            <i class="fa fa-edit"></i>&nbsp; Daftar Online
                                         </a>
@@ -105,7 +105,7 @@
                                   <?php echo $gelombang->isi ?>
                                
                                   <p>
-                                    <?php if (Session()->get('username_siswa') != '') { ?>
+                                    <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
                                         <a href="<?php echo base_url('pendaftaran/biodata/' . $gelombang->id_gelombang) ?>" 
                                            class="btn btn-success btn-sm text-white mb-1">
                                            <i class="fa fa-edit"></i>&nbsp; Daftar

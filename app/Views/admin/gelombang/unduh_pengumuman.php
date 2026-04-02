@@ -100,27 +100,27 @@ $this->website          = new Website();
   </thead>
   <tbody>
     <?php 
-    $i=1; foreach($siswa as $siswa) { 
+    $i=1; foreach($calon_peserta_didik as $calon_peserta_didik) { 
       $wajib          = $m_jenis_dokumen->group_status_jenis_dokumen_detail('Wajib');
       $tidak_wajib      = $m_jenis_dokumen->group_status_jenis_dokumen_detail('Tidak Wajib');
-      $dokumen_wajib      = $m_dokumen->total_check($siswa->id_calon_peserta_didik,$wajib->status_jenis_dokumen); 
-      $dokumen_tidak_wajib  = $m_dokumen->total_check($siswa->id_calon_peserta_didik,$tidak_wajib->status_jenis_dokumen);
+      $dokumen_wajib      = $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik,$wajib->status_jenis_dokumen); 
+      $dokumen_tidak_wajib  = $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik,$tidak_wajib->status_jenis_dokumen);
     ?>
     <tr>
       <td class="text-center"><?php echo $i ?></td>
-      <td><?php echo $siswa->nama_siswa ?></td>
-      <td><?php echo $siswa->jenis_kelamin ?></td>
-      <td><?php echo $siswa->tempat_lahir ?>, <?php echo $this->website->tanggal_id($siswa->tanggal_lahir) ?></td>
-      <td><?php echo $siswa->judul_jenjang_pendidikan ?></td>
+      <td><?php echo $calon_peserta_didik->nama_calon_peserta_didik ?></td>
+      <td><?php echo $calon_peserta_didik->jenis_kelamin ?></td>
+      <td><?php echo $calon_peserta_didik->tempat_lahir ?>, <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
+      <td><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?></td>
         <td>
-            <?php if($siswa->status_pendaftaran=='Menunggu') { ?>
-                    <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
-                  <?php }elseif($siswa->status_pendaftaran=='Diterima') { ?>
-                    <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
-                  <?php }elseif($siswa->status_pendaftaran=='Tidak-Diterima') { ?>
-                    <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
+            <?php if($calon_peserta_didik->status_pendaftaran=='Menunggu') { ?>
+                    <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
+                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Diterima') { ?>
+                    <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
+                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Tidak-Diterima') { ?>
+                    <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
                   <?php }else{ ?>
-                    <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
+                    <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
                   <?php } ?>
         </td>
       

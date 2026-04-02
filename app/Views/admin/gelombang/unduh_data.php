@@ -102,31 +102,31 @@ $this->website          = new Website();
     <tr>
       <td>Jumlah Pendaftar</td>
       <td>
-        <?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Semua',$id_jenjang_pendidikan)->total); ?>
+        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Semua',$id_jenjang_pendidikan)->total); ?>
       </td>
     </tr>
     <tr>
       <td>Jumlah Menunggu</td>
       <td>
-        <?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Menunggu',$id_jenjang_pendidikan)->total); ?>
+        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Menunggu',$id_jenjang_pendidikan)->total); ?>
       </td>
     </tr>
     <tr>
       <td>Jumlah Diterima</td>
       <td>
-        <?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Diterima',$id_jenjang_pendidikan)->total); ?>
+        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Diterima',$id_jenjang_pendidikan)->total); ?>
       </td>
     </tr>
     <tr>
       <td>Jumlah Tidak Diterima</td>
       <td>
-        <?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Tidak-Diterima',$id_jenjang_pendidikan)->total); ?>
+        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Tidak-Diterima',$id_jenjang_pendidikan)->total); ?>
       </td>
     </tr>
     <tr>
       <td>Jumlah Diperiksa</td>
       <td>
-        <?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Diperiksa',$id_jenjang_pendidikan)->total); ?>
+        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Diperiksa',$id_jenjang_pendidikan)->total); ?>
       </td>
     </tr>
 
@@ -137,7 +137,7 @@ $this->website          = new Website();
         <thead>
           <tr>
             <th width="5%" class="text-center align-middle">NO</th>
-            <th width="20%" class="align-middle">SISWA</th>
+            <th width="20%" class="align-middle">CALON PESERTA DIDIK</th>
             <th width="6%" class="align-middle">L/P</th>
             <th width="20%" class="align-middle text-center">TTL</th>
             <th width="20%" class="align-middle">PROGRAM/JENJANG</th>
@@ -146,27 +146,27 @@ $this->website          = new Website();
   </thead>
   <tbody>
     <?php 
-    $i=1; foreach($siswa as $siswa) { 
+    $i=1; foreach($calon_peserta_didik as $calon_peserta_didik) { 
       $wajib          = $m_jenis_dokumen->group_status_jenis_dokumen_detail('Wajib');
       $tidak_wajib      = $m_jenis_dokumen->group_status_jenis_dokumen_detail('Tidak Wajib');
-      $dokumen_wajib      = $m_dokumen->total_check($siswa->id_calon_peserta_didik,$wajib->status_jenis_dokumen); 
-      $dokumen_tidak_wajib  = $m_dokumen->total_check($siswa->id_calon_peserta_didik,$tidak_wajib->status_jenis_dokumen);
+      $dokumen_wajib      = $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik,$wajib->status_jenis_dokumen); 
+      $dokumen_tidak_wajib  = $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik,$tidak_wajib->status_jenis_dokumen);
     ?>
     <tr>
       <td class="text-center"><?php echo $i ?></td>
-      <td><?php echo $siswa->nama_siswa ?></td>
-      <td><?php echo $siswa->jenis_kelamin ?></td>
-      <td><?php echo $siswa->tempat_lahir ?>, <?php echo $this->website->tanggal_id($siswa->tanggal_lahir) ?></td>
-      <td><?php echo $siswa->judul_jenjang_pendidikan ?></td>
+      <td><?php echo $calon_peserta_didik->nama_calon_peserta_didik ?></td>
+      <td><?php echo $calon_peserta_didik->jenis_kelamin ?></td>
+      <td><?php echo $calon_peserta_didik->tempat_lahir ?>, <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
+      <td><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?></td>
         <td>
-            <?php if($siswa->status_pendaftaran=='Menunggu') { ?>
-                    <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
-                  <?php }elseif($siswa->status_pendaftaran=='Diterima') { ?>
-                    <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
-                  <?php }elseif($siswa->status_pendaftaran=='Tidak-Diterima') { ?>
-                    <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
+            <?php if($calon_peserta_didik->status_pendaftaran=='Menunggu') { ?>
+                    <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
+                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Diterima') { ?>
+                    <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
+                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Tidak-Diterima') { ?>
+                    <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
                   <?php }else{ ?>
-                    <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
+                    <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
                   <?php } ?>
         </td>
       

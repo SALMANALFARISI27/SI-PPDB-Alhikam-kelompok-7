@@ -21,9 +21,9 @@
 	<tbody>
 		<?php $no=1; foreach($gelombang as $gelombang) {
 			$id_gelombang 	= $gelombang->id_gelombang;
-			$menunggu 		= $m_siswa->status_siswa_gelombang('Menunggu',$id_gelombang);
-			$ditolak 		= $m_siswa->status_siswa_gelombang('Ditolak',$id_gelombang);
-			$diterima 		= $m_siswa->status_siswa_gelombang('Diterima',$id_gelombang);
+			$menunggu 		= $m_calon_peserta_didik->status_calon_peserta_didik_gelombang('Menunggu',$id_gelombang);
+			$ditolak 		= $m_calon_peserta_didik->status_calon_peserta_didik_gelombang('Ditolak',$id_gelombang);
+			$diterima 		= $m_calon_peserta_didik->status_calon_peserta_didik_gelombang('Diterima',$id_gelombang);
 		 ?>
 		<tr>
 			<td><?php echo $no ?></td>

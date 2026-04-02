@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Siswa;
+namespace App\Controllers\Calon_peserta_didik;
 
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
@@ -56,6 +56,6 @@ abstract class BaseController extends Controller
         $uri                    = service('uri');
         $this->simple_login     = new Simple_login(); 
         $this->website          = new Website(); 
-        $this->simple_login->checklogin_siswa();
+        $this->simple_login->checklogin_calon_peserta_didik();
     }
 }

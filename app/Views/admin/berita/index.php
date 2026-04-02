@@ -90,8 +90,7 @@
 				<small>
 					<br><i class="fa fa-calendar-check"></i> <?php echo $this->website->tanggal_bulan_menit($berita->tanggal_publish) ?>
 					<br><i class="fa fa-calendar-plus"></i> <?php echo $this->website->tanggal_bulan_menit($berita->tanggal_post) ?>
-					<br><i class="fa fa-eye"></i> <?php echo $berita->hits ?> | <i class="fa fa-sort-numeric-up"></i> <?php echo $berita->urutan ?> | <i class="<?php echo $berita->icon ?>"></i> <?php echo $berita->icon ?>
-				</small>
+				
 			</td>
 			<td><small>
 				<i class="fa fa-tags"></i> <a href="<?php echo base_url('admin/berita/kategori/'.$berita->id_kategori) ?>">

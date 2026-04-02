@@ -12,7 +12,7 @@ $site         = $konfigurasi->listing();
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<?php echo base_url('siswa/dasbor') ?>" class="brand-link">
+    <a href="<?php echo base_url('calon_peserta_didik/dasbor') ?>" class="brand-link">
       <img src="<?php echo base_url('assets/upload/image/'.$site->icon) ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light"><?php echo $site->singkatan ?></span>
     </a>
@@ -25,7 +25,7 @@ $site         = $konfigurasi->listing();
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Dahboard -->
           <li class="nav-item">
-            <a href="<?php echo base_url('siswa/dasbor') ?>" class="nav-link">
+            <a href="<?php echo base_url('calon_peserta_didik/dasbor') ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
             </a>
@@ -33,7 +33,7 @@ $site         = $konfigurasi->listing();
 
            <!-- Calon Peserta Didik -->
           <li class="nav-item">
-            <a href="<?php echo base_url('siswa/pendaftaran') ?>" class="nav-link">
+            <a href="<?php echo base_url('calon_peserta_didik/pendaftaran') ?>" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>Data PPDB</p>
             </a>
@@ -41,7 +41,7 @@ $site         = $konfigurasi->listing();
 
           <!-- Calon Peserta Didik -->
           <li class="nav-item">
-            <a href="<?php echo base_url('siswa/gelombang') ?>" class="nav-link">
+            <a href="<?php echo base_url('calon_peserta_didik/gelombang') ?>" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
               <p>Periode PPDB</p>
             </a>
@@ -49,7 +49,7 @@ $site         = $konfigurasi->listing();
 
           <!-- Calon Peserta Didik -->
           <li class="nav-item">
-            <a href="<?php echo base_url('siswa/akun') ?>" class="nav-link">
+            <a href="<?php echo base_url('calon_peserta_didik/akun') ?>" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>Akun Saya</p>
             </a>

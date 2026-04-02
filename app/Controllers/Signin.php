@@ -35,12 +35,12 @@ class Signin extends BaseController
         {           
             $username       = $this->request->getPost('username');
             $password       = $this->request->getPost('password');
-            $this->simple_login->login_siswa($username,$password);
+            $this->simple_login->login_calon_peserta_didik($username,$password);
         }
 		// End validasi
 		$data = [	'title'			=> 'Login ',
-					'description'	=> 'Login Siswa/Calon Siswa '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-					'keywords'		=> 'Login Siswa/Calon Siswa '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+					'description'	=> 'Login CALON PESERTA DIDIK/Calon Peserta Didik '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
+					'keywords'		=> 'Login CALON PESERTA DIDIK/Calon Peserta Didik '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
 					'session'		=> $session,
 					'content'		=> 'signin/index'
 				];

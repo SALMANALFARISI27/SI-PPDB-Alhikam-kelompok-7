@@ -26,11 +26,11 @@
 	<tbody>
 		<?php 
 		$no=1; foreach($gelombang as $gelombang) { 
-			$siswa1 	= $m_siswa->total_gelombang_status_siswa($gelombang->id_gelombang,'Semua','Semua');
-			$siswa4 	= $m_siswa->total_gelombang_status_siswa($gelombang->id_gelombang,'Menunggu','Semua');
-			$siswa5 	= $m_siswa->total_gelombang_status_siswa($gelombang->id_gelombang,'Diperiksa','Semua');
-			$siswa2 	= $m_siswa->total_gelombang_status_siswa($gelombang->id_gelombang,'Diterima','Semua');
-			$siswa3 	= $m_siswa->total_gelombang_status_siswa($gelombang->id_gelombang,'Tidak-Diterima','Semua');
+			$calon_peserta_didik1 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Semua','Semua');
+			$calon_peserta_didik4 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Menunggu','Semua');
+			$calon_peserta_didik5 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Diperiksa','Semua');
+			$calon_peserta_didik2 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Diterima','Semua');
+			$calon_peserta_didik3 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Tidak-Diterima','Semua');
 		?>
 		<tr>
 			<td class="text-center"><?php echo $no ?></td>
@@ -57,11 +57,11 @@
 					</span>
 				<?php } ?>
 			</td>
-			<td class="text-center"><?php if($siswa1) { echo $siswa1->total; }else{ echo 0; } ?></td>
-			<td class="text-center"><?php if($siswa4) { echo $siswa4->total; }else{ echo 0; } ?></td>
-			<td class="text-center"><?php if($siswa5) { echo $siswa5->total; }else{ echo 0; } ?></td>
-			<td class="text-center"><?php if($siswa2) { echo $siswa2->total; }else{ echo 0; } ?></td>
-			<td class="text-center"><?php if($siswa3) { echo $siswa3->total; }else{ echo 0; } ?></td>
+			<td class="text-center"><?php if($calon_peserta_didik1) { echo $calon_peserta_didik1->total; }else{ echo 0; } ?></td>
+			<td class="text-center"><?php if($calon_peserta_didik4) { echo $calon_peserta_didik4->total; }else{ echo 0; } ?></td>
+			<td class="text-center"><?php if($calon_peserta_didik5) { echo $calon_peserta_didik5->total; }else{ echo 0; } ?></td>
+			<td class="text-center"><?php if($calon_peserta_didik2) { echo $calon_peserta_didik2->total; }else{ echo 0; } ?></td>
+			<td class="text-center"><?php if($calon_peserta_didik3) { echo $calon_peserta_didik3->total; }else{ echo 0; } ?></td>
 			
 			<td>
 				<a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Semua/Semua') ?>" class="btn btn-info btn-xs mb-1"><i class="fa fa-user-check"></i> Data Pendaftar</a>

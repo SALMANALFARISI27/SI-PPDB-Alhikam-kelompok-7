@@ -5,7 +5,7 @@ use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
 use App\Models\Galeri_model;
 use App\Models\Berita_model;
-use App\Models\Siswa_model;
+use App\Models\Calon_peserta_didik_model;
 use App\Models\Jenjang_model;
 use App\Models\Pekerjaan_model;
 use App\Models\Hubungan_model;
@@ -29,7 +29,7 @@ class Check extends BaseController
 		$data = [	'title'			=> 'Cek Status Pendaftaran',
 					'description'	=> 'Cek Status Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
 					'keywords'		=> 'Cek Status Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
-					'm_siswa'		=> new Siswa_model(),
+					'm_calon_peserta_didik'		=> new Calon_peserta_didik_model(),
 					'konfigurasi'	=> $konfigurasi,
 					'content'		=> 'check/index'
 				];

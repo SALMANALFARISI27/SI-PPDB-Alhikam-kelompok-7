@@ -5,7 +5,7 @@ use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
 use App\Models\Galeri_model;
 use App\Models\Berita_model;
-use App\Models\Siswa_model;
+use App\Models\Calon_peserta_didik_model;
 use App\Models\Jenjang_model;
 use App\Models\Pekerjaan_model;
 use App\Models\Hubungan_model;
@@ -80,8 +80,8 @@ class Pendaftaran extends BaseController
 			// login
 			$username = $this->request->getPost('email');
 			$password = $this->request->getPost('password');
-			$this->simple_login->login_siswa_akun($username, $password);
-			// echo Session()->get('username_siswa');
+			$this->simple_login->login_calon_peserta_didik_akun($username, $password);
+			// echo Session()->get('username_calon_peserta_didik');
 			// Link reset
 			$email = $this->request->getVar('email');
 			$link_reset = base_url('pendaftaran/aktivasi/' . $kode_akun);
@@ -142,8 +142,8 @@ class Pendaftaran extends BaseController
 	// testing
 	public function testing()
 	{
-		// $this->simple_login->login_siswa_akun('andoyoandoyo@gmail.com','andoyoandoyo');
-		echo Session()->get('username_siswa');
+		// $this->simple_login->login_calon_peserta_didik_akun('andoyoandoyo@gmail.com','andoyoandoyo');
+		echo Session()->get('username_calon_peserta_didik');
 	}
 
 	// biodata
@@ -151,7 +151,7 @@ class Pendaftaran extends BaseController
 	{
 		$m_konfigurasi = new Konfigurasi_model();
 		$m_akun = new Akun_model();
-		$m_siswa = new Siswa_model();
+		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
 		$m_gelombang = new Gelombang_model();
 		$m_nav = new Nav_model();
@@ -162,14 +162,14 @@ class Pendaftaran extends BaseController
 		$jenjang_pendidikan = $m_nav->jenjang_pendidikan();
 		$gelombang = $m_gelombang->detail($id_gelombang);
 
-		if (strlen(Session()->get('username_siswa')) < 6) {
+		if (strlen(Session()->get('username_calon_peserta_didik')) < 6) {
 			$this->session->setFlashdata('warning', 'Anda belum login');
 			return redirect()->to(base_url('signin'));
 		}
 
-		$siswa = $m_siswa->last_id();
-		if ($siswa) {
-			$urutan = $siswa->id_calon_peserta_didik + 1;
+		$calon_peserta_didik = $m_calon_peserta_didik->last_id();
+		if ($calon_peserta_didik) {
+			$urutan = $calon_peserta_didik->id_calon_peserta_didik + 1;
 		} else {
 			$urutan = 1;
 		}
@@ -178,7 +178,7 @@ class Pendaftaran extends BaseController
 		if (
 			$this->request->getMethod() === 'POST' && $this->validate(
 				[
-					'nama_siswa' => 'required',
+					'nama_calon_peserta_didik' => 'required',
 					'gambar' => [
 						'ext_in[gambar,jpg,jpeg,gif,png,svg]',
 						'max_size[gambar,4096]',
@@ -212,15 +212,15 @@ class Pendaftaran extends BaseController
 			if (!empty($_FILES['gambar']['name'])) {
 				// Image upload
 				$avatar = $this->request->getFile('gambar');
-				$nama_siswabaru = $avatar->getRandomName();
-				$avatar->move(FCPATH . 'assets/upload/image/', $nama_siswabaru);
+				$nama_calon_peserta_didik_baru = $avatar->getRandomName();
+				$avatar->move(FCPATH . 'assets/upload/image/', $nama_calon_peserta_didik_baru);
 				// Create thumb
 				$image = \Config\Services::image()
-					->withFile(FCPATH . 'assets/upload/image/' . $nama_siswabaru)
+					->withFile(FCPATH . 'assets/upload/image/' . $nama_calon_peserta_didik_baru)
 					->fit(100, 100, 'center')
-					->save(FCPATH . 'assets/upload/image/thumbs/' . $nama_siswabaru);
+					->save(FCPATH . 'assets/upload/image/thumbs/' . $nama_calon_peserta_didik_baru);
 				// masuk database
-				$slug_siswa = strtolower(url_title($this->request->getVar('nama_siswa'))) . '-' . strtoupper(random_string('alnum', 8));
+				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 				$data = [
 					'id_user' => $this->session->get('id_user'),
 					'id_gelombang' => $id_gelombang,
@@ -239,13 +239,13 @@ class Pendaftaran extends BaseController
 					'id_hubungan' => $this->request->getPost('id_hubungan'),
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
-					'kode_siswa' => strtoupper(random_string('alnum', 8)),
-					'slug_siswa' => $slug_siswa,
+					'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
+					'slug_calon_peserta_didik' => $slug_calon_peserta_didik,
 					'nis' => $this->request->getPost('nis'),
 					'nisn' => $this->request->getPost('nisn'),
 					'status_wn' => $this->request->getPost('status_wn'),
 					'negara_asal' => $this->request->getPost('negara_asal'),
-					'nama_siswa' => $this->request->getPost('nama_siswa'),
+					'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
 					'nama_panggilan' => $this->request->getPost('nama_panggilan'),
 					'tempat_lahir' => $this->request->getPost('tempat_lahir'),
 					'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
@@ -266,33 +266,33 @@ class Pendaftaran extends BaseController
 					'telepon_ayah' => $this->request->getPost('telepon_ayah'),
 					'telepon_ibu' => $this->request->getPost('telepon_ibu'),
 					'telepon_wali' => $telepon_wali,
-					'goldar_siswa' => $this->request->getPost('goldar_siswa'),
-					'hobi_siswa' => $this->request->getPost('hobi_siswa'),
-					'penyakit_siswa' => $this->request->getPost('penyakit_siswa'),
+					'goldar_calon_peserta_didik' => $this->request->getPost('goldar_calon_peserta_didik'),
+					'hobi_calon_peserta_didik' => $this->request->getPost('hobi_calon_peserta_didik'),
+					'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
 					'tinggi' => $this->request->getPost('tinggi'),
 					'berat' => $this->request->getPost('berat'),
 					'kelompok' => $this->request->getPost('kelompok'),
 					'tanggal_masuk' => $this->website->tanggal_input($this->request->getPost('tanggal_masuk')),
-					'jenis_siswa' => $this->request->getPost('jenis_siswa'),
+					'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
 					'asal_sekolah' => $this->request->getPost('asal_sekolah'),
 					'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
 					'dari_kelompok' => $this->request->getPost('dari_kelompok'),
 					'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
 					'anak_ke' => $this->request->getPost('anak_ke'),
 					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
-					'gambar' => $nama_siswabaru,
-					'status_siswa' => 'Menunggu',
+					'gambar' => $nama_calon_peserta_didik_baru,
+					'status_calon_peserta_didik' => 'Menunggu',
 					'status_pendaftaran' => 'Menunggu',
 					'tanggal_baca' => date('Y-m-d H:i:s'),
 					'tanggal_post' => date('Y-m-d H:i:s')
 				];
-				$m_siswa->tambah($data);
+				$m_calon_peserta_didik->tambah($data);
 				// masuk database
 				$this->session->setFlashdata('sukses', 'Data telah ditambah');
-				return redirect()->to(base_url('pendaftaran/dokumen/' . $slug_siswa));
+				return redirect()->to(base_url('pendaftaran/dokumen/' . $slug_calon_peserta_didik));
 			} else {
 				// masuk database
-				$slug_siswa = strtolower(url_title($this->request->getVar('nama_siswa'))) . '-' . strtoupper(random_string('alnum', 8));
+				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 				$data = [
 					'id_user' => $this->session->get('id_user'),
 					'id_gelombang' => $id_gelombang,
@@ -311,13 +311,13 @@ class Pendaftaran extends BaseController
 					'id_hubungan' => $this->request->getPost('id_hubungan'),
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
-					'kode_siswa' => strtoupper(random_string('alnum', 8)),
-					'slug_siswa' => $slug_siswa,
+					'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
+					'slug_calon_peserta_didik' => $slug_calon_peserta_didik,
 					'nis' => $this->request->getPost('nis'),
 					'nisn' => $this->request->getPost('nisn'),
 					'status_wn' => $this->request->getPost('status_wn'),
 					'negara_asal' => $this->request->getPost('negara_asal'),
-					'nama_siswa' => $this->request->getPost('nama_siswa'),
+					'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
 					'nama_panggilan' => $this->request->getPost('nama_panggilan'),
 					'tempat_lahir' => $this->request->getPost('tempat_lahir'),
 					'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
@@ -338,35 +338,35 @@ class Pendaftaran extends BaseController
 					'telepon_ayah' => $this->request->getPost('telepon_ayah'),
 					'telepon_ibu' => $this->request->getPost('telepon_ibu'),
 					'telepon_wali' => $telepon_wali,
-					'goldar_siswa' => $this->request->getPost('goldar_siswa'),
-					'hobi_siswa' => $this->request->getPost('hobi_siswa'),
-					'penyakit_siswa' => $this->request->getPost('penyakit_siswa'),
+					'goldar_calon_peserta_didik' => $this->request->getPost('goldar_calon_peserta_didik'),
+					'hobi_calon_peserta_didik' => $this->request->getPost('hobi_calon_peserta_didik'),
+					'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
 					'tinggi' => $this->request->getPost('tinggi'),
 					'berat' => $this->request->getPost('berat'),
 					'kelompok' => $this->request->getPost('kelompok'),
 					'tanggal_masuk' => $this->website->tanggal_input($this->request->getPost('tanggal_masuk')),
-					'jenis_siswa' => $this->request->getPost('jenis_siswa'),
+					'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
 					'asal_sekolah' => $this->request->getPost('asal_sekolah'),
 					'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
 					'dari_kelompok' => $this->request->getPost('dari_kelompok'),
 					'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
 					'anak_ke' => $this->request->getPost('anak_ke'),
 					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
-					// 'gambar'				=> $nama_siswabaru,
-					'status_siswa' => 'Menunggu',
+					// 'gambar'				=> $nama_calon_peserta_didik_baru,
+					'status_calon_peserta_didik' => 'Menunggu',
 					'status_pendaftaran' => 'Menunggu',
 					'tanggal_baca' => date('Y-m-d H:i:s'),
 					'tanggal_post' => date('Y-m-d H:i:s')
 				];
 				// masuk database
-				$m_siswa->tambah($data);
+				$m_calon_peserta_didik->tambah($data);
 				$this->session->setFlashdata('sukses', 'Data telah ditambah');
-				return redirect()->to(base_url('pendaftaran/dokumen/' . $slug_siswa));
+				return redirect()->to(base_url('pendaftaran/dokumen/' . $slug_calon_peserta_didik));
 			}
 		} else {
 
 			$data = [
-				'title' => 'Isi Biodata Calon Siswa',
+				'title' => 'Isi Biodata Calon Peserta Didik',
 				'description' => 'Isi Data Calon Peserta Didik Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
 				'keywords' => 'Isi Data Calon Peserta Didik Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->keywords,
 				'konfigurasi' => $konfigurasi,
@@ -380,18 +380,18 @@ class Pendaftaran extends BaseController
 	}
 
 	// dokumen
-	public function dokumen($slug_siswa)
+	public function dokumen($slug_calon_peserta_didik)
 	{
 		$m_konfigurasi = new Konfigurasi_model();
 		$m_akun = new Akun_model();
 		$m_jenis_dokumen = new Jenis_dokumen_model();
-		$m_siswa = new Siswa_model();
+		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$m_dokumen = new Dokumen_model();
 
 		$konfigurasi = $m_konfigurasi->listing();
-		$siswa = $m_siswa->read($slug_siswa);
+		$calon_peserta_didik = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
 		$jenis_dokumen = $m_jenis_dokumen->listing();
-		$akun = $m_akun->detail($siswa->id_akun);
+		$akun = $m_akun->detail($calon_peserta_didik->id_akun);
 
 		// Start tambah
 		if (
@@ -415,7 +415,7 @@ class Pendaftaran extends BaseController
 			// masuk database
 			$data = array(
 				'id_akun' => $akun->id_akun,
-				'id_siswa' => $siswa->id_calon_peserta_didik,
+				'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
 				'id_jenis_dokumen' => $this->request->getVar('id_jenis_dokumen'),
 				'kode_dokumen' => strtoupper(random_string('alnum', 32)),
 				'gambar' => $namabaru,
@@ -425,7 +425,7 @@ class Pendaftaran extends BaseController
 				'tanggal_post' => date('Y-m-d H:i:s')
 			);
 			$m_dokumen->tambah($data);
-			return redirect()->to(base_url('pendaftaran/dokumen/' . $slug_siswa))->with('sukses', 'Data Berhasil di Simpan');
+			return redirect()->to(base_url('pendaftaran/dokumen/' . $slug_calon_peserta_didik))->with('sukses', 'Data Berhasil di Simpan');
 		} else {
 
 			$data = [
@@ -435,7 +435,7 @@ class Pendaftaran extends BaseController
 				'konfigurasi' => $konfigurasi,
 				'akun' => $akun,
 				'jenis_dokumen' => $jenis_dokumen,
-				'siswa' => $siswa,
+				'calon_peserta_didik' => $calon_peserta_didik,
 				'm_dokumen' => $m_dokumen,
 				'content' => 'pendaftaran/dokumen'
 			];
@@ -444,18 +444,18 @@ class Pendaftaran extends BaseController
 	}
 
 	// selesai
-	public function selesai($slug_siswa)
+	public function selesai($slug_calon_peserta_didik)
 	{
 		$m_konfigurasi = new Konfigurasi_model();
 		$m_akun = new Akun_model();
 		$m_jenis_dokumen = new Jenis_dokumen_model();
-		$m_siswa = new Siswa_model();
+		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$m_dokumen = new Dokumen_model();
 
 		$konfigurasi = $m_konfigurasi->listing();
-		$siswa = $m_siswa->read($slug_siswa);
+		$calon_peserta_didik = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
 		$jenis_dokumen = $m_jenis_dokumen->listing();
-		$akun = $m_akun->detail($siswa->id_akun);
+		$akun = $m_akun->detail($calon_peserta_didik->id_akun);
 
 		$data = [
 			'title' => 'Pendaftaran Berhasil',
@@ -464,7 +464,7 @@ class Pendaftaran extends BaseController
 			'konfigurasi' => $konfigurasi,
 			'akun' => $akun,
 			'jenis_dokumen' => $jenis_dokumen,
-			'siswa' => $siswa,
+			'calon_peserta_didik' => $calon_peserta_didik,
 			'm_dokumen' => $m_dokumen,
 			'content' => 'pendaftaran/selesai'
 		];
@@ -472,18 +472,18 @@ class Pendaftaran extends BaseController
 	}
 
 	// cetak
-	public function cetak($slug_siswa)
+	public function cetak($slug_calon_peserta_didik)
 	{
 		$m_konfigurasi = new Konfigurasi_model();
 		$m_akun = new Akun_model();
 		$m_jenis_dokumen = new Jenis_dokumen_model();
-		$m_siswa = new Siswa_model();
+		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$m_dokumen = new Dokumen_model();
 
 		$konfigurasi = $m_konfigurasi->listing();
-		$siswa = $m_siswa->read($slug_siswa);
+		$calon_peserta_didik = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
 		$jenis_dokumen = $m_jenis_dokumen->listing();
-		$akun = $m_akun->detail($siswa->id_akun);
+		$akun = $m_akun->detail($calon_peserta_didik->id_akun);
 
 		$data = [
 			'title' => 'Pendaftaran Peserta Didik Baru - Pendaftaran Berhasil',
@@ -492,7 +492,7 @@ class Pendaftaran extends BaseController
 			'konfigurasi' => $konfigurasi,
 			'akun' => $akun,
 			'jenis_dokumen' => $jenis_dokumen,
-			'siswa' => $siswa,
+			'calon_peserta_didik' => $calon_peserta_didik,
 			'm_dokumen' => $m_dokumen,
 			'content' => 'pendaftaran/selesai'
 		];
@@ -505,31 +505,31 @@ class Pendaftaran extends BaseController
 		$mpdf->WriteHTML($html);
 		$this->response->setHeader('Content-Type', 'application/pdf');
 		// buka di browser
-		$mpdf->Output('Informasi-Pendaftaran-' . $siswa->nama_siswa . '.pdf', 'I');
+		$mpdf->Output('Informasi-Pendaftaran-' . $calon_peserta_didik->nama_calon_peserta_didik . '.pdf', 'I');
 	}
 
 	// Unduh
-	public function unduh($kode_dokumen, $kode_siswa)
+	public function unduh($kode_dokumen, $kode_calon_peserta_didik)
 	{
 		$m_dokumen = new Dokumen_model();
 		$dokumen = $m_dokumen->kode_dokumen($kode_dokumen);
 		if (!file_exists(FCPATH . 'assets/upload/pendaftaran/' . $dokumen->gambar)) {
 			$this->session->setFlashdata('warning', 'Mohon maaf, file tidak ditemukan.');
-			return redirect()->to(base_url('pendaftaran/dokumen/' . $kode_siswa));
+			return redirect()->to(base_url('pendaftaran/dokumen/' . $kode_calon_peserta_didik));
 		} else {
 			return $this->response->download(FCPATH . 'assets/upload/pendaftaran/' . $dokumen->gambar, null);
 		}
 	}
 
 	// hapus
-	public function hapus($kode_dokumen, $kode_siswa)
+	public function hapus($kode_dokumen, $kode_calon_peserta_didik)
 	{
 		$m_dokumen = new Dokumen_model();
 		$data = ['kode_dokumen' => $kode_dokumen];
 		$m_dokumen->hapus($data);
 		// masuk database
 		$this->session->setFlashdata('sukses', 'Data telah dihapus');
-		return redirect()->to(base_url('pendaftaran/dokumen/' . $kode_siswa));
+		return redirect()->to(base_url('pendaftaran/dokumen/' . $kode_calon_peserta_didik));
 	}
 
 }

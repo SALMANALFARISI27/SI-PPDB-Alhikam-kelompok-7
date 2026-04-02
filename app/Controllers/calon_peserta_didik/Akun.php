@@ -1,5 +1,5 @@
 <?php 
-namespace App\Controllers\Siswa;
+namespace App\Controllers\Calon_peserta_didik;
 use CodeIgniter\Controller;
 use App\Models\Akun_model;
 
@@ -33,15 +33,15 @@ class Akun extends BaseController
 					'alamat'			=> $this->request->getVar('alamat')
 	        	);
 	        	$m_akun->edit($data);
-        		return redirect()->to(base_url('siswa/akun'))->with('sukses', 'Akun berhasil diupdate');
+        		return redirect()->to(base_url('calon_peserta_didik/akun'))->with('sukses', 'Akun berhasil diupdate');
         }else{
 			$data = [   'title'     	=> 'Data Akun',
 						'description'   => 'Data Akun',
 	                    'keywords'      => 'Data Akun',
 	                    'akun'			=> $akun,
-						'content'		=> 'siswa/akun/index'
+						'content'		=> 'calon_peserta_didik/akun/index'
 	                ];
-	        return view('siswa/layout/wrapper',$data);
+	        return view('calon_peserta_didik/layout/wrapper',$data);
 	    }
 	}
 }

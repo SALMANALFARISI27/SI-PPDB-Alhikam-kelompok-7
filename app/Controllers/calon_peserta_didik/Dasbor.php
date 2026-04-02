@@ -1,5 +1,5 @@
 <?php 
-namespace App\Controllers\Siswa;
+namespace App\Controllers\Calon_peserta_didik;
 
 use CodeIgniter\Controller;
 
@@ -10,8 +10,8 @@ class Dasbor extends BaseController
 		$data = [   'title'     	=> 'Dasbor Pendaftar',
 					'description'   => 'Dasbor Pendaftar',
                     'keywords'      => 'Dasbor Pendaftar',
-					'content'		=> 'siswa/dasbor/index'
+					'content'		=> 'calon_peserta_didik/dasbor/index'
                 ];
-        return view('siswa/layout/wrapper',$data);
+        return view('calon_peserta_didik/layout/wrapper',$data);
 	}
 }

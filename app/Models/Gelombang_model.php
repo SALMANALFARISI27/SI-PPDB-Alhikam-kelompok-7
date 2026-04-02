@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Models;
 
 use CodeIgniter\Model;
@@ -6,10 +6,10 @@ use CodeIgniter\Model;
 class Gelombang_model extends Model
 {
 
-   public function __construct()
+    public function __construct()
     {
         parent::__construct();
-        $this->db       = \Config\Database::connect();
+        $this->db = \Config\Database::connect();
     }
 
     protected $table = 'gelombang';
@@ -21,7 +21,7 @@ class Gelombang_model extends Model
     {
         $builder = $this->db->table('gelombang');
         $builder->select('*');
-        $builder->orderBy('gelombang.id_gelombang','DESC');
+        $builder->orderBy('gelombang.id_gelombang', 'DESC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -31,8 +31,8 @@ class Gelombang_model extends Model
     {
         $builder = $this->db->table('gelombang');
         $builder->select('*');
-        $builder->where('tahun_ajaran',$tahun_ajaran);
-        $builder->orderBy('gelombang.tahap','DESC');
+        $builder->where('tahun_ajaran', $tahun_ajaran);
+        $builder->orderBy('gelombang.tahap', 'DESC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -40,13 +40,13 @@ class Gelombang_model extends Model
     // aktif
     public function aktif()
     {
-        $sekarang   = date('Y-m-d');
+        $sekarang = date('Y-m-d');
         $builder = $this->db->table('gelombang');
         $builder->select('*');
         $builder->where('tanggal_buka <=', $sekarang); // Sudah dimulai
         $builder->where('tanggal_tutup >=', $sekarang); // Belum ditutup
-        $builder->where('status_gelombang','Buka');
-        $builder->orderBy('gelombang.tanggal_buka','ASC');
+        $builder->where('status_gelombang', 'Buka');
+        $builder->orderBy('gelombang.tanggal_buka', 'ASC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -56,8 +56,8 @@ class Gelombang_model extends Model
     {
         $builder = $this->db->table('gelombang');
         $builder->select('*');
-        $builder->like('nama_gelombang',$keywords,'BOTH');
-        $builder->orderBy('gelombang.id_gelombang','DESC');
+        $builder->like('nama_gelombang', $keywords, 'BOTH');
+        $builder->orderBy('gelombang.id_gelombang', 'DESC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -67,13 +67,13 @@ class Gelombang_model extends Model
     {
         $builder = $this->db->table('gelombang');
         $builder->select('COUNT(*) AS total');
-        $builder->orderBy('gelombang.id_gelombang','DESC');
+        $builder->orderBy('gelombang.id_gelombang', 'DESC');
         $query = $builder->get();
         return $query->getRow();
     }
 
-    // siswa
-    public function siswa($id_gelombang)
+    // CALON PESERTA DIDIK
+    public function calon_peserta_didik($id_gelombang)
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('COUNT(*) AS total');
@@ -85,8 +85,8 @@ class Gelombang_model extends Model
     public function detail($id_gelombang)
     {
         $builder = $this->db->table('gelombang');
-        $builder->where('id_gelombang',$id_gelombang);
-        $builder->orderBy('gelombang.id_gelombang','DESC');
+        $builder->where('id_gelombang', $id_gelombang);
+        $builder->orderBy('gelombang.id_gelombang', 'DESC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -95,7 +95,7 @@ class Gelombang_model extends Model
     public function edit($data)
     {
         $builder = $this->db->table('gelombang');
-        $builder->where('id_gelombang',$data['id_gelombang']);
+        $builder->where('id_gelombang', $data['id_gelombang']);
         $builder->update($data);
     }
 

@@ -30,7 +30,7 @@ class Kontak extends BaseController
 	public function kopi($id_berita)
 	{
 		$m_berita = new Berita_model();
-		$data = $m_berita->detail2($id_berita);//detail siswa
+		$data = $m_berita->detail2($id_berita);//detail CALON PESERTA DIDIK
 		$m_berita->copypaste($data);
 		$m_berita->hapus($data);
 	}

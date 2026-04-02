@@ -2,7 +2,7 @@
   <div class="col-md-4">
     <div class="card">
       <div class="card-header bg-light">
-        DETAIL CALON SISWA
+        DETAIL Calon Peserta Didik
       </div>
       <div class="card-body">
         <?php include('selesai.php') ?>
@@ -21,21 +21,21 @@
           <thead>
             <tr>
               <th width="25%">Kode Pendaftaran</th>
-              <th><?php echo $siswa->kode_siswa ?></th>
+              <th><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Status Pendaftaran</td>
               <td>
-                <?php if($siswa->status_pendaftaran=='Menunggu') { ?>
-                    <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
-                  <?php }elseif($siswa->status_pendaftaran=='Diterima') { ?>
-                    <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
-                  <?php }elseif($siswa->status_pendaftaran=='Tidak-Diterima') { ?>
-                    <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
+                <?php if($calon_peserta_didik->status_pendaftaran=='Menunggu') { ?>
+                    <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
+                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Diterima') { ?>
+                    <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
+                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Tidak-Diterima') { ?>
+                    <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
                   <?php }else{ ?>
-                    <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $siswa->status_pendaftaran ?></span>
+                    <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
                   <?php } ?>
               </td>
             </tr>
@@ -71,7 +71,7 @@
         </thead>
         <tbody>
           <?php 
-          $id_calon_peserta_didik     = $siswa->id_calon_peserta_didik;
+          $id_calon_peserta_didik     = $calon_peserta_didik->id_calon_peserta_didik;
           $no           = 1; 
           $data_total   = 1;
           foreach($jenis_dokumen as $jenis_dokumen) { 
@@ -124,17 +124,17 @@
                 <button type="button" class="btn btn-secondary btn-xs mb-1" data-toggle="modal" data-target="#modal-<?php echo $jenis_dokumen->id_jenis_dokumen ?>">
                   <i class="fa fa-eye"></i> Lihat
                 </button>
-                <a class="btn btn-secondary btn-xs mb-1" href="<?php echo base_url('admin/gelombang/unduh/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>" target="_blank">
+                <a class="btn btn-secondary btn-xs mb-1" href="<?php echo base_url('admin/gelombang/unduh/'.$check_dokumen->kode_dokumen.'/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" target="_blank">
                   <i class="fa fa-download"></i>
                 </a>
-                <a class="btn btn-secondary btn-xs mb-1 delete-link" href="<?php echo base_url('admin/gelombang/hapus/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>">
+                <a class="btn btn-secondary btn-xs mb-1 delete-link" href="<?php echo base_url('admin/gelombang/hapus/'.$check_dokumen->kode_dokumen.'/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>">
                   <i class="fa fa-trash"></i>
                 </a>
 
               <?php include('lihat.php');
             }else{ ?>
                 <?php 
-                echo form_open_multipart(base_url('admin/gelombang/dokumen/'.$siswa->slug_siswa));
+                echo form_open_multipart(base_url('admin/gelombang/dokumen/'.$calon_peserta_didik->slug_calon_peserta_didik));
                 echo csrf_field(); 
                 ?>
 
@@ -161,18 +161,18 @@
           <tr class="bg-secondary">
             <td colspan="5" class="text-right">
 
-              <?php echo form_open(base_url('admin/gelombang/dokumen/'.$siswa->slug_siswa)) ?>
+              <?php echo form_open(base_url('admin/gelombang/dokumen/'.$calon_peserta_didik->slug_calon_peserta_didik)) ?>
             <div class="input-group">
               <span class="input-group-append">
-               <a href="<?php echo base_url('admin/gelombang/detail/'.$siswa->id_gelombang.'/Semua') ?>" class="btn btn-warning">
+               <a href="<?php echo base_url('admin/gelombang/detail/'.$calon_peserta_didik->id_gelombang.'/Semua') ?>" class="btn btn-warning">
                 <i class="fa fa-arrow-left"></i> Kembali
               </a>
             </span>
            <select name="status_pendaftaran" class="form-control">
                   <option value="Menunggu">Menunggu</option>
-                  <option value="Diterima" <?php if(set_value('status_pendaftaran')=='Diterima' || $siswa->status_pendaftaran=='Diterima') { echo 'selected'; } ?>>Diterima</option>
-                  <option value="Tidak-Diterima" <?php if(set_value('status_pendaftaran')=='Tidak-Diterima' || $siswa->status_pendaftaran=='Tidak-Diterima') { echo 'selected'; } ?>>Tidak Diterima</option>
-                  <option value="Diperiksa" <?php if(set_value('status_pendaftaran')=='Diperiksa' || $siswa->status_pendaftaran=='Diperiksa') { echo 'selected'; } ?>>Diperiksa</option>
+                  <option value="Diterima" <?php if(set_value('status_pendaftaran')=='Diterima' || $calon_peserta_didik->status_pendaftaran=='Diterima') { echo 'selected'; } ?>>Diterima</option>
+                  <option value="Tidak-Diterima" <?php if(set_value('status_pendaftaran')=='Tidak-Diterima' || $calon_peserta_didik->status_pendaftaran=='Tidak-Diterima') { echo 'selected'; } ?>>Tidak Diterima</option>
+                  <option value="Diperiksa" <?php if(set_value('status_pendaftaran')=='Diperiksa' || $calon_peserta_didik->status_pendaftaran=='Diperiksa') { echo 'selected'; } ?>>Diperiksa</option>
                 </select>
           <span class="input-group-append">
             

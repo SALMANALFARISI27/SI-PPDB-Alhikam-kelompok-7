@@ -31,7 +31,7 @@ class Berita extends BaseController
 	        $berita 		= $m_berita->paginasi_admin_cari($keywords,$perPage, $page);
 		}else{
 			$total 			= $m_berita->total();
-			$title 			= 'Berita, Profil dan Layanan ('.$total.')';
+			$title 			= 'Berita, Profil ('.$total.')';
 	        $page    		= (int) ($this->request->getGet('page') ?? 1);
 	        $perPage 		= $this->website->paginasi();
 	        $total   		= $total;
@@ -184,7 +184,7 @@ class Berita extends BaseController
 					'status_berita'		=> $this->request->getVar('status_berita'),
 					'jenis_berita'		=> $this->request->getVar('jenis_berita'),
 					'keywords'			=> $this->request->getVar('keywords'),
-					'icon'				=> $this->request->getVar('icon'),
+
 					'gambar' 			=> $namabaru,
 					'urutan'			=> $this->request->getVar('urutan'),
 					'tanggal_post'		=> date('Y-m-d H:i:s'),
@@ -203,7 +203,7 @@ class Berita extends BaseController
 					'status_berita'		=> $this->request->getVar('status_berita'),
 					'jenis_berita'		=> $this->request->getVar('jenis_berita'),
 					'keywords'			=> $this->request->getVar('keywords'),
-					'icon'				=> $this->request->getVar('icon'),
+	
 					'urutan'			=> $this->request->getVar('urutan'),
 					'tanggal_post'		=> date('Y-m-d H:i:s'),
 					'tanggal_publish'	=> date('Y-m-d',strtotime($this->request->getVar('tanggal_publish'))).' '.date('H:i',strtotime($this->request->getVar('jam')))
@@ -261,7 +261,7 @@ class Berita extends BaseController
 					'status_berita'		=> $this->request->getVar('status_berita'),
 					'jenis_berita'		=> $this->request->getVar('jenis_berita'),
 					'keywords'			=> $this->request->getVar('keywords'),
-					'icon'				=> $this->request->getVar('icon'),
+
 					'urutan'			=> $this->request->getVar('urutan'),
 					'gambar' 			=> $namabaru,
 					'tanggal_publish'	=> date('Y-m-d',strtotime($this->request->getVar('tanggal_publish'))).' '.date('H:i',strtotime($this->request->getVar('jam')))
@@ -280,7 +280,7 @@ class Berita extends BaseController
 					'status_berita'		=> $this->request->getVar('status_berita'),
 					'jenis_berita'		=> $this->request->getVar('jenis_berita'),
 					'keywords'			=> $this->request->getVar('keywords'),
-					'icon'				=> $this->request->getVar('icon'),
+
 					'urutan'			=> $this->request->getVar('urutan'),
 					'tanggal_publish'	=> date('Y-m-d',strtotime($this->request->getVar('tanggal_publish'))).' '.date('H:i',strtotime($this->request->getVar('jam')))
 	        	);

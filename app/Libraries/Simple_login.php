@@ -1,7 +1,7 @@
 <?php 
 namespace App\Libraries;
 use App\Models\User_model;
-use App\Models\Siswa_model;
+use App\Models\Calon_peserta_didik_model;
 use App\Models\Akun_model;
 
 class Simple_login
@@ -38,18 +38,18 @@ class Simple_login
 	}
 
 	// check login
-	public function login_siswa_akun($username,$password)
+	public function login_calon_peserta_didik_akun($username,$password)
 	{
 		$this->session  = \Config\Services::session();
 		$uri            = service('uri');
-		$m_siswa 		= new Siswa_model();
+		$m_calon_peserta_didik 		= new Calon_peserta_didik_model();
 		$m_akun 		= new Akun_model();
 		$user 			= $m_akun->login($username,sha1($password));
 
 		if($user) 
 		{
 			// Jika username password benar
-			$this->session->set('username_siswa',$username);
+			$this->session->set('username_calon_peserta_didik',$username);
 			$this->session->set('id_akun',$user->id_akun);
 			$this->session->set('nama',$user->nama);
 			$this->session->set('jenis_akun',$user->jenis_akun);
@@ -59,11 +59,11 @@ class Simple_login
 	}
 
 	// check login
-	public function login_siswa($username,$password)
+	public function login_calon_peserta_didik($username,$password)
 	{
 		$this->session  = \Config\Services::session();
 		$uri            = service('uri');
-		$m_siswa 		= new Siswa_model();
+		$m_calon_peserta_didik 		= new Calon_peserta_didik_model();
 		$m_akun 		= new Akun_model();
 
 		$user 			= $m_akun->login($username,sha1($password));
@@ -72,23 +72,23 @@ class Simple_login
 		if($user) 
 		{
 			// Jika username password benar
-			$this->session->set('username_siswa',$username);
+			$this->session->set('username_calon_peserta_didik',$username);
 			$this->session->set('id_akun',$user->id_akun);
-			$this->session->set('nama_siswa',$user->nama);
+			$this->session->set('nama_calon_peserta_didik',$user->nama);
 			$this->session->set('jenis_akun',$user->jenis_akun);
 			$this->session->set('nis',$user->nis);
 			$this->session->set('nisn',$user->nisn);
-			header("Location: siswa/dasbor");			
+			header("Location: CALON PESERTA DIDIK/dasbor");			
             exit;
         }elseif($user2) {
         	// Jika username password benar
-			$this->session->set('username_siswa',$username);
+			$this->session->set('username_calon_peserta_didik',$username);
 			$this->session->set('id_akun',$user2->id_akun);
-			$this->session->set('nama_siswa',$user2->nama_siswa);
+			$this->session->set('nama_calon_peserta_didik',$user2->nama_calon_peserta_didik);
 			$this->session->set('jenis_akun',$user2->jenis_akun);
 			$this->session->set('nis',$user2->nis);
 			$this->session->set('nisn',$user2->nisn);
-			header("Location: siswa/dasbor");
+			header("Location: CALON PESERTA DIDIK/dasbor");
 		}else{
 			// jika username password salah
 			$this->session->setFlashdata('warning','Username atau password salah');
@@ -97,13 +97,13 @@ class Simple_login
 	}
 
 	// check login
-	public function checklogin_siswa()
+	public function checklogin_calon_peserta_didik()
 	{
 		$this->session  = \Config\Services::session();
-		if($this->session->get('username_siswa')=='') 
+		if($this->session->get('username_calon_peserta_didik')=='') 
 		{
 			$pengalihan = str_replace('index.php/','',current_url());
-			$this->session->set('pengalihan_siswa',$pengalihan);
+			$this->session->set('pengalihan_calon_peserta_didik',$pengalihan);
 			$this->session->setFlashdata('warning','Anda belum login');
 			header("Location: ".base_url('signin')).'?redirect='.$pengalihan;
 	        exit;
@@ -139,17 +139,17 @@ class Simple_login
         exit;
 	}
 
-	// logout_siswa
-	public function logout_siswa()
+	// logout_calon_peserta_didik
+	public function logout_calon_peserta_didik()
 	{
 		$this->session  = \Config\Services::session();
-		$this->session->remove('username_siswa');
+		$this->session->remove('username_calon_peserta_didik');
 		$this->session->remove('id_akun');
 		$this->session->remove('jenis_akun');
-		$this->session->remove('nama_siswa');
+		$this->session->remove('nama_calon_peserta_didik');
 		$this->session->remove('nis');
 		$this->session->remove('nisn');
-		$this->session->remove('pengalihan_siswa');
+		$this->session->remove('pengalihan_calon_peserta_didik');
 		$this->session->setFlashdata('sukses','Anda berhasil logout');
 		header("Location: ".base_url('signin?logout=sukses'));
         exit;

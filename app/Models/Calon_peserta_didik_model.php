@@ -3,7 +3,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Siswa_model extends Model
+class Calon_peserta_didik_model extends Model
 {
 
    public function __construct()
@@ -58,8 +58,8 @@ class Siswa_model extends Model
         return $query->getResult();
     }
 
-    // status_siswa
-    public function status_siswa($status_siswa)
+    // status_calon_peserta_didik
+    public function status_calon_peserta_didik($status_calon_peserta_didik)
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('calon_peserta_didik.*,
@@ -95,13 +95,13 @@ class Siswa_model extends Model
         $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
-        $builder->where('status_siswa',$status_siswa);
+        $builder->where('status_calon_peserta_didik',$status_calon_peserta_didik);
         $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
         $query = $builder->get();
         return $query->getResult();
     }
 
-     // status_siswa
+     // status_calon_peserta_didik
     public function akun($id_akun)
     {
         $builder = $this->db->table('calon_peserta_didik');
@@ -147,8 +147,8 @@ class Siswa_model extends Model
     // gelombang
     public function gelombang($id_gelombang)
     {
-        $builder = $this->db->table('siswa s');
-        $builder->select('jp.judul_jenjang_pendidikan, jp.id_jenjang_pendidikan, s.status_pendaftaran, COUNT(s.id_calon_peserta_didik) AS jumlah_siswa');
+        $builder = $this->db->table('calon_peserta_didik s');
+        $builder->select('jp.judul_jenjang_pendidikan, jp.id_jenjang_pendidikan, s.status_pendaftaran, COUNT(s.id_calon_peserta_didik) AS jumlah_calon_peserta_didik');
         $builder->join('jenjang_pendidikan jp', 's.id_jenjang_pendidikan = jp.id_jenjang_pendidikan');
         $builder->where('s.id_gelombang',$id_gelombang);
         $builder->groupBy('jp.judul_jenjang_pendidikan, s.status_pendaftaran');
@@ -158,8 +158,8 @@ class Siswa_model extends Model
     }
 
 
-    // gelombang_status_siswa
-    public function gelombang_status_siswa($id_gelombang,$status_pendaftaran,$id_jenjang_pendidikan)
+    // gelombang_status_calon_peserta_didik
+    public function gelombang_status_calon_peserta_didik($id_gelombang,$status_pendaftaran,$id_jenjang_pendidikan)
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('calon_peserta_didik.*,
@@ -209,8 +209,8 @@ class Siswa_model extends Model
         return $query->getResult();
     }
 
-    // total_gelombang_status_siswa
-    public function total_gelombang_status_siswa($id_gelombang,$status_pendaftaran,$id_jenjang_pendidikan)
+    // total_gelombang_status_calon_peserta_didik
+    public function total_gelombang_status_calon_peserta_didik($id_gelombang,$status_pendaftaran,$id_jenjang_pendidikan)
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('COUNT(*) AS total');
@@ -226,14 +226,14 @@ class Siswa_model extends Model
         return $query->getRow();
     }
 
-    // status_siswa_gelombang
-    public function status_siswa_gelombang($status_siswa,$id_gelombang)
+    // status_calon_peserta_didik_gelombang
+    public function status_calon_peserta_didik_gelombang($status_calon_peserta_didik,$id_gelombang)
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('COUNT(*) AS total');
 
-        if($status_siswa != 'Semua') {
-            $builder->where('status_siswa',$status_siswa);
+        if($status_calon_peserta_didik != 'Semua') {
+            $builder->where('status_calon_peserta_didik',$status_calon_peserta_didik);
         }
         
         $builder->where('id_gelombang',$id_gelombang);
@@ -321,7 +321,7 @@ class Siswa_model extends Model
         $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
-        $builder->like('nama_siswa',$keywords,'BOTH');
+        $builder->like('nama_calon_peserta_didik',$keywords,'BOTH');
         $builder->orLike('email',$keywords,'BOTH');
         $builder->orLike('nama_ayah',$keywords,'BOTH');
         $builder->orLike('nama_ibu',$keywords,'BOTH');
@@ -340,7 +340,7 @@ class Siswa_model extends Model
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('COUNT(*) AS total');
-        $builder->like('nama_siswa',$keywords,'BOTH');
+        $builder->like('nama_calon_peserta_didik',$keywords,'BOTH');
         $builder->orLike('email',$keywords,'BOTH');
         $builder->orLike('nama_ayah',$keywords,'BOTH');
         $builder->orLike('nama_ibu',$keywords,'BOTH');
@@ -506,7 +506,7 @@ class Siswa_model extends Model
     }
 
     // read
-    public function read($slug_siswa)
+    public function read($slug_calon_peserta_didik)
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('calon_peserta_didik.*,
@@ -540,14 +540,14 @@ class Siswa_model extends Model
         $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
-        $builder->where('slug_siswa',$slug_siswa);
+        $builder->where('slug_calon_peserta_didik',$slug_calon_peserta_didik);
         $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
         $query = $builder->get();
         return $query->getRow();
     }
 
     // read
-    public function kode_siswa($kode_siswa)
+    public function kode_calon_peserta_didik($kode_calon_peserta_didik)
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('calon_peserta_didik.*,
@@ -581,7 +581,7 @@ class Siswa_model extends Model
         $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
-        $builder->where('kode_siswa',$kode_siswa);
+        $builder->where('kode_calon_peserta_didik',$kode_calon_peserta_didik);
         $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
         $query = $builder->get();
         return $query->getRow();
@@ -599,7 +599,7 @@ class Siswa_model extends Model
     public function hapus($data)
     {
         $builder = $this->db->table('calon_peserta_didik');
-        $builder->where('slug_siswa',$data['slug_siswa']);
+        $builder->where('slug_calon_peserta_didik',$data['slug_calon_peserta_didik']);
         $builder->where('id_akun',$data['id_akun']);
         $builder->delete();
     }
@@ -612,9 +612,9 @@ class Siswa_model extends Model
     }
 
     // tambah  log
-    public function siswa_log($data)
+    public function calon_peserta_didik_log($data)
     {
-        $builder = $this->db->table('siswa_logs');
+        $builder = $this->db->table('user_logs');
         $builder->insert($data);
     }
 }

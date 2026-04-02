@@ -39,7 +39,7 @@
             </thead>
             <tbody>
               <?php 
-              $id_calon_peserta_didik     = $siswa->id_calon_peserta_didik;
+              $id_calon_peserta_didik     = $calon_peserta_didik->id_calon_peserta_didik;
               $no           = 1; 
               $data_total   = 1;
               foreach($jenis_dokumen as $jenis_dokumen) { 
@@ -89,15 +89,15 @@
                 </td>                
                 <td>
                   <?php if($check_dokumen) { ?>
-                    <a class="btn btn-dark btn-sm mb-1" href="<?php echo base_url('pendaftaran/unduh/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>" target="_blank">
+                    <a class="btn btn-dark btn-sm mb-1" href="<?php echo base_url('pendaftaran/unduh/'.$check_dokumen->kode_dokumen.'/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" target="_blank">
                       <i class="fa fa-download"></i>&nbsp;  Unduh
                     </a>
-                    <a class="btn btn-secondary btn-sm mb-1 delete-link" href="<?php echo base_url('pendaftaran/hapus/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>">
+                    <a class="btn btn-secondary btn-sm mb-1 delete-link" href="<?php echo base_url('pendaftaran/hapus/'.$check_dokumen->kode_dokumen.'/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>">
                       <i class="fa fa-trash"></i>&nbsp;  Hapus
                     </a>
                   <?php }else{ ?>
                     <?php 
-                    echo form_open_multipart(base_url('pendaftaran/dokumen/'.$siswa->slug_siswa));
+                    echo form_open_multipart(base_url('pendaftaran/dokumen/'.$calon_peserta_didik->slug_calon_peserta_didik));
                     echo csrf_field(); 
                     ?>
 
@@ -125,7 +125,7 @@
                 <td colspan="4"></td>
                 <td>
                   <?php if($no==$data_total) { ?>
-                      <a href="<?php echo base_url('pendaftaran/selesai/'.$siswa->slug_siswa) ?>" class="btn btn-success float-right text-white">
+                      <a href="<?php echo base_url('pendaftaran/selesai/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-success float-right text-white">
                         Simpan dan Selesaikan Pendaftaran&nbsp;<i class="fa fa-arrow-right"></i>
                       </a>
                   <?php }else{ ?>

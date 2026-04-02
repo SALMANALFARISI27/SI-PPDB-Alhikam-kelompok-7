@@ -51,7 +51,7 @@
 				<strong>UPDATE AKUN</strong>
 			</div>
 			<div class="card-body">
-				<?php echo form_open(base_url('siswa/akun')) ?>
+				<?php echo form_open(base_url('calon_peserta_didik/akun')) ?>
                 <div class="form-group mb-4">
                   <input type="text" class="form-control" name="nama" value="<?php echo $akun->nama ?>"  placeholder="Name" id="loginName">
                   <label for="loginName" class="text-primary">Nama</label>

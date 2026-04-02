@@ -30,7 +30,7 @@ class Portfolio extends BaseController
 	        $portfolio 		= $m_portfolio->paginasi_admin_cari($keywords,$perPage, $page);
 		}else{
 			$total 			= $m_portfolio->total();
-			$title 			= 'Portfolio Gambar ('.$total.')';
+			$title 			= 'Karya Portofolio('.$total.')';
 	        $page    		= (int) ($this->request->getGet('page') ?? 1);
 	        $perPage 		= $this->website->paginasi();
 	        $total   		= $total;

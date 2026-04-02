@@ -1,6 +1,6 @@
 <?php 
 $session = \Config\Services::session();
-if($session->get('username_siswa')=="") {
+if($session->get('username_calon_peserta_didik')=="") {
 	$session->setFlashdata('sukses','Ooops... Anda belum login');
 	return redirect()->to(base_url('signin'));
 }

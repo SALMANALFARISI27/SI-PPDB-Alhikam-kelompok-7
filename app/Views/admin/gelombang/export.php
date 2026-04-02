@@ -82,35 +82,34 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1; foreach($siswa as $siswa) { ?>
+					<?php $no=1; foreach($calon_peserta_didik as $calon_peserta_didik) { ?>
 					<tr>
 						<td><?php echo $no ?></td>
-						<td><?php echo $siswa->nama_siswa ?></td>
-						<td><?php echo $siswa->nama_panggilan ?></td>
-						<td><?php echo $siswa->jenis_kelamin ?></td>
-						<td><?php echo $siswa->tempat_lahir ?></td>
-						<td><?php echo $siswa->tanggal_lahir ?></td>
-						<td><?php echo $siswa->nis ?></td>
-						<td><?php echo $siswa->nisn ?></td>
-						<td><?php echo $siswa->alamat ?></td>
-						<td><?php echo $siswa->telepon ?></td>
-						<td><?php echo $siswa->status_wn ?></td>
-						<td><?php echo $siswa->nama_hubungan ?></td>
-						<td><?php echo $siswa->anak_ke ?></td>
-						<td><?php echo $siswa->jumlah_saudara ?></td>
-						<td><?php echo $siswa->nama_agama ?></td>
-						<td><?php echo $siswa->berkebutuhan_khusus ?></td>
-						<td><?php echo $siswa->nama_ayah ?></td>
-						<td><?php echo $siswa->nama_ibu ?></td>
-						<td><?php echo $siswa->nama_wali ?></td>
-						<td><?php echo $siswa->alamat_wali ?></td>
-						<td><?php echo $siswa->telepon_wali ?></td>
-						<td><?php echo $siswa->status_pendaftaran ?></td>
-						<td><?php echo $siswa->goldar_siswa ?></td>
-						<td><?php echo $siswa->tinggi ?></td>
-						<td><?php echo $siswa->berat ?></td>
-						<td><?php echo $siswa->asal_sekolah ?></td>
-						<td><?php echo $siswa->jenis_siswa ?></td>
+						<td><?php echo $calon_peserta_didik->nama_calon_peserta_didik ?></td>
+						<td><?php echo $calon_peserta_didik->jenis_kelamin ?></td>
+						<td><?php echo $calon_peserta_didik->tempat_lahir ?></td>
+						<td><?php echo $calon_peserta_didik->tanggal_lahir ?></td>
+						<td><?php echo $calon_peserta_didik->nis ?></td>
+						<td><?php echo $calon_peserta_didik->nisn ?></td>
+						<td><?php echo $calon_peserta_didik->alamat ?></td>
+						<td><?php echo $calon_peserta_didik->telepon ?></td>
+						<td><?php echo $calon_peserta_didik->status_wn ?></td>
+						<td><?php echo $calon_peserta_didik->nama_hubungan ?></td>
+						<td><?php echo $calon_peserta_didik->anak_ke ?></td>
+						<td><?php echo $calon_peserta_didik->jumlah_saudara ?></td>
+						<td><?php echo $calon_peserta_didik->nama_agama ?></td>
+						<td><?php echo $calon_peserta_didik->berkebutuhan_khusus ?></td>
+						<td><?php echo $calon_peserta_didik->nama_ayah ?></td>
+						<td><?php echo $calon_peserta_didik->nama_ibu ?></td>
+						<td><?php echo $calon_peserta_didik->nama_wali ?></td>
+						<td><?php echo $calon_peserta_didik->alamat_wali ?></td>
+						<td><?php echo $calon_peserta_didik->telepon_wali ?></td>
+						<td><?php echo $calon_peserta_didik->status_pendaftaran ?></td>
+						<td><?php echo $calon_peserta_didik->goldar_calon_peserta_didik ?></td>
+						<td><?php echo $calon_peserta_didik->tinggi ?></td>
+						<td><?php echo $calon_peserta_didik->berat ?></td>
+						<td><?php echo $calon_peserta_didik->asal_sekolah ?></td>
+						<td><?php echo $calon_peserta_didik->jenis_calon_peserta_didik ?></td>
 					</tr>
 					<?php $no++; } ?>
 				</tbody>

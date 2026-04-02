@@ -1,11 +1,11 @@
 <?php 
-namespace App\Controllers\Siswa;
+namespace App\Controllers\Calon_peserta_didik;
 
 use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
 use App\Models\Galeri_model;
 use App\Models\Berita_model;
-use App\Models\Siswa_model;
+use App\Models\Calon_peserta_didik_model;
 use App\Models\Jenjang_model;
 use App\Models\Pekerjaan_model;
 use App\Models\Hubungan_model;
@@ -29,8 +29,8 @@ class Gelombang extends BaseController
                     'keywords'      => 'Dasbor Pendaftar',
                     'gelombang'		=> $gelombang,
 					'gelombang2'	=> $gelombang,
-					'content'		=> 'siswa/gelombang/index'
+					'content'		=> 'calon_peserta_didik/gelombang/index'
                 ];
-        return view('siswa/layout/wrapper',$data);
+        return view('calon_peserta_didik/layout/wrapper',$data);
 	}
 }

@@ -2,72 +2,72 @@
   <div class="col-md-4">
     <div class="card">
       <div class="card-header bg-light">
-        DETAIL CALON SISWA
+        DETAIL Calon Peserta Didik
       </div>
       <div class="card-body">
         <table class="tabelku table-sm">
     <thead>
       <tr>
-        <th colspan="2" class="bg-secondary text-white text-center">DATA DASAR SISWA</th>
+        <th colspan="2" class="bg-secondary text-white text-center">DATA DASAR CALON PESERTA DIDIK</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td class="font-bold" width="35%">Nama</td>
-        <td><?php echo strtoupper($siswa->nama_siswa) ?></td>
+        <td><?php echo strtoupper($calon_peserta_didik->nama_calon_peserta_didik) ?></td>
       </tr>
       <tr>
         <td class="font-bold">Panggilan</td>
-        <td><?php echo $siswa->nama_panggilan ?></td>
+        <td><?php echo $calon_peserta_didik->nama_panggilan ?></td>
       </tr>
       <tr>
         <td class="font-bold">NIS / NISN</td>
-        <td><?php echo $siswa->nis ?> / <?php echo $siswa->nisn ?></td>
+        <td><?php echo $calon_peserta_didik->nis ?> / <?php echo $calon_peserta_didik->nisn ?></td>
       </tr>
       <tr>
         <td class="font-bold">L/P</td>
-        <td><?php if($siswa->jenis_kelamin=='L') { echo 'Laki-laki'; }else{ echo 'Perempuan'; } ?></td>
+        <td><?php if($calon_peserta_didik->jenis_kelamin=='L') { echo 'Laki-laki'; }else{ echo 'Perempuan'; } ?></td>
       </tr>
       <tr>
         <td class="font-bold">TTL</td>
-        <td><?php echo $siswa->tempat_lahir ?>, <?php echo $this->website->tanggal_id($siswa->tanggal_lahir) ?></td>
+        <td><?php echo $calon_peserta_didik->tempat_lahir ?>, <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
       </tr>
       <tr>
         <td class="font-bold">Kode</td>
-        <td><?php echo $siswa->kode_siswa ?></td>
+        <td><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></td>
       </tr>
       <tr>
         <td class="font-bold">Periode</td>
-        <td><?php echo $siswa->judul ?></td>
+        <td><?php echo $calon_peserta_didik->judul ?></td>
       </tr>
       <tr>
         <td class="font-bold">Tahun Ajaran</td>
-        <td><?php echo $siswa->tahun_ajaran ?></td>
+        <td><?php echo $calon_peserta_didik->tahun_ajaran ?></td>
       </tr>
       <tr>
         <td class="font-bold">Program/Jenjang</td>
-        <td><?php echo $siswa->judul_jenjang_pendidikan ?></td>
+        <td><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?></td>
       </tr>
       <tr>
         <td class="font-bold">Status Anak</td>
-        <td><?php echo $siswa->nama_hubungan ?></td>
+        <td><?php echo $calon_peserta_didik->nama_hubungan ?></td>
       </tr>
       <tr>
         <td class="font-bold">Anak ke</td>
-        <td><?php echo $siswa->anak_ke ?> dari <?php echo $siswa->jumlah_saudara ?> Saudara</td>
+        <td><?php echo $calon_peserta_didik->anak_ke ?> dari <?php echo $calon_peserta_didik->jumlah_saudara ?> Saudara</td>
       </tr>
       <tr>
         <td class="font-bold">Alamat</td>
-        <td><?php echo nl2br($siswa->alamat) ?></td>
+        <td><?php echo nl2br($calon_peserta_didik->alamat) ?></td>
       </tr>
       
       <tr>
         <td class="font-bold">Telepon</td>
-        <td><?php echo $siswa->telepon ?></td>
+        <td><?php echo $calon_peserta_didik->telepon ?></td>
       </tr>
        <tr>
         <td class="font-bold">Email</td>
-        <td><?php echo $siswa->email ?></td>
+        <td><?php echo $calon_peserta_didik->email ?></td>
       </tr>
     </tbody>
   </table>
@@ -112,7 +112,7 @@
         </thead>
         <tbody>
           <?php 
-          $id_calon_peserta_didik     = $siswa->id_calon_peserta_didik;
+          $id_calon_peserta_didik     = $calon_peserta_didik->id_calon_peserta_didik;
           $no           = 1; 
           $data_total   = 1;
           foreach($jenis_dokumen as $jenis_dokumen) { 
@@ -162,15 +162,15 @@
             </td>                
             <td>
               <?php if($check_dokumen) { ?>
-                <a class="btn btn-dark btn-xs mb-1" href="<?php echo base_url('siswa/pendaftaran/unduh/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>" target="_blank">
+                <a class="btn btn-dark btn-xs mb-1" href="<?php echo base_url('calon_peserta_didik/pendaftaran/unduh/'.$check_dokumen->kode_dokumen.'/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" target="_blank">
                   <i class="fa fa-download"></i>&nbsp;  Unduh
                 </a>
-                <a class="btn btn-secondary btn-xs mb-1 delete-link" href="<?php echo base_url('siswa/pendaftaran/hapus/'.$check_dokumen->kode_dokumen.'/'.$siswa->slug_siswa) ?>">
+                <a class="btn btn-secondary btn-xs mb-1 delete-link" href="<?php echo base_url('calon_peserta_didik/pendaftaran/hapus/'.$check_dokumen->kode_dokumen.'/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>">
                   <i class="fa fa-trash"></i>&nbsp;  Hapus
                 </a>
               <?php }else{ ?>
                 <?php 
-                echo form_open_multipart(base_url('siswa/pendaftaran/dokumen/'.$siswa->slug_siswa));
+                echo form_open_multipart(base_url('calon_peserta_didik/pendaftaran/dokumen/'.$calon_peserta_didik->slug_calon_peserta_didik));
                 echo csrf_field(); 
                 ?>
 
@@ -196,11 +196,11 @@
         <tfoot>
           <tr>
             <td colspan="5" class="text-right">
-              <a href="<?php echo base_url('siswa/pendaftaran') ?>" class="btn btn-outline-info">
+              <a href="<?php echo base_url('calon_peserta_didik/pendaftaran') ?>" class="btn btn-outline-info">
                 <i class="fa fa-arrow-left"></i> Kembali
               </a>
               <?php if($no==$data_total) { ?>
-                  <a href="<?php echo base_url('siswa/pendaftaran/selesai/'.$siswa->slug_siswa) ?>" class="btn btn-danger text-white">
+                  <a href="<?php echo base_url('calon_peserta_didik/pendaftaran/selesai/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-danger text-white">
                     Simpan dan Selesaikan Pendaftaran&nbsp;<i class="fa fa-arrow-right"></i>
                   </a>
               <?php }else{ ?>
