@@ -87,7 +87,7 @@
     </thead>
     <tbody>
       <tr>
-        <td class="font-bold" width="35%">Jenis Masuk Siswa</td>
+        <td class="font-bold" width="35%">Jenis Masuk Calon Peserta Didik</td>
         <td><?php echo $siswa->jenis_siswa ?></td>
       </tr>
       <tr>
@@ -117,19 +117,19 @@
         <td><?php echo $siswa->tinggi ?> cm / <?php echo $siswa->berat ?> kg</td>
       </tr>
       <tr>
-        <td class="font-bold">Penyakit yang pernah/sedang diderita Siswa</td>
+        <td class="font-bold">Penyakit yang pernah/sedang diderita Calon Peserta Didik</td>
         <td><?php echo $siswa->penyakit_siswa ?></td>
       </tr>
       <tr>
-        <td class="font-bold">Hobi Siswa</td>
+        <td class="font-bold">Hobi Calon Peserta Didik</td>
         <td><?php echo $siswa->hobi_siswa ?></td>
       </tr>
       <tr>
-        <td class="font-bold">Apakah Siswa Berkebutuhan Khusus?</td>
+        <td class="font-bold">Apakah Calon Peserta Didik Berkebutuhan Khusus?</td>
         <td><?php echo $siswa->berkebutuhan_khusus ?></td>
       </tr>
       <tr>
-        <td class="font-bold">Deskripsi Ringkas Tentang Siswa</td>
+        <td class="font-bold">Deskripsi Ringkas Tentang Calon Peserta Didik</td>
         <td><?php echo $siswa->isi ?></td>
       </tr>
     </tbody>

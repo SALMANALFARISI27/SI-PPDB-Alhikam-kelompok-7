@@ -53,16 +53,16 @@ class Gelombang extends BaseController
 		}
 		if(isset($_POST['submit'])) {
 			$pengalihan 	= $this->request->getVar('pengalihan');
-			$id_siswa 		= $this->request->getVar('id_siswa');
+			$id_calon_peserta_didik 		= $this->request->getVar('id_calon_peserta_didik');
 
-   			for($i=0; $i < sizeof($id_siswa ?? []);$i++) {
-				$data = array(	'id_siswa'				=> $id_siswa[$i],
+   			for($i=0; $i < sizeof($id_calon_peserta_didik ?? []);$i++) {
+				$data = array(	'id_calon_peserta_didik'				=> $id_calon_peserta_didik[$i],
 								'id_user'				=> $this->session->get('id_user'),
 								'status_pendaftaran'	=> $this->request->getVar('status_pendaftaran')
 							);
    				$m_siswa->edit($data);
    			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Data Siswa berhasil diupdate statusnya');
+   			return redirect()->to($pengalihan)->with('sukses', 'Data Calon Peserta Didik berhasil diupdate statusnya');
 		}
 
 		$data = [	'title'					=> $gelombang->judul,
@@ -377,7 +377,7 @@ class Gelombang extends BaseController
 		
 		$siswa 			= $m_siswa->last_id();
 		if($siswa) {
-			$urutan = $siswa->id_siswa+1;
+			$urutan = $siswa->id_calon_peserta_didik+1;
 		}else{
 			$urutan = 1;
 		}
@@ -571,8 +571,8 @@ class Gelombang extends BaseController
 	    }else{
 
 			$data = [	'title'			=> 'Isi Biodata Calon Siswa',
-						'description'	=> 'Isi Data Siswa Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-						'keywords'		=> 'Isi Data Siswa Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+						'description'	=> 'Isi Data Calon Peserta Didik Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
+						'keywords'		=> 'Isi Data Calon Peserta Didik Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
 						'konfigurasi'	=> $konfigurasi,
 						'akun'			=> $akun,
 						'jenjang_pendidikan'	=> $jenjang_pendidikan,
@@ -603,7 +603,7 @@ class Gelombang extends BaseController
 		
 		$siswa 			= $m_siswa->last_id();
 		if($siswa) {
-			$urutan = $siswa->id_siswa+1;
+			$urutan = $siswa->id_calon_peserta_didik+1;
 		}else{
 			$urutan = 1;
 		}
@@ -652,7 +652,7 @@ class Gelombang extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_siswabaru);
 	        	// masuk database
 	        	$slug_siswa 	= strtolower(url_title($this->request->getVar('nama_siswa'))).'-'.strtoupper(random_string('alnum', 8));
-				$data = [	'id_siswa'				=> $siswa->id_siswa,
+				$data = [	'id_calon_peserta_didik'				=> $siswa->id_calon_peserta_didik,
 							'id_user'				=> $this->session->get('id_user'),
 							'id_gelombang'			=> $id_gelombang,
 							'id_agama'				=> $this->request->getPost('id_agama'),
@@ -721,7 +721,7 @@ class Gelombang extends BaseController
 			}else{
 				// masuk database
 				$slug_siswa 	= strtolower(url_title($this->request->getVar('nama_siswa'))).'-'.strtoupper(random_string('alnum', 8));
-				$data = [	'id_siswa'				=> $siswa->id_siswa,
+				$data = [	'id_calon_peserta_didik'				=> $siswa->id_calon_peserta_didik,
 							'id_user'				=> $this->session->get('id_user'),
 							'id_gelombang'			=> $id_gelombang,
 							'id_agama'				=> $this->request->getPost('id_agama'),
@@ -791,8 +791,8 @@ class Gelombang extends BaseController
 	    }else{
 
 			$data = [	'title'			=> 'Update Biodata Calon Siswa',
-						'description'	=> 'Update Data Siswa Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
-						'keywords'		=> 'Update Data Siswa Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
+						'description'	=> 'Update Data Calon Peserta Didik Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->tentang,
+						'keywords'		=> 'Update Data Calon Peserta Didik Pendaftaran Peserta Didik Baru '.$konfigurasi->namaweb.', '.$konfigurasi->keywords,
 						'konfigurasi'	=> $konfigurasi,
 						'akun'			=> $akun,
 						'jenjang_pendidikan'	=> $jenjang_pendidikan,
@@ -847,7 +847,7 @@ class Gelombang extends BaseController
 
 		// proses update
 		if(isset($_POST['status'])) {
-			$data = [	'id_siswa'				=> $siswa->id_siswa,
+			$data = [	'id_calon_peserta_didik'				=> $siswa->id_calon_peserta_didik,
 						'id_user'				=> $this->session->get('id_user'),						
 						'status_pendaftaran'	=> $this->request->getPost('status_pendaftaran')
 					];
@@ -876,7 +876,7 @@ class Gelombang extends BaseController
         	// masuk database
 		    $data = array(
         		'id_akun'				=> $akun->id_akun,
-				'id_siswa'				=> $siswa->id_siswa,
+				'id_siswa'				=> $siswa->id_calon_peserta_didik,
 				'id_jenis_dokumen'		=> $this->request->getVar('id_jenis_dokumen'),
 				'kode_dokumen'			=> strtoupper(random_string('alnum', 32)),
 				'gambar' 				=> $namabaru,

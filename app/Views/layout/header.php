@@ -164,7 +164,7 @@ foreach($nav_menu as $nav_menu) {
                           <ul class="list-unstyled">
                             
                             <li><a class="dropdown-item"  href="<?php echo base_url('pendaftaran') ?>">Pendaftaran Online</a></li>
-                            <li><a class="dropdown-item"  href="<?php echo base_url('signin') ?>">Login Siswa/Calon Siswa</a></li>
+                            <li><a class="dropdown-item"  href="<?php echo base_url('signin') ?>">Login Calon Peserta Didik/Calon Calon Peserta Didik</a></li>
                             <li><a class="dropdown-item"  href="<?php echo base_url('check') ?>">Cek Status Pendaftaran Online</a></li>
                            
                           </ul>

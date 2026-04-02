@@ -23,7 +23,7 @@
       <a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Diperiksa/'.$id_jenjang_pendidikan) ?>" class="btn btn-secondary btn-xs mb-1">
       	<i class="fa fa-edit"></i> Diperiksa (<?php echo $this->website->angka($m_siswa->total_gelombang_status_siswa($id_gelombang,'Diperiksa',$id_jenjang_pendidikan)->total); ?>)
       </a>
-	<a href="<?php echo base_url('admin/gelombang/export/'.$gelombang->id_gelombang.'/'.$status_pendaftaran.'/'.$id_jenjang_pendidikan) ?>" class="btn btn-success btn-xs mb-1" target="_blank"><i class="fa fa-file-excel"></i> Ekspor Siswa</a>
+	<a href="<?php echo base_url('admin/gelombang/export/'.$gelombang->id_gelombang.'/'.$status_pendaftaran.'/'.$id_jenjang_pendidikan) ?>" class="btn btn-success btn-xs mb-1" target="_blank"><i class="fa fa-file-excel"></i> Ekspor Calon Peserta Didik</a>
 	<a href="<?php echo base_url('admin/gelombang/unduh_data/'.$gelombang->id_gelombang.'/'.$status_pendaftaran.'/'.$id_jenjang_pendidikan) ?>" class="btn btn-danger btn-xs mb-1" target="_blank"><i class="fa fa-file-pdf"></i> Cetak</a>
 	<a href="<?php echo base_url('admin/gelombang/unduh_pengumuman/'.$gelombang->id_gelombang.'/'.$status_pendaftaran.'/'.$id_jenjang_pendidikan) ?>" class="btn btn-danger btn-xs mb-1" target="_blank"><i class="fa fa-file-pdf"></i> Cetak Pengumuman</a>
 	<a href="<?php echo base_url('pendaftaran') ?>" class="btn btn-primary btn-xs mb-1" target="_blank"><i class="fa fa-eye"></i> Baca</a>
@@ -189,7 +189,7 @@
     <div class="input-group">
 
       <select name="status_pendaftaran" class="form-control" required>
-      	<option value="">Pilih Status Siswa</option>
+      	<option value="">Pilih Status Calon Peserta Didik</option>
         <option value="Menunggu">Menunggu</option>
         <option value="Diterima">Diterima</option>
         <option value="Tidak-Diterima">Tidak Diterima</option>
@@ -239,13 +239,13 @@
 		$i=1; foreach($siswa as $siswa) { 
 			$wajib 					= $m_jenis_dokumen->group_status_jenis_dokumen_detail('Wajib');
 			$tidak_wajib 			= $m_jenis_dokumen->group_status_jenis_dokumen_detail('Tidak Wajib');
-			$dokumen_wajib 			= $m_dokumen->total_check($siswa->id_siswa,$wajib->status_jenis_dokumen); 
-			$dokumen_tidak_wajib 	= $m_dokumen->total_check($siswa->id_siswa,$tidak_wajib->status_jenis_dokumen);
+			$dokumen_wajib 			= $m_dokumen->total_check($siswa->id_calon_peserta_didik,$wajib->status_jenis_dokumen); 
+			$dokumen_tidak_wajib 	= $m_dokumen->total_check($siswa->id_calon_peserta_didik,$tidak_wajib->status_jenis_dokumen);
 		?>
 		<tr>
 			<td class="text-center">
             <div class="icheck-primary">
-              <input type="checkbox" name="id_siswa[]" value="<?php echo $siswa->id_siswa ?>" id="check<?php echo $i ?>">
+              <input type="checkbox" name="id_calon_peserta_didik[]" value="<?php echo $siswa->id_calon_peserta_didik ?>" id="check<?php echo $i ?>">
               <label for="check<?php echo $i ?>"></label>
             </div>
           </td>

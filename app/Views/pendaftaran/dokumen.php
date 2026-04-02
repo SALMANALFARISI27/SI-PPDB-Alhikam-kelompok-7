@@ -39,12 +39,12 @@
             </thead>
             <tbody>
               <?php 
-              $id_siswa     = $siswa->id_siswa;
+              $id_calon_peserta_didik     = $siswa->id_calon_peserta_didik;
               $no           = 1; 
               $data_total   = 1;
               foreach($jenis_dokumen as $jenis_dokumen) { 
                 $id_jenis_dokumen     = $jenis_dokumen->id_jenis_dokumen;
-                $check_dokumen        = $m_dokumen->check($id_siswa,$id_jenis_dokumen);
+                $check_dokumen        = $m_dokumen->check($id_calon_peserta_didik,$id_jenis_dokumen);
                 if($jenis_dokumen->status_jenis_dokumen=='Wajib') {
                     if($check_dokumen) {
                       $data_id = 1;

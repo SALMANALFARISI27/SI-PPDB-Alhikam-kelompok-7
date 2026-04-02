@@ -114,7 +114,7 @@ $this->website          = new Website();
 		</tr>
 	
 		<tr>
-			<td class="bg-light">Jumlah Siswa</td>
+			<td class="bg-light">Jumlah Calon Peserta Didik</td>
 			<td><?php echo $sekolah->jumlah_murid ?></td>
 		</tr>
 		<tr>

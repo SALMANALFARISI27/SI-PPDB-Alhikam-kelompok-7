@@ -169,7 +169,7 @@ class Pendaftaran extends BaseController
 
 		$siswa = $m_siswa->last_id();
 		if ($siswa) {
-			$urutan = $siswa->id_siswa + 1;
+			$urutan = $siswa->id_calon_peserta_didik + 1;
 		} else {
 			$urutan = 1;
 		}
@@ -367,8 +367,8 @@ class Pendaftaran extends BaseController
 
 			$data = [
 				'title' => 'Isi Biodata Calon Siswa',
-				'description' => 'Isi Data Siswa Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
-				'keywords' => 'Isi Data Siswa Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->keywords,
+				'description' => 'Isi Data Calon Peserta Didik Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
+				'keywords' => 'Isi Data Calon Peserta Didik Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->keywords,
 				'konfigurasi' => $konfigurasi,
 				'akun' => $akun,
 				'jenjang_pendidikan' => $jenjang_pendidikan,
@@ -415,7 +415,7 @@ class Pendaftaran extends BaseController
 			// masuk database
 			$data = array(
 				'id_akun' => $akun->id_akun,
-				'id_siswa' => $siswa->id_siswa,
+				'id_siswa' => $siswa->id_calon_peserta_didik,
 				'id_jenis_dokumen' => $this->request->getVar('id_jenis_dokumen'),
 				'kode_dokumen' => strtoupper(random_string('alnum', 32)),
 				'gambar' => $namabaru,

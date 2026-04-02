@@ -14,9 +14,9 @@ class Dokumen_model extends Model
     public function listing()
     {
         $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, siswa.nama_siswa');
+        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_siswa');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
+        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_siswa','LEFT');
         $this->orderBy('dokumen.id_dokumen','DESC');
         $query = $this->get();
         return $query->getResult();
@@ -26,9 +26,9 @@ class Dokumen_model extends Model
     public function paginasi_admin($limit,$start)
     {
         $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, siswa.nama_siswa');
+        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_siswa');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
+        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_siswa','LEFT');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('dokumen.id_dokumen','DESC');
         $query = $this->get();
@@ -39,9 +39,9 @@ class Dokumen_model extends Model
     public function paginasi_admin_cari($keywords,$limit,$start)
     {
         $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, siswa.nama_siswa');
+        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_siswa');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
+        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_siswa','LEFT');
         $this->like('dokumen.judul_dokumen',$keywords,'BOTH');
         $this->orLike('dokumen.isi',$keywords,'BOTH');
         $this->limit((int)$limit,(int)$start);
@@ -54,9 +54,9 @@ class Dokumen_model extends Model
     public function total_cari($keywords)
     {
         $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, siswa.nama_siswa');
+        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_siswa');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
+        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_siswa','LEFT');
         $this->like('dokumen.judul_dokumen',$keywords,'BOTH');
         $this->orLike('dokumen.isi',$keywords,'BOTH');
         $this->orderBy('dokumen.id_dokumen','DESC');
@@ -68,9 +68,9 @@ class Dokumen_model extends Model
     public function jenis_dokumen($id_jenis_dokumen)
     {
         $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, siswa.nama_siswa');
+        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_siswa');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
+        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_siswa','LEFT');
         $this->where( [  'status_dokumen'         => 'Publish',
                             'jenis_dokumen'         => 'Dokumen',
                             'dokumen.id_jenis_dokumen'    => $id_jenis_dokumen]);
@@ -83,9 +83,9 @@ class Dokumen_model extends Model
     public function jenis_dokumen_all($id_jenis_dokumen,$jenis_dokumen,$limit,$start)
     {
         $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, siswa.nama_siswa');
+        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_siswa');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
+        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_siswa','LEFT');
         $this->where( [ 'dokumen.id_jenis_dokumen' => $id_jenis_dokumen,
                         'dokumen.jenis_dokumen'       => $jenis_dokumen
                     ]);
@@ -96,9 +96,9 @@ class Dokumen_model extends Model
     }
 
     // total
-    public function total_author($id_siswa)
+    public function total_author($id_calon_peserta_didik)
     {
-        $this->table('dokumen')->where('id_siswa',$id_siswa);
+        $this->table('dokumen')->where('id_calon_peserta_didik',$id_calon_peserta_didik);
         $query = $this->get();
         return $query->getNumRows();
     }
@@ -123,9 +123,9 @@ class Dokumen_model extends Model
     public function detail($id_dokumen)
     {
         $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, siswa.nama_siswa');
+        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_siswa');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
+        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_siswa','LEFT');
         $this->where('dokumen.id_dokumen',$id_dokumen);
         $this->orderBy('dokumen.id_dokumen','DESC');
         $query = $this->get();
@@ -136,9 +136,9 @@ class Dokumen_model extends Model
     public function kode_dokumen($kode_dokumen)
     {
         $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, siswa.nama_siswa');
+        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_siswa');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
+        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_siswa','LEFT');
         $this->where('dokumen.kode_dokumen',$kode_dokumen);
         $this->orderBy('dokumen.id_dokumen','DESC');
         $query = $this->get();
@@ -146,13 +146,13 @@ class Dokumen_model extends Model
     }
 
     // check
-    public function check($id_siswa,$id_jenis_dokumen)
+    public function check($id_calon_peserta_didik,$id_jenis_dokumen)
     {
         $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, siswa.nama_siswa');
+        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_siswa');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('siswa','siswa.id_siswa = dokumen.id_siswa','LEFT');
-        $this->where('dokumen.id_siswa',$id_siswa);
+        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_siswa','LEFT');
+        $this->where('dokumen.id_siswa',$id_calon_peserta_didik);
         $this->where('dokumen.id_jenis_dokumen',$id_jenis_dokumen);
         $this->orderBy('dokumen.id_dokumen','DESC');
         $query = $this->get();
@@ -160,12 +160,12 @@ class Dokumen_model extends Model
     }
 
     // check
-    public function total_check($id_siswa,$status_jenis_dokumen)
+    public function total_check($id_calon_peserta_didik,$status_jenis_dokumen)
     {
         $this->table('dokumen');
-        $this->select('COUNT(dokumen.id_dokumen) AS total,jenis_dokumen.status_jenis_dokumen, max(dokumen.id_siswa) AS id_siswa');
+        $this->select('COUNT(dokumen.id_dokumen) AS total,jenis_dokumen.status_jenis_dokumen, max(dokumen.id_siswa) AS id_calon_peserta_didik');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen');
-        $this->where('dokumen.id_siswa',$id_siswa);
+        $this->where('dokumen.id_siswa',$id_calon_peserta_didik);
         $this->where('jenis_dokumen.status_jenis_dokumen',$status_jenis_dokumen);
         $this->groupBy('jenis_dokumen.id_jenis_dokumen');
         $this->orderBy('jenis_dokumen.status_jenis_dokumen','DESC');

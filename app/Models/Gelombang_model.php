@@ -75,7 +75,7 @@ class Gelombang_model extends Model
     // siswa
     public function siswa($id_gelombang)
     {
-        $builder = $this->db->table('siswa');
+        $builder = $this->db->table('calon_peserta_didik');
         $builder->select('COUNT(*) AS total');
         $query = $builder->get();
         return $query->getRow();

@@ -41,7 +41,7 @@ echo csrf_field();
 			</td>
 		</tr>
 		<tr>
-			<td class="bg-light">Jumlah Siswa</td>
+			<td class="bg-light">Jumlah Calon Peserta Didik</td>
 			<td><input type="text" name="jumlah_murid" class="form-control"
 					value="<?php echo $sekolah->jumlah_murid ?>"></td>
 		</tr>

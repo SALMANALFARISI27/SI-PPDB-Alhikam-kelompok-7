@@ -25,8 +25,8 @@
 		$i=1; foreach($siswa as $siswa) { 
 			$wajib 					= $m_jenis_dokumen->group_status_jenis_dokumen_detail('Wajib');
 			$tidak_wajib 			= $m_jenis_dokumen->group_status_jenis_dokumen_detail('Tidak Wajib');
-			$dokumen_wajib 			= $m_dokumen->total_check($siswa->id_siswa,$wajib->status_jenis_dokumen); 
-			$dokumen_tidak_wajib 	= $m_dokumen->total_check($siswa->id_siswa,$tidak_wajib->status_jenis_dokumen);
+			$dokumen_wajib 			= $m_dokumen->total_check($siswa->id_calon_peserta_didik,$wajib->status_jenis_dokumen); 
+			$dokumen_tidak_wajib 	= $m_dokumen->total_check($siswa->id_calon_peserta_didik,$tidak_wajib->status_jenis_dokumen);
 		?>
 		<tr>
 			<td class="text-center"><?php echo $i ?></td>

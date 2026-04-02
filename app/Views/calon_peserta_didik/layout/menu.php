@@ -31,7 +31,7 @@ $site         = $konfigurasi->listing();
             </a>
           </li>
 
-           <!-- Siswa -->
+           <!-- Calon Peserta Didik -->
           <li class="nav-item">
             <a href="<?php echo base_url('siswa/pendaftaran') ?>" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
@@ -39,7 +39,7 @@ $site         = $konfigurasi->listing();
             </a>
           </li>
 
-          <!-- Siswa -->
+          <!-- Calon Peserta Didik -->
           <li class="nav-item">
             <a href="<?php echo base_url('siswa/gelombang') ?>" class="nav-link">
               <i class="nav-icon fas fa-tasks"></i>
@@ -47,7 +47,7 @@ $site         = $konfigurasi->listing();
             </a>
           </li>
 
-          <!-- Siswa -->
+          <!-- Calon Peserta Didik -->
           <li class="nav-item">
             <a href="<?php echo base_url('siswa/akun') ?>" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>

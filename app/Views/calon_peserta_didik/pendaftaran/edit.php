@@ -1,4 +1,4 @@
-<p class="lead mb-2 text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>, masukkan data Calon Siswa dengan benar dan lengkap.
+<p class="lead mb-2 text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>, masukkan data Calon Calon Peserta Didik dengan benar dan lengkap.
                 <br>Anda sedang mendaftar pada <strong><?php echo $gelombang->judul ?></strong> Tahun Ajaran <strong><?php echo $gelombang->tahun_ajaran ?></strong>.
               </p>
 
@@ -45,13 +45,25 @@
           <div class="card-body">
 
             <div class="form-group row mb-3">
+              <label class="col-md-3 text-dark">Status Pendaftaran<span class="text-danger">*</span></label>
+              <div class="col-md-9">
+                <select name="status_pendaftaran" class="form-control">
+                  <option value="Menunggu">Menunggu</option>
+                  <option value="Diterima" <?php if(set_value('status_pendaftaran')=='Diterima' || $siswa->status_pendaftaran=='Diterima') { echo 'selected'; } ?>>Diterima</option>
+                  <option value="Tidak-Diterima" <?php if(set_value('status_pendaftaran')=='Tidak-Diterima' || $siswa->status_pendaftaran=='Tidak-Diterima') { echo 'selected'; } ?>>Tidak Diterima</option>
+                  <option value="Diperiksa" <?php if(set_value('status_pendaftaran')=='Diperiksa' || $siswa->status_pendaftaran=='Diperiksa') { echo 'selected'; } ?>>Diperiksa</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Program/Jenjang<span class="text-danger">*</span></label>
               <div class="col-md-9">
                 <?php $jenjang_pendidikan   = $m_jenjang_pendidikan->main(); ?>
                 <select name="id_jenjang_pendidikan" class="form-control  form-select" required>
                   <option value="">Pilih Program / Jenjang Pendidikan</option>
                   <?php foreach($jenjang_pendidikan as $jenjang_pendidikan) { ?>
-                    <option value="<?php echo $jenjang_pendidikan->id_jenjang_pendidikan ?>" <?php if(set_value('id_jenjang_pendidikan')==$jenjang_pendidikan->id_jenjang_pendidikan) { echo 'selected'; }elseif($siswa->id_jenjang_pendidikan==$jenjang_pendidikan->id_jenjang_pendidikan) { echo 'selected'; } ?>>
+                    <option value="<?php echo $jenjang_pendidikan->id_jenjang_pendidikan ?>" <?php if(set_value('id_jenjang_pendidikan')==$jenjang_pendidikan->id_jenjang_pendidikan || $siswa->id_jenjang_pendidikan==$jenjang_pendidikan->id_jenjang_pendidikan) { echo 'selected'; } ?>>
                       <?php echo $jenjang_pendidikan->judul_jenjang_pendidikan; ?>
                     </option>
                   <?php } ?>
@@ -64,7 +76,7 @@
               <label class="col-md-3 text-dark">Nama Lengkap<span class="text-danger">*</span></label>
               <div class="col-md-9">
                 <input type="text" name="nama_siswa" class="form-control form-control-lg" placeholder="Nama lengkap siswa" value="<?php if(isset($_POST['submit'])) { echo set_value('nama_siswa'); }else{ echo $siswa->nama_siswa; } ?>" required>
-                <small class="text-warning">Nama lengkap Siswa</small>
+                <small class="text-warning">Nama lengkap Calon Peserta Didik</small>
               </div>
             </div>
 
@@ -79,12 +91,12 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">NIS dan NISN</label>
               <div class="col-md-4">
-                <input type="text" name="nis" class="form-control" placeholder="Nomor Induk Siswa (NIS)" value="<?php if(isset($_POST['submit'])) { echo set_value('nis'); }else{ echo $siswa->nis; } ?>">
-                <small class="text-warning">Nomor Induk Siswa (NIS) atau kosongkan</small>
+                <input type="text" name="nis" class="form-control" placeholder="Nomor Induk Calon Peserta Didik (NIS)" value="<?php if(isset($_POST['submit'])) { echo set_value('nis'); }else{ echo $siswa->nis; } ?>">
+                <small class="text-warning">Nomor Induk Calon Peserta Didik (NIS) atau kosongkan</small>
               </div>
               <div class="col-md-5">
-                <input type="text" name="nisn" class="form-control" placeholder="Nomor Induk Siswa Nasional (NISN)" value="<?php if(isset($_POST['submit'])) { echo set_value('nisn'); }else{ echo $siswa->nisn; } ?>">
-                <small class="text-warning">Nomor Induk Siswa Nasional (NISN) atau kosongkan</small>
+                <input type="text" name="nisn" class="form-control" placeholder="Nomor Induk Calon Peserta Didik Nasional (NISN)" value="<?php if(isset($_POST['submit'])) { echo set_value('nisn'); }else{ echo $siswa->nisn; } ?>">
+                <small class="text-warning">Nomor Induk Calon Peserta Didik Nasional (NISN) atau kosongkan</small>
               </div>
             </div>
 
@@ -99,7 +111,7 @@
                     </option>
                   <?php } ?>
                 </select>
-                <small class="text-secondary">Agama Siswa</small>
+                <small class="text-secondary">Agama Calon Peserta Didik</small>
               </div>
               <div class="col-md-3">
                 <select name="status_wn" class="form-control form-select" required>
@@ -206,7 +218,7 @@
           <div class="card-body">
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Jenis Masuk Siswa<span class="text-danger">*</span></label>
+              <label class="col-md-3 text-dark">Jenis Masuk Calon Peserta Didik<span class="text-danger">*</span></label>
               <div class="col-md-9">
                 
                   <!-- radio -->
@@ -261,7 +273,7 @@
           <div class="card-body">
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Golongan Darah Siswa</label>
+              <label class="col-md-3 text-dark">Golongan Darah Calon Peserta Didik</label>
               <div class="col-md-9">
                 <select name="goldar_siswa" class="form-control  form-select" required>
                   <option value="">Pilih Golongan Darah</option>
@@ -274,7 +286,7 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Tinggi dan Berat Badan Siswa<span class="text-danger">*</span></label>
+              <label class="col-md-3 text-dark">Tinggi dan Berat Badan Calon Peserta Didik<span class="text-danger">*</span></label>
               <div class="col-md-4">
                 <input type="number" name="tinggi" class="form-control" placeholder="Tinggi Badan" value="<?php if(isset($_POST['submit'])) { echo set_value('tinggi'); }else{ echo $siswa->tinggi; } ?>" required>
                 <small class="text-secondary">Tinggi Badan dalam Centimeter</small>
@@ -286,21 +298,21 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Penyakit yang pernah/sedang diderita Siswa</label>
+              <label class="col-md-3 text-dark">Penyakit yang pernah/sedang diderita Calon Peserta Didik</label>
               <div class="col-md-9">
-                <textarea name="penyakit_siswa" class="form-control" placeholder="Penyakit yang pernah/sedang diderita Siswa"><?php if(isset($_POST['submit'])) { echo set_value('penyakit_siswa'); }else{ echo $siswa->penyakit_siswa; } ?></textarea>
+                <textarea name="penyakit_siswa" class="form-control" placeholder="Penyakit yang pernah/sedang diderita Calon Peserta Didik"><?php if(isset($_POST['submit'])) { echo set_value('penyakit_siswa'); }else{ echo $siswa->penyakit_siswa; } ?></textarea>
               </div>
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Hobi Siswa</label>
+              <label class="col-md-3 text-dark">Hobi Calon Peserta Didik</label>
               <div class="col-md-9">
                 <textarea name="hobi_siswa" class="form-control" placeholder="Hobi siswa"><?php if(isset($_POST['submit'])) { echo set_value('hobi_siswa'); }else{ echo $siswa->hobi_siswa; } ?></textarea>
               </div>
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Apakah Siswa Berkebutuhan Khusus?<span class="text-danger">*</span></label>
+              <label class="col-md-3 text-dark">Apakah Calon Peserta Didik Berkebutuhan Khusus?<span class="text-danger">*</span></label>
               <div class="col-md-9">
                 
                  <!-- radio -->
@@ -319,10 +331,10 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Deskripsi Ringkas Tentang Siswa</label>
+              <label class="col-md-3 text-dark">Deskripsi Ringkas Tentang Calon Peserta Didik</label>
               <div class="col-md-9">
-                <textarea name="isi" class="form-control" placeholder="Deskripsi Ringkas Tentang Siswa"><?php if(isset($_POST['submit'])) { echo set_value('isi'); }else{ echo $siswa->isi; } ?></textarea>
-                <small class="text-secondary">Misal: Siswa ini berkebutuhan khusus</small>
+                <textarea name="isi" class="form-control" placeholder="Deskripsi Ringkas Tentang Calon Peserta Didik"><?php if(isset($_POST['submit'])) { echo set_value('isi'); }else{ echo $siswa->isi; } ?></textarea>
+                <small class="text-secondary">Misal: Calon Peserta Didik ini berkebutuhan khusus</small>
               </div>
             </div>
 
@@ -346,10 +358,10 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Agama Ayah <?php echo $siswa->id_agama_ayah ?></label>
+              <label class="col-md-3 text-dark">Agama Ayah</label>
               <div class="col-md-9">
                 <?php $agama = $m_agama->listing(); ?>
-                <select name="id_agama_ayah" class="form-control">
+                <select name="id_agama_ayah" class="form-control  form-select">
                   <option value="">Pilih Agama</option>
                   <?php foreach($agama as $item) { ?>
                     <option value="<?php echo $item->id_agama ?>" 
@@ -368,7 +380,7 @@
                 <select name="id_pekerjaan_ayah" class="form-control form-select" required>
                   <option value="">Pilih Pekerjaan</option>
                   <?php foreach($pekerjaan as $pekerjaan) { ?>
-                    <option value="<?php echo $pekerjaan->id_pekerjaan ?>" <?php if(set_value('id_pekerjaan_ayah')==$pekerjaan->id_pekerjaan) { echo 'selected'; } ?>>
+                    <option value="<?php echo $pekerjaan->id_pekerjaan ?>" <?php if(set_value('id_pekerjaan_ayah') == $pekerjaan->id_pekerjaan || $siswa->id_pekerjaan_ayah == $pekerjaan->id_pekerjaan) { echo 'selected'; } ?>>
                       <?php echo $pekerjaan->nama_pekerjaan ?>
                     </option>
                   <?php } ?>
@@ -383,7 +395,7 @@
                 <select name="id_jenjang_ayah" class="form-control  form-select">
                   <option value="">Pilih Jenjang Pendidikan</option>
                   <?php foreach($jenjang as $jenjang) { ?>
-                    <option value="<?php echo $jenjang->id_jenjang ?>" <?php if(set_value('id_jenjang_ayah')==$jenjang->id_jenjang) { echo 'selected'; } ?>>
+                    <option value="<?php echo $jenjang->id_jenjang ?>" <?php if(set_value('id_jenjang_ayah') == $jenjang->id_jenjang || $siswa->id_jenjang_ayah == $jenjang->id_jenjang) { echo 'selected'; } ?>>
                       <?php echo $jenjang->nama_jenjang ?>
                     </option>
                   <?php } ?>
@@ -432,7 +444,7 @@
                 <select name="id_agama_ibu" class="form-control  form-select">
                   <option value="">Pilih Agama</option>
                   <?php foreach($agama as $agama) { ?>
-                    <option value="<?php echo $agama->id_agama ?>" <?php if(set_value('id_agama_ibu')==$agama->id_agama) { echo 'selected'; } ?>>
+                    <option value="<?php echo $agama->id_agama ?>" <?php if(set_value('id_jenjang_ayah') == $agama->id_agama || $siswa->id_agama_ibu == $agama->id_agama) { echo 'selected'; } ?>>
                       <?php echo $agama->nama_agama ?>
                     </option>
                   <?php } ?>
@@ -447,7 +459,7 @@
                 <select name="id_pekerjaan_ibu" class="form-control  form-select" required>
                   <option value="">Pilih Pekerjaan</option>
                   <?php foreach($pekerjaan as $pekerjaan) { ?>
-                    <option value="<?php echo $pekerjaan->id_pekerjaan ?>" <?php if(set_value('id_pekerjaan_ibu')==$pekerjaan->id_pekerjaan) { echo 'selected'; } ?>>
+                    <option value="<?php echo $pekerjaan->id_pekerjaan ?>" <?php if(set_value('id_pekerjaan_ibu') == $pekerjaan->id_pekerjaan || $siswa->id_pekerjaan_ibu == $pekerjaan->id_pekerjaan) { echo 'selected'; } ?>>
                       <?php echo $pekerjaan->nama_pekerjaan ?>
                     </option>
                   <?php } ?>
@@ -462,7 +474,7 @@
                 <select name="id_jenjang_ibu" class="form-control  form-select">
                   <option value="">Pilih Jenjang Pendidikan</option>
                   <?php foreach($jenjang as $jenjang) { ?>
-                    <option value="<?php echo $jenjang->id_jenjang ?>" <?php if(set_value('id_jenjang_ibu')==$jenjang->id_jenjang) { echo 'selected'; } ?>>
+                    <option value="<?php echo $jenjang->id_jenjang ?>" <?php if(set_value('id_jenjang_ibu') == $jenjang->id_jenjang || $siswa->id_jenjang_ibu == $jenjang->id_jenjang) { echo 'selected'; } ?>>
                       <?php echo $jenjang->nama_jenjang ?>
                     </option>
                   <?php } ?>
@@ -536,7 +548,7 @@
                   <select name="id_agama_wali" class="form-control form-select">
                     <option value="">Pilih Agama</option>
                     <?php foreach($agama as $agama) { ?>
-                      <option value="<?php echo $agama->id_agama ?>" <?php if(set_value('id_agama_wali')==$agama->id_agama) { echo 'selected'; } ?>>
+                      <option value="<?php echo $agama->id_agama ?>"  <?php if(set_value('id_agama_wali') == $agama->id_agama || $siswa->id_agama_wali == $agama->id_agama) { echo 'selected'; } ?>>
                         <?php echo $agama->nama_agama ?>
                       </option>
                     <?php } ?>
@@ -551,7 +563,7 @@
                   <select name="id_pekerjaan_wali" class="form-control form-select">
                     <option value="">Pilih Pekerjaan</option>
                     <?php foreach($pekerjaan as $pekerjaan) { ?>
-                      <option value="<?php echo $pekerjaan->id_pekerjaan ?>" <?php if(set_value('id_pekerjaan_wali')==$pekerjaan->id_pekerjaan) { echo 'selected'; } ?>>
+                      <option value="<?php echo $pekerjaan->id_pekerjaan ?>"  <?php if(set_value('id_pekerjaan_wali') == $pekerjaan->id_pekerjaan || $siswa->id_pekerjaan_wali == $pekerjaan->id_pekerjaan) { echo 'selected'; } ?>>
                         <?php echo $pekerjaan->nama_pekerjaan ?>
                       </option>
                     <?php } ?>
@@ -566,7 +578,7 @@
                   <select name="id_jenjang_wali" class="form-control form-select">
                     <option value="">Pilih Jenjang Pendidikan</option>
                     <?php foreach($jenjang as $jenjang) { ?>
-                      <option value="<?php echo $jenjang->id_jenjang ?>"  <?php if(set_value('id_jenjang_wali')==$jenjang->id_jenjang) { echo 'selected'; } ?>>
+                      <option value="<?php echo $jenjang->id_jenjang ?>" <?php if(set_value('id_jenjang_wali') == $jenjang->id_jenjang || $siswa->id_jenjang_wali == $jenjang->id_jenjang) { echo 'selected'; } ?>>
                         <?php echo $jenjang->nama_jenjang ?>
                       </option>
                     <?php } ?>
@@ -600,6 +612,7 @@
               </div>
           </div>
         </div>
+
 
         <?php echo form_close(); ?>
 
