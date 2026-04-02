@@ -41,10 +41,8 @@
       <div class="modal-body">
         <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="ratio ratio-16x9 rounded shadow-lg border border-secondary p-2">
-          <?php if($video) { ?>
-          <iframe src="https://www.youtube.com/embed/<?php echo $video->video ?>"
-            title="<?php echo $this->website->namaweb() ?>" allowfullscreen></iframe>
-          <?php } ?>
+
+          title="<?php echo $this->website->namaweb() ?>" allowfullscreen></iframe>
         </div>
       </div>
 

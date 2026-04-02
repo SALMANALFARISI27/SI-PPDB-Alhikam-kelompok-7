@@ -118,10 +118,8 @@ class Signin extends BaseController
 	            return redirect()->to(base_url('signin/reset'));
 	        } else {
 	            $this->session->setFlashdata('warning', 'Mohon maaf, email Anda tidak terdaftar.');
-	            return redirect()->to(base_url('signin/reset'));
 	        }
 	    }
-
 	    // End validasi
 	    $data = [
 	        'title'       => 'Reset Password',
@@ -132,7 +130,53 @@ class Signin extends BaseController
 	    echo view('layout/wrapper-pendaftaran', $data);
 	}
 
+	// password
+	public function password($token_reset = '')
+	{
+		$m_konfigurasi  = new Konfigurasi_model();
+		$m_akun         = new Akun_model();
+		$konfigurasi    = $m_konfigurasi->listing();
 
+		if ($token_reset == '') {
+			$this->session->setFlashdata('warning', 'Token invalid atau masa berlaku token sudah habis.');
+			return redirect()->to(base_url('signin'));
+		}
+
+		$akun_data = $m_akun->where('link_reset', $token_reset)->first();
+
+		if (!$akun_data) {
+			$this->session->setFlashdata('warning', 'Token invalid atau masa berlaku token sudah habis.');
+			return redirect()->to(base_url('signin'));
+		}
+
+		$akun = (object) $akun_data;
+
+		// Start validasi
+		if ($this->request->getMethod() === 'POST' && $this->validate([
+			'password'           => 'required|min_length[6]|max_length[32]',
+			'password_konfirmasi'=> 'required|matches[password]'
+		])) {
+			$data = [
+				'id_akun'    => $akun->id_akun,
+				'password'   => sha1($this->request->getPost('password')),
+				'link_reset' => '' // clear token
+			];
+			$m_akun->edit($data);
+
+			$this->session->setFlashdata('sukses', 'Password telah berhasil diupdate. Silakan login dengan password baru.');
+			return redirect()->to(base_url('signin'));
+		}
+
+		$data = [
+			'title'       => 'Ganti Password',
+			'description' => 'Ganti Password ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
+			'keywords'    => 'Ganti Password ' . $konfigurasi->namaweb,
+			'akun'        => $akun,
+			'token_reset' => $token_reset,
+			'content'     => 'signin/password'
+		];
+		echo view('layout/wrapper-pendaftaran', $data);
+	}
 	// Logout
 	public function logout()
 	{

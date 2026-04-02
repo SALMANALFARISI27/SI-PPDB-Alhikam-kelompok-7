@@ -98,7 +98,6 @@
 					<td><?php echo $calon_peserta_didik->alamat ?></td>
 					<td><?php echo $calon_peserta_didik->telepon ?></td>
 					<td><?php echo $calon_peserta_didik->status_wn ?></td>
-
 					<td><?php echo $calon_peserta_didik->anak_ke ?></td>
 					<td><?php echo $calon_peserta_didik->jumlah_saudara ?></td>
 					<td><?php echo $calon_peserta_didik->nama_agama ?></td>

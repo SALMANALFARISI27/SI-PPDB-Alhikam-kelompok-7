@@ -28,9 +28,7 @@
         $m_agama    = new Agama_model();
         $m_jenjang    = new Jenjang_model();
         $m_pekerjaan  = new Pekerjaan_model();
-        $m_hubungan   = new Hubungan_model();
-        $m_tahun    = new Tahun_model();
-        $m_kelas    = new Kelas_model();
+
         $m_jenjang_pendidikan   = new Jenjang_pendidikan_model();
 
         echo form_open_multipart(base_url('calon_peserta_didik/pendaftaran/edit/'.$calon_peserta_didik->slug_calon_peserta_didik));
@@ -80,13 +78,7 @@
               </div>
             </div>
 
-            <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Nama Panggilan<span class="text-danger">*</span></label>
-              <div class="col-md-9">
-                <input type="text" name="nama_panggilan" class="form-control" placeholder="Nama panggilan" value="<?php if(isset($_POST['submit'])) { echo set_value('nama_panggilan'); }else{ echo $calon_peserta_didik->nama_panggilan; } ?>" required>
-                <small class="text-warning">Nama panggilan</small>
-              </div>
-            </div>
+           
 
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">NIS dan NISN</label>
@@ -135,19 +127,7 @@
               </div>
             </div>
 
-            <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Status/Hubungan Anak dengan Wali<span class="text-danger">*</span></label>
-              <div class="col-md-3">
-                <?php $hubungan = $m_hubungan->listing(); ?>
-                <select name="id_hubungan" class="form-control  form-select" required>
-                  <?php foreach($hubungan as $hubungan) { ?>
-                    <option value="<?php echo $hubungan->id_hubungan ?>" <?php if(set_value('id_hubungan')==$hubungan->id_hubungan) { echo 'selected'; } ?>>
-                      <?php echo $hubungan->nama_hubungan ?>
-                    </option>
-                  <?php } ?>
-                </select>
-                <small class="text-secondary">Status Anak</small>
-              </div>
+        
               <div class="col-md-3">
                 <input type="number" name="anak_ke" class="form-control" placeholder="Anak nomor ke?" value="<?php if(isset($_POST['submit'])) { echo set_value('anak_ke'); }else{ echo $calon_peserta_didik->anak_ke; } ?>" required>
                 <small class="text-secondary">Anak nomor ke</small>
@@ -197,13 +177,7 @@
               </div>
             </div>
 
-            <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Gambar/Foto</label>
-              
-              <div class="col-md-9">
-                <input type="file" name="gambar" class="form-control" placeholder="Gambar/Foto" value="<?php if(isset($_POST['submit'])) { echo set_value('gambar'); }else{ echo $calon_peserta_didik->gambar; } ?>">
-              </div>
-            </div>
+         
 
           </div>
           
