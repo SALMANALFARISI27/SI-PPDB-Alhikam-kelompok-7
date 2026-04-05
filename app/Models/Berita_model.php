@@ -14,9 +14,9 @@ class Berita_model extends Model
     public function listing()
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->orderBy('berita.id_berita','DESC');
         $query = $this->get();
         return $query->getResult();
@@ -26,9 +26,9 @@ class Berita_model extends Model
     public function paginasi_admin($limit,$start)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('berita.id_berita','DESC');
         $query = $this->get();
@@ -39,9 +39,9 @@ class Berita_model extends Model
     public function paginasi_admin_cari($keywords,$limit,$start)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->like('berita.judul_berita',$keywords,'BOTH');
         $this->orLike('berita.isi',$keywords,'BOTH');
         $this->orLike('berita.ringkasan',$keywords,'BOTH');
@@ -55,9 +55,9 @@ class Berita_model extends Model
     public function total_cari($keywords)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->like('berita.judul_berita',$keywords,'BOTH');
         $this->orLike('berita.isi',$keywords,'BOTH');
         $this->orLike('berita.ringkasan',$keywords,'BOTH');
@@ -70,9 +70,9 @@ class Berita_model extends Model
     public function main()
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [  'status_berita' => 'Publish',
                             'jenis_berita'  => 'Berita']);
         $this->orderBy('berita.tanggal_publish','DESC');
@@ -82,9 +82,9 @@ class Berita_model extends Model
     public function beranda($jenis_berita,$jumlah)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [     'status_berita' => 'Publish',
                             'jenis_berita'  => $jenis_berita]);
         $this->orderBy('berita.tanggal_publish','DESC');
@@ -97,9 +97,9 @@ class Berita_model extends Model
     public function sidebar()
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [  'status_berita' => 'Publish',
                             'jenis_berita'  => 'Berita']);
         $this->orderBy('berita.tanggal_publish','DESC');
@@ -113,9 +113,9 @@ class Berita_model extends Model
     public function home()
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [     'status_berita' => 'Publish',
                             'jenis_berita'  => 'Berita']);
         $this->orderBy('berita.tanggal_publish','DESC');
@@ -127,9 +127,9 @@ class Berita_model extends Model
     public function jenis_publish($jenis_berita)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [     'status_berita'    => 'Publish',
                             'jenis_berita'  => $jenis_berita
                         ]);
@@ -142,9 +142,9 @@ class Berita_model extends Model
     public function kategori($id_kategori)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [  'status_berita'         => 'Publish',
                             'jenis_berita'          => 'Berita',
                             'berita.id_kategori'    => $id_kategori]);
@@ -157,9 +157,9 @@ class Berita_model extends Model
     public function kategori_status_jenis_all($id_kategori,$jenis_berita,$status_berita,$limit,$start)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [ 'berita.id_kategori'    => $id_kategori,
                         'berita.jenis_berita'   => $jenis_berita,
                         'berita.status_berita'  => $status_berita,
@@ -186,9 +186,9 @@ class Berita_model extends Model
     public function kategori_all($id_kategori,$limit,$start)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [  'berita.id_kategori'    => $id_kategori]);
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('berita.tanggal_publish','DESC');
@@ -208,10 +208,10 @@ class Berita_model extends Model
     public function author_all($id_user)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
-        $this->where( [  'berita.id_user'    => $id_user]);
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
+        $this->where( [  'berita.id_admin'    => $id_user]);
         $this->orderBy('berita.id_berita','DESC');
         $query = $this->get();
         return $query->getResult();
@@ -220,7 +220,7 @@ class Berita_model extends Model
     // total
     public function total_author($id_user)
     {
-        $this->table('berita')->where('id_user',$id_user);
+        $this->table('berita')->where('id_admin',$id_user);
         $query = $this->get();
         return $query->getNumRows();
     }
@@ -229,9 +229,9 @@ class Berita_model extends Model
     public function jenis_berita_all($jenis_berita,$limit,$start)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [  'berita.jenis_berita'    => $jenis_berita]);
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('berita.id_berita','DESC');
@@ -251,9 +251,9 @@ class Berita_model extends Model
     public function status_berita_all($status_berita,$limit,$start)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [  'berita.status_berita'    => $status_berita]);
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('berita.id_berita','DESC');
@@ -265,9 +265,9 @@ class Berita_model extends Model
     public function jenis_status_berita_all($jenis_berita,$status_berita,$limit,$start)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where( [     'berita.jenis_berita'   => $jenis_berita,
                             'berita.status_berita'  => $status_berita,  
                         ]);
@@ -305,9 +305,9 @@ class Berita_model extends Model
     public function detail($id_berita)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where('berita.id_berita',$id_berita);
         $this->orderBy('berita.id_berita','DESC');
         $query = $this->get();
@@ -328,9 +328,9 @@ class Berita_model extends Model
     public function read($slug_berita)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, users.nama');
+        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
-        $this->join('users','users.id_user = berita.id_user','LEFT');
+        $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->where('berita.slug_berita',$slug_berita);
         $this->where('berita.status_berita','Publish');
         $this->orderBy('berita.id_berita','DESC');

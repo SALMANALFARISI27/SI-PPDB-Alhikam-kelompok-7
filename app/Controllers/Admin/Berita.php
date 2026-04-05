@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 use CodeIgniter\Controller;
 use App\Models\Berita_model;
 use App\Models\Kategori_model;
-use App\Models\User_model;
+use App\Models\Admin_model;
 
 class Berita extends BaseController
 {
@@ -137,13 +137,13 @@ class Berita extends BaseController
 
 		$m_berita = new Berita_model();
 		$m_kategori = new Kategori_model();
-		$m_user = new User_model();
-		$user = $m_user->detail($id_user);
+		$m_admin = new Admin_model();
+		$admin = $m_admin->detail($id_user);
 		$berita = $m_berita->author_all($id_user);
 		$total = $m_berita->total_author($id_user);
 
 		$data = [
-			'title' => $user->nama . ' (' . $total . ')',
+			'title' => $admin->nama . ' (' . $total . ')',
 			'berita' => $berita,
 			'content' => 'admin/berita/index'
 		];
@@ -185,7 +185,7 @@ class Berita extends BaseController
 					->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
 				// masuk database
 				$data = array(
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_kategori' => $this->request->getVar('id_kategori'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
@@ -202,7 +202,7 @@ class Berita extends BaseController
 				return redirect()->to(base_url('admin/berita/jenis_berita/' . $this->request->getVar('jenis_berita')))->with('sukses', 'Data Berhasil di Simpan');
 			} else {
 				$data = array(
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_kategori' => $this->request->getVar('id_kategori'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
@@ -264,7 +264,7 @@ class Berita extends BaseController
 				// masuk database
 				$data = array(
 					'id_berita' => $id_berita,
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_kategori' => $this->request->getVar('id_kategori'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
@@ -283,7 +283,7 @@ class Berita extends BaseController
 			} else {
 				$data = array(
 					'id_berita' => $id_berita,
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_kategori' => $this->request->getVar('id_kategori'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
@@ -330,7 +330,7 @@ class Berita extends BaseController
 			for ($i = 0; $i < sizeof($id_berita ?? []); $i++) {
 				$data = array(
 					'id_berita' => $id_berita[$i],
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'jenis_berita' => $this->request->getVar('jenis_berita')
 				);
 				$m_berita->edit($data);
@@ -340,7 +340,7 @@ class Berita extends BaseController
 			for ($i = 0; $i < sizeof($id_berita ?? []); $i++) {
 				$data = array(
 					'id_berita' => $id_berita[$i],
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'status_berita' => 'Publish'
 				);
 				$m_berita->edit($data);
@@ -350,7 +350,7 @@ class Berita extends BaseController
 			for ($i = 0; $i < sizeof($id_berita ?? []); $i++) {
 				$data = array(
 					'id_berita' => $id_berita[$i],
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'status_berita' => 'Draft'
 				);
 				$m_berita->edit($data);

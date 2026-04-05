@@ -79,7 +79,7 @@ class Ekstrakurikuler extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
 	        	// masuk database
 	        	$data = array(
-	        		'id_user'						=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler'),
 					'slug_ekstrakurikuler'			=> strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
 					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),
@@ -94,7 +94,7 @@ class Ekstrakurikuler extends BaseController
         		return redirect()->to(base_url('admin/ekstrakurikuler'))->with('sukses', 'Data Berhasil di Simpan');
         	}else{
         		$data = array(
-	        		'id_user'						=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler'),
 					'slug_ekstrakurikuler'			=> strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
 					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),
@@ -136,7 +136,7 @@ class Ekstrakurikuler extends BaseController
 		if($submit=='Update') {
    			for($i=0; $i < sizeof($id_ekstrakurikuler ?? []);$i++) {
 				$data = array(	'id_ekstrakurikuler'			=> $id_ekstrakurikuler[$i],
-								'id_user'						=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler')
 							);
    				$m_ekstrakurikuler->edit($data);
@@ -145,7 +145,7 @@ class Ekstrakurikuler extends BaseController
 		}elseif($submit=='Publish') {
 			for($i=0; $i < sizeof($id_ekstrakurikuler ?? []);$i++) {
 				$data = array(	'id_ekstrakurikuler'		=> $id_ekstrakurikuler[$i],
-								'id_user'					=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_ekstrakurikuler'	=> 'Publish'
 							);
    				$m_ekstrakurikuler->edit($data);
@@ -154,7 +154,7 @@ class Ekstrakurikuler extends BaseController
 		}elseif($submit=='Draft') {
 			for($i=0; $i < sizeof($id_ekstrakurikuler ?? []);$i++) {
 				$data = array(	'id_ekstrakurikuler'		=> $id_ekstrakurikuler[$i],
-								'id_user'					=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_ekstrakurikuler'	=> 'Draft'
 							);
    				$m_ekstrakurikuler->edit($data);
@@ -201,7 +201,7 @@ class Ekstrakurikuler extends BaseController
 	        	// masuk database
 			    $data = array(
 	        		'id_ekstrakurikuler'			=> $id_ekstrakurikuler,
-	        		'id_user'						=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler'),
 					'slug_ekstrakurikuler'			=> strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
 					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),
@@ -216,7 +216,7 @@ class Ekstrakurikuler extends BaseController
 			}else{
 				$data = array(
 	        		'id_ekstrakurikuler'			=> $id_ekstrakurikuler,
-	        		'id_user'						=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler'),
 					'slug_ekstrakurikuler'			=> strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
 					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),

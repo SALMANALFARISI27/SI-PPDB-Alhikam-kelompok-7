@@ -3,13 +3,13 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Sekolah_model extends Model
+class Yayasan_model extends Model
 {
 
     // Listing
     public function listing()
     {
-        $builder = $this->db->table('sekolah');
+        $builder = $this->db->table('yayasan');
         $builder->select('*');
         $query = $builder->get();
         return $query->getRow();
@@ -18,8 +18,8 @@ class Sekolah_model extends Model
     // edit
     public function edit($data)
     {
-        $builder = $this->db->table('sekolah');
-        $builder->where('id_sekolah',$data['id_sekolah']);
+        $builder = $this->db->table('yayasan');
+        $builder->where('id_yayasan', $data['id_yayasan']);
         $builder->update($data);
     }
 }

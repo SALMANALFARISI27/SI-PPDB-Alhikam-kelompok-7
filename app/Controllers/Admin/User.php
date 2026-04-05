@@ -2,8 +2,7 @@
 namespace App\Controllers\Admin;
 
 use CodeIgniter\Controller;
-use App\Models\User_model;
-use App\Models\Staff_model;
+use App\Models\Admin_model;
 
 class User extends BaseController
 {
@@ -12,35 +11,30 @@ class User extends BaseController
 	public function index()
 	{
 		
-		$m_user 	= new User_model();
-		$m_staff 	= new Staff_model();
-		$user 		= $m_user->listing();
-		$staff 		= $m_staff->listing();
-		$total 		= $m_user->total();
+		$m_admin 	= new Admin_model();
+		$user 		= $m_admin->listing();
+		$total 		= $m_admin->total();
 
 		// Start validasi
 		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
 				'nama' 		=> 'required',
-            	'username' 	=> 'required|min_length[3]|is_unique[users.username]',
+            	'username' 	=> 'required|min_length[3]|is_unique[admin.username]',
         	])) {
 			// masuk database
-			$data = [	'id_staff'		=> $this->request->getPost('id_staff'),
-						'nama'			=> $this->request->getPost('nama'),
+			$data = [	'nama'			=> $this->request->getPost('nama'),
 						'email'			=> $this->request->getPost('email'),
 						'username'		=> $this->request->getPost('username'),
 						'password'		=> sha1($this->request->getPost('password')),
-						'akses_level'	=> $this->request->getPost('akses_level'),
 						'tanggal_post'	=> date('Y-m-d H:i:s')
 					];
-			$m_user->tambah($data);
+			$m_admin->tambah($data);
 			// masuk database
 			$this->session->setFlashdata('sukses','Data telah ditambah');
 			return redirect()->to(base_url('admin/user'));
 	    }else{
 			$data = [	'title'			=> 'Pengguna Website: '.$total->total,
 						'user'			=> $user,
-						'staff'			=> $staff,
 						'content'		=> 'admin/user/index'
 					];
 			echo view('admin/layout/wrapper',$data);
@@ -51,10 +45,8 @@ class User extends BaseController
 	public function edit($id_user)
 	{
 		
-		$m_user = new User_model();
-		$user 	= $m_user->detail($id_user);
-		$m_staff 	= new Staff_model();
-		$staff 		= $m_staff->listing();
+		$m_admin = new Admin_model();
+		$user 	= $m_admin->detail($id_user);
 
 		// Start validasi
 		if($this->request->getMethod() === 'POST' && $this->validate(
@@ -63,31 +55,26 @@ class User extends BaseController
         	])) {
 			// masuk database
 			if(strlen($this->request->getPost('password')) >= 6 && strlen($this->request->getPost('password')) <= 32 ) {
-				$data = [	'id_user'		=> $id_user,
-							'id_staff'		=> $this->request->getPost('id_staff'),
+				$data = [	'id_admin'		=> $id_user,
 							'nama'			=> $this->request->getPost('nama'),
 							'email'			=> $this->request->getPost('email'),
 							'username'		=> $this->request->getPost('username'),
-							'password'		=> sha1($this->request->getPost('password')),
-							'akses_level'	=> $this->request->getPost('akses_level')
+							'password'		=> sha1($this->request->getPost('password'))
 					];
 			}else{
-				$data = [	'id_user'		=> $id_user,
-							'id_staff'		=> $this->request->getPost('id_staff'),
+				$data = [	'id_admin'		=> $id_user,
 							'nama'			=> $this->request->getPost('nama'),
 							'email'			=> $this->request->getPost('email'),
-							'username'		=> $this->request->getPost('username'),
-							'akses_level'	=> $this->request->getPost('akses_level')
+							'username'		=> $this->request->getPost('username')
 					];
 			}
-			$m_user->edit($data);
+			$m_admin->edit($data);
 			// masuk database
 			$this->session->setFlashdata('sukses','Data telah diedit');
 			return redirect()->to(base_url('admin/user'));
 	    }else{
 			$data = [	'title'			=> 'Edit Pengguna: '.$user->nama,
 						'user'			=> $user,
-						'staff'			=> $staff,
 						'content'		=> 'admin/user/edit'
 					];
 			echo view('admin/layout/wrapper',$data);
@@ -98,9 +85,9 @@ class User extends BaseController
 	public function delete($id_user)
 	{
 		
-		$m_user = new User_model();
-		$data = ['id_user'	=> $id_user];
-		$m_user->delete($data);
+		$m_admin = new Admin_model();
+		$data = ['id_admin'	=> $id_user];
+		$m_admin->delete($data);
 		// masuk database
 		$this->session->setFlashdata('sukses','Data telah dihapus');
 		return redirect()->to(base_url('admin/user'));

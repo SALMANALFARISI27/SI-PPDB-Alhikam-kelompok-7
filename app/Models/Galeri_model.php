@@ -13,9 +13,9 @@ class Galeri_model extends Model
     public function listing()
     {
         $builder = $this->db->table('galeri');
-        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, users.nama');
+        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
         $builder->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-        $builder->join('users','users.id_user = galeri.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();
         return $query->getResult();
@@ -25,9 +25,9 @@ class Galeri_model extends Model
     public function jenis_galeri_depan($jenis_galeri)
     {
         $builder = $this->db->table('galeri');
-        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, users.nama');
+        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
         $builder->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-        $builder->join('users','users.id_user = galeri.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $builder->where('galeri.jenis_galeri',$jenis_galeri);
         $builder->limit(5);
         $builder->orderBy('galeri.id_galeri','DESC');
@@ -39,9 +39,9 @@ class Galeri_model extends Model
     public function home($limit)
     {
         $builder = $this->db->table('galeri');
-        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, users.nama');
+        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
         $builder->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-        $builder->join('users','users.id_user = galeri.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $this->limit((int)$limit);
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();
@@ -52,9 +52,9 @@ class Galeri_model extends Model
     public function jenis_galeri_pop($jenis_galeri)
     {
         $builder = $this->db->table('galeri');
-        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, users.nama');
+        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
         $builder->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-        $builder->join('users','users.id_user = galeri.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $builder->where('galeri.jenis_galeri',$jenis_galeri);
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();
@@ -65,9 +65,9 @@ class Galeri_model extends Model
     public function paginasi_admin($limit,$start)
     {
         $this->table('galeri');
-        $this->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, users.nama');
+        $this->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
         $this->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-        $this->join('users','users.id_user = galeri.id_user','LEFT');
+        $this->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('galeri.id_galeri','DESC');
         $query = $this->get();
@@ -78,9 +78,9 @@ class Galeri_model extends Model
     public function paginasi_admin_cari($keywords,$limit,$start)
     {
         $this->table('galeri');
-        $this->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, users.nama');
+        $this->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
         $this->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-        $this->join('users','users.id_user = galeri.id_user','LEFT');
+        $this->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $this->like('galeri.judul_galeri',$keywords,'BOTH');
         $this->orLike('galeri.isi',$keywords,'BOTH');
         $this->limit((int)$limit,(int)$start);
@@ -93,9 +93,9 @@ class Galeri_model extends Model
     public function total_cari($keywords)
     {
         $this->table('galeri');
-        $this->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, users.nama AS nama_user');
+        $this->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama AS nama_user');
         $this->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-        $this->join('users','users.id_user = galeri.id_user','LEFT');
+        $this->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $this->like('galeri.judul_galeri',$keywords,'BOTH');
         $this->orLike('galeri.isi',$keywords,'BOTH');
         $this->orderBy('galeri.id_galeri','DESC');
@@ -115,9 +115,9 @@ class Galeri_model extends Model
     public function detail($id_galeri)
     {
         $builder = $this->db->table('galeri');
-        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, users.nama');
+        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
         $builder->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
-        $builder->join('users','users.id_user = galeri.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $builder->where('galeri.id_galeri',$id_galeri);
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();

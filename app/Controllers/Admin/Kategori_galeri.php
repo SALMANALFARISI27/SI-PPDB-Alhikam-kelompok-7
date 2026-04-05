@@ -36,7 +36,7 @@ class Kategori_galeri extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_galeribaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_galeri')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_galeri'		=> $slug,
 							'nama_kategori_galeri'		=> $this->request->getPost('nama_kategori_galeri'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -52,7 +52,7 @@ class Kategori_galeri extends BaseController
 			}else{
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_galeri')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_galeri'		=> $slug,
 							'nama_kategori_galeri'		=> $this->request->getPost('nama_kategori_galeri'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -104,7 +104,7 @@ class Kategori_galeri extends BaseController
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_galeri')));
 				$data = [	'id_kategori_galeri'		=> $id_kategori_galeri,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_galeri'	=> $slug,
 							'nama_kategori_galeri'	=> $this->request->getPost('nama_kategori_galeri'),
 							'keterangan'			=> $this->request->getPost('keterangan'),
@@ -120,7 +120,7 @@ class Kategori_galeri extends BaseController
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_galeri')));
 				$data = [	'id_kategori_galeri'		=> $id_kategori_galeri,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_galeri'	=> $slug,
 							'nama_kategori_galeri'	=> $this->request->getPost('nama_kategori_galeri'),
 							'keterangan'			=> $this->request->getPost('keterangan'),

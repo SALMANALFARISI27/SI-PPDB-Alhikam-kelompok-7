@@ -26,21 +26,6 @@ echo csrf_field();
 				</div>
 
 				<div class="form-group row">
-					<label class="col-3">Staff/Pegawai</label>
-					<div class="col-9">
-						<select name="id_staff" class="form-control select2">
-							<option value="">Pilih Staff/Pegawai</option>
-							<?php foreach($staff as $staff) { ?>
-								<option value="<?php echo $staff->id_staff ?>" <?php if(isset($_GET['id_staff']) && $_GET['id_staff']== $staff->id_staff) { echo 'selected'; } ?>>
-									<?php echo $staff->nama ?> - <?php echo $staff->jabatan ?>
-								</option>
-							<?php } ?>
-						</select>
-						<small class="text-gray">Kelola data staff dan pegawai? <a href="<?php echo base_url('admin/staff') ?>" title="Kelola Pegawai">Kelola Sekarang</a></small>
-					</div>
-				</div>
-
-				<div class="form-group row">
 					<label class="col-3">Email</label>
 					<div class="col-9">
 						<input type="email" name="email" class="form-control" placeholder="Email" value="<?php echo set_value('email') ?>" required>
@@ -58,16 +43,6 @@ echo csrf_field();
 					<label class="col-3">Password</label>
 					<div class="col-9">
 						<input type="text" name="password" class="form-control" placeholder="Password" value="<?php echo set_value('password') ?>" required>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label class="col-3">Level</label>
-					<div class="col-9">
-						<select name="akses_level" class="form-control">
-							<option value="Admin">Admin</option>
-							<option value="User">User</option>
-						</select>
 					</div>
 				</div>
 

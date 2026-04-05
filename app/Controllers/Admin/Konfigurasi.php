@@ -3,7 +3,7 @@ namespace App\Controllers\Admin;
 
 use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
-use App\Models\Sekolah_model;
+use App\Models\Yayasan_model;
 
 class Konfigurasi extends BaseController
 {
@@ -27,7 +27,7 @@ class Konfigurasi extends BaseController
 			// masuk database
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_user' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_user'),
 				'namaweb' => $this->request->getPost('namaweb'),
 				'singkatan' => $this->request->getPost('singkatan'),
 				'tagline' => $this->request->getPost('tagline'),
@@ -91,7 +91,7 @@ class Konfigurasi extends BaseController
 			// masuk database
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_user' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_user'),
 				'fitur_pendaftaran' => $this->request->getPost('fitur_pendaftaran'),
 				'mulai_pendaftaran' => $this->website->tanggal_input($this->request->getPost('mulai_pendaftaran')),
 				'selesai_pendaftaran' => $this->website->tanggal_input($this->request->getPost('selesai_pendaftaran')),
@@ -131,7 +131,7 @@ class Konfigurasi extends BaseController
 			// masuk database
 			$data = [
 				'id_konfigurasi' => $this->request->getPost('id_konfigurasi'),
-				'id_user' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_user'),
 				'protocol' => $this->request->getPost('protocol'),
 				'smtp_host' => $this->request->getPost('smtp_host'),
 				'smtp_port' => $this->request->getPost('smtp_port'),
@@ -154,13 +154,13 @@ class Konfigurasi extends BaseController
 		}
 	}
 
-	// sekolah
-	public function sekolah()
+	// yayasan
+	public function yayasan()
 	{
 
-		$m_sekolah = new Sekolah_model();
-		$sekolah = $m_sekolah->listing();
-		$id_sekolah = $sekolah->id_sekolah;
+		$m_yayasan = new Yayasan_model();
+		$yayasan = $m_yayasan->listing();
+		$id_yayasan = $yayasan->id_yayasan;
 		// Start validasi
 		if (
 			$this->request->getMethod() === 'POST' && $this->validate(
@@ -171,10 +171,10 @@ class Konfigurasi extends BaseController
 		) {
 			// masuk database
 			$data = [
-				'id_sekolah' => $sekolah->id_sekolah,
-				'id_user' => $this->session->get('id_user'),
+				'id_yayasan' => $yayasan->id_yayasan,
+				'id_admin' => $this->session->get('id_user'),
 				'nsp' => $this->request->getPost('nsp'),
-				'status_sekolah' => $this->request->getPost('status_sekolah'),
+				'status_yayasan' => $this->request->getPost('status_yayasan'),
 				'alamat' => $this->request->getPost('alamat'),
 				'kelurahan' => $this->request->getPost('kelurahan'),
 				'kecamatan' => $this->request->getPost('kecamatan'),
@@ -191,26 +191,23 @@ class Konfigurasi extends BaseController
 				'nomor_sertifikat' => $this->request->getPost('nomor_sertifikat'),
 				'nama_yayasan' => $this->request->getPost('nama_yayasan'),
 				'tanggal_berdiri' => $this->website->tanggal_input($this->request->getPost('tanggal_berdiri')),
-				'nama_kepsek' => $this->request->getPost('nama_kepsek'),
-				'jumlah_murid' => $this->request->getPost('jumlah_murid'),
 				'jumlah_pegawai' => $this->request->getPost('jumlah_pegawai'),
 				'nilai_akreditasi' => $this->request->getPost('nilai_akreditasi'),
-				'tahun_akreditasi' => $this->request->getPost('tahun_akreditasi'),
 				'tanggal_berlaku' => $this->website->tanggal_input($this->request->getPost('tanggal_berlaku')),
 				'tanggal_kadaluarsa' => $this->website->tanggal_input($this->request->getPost('tanggal_kadaluarsa')),
 				'nomor_izin' => $this->request->getPost('nomor_izin'),
 				'keterangan' => $this->request->getPost('keterangan'),
 
 			];
-			$m_sekolah->edit($data);
+			$m_yayasan->edit($data);
 			// masuk database
 			$this->session->setFlashdata('sukses', 'Data telah diupdate');
-			return redirect()->to(base_url('admin/konfigurasi/sekolah'));
+			return redirect()->to(base_url('admin/konfigurasi/yayasan'));
 		} else {
 			$data = [
-				'title' => 'Informasi Sekolah',
-				'sekolah' => $sekolah,
-				'content' => 'admin/konfigurasi/sekolah'
+				'title' => 'Informasi Yayasan',
+				'yayasan' => $yayasan,
+				'content' => 'admin/konfigurasi/yayasan'
 			];
 			echo view('admin/layout/wrapper', $data);
 		}
@@ -248,7 +245,7 @@ class Konfigurasi extends BaseController
 				// masuk database
 				$data = [
 					'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'tentang' => $this->request->getPost('tentang'),
 					'banner' => $namabaru,
 					'ringkasan' => $this->request->getPost('ringkasan')
@@ -257,7 +254,7 @@ class Konfigurasi extends BaseController
 			} else {
 				$data = [
 					'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'tentang' => $this->request->getPost('tentang'),
 					'ringkasan' => $this->request->getPost('ringkasan')
 				];
@@ -280,13 +277,12 @@ class Konfigurasi extends BaseController
 	public function unduh()
 	{
 
-		$m_sekolah = new Sekolah_model();
-		$sekolah = $m_sekolah->listing();
-		$id_sekolah = $sekolah->id_sekolah;
+		$m_yayasan = new Yayasan_model();
+		$yayasan = $m_yayasan->listing();
 
 		$data = [
-			'title' => 'Informasi Sekolah',
-			'sekolah' => $sekolah,
+			'title' => 'Informasi Yayasan',
+			'yayasan' => $yayasan,
 		];
 		$mpdf = new \Mpdf\Mpdf([
 			'default_font_size' => 11,
@@ -296,7 +292,7 @@ class Konfigurasi extends BaseController
 		$mpdf->WriteHTML($html);
 		$this->response->setHeader('Content-Type', 'application/pdf');
 		// buka di browser
-		$mpdf->Output('Informasi-Sekolah.pdf', 'I');
+		$mpdf->Output('Informasi-Yayasan.pdf', 'I');
 	}
 
 
@@ -344,7 +340,7 @@ class Konfigurasi extends BaseController
 			// Update database dengan nama file baru
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_user' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_user'),
 				'logo' => $namabaru
 			];
 			$m_konfigurasi->edit($data);
@@ -407,7 +403,7 @@ class Konfigurasi extends BaseController
 			// Update database dengan nama file baru
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_user' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_user'),
 				'login' => $namabaru
 			];
 			$m_konfigurasi->edit($data);
@@ -471,7 +467,7 @@ class Konfigurasi extends BaseController
 			// Update database dengan nama file baru
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_user' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_user'),
 				'icon' => $namabaru
 			];
 			$m_konfigurasi->edit($data);

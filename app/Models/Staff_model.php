@@ -14,9 +14,9 @@ class Staff_model extends Model
     public function listing()
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->orderBy('staff.id_staff','DESC');
         $query = $this->get();
         return $query->getResult();
@@ -26,9 +26,9 @@ class Staff_model extends Model
     public function home($jumlah)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->where( [  'status_staff' => 'Publish']);
         $this->limit($jumlah);
         $this->orderBy('staff.urutan','ASC');
@@ -40,9 +40,9 @@ class Staff_model extends Model
     public function paginasi_admin($limit,$start)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('staff.id_staff','DESC');
         $query = $this->get();
@@ -53,9 +53,9 @@ class Staff_model extends Model
     public function paginasi_admin_cari($keywords,$limit,$start)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->like('staff.nama',$keywords,'BOTH');
         $this->orLike('staff.jabatan',$keywords,'BOTH');
         $this->orLike('staff.keahlian',$keywords,'BOTH');
@@ -72,9 +72,9 @@ class Staff_model extends Model
     public function total_cari($keywords)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->like('staff.nama',$keywords,'BOTH');
         $this->orLike('staff.jabatan',$keywords,'BOTH');
         $this->orLike('staff.keahlian',$keywords,'BOTH');
@@ -90,9 +90,9 @@ class Staff_model extends Model
     public function jenis_publish($jenis_staff)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->where( [  'status_staff' => 'Publish',
                         'jenis_staff'  => $jenis_staff
                         ]);
@@ -105,9 +105,9 @@ class Staff_model extends Model
     public function kategori_staff($id_kategori_staff)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->where( [  'status_staff'         => 'Publish',
                             'staff.id_kategori_staff'    => $id_kategori_staff]);
         $this->orderBy('staff.urutan','ASC');
@@ -119,9 +119,9 @@ class Staff_model extends Model
     public function kategori_staff_all($id_kategori_staff,$limit,$start)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->where( [  'staff.id_kategori_staff'    => $id_kategori_staff]);
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('staff.urutan','ASC');
@@ -141,10 +141,10 @@ class Staff_model extends Model
     public function author_all($id_user)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
-        $this->where( [  'staff.id_user'    => $id_user]);
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
+        $this->where( [  'staff.id_admin'    => $id_user]);
         $this->orderBy('staff.id_staff','DESC');
         $query = $this->get();
         return $query->getResult();
@@ -153,7 +153,7 @@ class Staff_model extends Model
     // total
     public function total_author($id_user)
     {
-        $this->table('staff')->where('id_user',$id_user);
+        $this->table('staff')->where('id_admin',$id_user);
         $query = $this->get();
         return $query->getNumRows();
     }
@@ -162,9 +162,9 @@ class Staff_model extends Model
     public function jenis_staff_all($jenis_staff,$limit,$start)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->where( [  'staff.jenis_staff'    => $jenis_staff]);
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('staff.id_staff','DESC');
@@ -184,9 +184,9 @@ class Staff_model extends Model
     public function status_staff_all($status_staff,$limit,$start)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->where( [  'staff.status_staff'    => $status_staff]);
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('staff.id_staff','DESC');
@@ -214,9 +214,9 @@ class Staff_model extends Model
     public function detail($id_staff)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->where('staff.id_staff',$id_staff);
         $this->orderBy('staff.id_staff','DESC');
         $query = $this->get();
@@ -237,9 +237,9 @@ class Staff_model extends Model
     public function read($slug_staff)
     {
         $this->table('staff');
-        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, users.nama AS nama_user');
+        $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
-        $this->join('users','users.id_user = staff.id_user','LEFT');
+        $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
         $this->where('staff.slug_staff',$slug_staff);
         $this->where('staff.status_staff','Publish');
         $this->orderBy('staff.id_staff','DESC');

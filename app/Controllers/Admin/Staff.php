@@ -70,7 +70,7 @@ class Staff extends BaseController
 		if($submit=='Update') {
    			for($i=0; $i < sizeof($id_staff ?? []);$i++) {
 				$data = array(	'id_staff'			=> $id_staff[$i],
-								'id_user'			=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'id_kategori_staff'	=> $this->request->getVar('id_kategori_staff')
 							);
    				$m_staff->edit($data);
@@ -79,7 +79,7 @@ class Staff extends BaseController
 		}elseif($submit=='Publish') {
 			for($i=0; $i < sizeof($id_staff ?? []);$i++) {
 				$data = array(	'id_staff'		=> $id_staff[$i],
-								'id_user'		=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_staff'	=> 'Publish'
 							);
    				$m_staff->edit($data);
@@ -88,7 +88,7 @@ class Staff extends BaseController
 		}elseif($submit=='Draft') {
 			for($i=0; $i < sizeof($id_staff ?? []);$i++) {
 				$data = array(	'id_staff'		=> $id_staff[$i],
-								'id_user'		=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_staff'	=> 'Draft'
 							);
    				$m_staff->edit($data);
@@ -134,7 +134,7 @@ class Staff extends BaseController
 			    ->save(FCPATH . 'assets/upload/staff/thumbs/'.$namabaru);
 	        	// masuk database
 	        	// masuk database
-				$data = [	'id_user'		=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'id_kategori_staff'	=> $this->request->getPost('id_kategori_staff'),
 							'urutan'	=> $this->request->getPost('urutan'),
 							'nama'			=> $this->request->getPost('nama'),
@@ -157,7 +157,7 @@ class Staff extends BaseController
 				return redirect()->to(base_url('admin/staff'));
 			}else{
 				// masuk database
-				$data = [	'id_user'		=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'id_kategori_staff'	=> $this->request->getPost('id_kategori_staff'),
 							'urutan'	=> $this->request->getPost('urutan'),
 							'nama'			=> $this->request->getPost('nama'),
@@ -220,7 +220,7 @@ class Staff extends BaseController
 	        	// masuk database
 	        	// masuk database
 				$data = [	'id_staff'		=> $id_staff,
-							'id_user'		=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'id_kategori_staff'	=> $this->request->getPost('id_kategori_staff'),
 							'urutan'		=> $this->request->getPost('urutan'),
 							'nama'			=> $this->request->getPost('nama'),
@@ -243,7 +243,7 @@ class Staff extends BaseController
 			}else{
 				// masuk database
 				$data = [	'id_staff'		=> $id_staff,
-							'id_user'		=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'id_kategori_staff'	=> $this->request->getPost('id_kategori_staff'),
 							'urutan'		=> $this->request->getPost('urutan'),
 							'nama'			=> $this->request->getPost('nama'),

@@ -21,7 +21,7 @@ class Jenjang extends BaseController
 				'nama_jenjang' 	=> 'required|min_length[1]|is_unique[jenjang.nama_jenjang]',
         	])) {
 			// masuk database
-			$data = [	'id_user'		=> $this->session->get('id_user'),
+			$data = [	'id_admin' => $this->session->get('id_user'),
 						'nama_jenjang'	=> $this->request->getPost('nama_jenjang'),
 						'keterangan'	=> $this->request->getPost('keterangan'),
 						'urutan'		=> $this->request->getPost('urutan'),
@@ -54,7 +54,7 @@ class Jenjang extends BaseController
         	])) {
 			
 			$data = [	'id_jenjang'	=> $id_jenjang,
-						'id_user'		=> $this->session->get('id_user'),
+						'id_admin' => $this->session->get('id_user'),
 						'nama_jenjang'	=> $this->request->getPost('nama_jenjang'),
 						'keterangan'	=> $this->request->getPost('keterangan'),
 						'urutan'		=> $this->request->getPost('urutan'),

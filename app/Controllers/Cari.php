@@ -21,10 +21,10 @@ class Cari extends BaseController
 		$konfigurasi 	= $m_konfigurasi->listing();
 		// pagination setting
 		$pager 			= service('pager'); 
-		$produk 		= $m_produk->select('produk.*, kategori_produk.nama_kategori_produk, kategori_produk.slug_kategori_produk, users.nama, merek.nama_merek, merek.slug_merek')
+		$produk 		= $m_produk->select('produk.*, kategori_produk.nama_kategori_produk, kategori_produk.slug_kategori_produk, admin.nama, merek.nama_merek, merek.slug_merek')
 						->join('kategori_produk','kategori_produk.id_kategori_produk = produk.id_kategori_produk','LEFT')
 						->join('merek','merek.id_merek = produk.id_merek','LEFT')
-						->join('users','users.id_user = produk.id_user','LEFT')
+						->join('admin','admin.id_admin = produk.id_admin','LEFT')
 						->like('produk.nama_produk',$keywords)
 						->orLike('produk.isi',$keywords)
 						->orLike('produk.keywords',$keywords)

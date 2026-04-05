@@ -95,9 +95,9 @@ class Nav_model extends Model
     public function kreatif()
     {
         $builder = $this->db->table('kreatif');
-        $builder->select('kreatif.*, kategori_kreatif.nama_kategori_kreatif, kategori_kreatif.slug_kategori_kreatif, users.nama');
+        $builder->select('kreatif.*, kategori_kreatif.nama_kategori_kreatif, kategori_kreatif.slug_kategori_kreatif, admin.nama');
         $builder->join('kategori_kreatif', 'kategori_kreatif.id_kategori_kreatif = kreatif.id_kategori_kreatif', 'LEFT');
-        $builder->join('users', 'users.id_user = kreatif.id_user', 'LEFT');
+        $builder->join('admin', 'admin.id_admin = kreatif.id_admin', 'LEFT');
         $builder->orderBy('kreatif.urutan', 'ASC');
         $query = $builder->get();
         return $query->getResult();
@@ -149,6 +149,7 @@ class Nav_model extends Model
     }
 
 }
+
 
 
 

@@ -36,7 +36,7 @@ class Kategori_portfolio extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_portfoliobaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_portfolio')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_portfolio'		=> $slug,
 							'nama_kategori_portfolio'		=> $this->request->getPost('nama_kategori_portfolio'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -52,7 +52,7 @@ class Kategori_portfolio extends BaseController
 			}else{
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_portfolio')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_portfolio'		=> $slug,
 							'nama_kategori_portfolio'		=> $this->request->getPost('nama_kategori_portfolio'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -104,7 +104,7 @@ class Kategori_portfolio extends BaseController
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_portfolio')));
 				$data = [	'id_kategori_portfolio'		=> $id_kategori_portfolio,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_portfolio'	=> $slug,
 							'nama_kategori_portfolio'	=> $this->request->getPost('nama_kategori_portfolio'),
 							'keterangan'			=> $this->request->getPost('keterangan'),
@@ -120,7 +120,7 @@ class Kategori_portfolio extends BaseController
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_portfolio')));
 				$data = [	'id_kategori_portfolio'		=> $id_kategori_portfolio,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_portfolio'	=> $slug,
 							'nama_kategori_portfolio'	=> $this->request->getPost('nama_kategori_portfolio'),
 							'keterangan'			=> $this->request->getPost('keterangan'),

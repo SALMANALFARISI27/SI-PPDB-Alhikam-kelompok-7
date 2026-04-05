@@ -23,7 +23,7 @@ class Media extends BaseController
 				'nama_media' 	=> 'required|min_length[1]|is_unique[media.nama_media]',
         	])) {
 			// masuk database
-			$data = [	'id_user'		=> $this->session->get('id_user'),
+			$data = [	'id_admin' => $this->session->get('id_user'),
 						'nama_media'	=> $this->request->getPost('nama_media'),
 						'keterangan'	=> $this->request->getPost('keterangan'),
 						'urutan'		=> $this->request->getPost('urutan'),
@@ -69,7 +69,7 @@ class Media extends BaseController
 	            $avatar->move(FCPATH . 'assets/upload/file/',$namabaru);
 	        	// masuk database
 			    $data = array(
-	        		'id_user'				=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'gambar' 				=> $namabaru,
 					'file_ext' 				=> $file_ext,
 					'file_size' 			=> $file_size,
@@ -106,7 +106,7 @@ class Media extends BaseController
         	])) {
 			
 			$data = [	'id_media'	=> $id_media,
-						'id_user'		=> $this->session->get('id_user'),
+						'id_admin' => $this->session->get('id_user'),
 						'nama_media'	=> $this->request->getPost('nama_media'),
 						'keterangan'	=> $this->request->getPost('keterangan'),
 						'urutan'		=> $this->request->getPost('urutan'),

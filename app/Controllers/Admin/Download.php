@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 use CodeIgniter\Controller;
 use App\Models\Download_model;
 use App\Models\Kategori_download_model;
-use App\Models\User_model;
+use App\Models\Admin_model;
 
 class Download extends BaseController
 {
@@ -112,12 +112,12 @@ class Download extends BaseController
 		
 		$m_download 			= new Download_model();
 		$m_kategori_download 	= new Kategori_download_model();
-		$m_user 				= new User_model();
-		$user 					= $m_user->detail($id_user);
+		$m_admin 				= new Admin_model();
+		$admin 					= $m_admin->detail($id_user);
 		$download 				= $m_download->author_all($id_user);
 		$total 					= $m_download->total_author($id_user);
 
-		$data = [	'title'			=> $user->nama.' ('.$total.')',
+		$data = [	'title'			=> $admin->nama.' ('.$total.')',
 					'download'		=> $download,
 					'content'		=> 'admin/download/index'
 				];
@@ -151,7 +151,7 @@ class Download extends BaseController
 	            $avatar->move(FCPATH . 'assets/upload/file/',$namabaru);
 	        	// masuk database
 			    $data = array(
-	        		'id_user'				=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_download'	=> $this->request->getVar('id_kategori_download'),
 					'judul_download'		=> $this->request->getVar('judul_download'),
 					'jenis_download'		=> $this->request->getVar('jenis_download'),
@@ -167,7 +167,7 @@ class Download extends BaseController
         		return redirect()->to(base_url('admin/download'))->with('sukses', 'Data Berhasil di Simpan');
 			}else{
 				$data = array(
-	        		'id_user'				=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_download'	=> $this->request->getVar('id_kategori_download'),
 					'judul_download'		=> $this->request->getVar('judul_download'),
 					'jenis_download'		=> $this->request->getVar('jenis_download'),
@@ -217,7 +217,7 @@ class Download extends BaseController
 	        	// masuk database
 	            $data = array(
 	            	'id_download'			=> $id_download,
-	        		'id_user'				=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_download'	=> $this->request->getVar('id_kategori_download'),
 					'judul_download'		=> $this->request->getVar('judul_download'),
 					'jenis_download'		=> $this->request->getVar('jenis_download'),
@@ -233,7 +233,7 @@ class Download extends BaseController
 	        }else{
 	        	$data = array(
 	        		'id_download'			=> $id_download,
-	        		'id_user'				=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_download'	=> $this->request->getVar('id_kategori_download'),
 					'judul_download'		=> $this->request->getVar('judul_download'),
 					'jenis_download'		=> $this->request->getVar('jenis_download'),
@@ -274,7 +274,7 @@ class Download extends BaseController
 		if($submit=='Update') {
    			for($i=0; $i < sizeof($id_download ?? []);$i++) {
 				$data = array(	'id_download'		=> $id_download[$i],
-								'id_user'			=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'jenis_download'	=> $this->request->getVar('jenis_download')
 							);
    				$m_download->edit($data);
@@ -283,7 +283,7 @@ class Download extends BaseController
 		}elseif($submit=='Publish') {
 			for($i=0; $i < sizeof($id_download ?? []);$i++) {
 				$data = array(	'id_download'		=> $id_download[$i],
-								'id_user'			=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_download'	=> 'Publish'
 							);
    				$m_download->edit($data);
@@ -292,7 +292,7 @@ class Download extends BaseController
 		}elseif($submit=='Draft') {
 			for($i=0; $i < sizeof($id_download ?? []);$i++) {
 				$data = array(	'id_download'		=> $id_download[$i],
-								'id_user'			=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_download'	=> 'Draft'
 							);
    				$m_download->edit($data);

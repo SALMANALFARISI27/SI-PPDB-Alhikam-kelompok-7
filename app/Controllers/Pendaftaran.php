@@ -220,7 +220,7 @@ class Pendaftaran extends BaseController
 				// masuk database
 				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 				$data = [
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_gelombang' => $id_gelombang,
 					'id_agama' => $this->request->getPost('id_agama'),
 					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
@@ -291,7 +291,7 @@ class Pendaftaran extends BaseController
 				// masuk database
 				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 				$data = [
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_gelombang' => $id_gelombang,
 					'id_agama' => $this->request->getPost('id_agama'),
 					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),

@@ -36,7 +36,7 @@ class Video extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$judulbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('judul')));
-				$data = [	'id_user'			=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_video'		=> $slug,
 							'judul'				=> $this->request->getPost('judul'),
 							'keterangan'		=> $this->request->getPost('keterangan'),
@@ -54,7 +54,7 @@ class Video extends BaseController
 			}else{
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('judul')));
-				$data = [	'id_user'			=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_video'		=> $slug,
 							'judul'				=> $this->request->getPost('judul'),
 							'keterangan'		=> $this->request->getPost('keterangan'),
@@ -108,7 +108,7 @@ class Video extends BaseController
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('judul')));
 				$data = [	'id_video'		=> $id_video,
-							'id_user'		=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_video'	=> $slug,
 							'judul'			=> $this->request->getPost('judul'),
 							'keterangan'	=> $this->request->getPost('keterangan'),
@@ -126,7 +126,7 @@ class Video extends BaseController
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('judul')));
 				$data = [	'id_video'		=> $id_video,
-							'id_user'		=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_video'	=> $slug,
 							'judul'			=> $this->request->getPost('judul'),
 							'keterangan'	=> $this->request->getPost('keterangan'),

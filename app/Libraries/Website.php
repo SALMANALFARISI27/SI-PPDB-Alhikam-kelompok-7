@@ -1,7 +1,7 @@
 <?php 
 namespace App\Libraries;
 use App\Models\Konfigurasi_model;
-use App\Models\Sekolah_model;
+use App\Models\Yayasan_model;
 
 class Website
 {
@@ -41,9 +41,7 @@ class Website
 	// kepsek
 	public function kepsek()
 	{
-		$m_konfigurasi 	= new Sekolah_model();
-		$konfigurasi 	= $m_konfigurasi->listing();
-		return $konfigurasi->nama_kepsek;
+		return '';
 	}
 
 	// whatsapp
@@ -66,7 +64,7 @@ class Website
 	// namasekolah
 	public function namasekolah()
 	{
-		$m_konfigurasi 	= new Sekolah_model();
+		$m_konfigurasi 	= new Yayasan_model();
 		$konfigurasi 	= $m_konfigurasi->listing();
 		return $konfigurasi->nama_yayasan;
 	}

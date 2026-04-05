@@ -14,9 +14,9 @@ class Akun_model extends Model
     public function listing()
     {
         $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $builder->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $builder->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $builder->orderBy('akun.id_akun', 'DESC');
         $query = $builder->get();
         return $query->getResult();
@@ -26,9 +26,9 @@ class Akun_model extends Model
     public function home()
     {
         $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $builder->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $builder->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $builder->limit(6);
         $builder->orderBy('akun.id_akun', 'DESC');
         $query = $builder->get();
@@ -39,9 +39,9 @@ class Akun_model extends Model
     public function jenis_akun_depan($jenis_akun)
     {
         $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $builder->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $builder->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $builder->where('akun.jenis_akun', $jenis_akun);
         $builder->orderBy('akun.id_akun', 'DESC');
         $query = $builder->get();
@@ -52,9 +52,9 @@ class Akun_model extends Model
     public function paginasi_admin($limit, $start)
     {
         $this->table('akun');
-        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $this->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $this->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $this->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $this->limit((int) $limit, (int) $start);
         $this->orderBy('akun.id_akun', 'DESC');
         $query = $this->get();
@@ -65,9 +65,9 @@ class Akun_model extends Model
     public function paginasi_admin_cari($keywords, $limit, $start)
     {
         $this->table('akun');
-        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $this->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $this->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $this->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $this->like('akun.nama', $keywords, 'BOTH');
         $this->orLike('akun.email', $keywords, 'BOTH');
         $this->orLike('akun.telepon', $keywords, 'BOTH');
@@ -81,9 +81,9 @@ class Akun_model extends Model
     public function total_cari($keywords)
     {
         $this->table('akun');
-        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $this->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $this->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $this->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $this->like('akun.nama', $keywords, 'BOTH');
         $this->orLike('akun.email', $keywords, 'BOTH');
         $this->orLike('akun.telepon', $keywords, 'BOTH');
@@ -104,9 +104,9 @@ class Akun_model extends Model
     public function semua($status_akun, $limit, $start)
     {
         $this->table('akun');
-        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $this->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $this->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $this->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $this->where('akun.status_akun', $status_akun);
         $this->limit((int) $limit, (int) $start);
         $this->orderBy('akun.id_akun', 'DESC');
@@ -128,9 +128,9 @@ class Akun_model extends Model
     public function login($username, $password)
     {
         $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $builder->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $builder->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $builder->where('akun.email', $username);
         $builder->where('akun.password', $password);
         $builder->orderBy('akun.id_akun', 'DESC');
@@ -142,9 +142,9 @@ class Akun_model extends Model
     public function login_nis($username, $password)
     {
         $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $builder->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $builder->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $builder->where('akun.id_akun', $username);
         $builder->where('akun.password', $password);
         $builder->orderBy('akun.id_akun', 'DESC');
@@ -156,9 +156,9 @@ class Akun_model extends Model
     public function kode_akun($kode_akun)
     {
         $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $builder->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $builder->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $builder->where('akun.kode_akun', $kode_akun);
         $builder->orderBy('akun.id_akun', 'DESC');
         $query = $builder->get();
@@ -169,9 +169,9 @@ class Akun_model extends Model
     public function email($email)
     {
         $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $builder->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $builder->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $builder->where('akun.email', $email);
         $builder->orderBy('akun.id_akun', 'DESC');
         $query = $builder->get();
@@ -182,9 +182,9 @@ class Akun_model extends Model
     public function detail($id_akun)
     {
         $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, users.nama AS nama_user');
+        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn, admin.nama AS nama_user');
         $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-        $builder->join('users', 'users.id_user = akun.id_user', 'LEFT');
+        $builder->join('admin', 'admin.id_admin = akun.id_admin', 'LEFT');
         $builder->where('akun.id_akun', $id_akun);
         $builder->orderBy('akun.id_akun', 'DESC');
         $query = $builder->get();

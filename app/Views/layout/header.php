@@ -109,11 +109,11 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
             <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
               <ul class="navbar-nav">
                 
-                <?php if($site_setting->menu_home=='Publish') { ?>
+                <?php if(($site_setting->menu_home ?? 'Publish')=='Publish') { ?>
                 <li class="nav-item">
                   <a class="nav-link text-uppercase" href="<?php echo base_url() ?>">Beranda</a>
                 </li>
-                <?php } if($site_setting->menu_berita=='Publish') { ?>
+                <?php } if(($site_setting->menu_berita ?? 'Publish')=='Publish') { ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Berita</a>
                   <ul class="dropdown-menu bg-dark">
@@ -124,7 +124,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                    
                   </ul>
                 </li>
-                <?php } if($site_setting->menu_profil=='Publish') { ?>
+                <?php } if(($site_setting->menu_profil ?? 'Publish')=='Publish') { ?>
                 <li class="nav-item dropdown dropdown-mega">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Profil</a>
                   <ul class="dropdown-menu mega-menu mega-menu-dark">
@@ -187,7 +187,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                   </ul>
                   <!--/.dropdown-menu -->
                 </li>
-                <?php } if($site_setting->menu_prestasi=='Publish') { ?>
+                <?php } if(($site_setting->menu_prestasi ?? 'Publish')=='Publish') { ?>
 
                   <li class="nav-item dropdown">
                     <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Prestasi</a>
@@ -200,7 +200,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                   </li>
 
                 
-              <?php } if($site_setting->menu_galeri=='Publish') { ?>
+              <?php } if(($site_setting->menu_galeri ?? 'Publish')=='Publish') { ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Galeri</a>
                   <ul class="dropdown-menu bg-dark">
@@ -210,7 +210,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                    
                   </ul>
                 </li>
-              <?php } if($site_setting->menu_unduhan=='Publish') { ?>
+              <?php } if(($site_setting->menu_unduhan ?? 'Publish')=='Publish') { ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Unduhan</a>
                   <ul class="dropdown-menu bg-dark">
@@ -222,7 +222,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                    
                   </ul>
                 </li>
-              <?php } if($site_setting->menu_jenjang=='Publish') { ?>
+              <?php } if(($site_setting->menu_jenjang ?? 'Publish')=='Publish') { ?>
                 <li class="nav-item dropdown">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Jenjang</a>
                   <ul class="dropdown-menu bg-dark">
@@ -234,7 +234,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                    
                   </ul>
                 </li>
-              <?php } if($site_setting->menu_tautan=='Publish') { ?>
+              <?php } if(($site_setting->menu_tautan ?? 'Publish')=='Publish') { ?>
                 <li class="nav-item dropdown dropdown-mega">
                   <a class="nav-link text-uppercase dropdown-toggle" href="#" data-bs-toggle="dropdown">Tautan</a>
                   <ul class="dropdown-menu mega-menu mega-menu-dark mega-menu-img">
@@ -259,7 +259,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                   <!--/.dropdown-menu -->
                 </li>
               <?php } ?>
-              <?php if($site_setting->menu_kontak=='Publish') { ?>
+              <?php if(($site_setting->menu_kontak ?? 'Publish')=='Publish') { ?>
                 <li class="nav-item">
                   <a class="nav-link text-uppercase" href="<?php echo base_url('kontak') ?>">Kontak</a>
                 </li>

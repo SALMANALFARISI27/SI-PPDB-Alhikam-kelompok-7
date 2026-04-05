@@ -13,9 +13,9 @@ class Portfolio_model extends Model
     public function listing()
     {
         $builder = $this->db->table('portfolio');
-        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama');
+        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama');
         $builder->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $builder->join('users','users.id_user = portfolio.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
         $builder->orderBy('portfolio.id_portfolio','DESC');
         $query = $builder->get();
         return $query->getResult();
@@ -25,9 +25,9 @@ class Portfolio_model extends Model
     public function read($slug_portfolio)
     {
         $builder = $this->db->table('portfolio');
-        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama');
+        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama');
         $builder->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $builder->join('users','users.id_user = portfolio.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
         $builder->where('portfolio.slug_portfolio',$slug_portfolio);
         $builder->orderBy('portfolio.id_portfolio','DESC');
         $query = $builder->get();
@@ -38,9 +38,9 @@ class Portfolio_model extends Model
     public function home($limit,$status_portfolio)
     {
         $builder = $this->db->table('portfolio');
-        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama');
+        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama');
         $builder->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $builder->join('users','users.id_user = portfolio.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
         $builder->where('portfolio.status_portfolio',$status_portfolio);
         $this->limit((int)$limit);
         $builder->orderBy('portfolio.id_portfolio','DESC');
@@ -52,9 +52,9 @@ class Portfolio_model extends Model
     public function status_portfolio($limit,$start,$status_portfolio)
     {
         $builder = $this->db->table('portfolio');
-        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama');
+        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama');
         $builder->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $builder->join('users','users.id_user = portfolio.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
         $builder->where('portfolio.status_portfolio',$status_portfolio);
         $builder->limit($limit,$start);
         $builder->orderBy('portfolio.id_portfolio','DESC');
@@ -75,9 +75,9 @@ class Portfolio_model extends Model
     public function kategori_portfolio($limit, $start, $slug_kategori_portfolio)
     {
         $builder = $this->db->table('portfolio');
-        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama');
+        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama');
         $builder->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $builder->join('users','users.id_user = portfolio.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
 
         $builder->where('kategori_portfolio.slug_kategori_portfolio',$slug_kategori_portfolio);
         $builder->limit($limit,$start);
@@ -91,9 +91,9 @@ class Portfolio_model extends Model
     public function kategori_portfolio_status($limit, $start, $id_kategori_portfolio,$status_portfolio)
     {
         $builder = $this->db->table('portfolio');
-        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama');
+        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama');
         $builder->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $builder->join('users','users.id_user = portfolio.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
         $builder->where(array(  'portfolio.id_kategori_portfolio' => $id_kategori_portfolio,
                                 'portfolio.status_portfolio'      => $status_portfolio
                         ));
@@ -117,9 +117,9 @@ class Portfolio_model extends Model
     public function paginasi_admin($limit,$start)
     {
         $this->table('portfolio');
-        $this->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama');
+        $this->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama');
         $this->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $this->join('users','users.id_user = portfolio.id_user','LEFT');
+        $this->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('portfolio.id_portfolio','DESC');
         $query = $this->get();
@@ -130,9 +130,9 @@ class Portfolio_model extends Model
     public function paginasi_admin_cari($keywords,$limit,$start)
     {
         $this->table('portfolio');
-        $this->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama');
+        $this->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama');
         $this->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $this->join('users','users.id_user = portfolio.id_user','LEFT');
+        $this->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
         $this->like('portfolio.judul_portfolio',$keywords,'BOTH');
         $this->orLike('portfolio.isi',$keywords,'BOTH');
         $this->limit((int)$limit,(int)$start);
@@ -145,9 +145,9 @@ class Portfolio_model extends Model
     public function total_cari($keywords)
     {
         $this->table('portfolio');
-        $this->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama AS nama_user');
+        $this->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama AS nama_user');
         $this->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $this->join('users','users.id_user = portfolio.id_user','LEFT');
+        $this->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
         $this->like('portfolio.judul_portfolio',$keywords,'BOTH');
         $this->orLike('portfolio.isi',$keywords,'BOTH');
         $this->orderBy('portfolio.id_portfolio','DESC');
@@ -178,9 +178,9 @@ class Portfolio_model extends Model
     public function detail($id_portfolio)
     {
         $builder = $this->db->table('portfolio');
-        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, users.nama');
+        $builder->select('portfolio.*, kategori_portfolio.nama_kategori_portfolio, kategori_portfolio.slug_kategori_portfolio, admin.nama');
         $builder->join('kategori_portfolio','kategori_portfolio.id_kategori_portfolio = portfolio.id_kategori_portfolio','LEFT');
-        $builder->join('users','users.id_user = portfolio.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = portfolio.id_admin','LEFT');
         $builder->where('portfolio.id_portfolio',$id_portfolio);
         $builder->orderBy('portfolio.id_portfolio','DESC');
         $query = $builder->get();

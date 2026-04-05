@@ -36,7 +36,7 @@ class Kategori_fasilitas extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_fasilitasbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_fasilitas')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_fasilitas'		=> $slug,
 							'nama_kategori_fasilitas'		=> $this->request->getPost('nama_kategori_fasilitas'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -52,7 +52,7 @@ class Kategori_fasilitas extends BaseController
 			}else{
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_fasilitas')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_fasilitas'		=> $slug,
 							'nama_kategori_fasilitas'		=> $this->request->getPost('nama_kategori_fasilitas'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -104,7 +104,7 @@ class Kategori_fasilitas extends BaseController
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_fasilitas')));
 				$data = [	'id_kategori_fasilitas'		=> $id_kategori_fasilitas,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_fasilitas'	=> $slug,
 							'nama_kategori_fasilitas'	=> $this->request->getPost('nama_kategori_fasilitas'),
 							'keterangan'			=> $this->request->getPost('keterangan'),
@@ -120,7 +120,7 @@ class Kategori_fasilitas extends BaseController
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_fasilitas')));
 				$data = [	'id_kategori_fasilitas'		=> $id_kategori_fasilitas,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_fasilitas'	=> $slug,
 							'nama_kategori_fasilitas'	=> $this->request->getPost('nama_kategori_fasilitas'),
 							'keterangan'			=> $this->request->getPost('keterangan'),

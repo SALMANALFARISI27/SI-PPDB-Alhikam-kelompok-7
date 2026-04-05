@@ -1,6 +1,6 @@
 <?php
 namespace App\Libraries;
-use App\Models\User_model;
+use App\Models\Admin_model;
 use App\Models\Calon_peserta_didik_model;
 use App\Models\Akun_model;
 
@@ -11,16 +11,15 @@ class Simple_login
 	{
 		$this->session = \Config\Services::session();
 		$uri = service('uri');
-		$m_user = new User_model();
-		$user = $m_user->login($username, $password);
-		if ($user) {
+		$m_admin = new Admin_model();
+		$admin = $m_admin->login($username, $password);
+		if ($admin) {
 			// Jika username password benar
 			$this->session->set('username', $username);
-			$this->session->set('id_user', $user->id_user);
-			$this->session->set('id_staff', $user->id_staff);
-			$this->session->set('nama', $user->nama);
-			$this->session->set('akses_level', $user->akses_level);
-			// $this->session->setFlashdata('warning', 'Hai '.$user->nama.', Anda berhasil login');
+			$this->session->set('id_admin', $admin->id_admin);
+			$this->session->set('id_user', $admin->id_admin);
+			$this->session->set('nama', $admin->nama);
+			// $this->session->setFlashdata('warning', 'Hai '.$admin->nama.', Anda berhasil login');
 			// return redirect()->to(base_url('admin/dasbor'));
 			if ($pengalihan !== '') {
 				header("Location: " . $pengalihan);
@@ -119,8 +118,7 @@ class Simple_login
 	{
 		$this->session = \Config\Services::session();
 		$this->session->remove('username');
-		$this->session->remove('id_user');
-		$this->session->remove('akses_level');
+		$this->session->remove('id_admin');
 		$this->session->remove('nama');
 		$this->session->remove('pengalihan');
 		$this->session->setFlashdata('sukses', 'Anda berhasil logout');

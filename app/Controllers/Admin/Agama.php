@@ -21,7 +21,7 @@ class Agama extends BaseController
 				'nama_agama' 	=> 'required|min_length[3]|is_unique[agama.nama_agama]',
         	])) {
 			// masuk database
-			$data = [	'id_user'		=> $this->session->get('id_user'),
+			$data = [	'id_admin' => $this->session->get('id_user'),
 						'nama_agama'	=> $this->request->getPost('nama_agama'),
 						'urutan'		=> $this->request->getPost('urutan'),
 					];
@@ -52,7 +52,7 @@ class Agama extends BaseController
         	])) {
 			
 			$data = [	'id_agama'		=> $id_agama,
-						'id_user'		=> $this->session->get('id_user'),
+						'id_admin' => $this->session->get('id_user'),
 						'nama_agama'	=> $this->request->getPost('nama_agama'),
 						'urutan'		=> $this->request->getPost('urutan'),
 				];

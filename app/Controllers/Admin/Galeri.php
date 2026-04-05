@@ -89,7 +89,7 @@ class Galeri extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
 	        	// masuk database
 	        	$data = array(
-	        		'id_user'			=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_galeri'=> $this->request->getVar('id_kategori_galeri'),
 					'judul_galeri'		=> $this->request->getVar('judul_galeri'),
 					'jenis_galeri'		=> $this->request->getVar('jenis_galeri'),
@@ -102,7 +102,7 @@ class Galeri extends BaseController
         		return redirect()->to(base_url('admin/galeri'))->with('sukses', 'Data Berhasil di Simpan');
         	}else{
         		$data = array(
-	        		'id_user'			=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_galeri'=> $this->request->getVar('id_kategori_galeri'),
 					'judul_galeri'		=> $this->request->getVar('judul_galeri'),
 					'jenis_galeri'		=> $this->request->getVar('jenis_galeri'),
@@ -142,7 +142,7 @@ class Galeri extends BaseController
 		if($submit=='Update') {
    			for($i=0; $i < sizeof($id_galeri ?? []);$i++) {
 				$data = array(	'id_galeri'				=> $id_galeri[$i],
-								'id_user'				=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'id_kategori_galeri'	=> $this->request->getVar('id_kategori_galeri')
 							);
    				$m_galeri->edit($data);
@@ -151,7 +151,7 @@ class Galeri extends BaseController
 		}elseif($submit=='Publish') {
 			for($i=0; $i < sizeof($id_galeri ?? []);$i++) {
 				$data = array(	'id_galeri'		=> $id_galeri[$i],
-								'id_user'		=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_galeri'	=> 'Publish'
 							);
    				$m_galeri->edit($data);
@@ -160,7 +160,7 @@ class Galeri extends BaseController
 		}elseif($submit=='Draft') {
 			for($i=0; $i < sizeof($id_galeri ?? []);$i++) {
 				$data = array(	'id_galeri'		=> $id_galeri[$i],
-								'id_user'		=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_galeri'	=> 'Draft'
 							);
    				$m_galeri->edit($data);
@@ -206,7 +206,7 @@ class Galeri extends BaseController
 	        	// masuk database
 			    $data = array(
 	        		'id_galeri'			=> $id_galeri,
-	        		'id_user'			=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_galeri'=> $this->request->getVar('id_kategori_galeri'),
 					'judul_galeri'		=> $this->request->getVar('judul_galeri'),
 					'jenis_galeri'		=> $this->request->getVar('jenis_galeri'),
@@ -219,7 +219,7 @@ class Galeri extends BaseController
 			}else{
 				$data = array(
 	        		'id_galeri'			=> $id_galeri,
-	        		'id_user'			=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_galeri'=> $this->request->getVar('id_kategori_galeri'),
 					'judul_galeri'		=> $this->request->getVar('judul_galeri'),
 					'jenis_galeri'		=> $this->request->getVar('jenis_galeri'),

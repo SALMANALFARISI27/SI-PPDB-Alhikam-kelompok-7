@@ -79,7 +79,7 @@ class Fasilitas extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
 	        	// masuk database
 	        	$data = array(
-	        		'id_user'				=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas'		=> strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas'		=> $this->request->getVar('judul_fasilitas'),
@@ -97,7 +97,7 @@ class Fasilitas extends BaseController
         		return redirect()->to(base_url('admin/fasilitas'))->with('sukses', 'Data Berhasil di Simpan');
         	}else{
         		$data = array(
-	        		'id_user'				=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas'		=> strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas'		=> $this->request->getVar('judul_fasilitas'),
@@ -142,7 +142,7 @@ class Fasilitas extends BaseController
 		if($submit=='Update') {
    			for($i=0; $i < sizeof($id_fasilitas ?? []);$i++) {
 				$data = array(	'id_fasilitas'				=> $id_fasilitas[$i],
-								'id_user'				=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas')
 							);
    				$m_fasilitas->edit($data);
@@ -151,7 +151,7 @@ class Fasilitas extends BaseController
 		}elseif($submit=='Publish') {
 			for($i=0; $i < sizeof($id_fasilitas ?? []);$i++) {
 				$data = array(	'id_fasilitas'		=> $id_fasilitas[$i],
-								'id_user'		=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_fasilitas'	=> 'Publish'
 							);
    				$m_fasilitas->edit($data);
@@ -160,7 +160,7 @@ class Fasilitas extends BaseController
 		}elseif($submit=='Draft') {
 			for($i=0; $i < sizeof($id_fasilitas ?? []);$i++) {
 				$data = array(	'id_fasilitas'		=> $id_fasilitas[$i],
-								'id_user'		=> $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_user'),
 								'status_fasilitas'	=> 'Draft'
 							);
    				$m_fasilitas->edit($data);
@@ -207,7 +207,7 @@ class Fasilitas extends BaseController
 	        	// masuk database
 			    $data = array(
 	        		'id_fasilitas'			=> $id_fasilitas,
-	        		'id_user'				=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas'		=> strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas'		=> $this->request->getVar('judul_fasilitas'),
@@ -225,7 +225,7 @@ class Fasilitas extends BaseController
 			}else{
 				$data = array(
 	        		'id_fasilitas'			=> $id_fasilitas,
-	        		'id_user'				=> $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_user'),
 					'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas'		=> strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas'		=> $this->request->getVar('judul_fasilitas'),

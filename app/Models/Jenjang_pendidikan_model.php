@@ -14,9 +14,9 @@ class Jenjang_pendidikan_model extends Model
     public function listing()
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
         $query = $this->get();
         return $query->getResult();
@@ -26,9 +26,9 @@ class Jenjang_pendidikan_model extends Model
     public function paginasi_admin($limit,$start)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
         $query = $this->get();
@@ -39,9 +39,9 @@ class Jenjang_pendidikan_model extends Model
     public function paginasi_admin_cari($keywords,$limit,$start)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->like('jenjang_pendidikan.judul_jenjang_pendidikan',$keywords,'BOTH');
         $this->orLike('jenjang_pendidikan.isi',$keywords,'BOTH');
         $this->orLike('jenjang_pendidikan.ringkasan',$keywords,'BOTH');
@@ -55,9 +55,9 @@ class Jenjang_pendidikan_model extends Model
     public function total_cari($keywords)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->like('jenjang_pendidikan.judul_jenjang_pendidikan',$keywords,'BOTH');
         $this->orLike('jenjang_pendidikan.isi',$keywords,'BOTH');
         $this->orLike('jenjang_pendidikan.ringkasan',$keywords,'BOTH');
@@ -70,9 +70,9 @@ class Jenjang_pendidikan_model extends Model
     public function main()
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [  'status_jenjang_pendidikan' => 'Publish']);
         $this->orderBy('jenjang_pendidikan.urutan','ASC');
         $query = $this->get();
@@ -83,9 +83,9 @@ class Jenjang_pendidikan_model extends Model
     public function beranda($jenis_jenjang_pendidikan,$jumlah)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [     'status_jenjang_pendidikan' => 'Publish',
                             'jenis_jenjang_pendidikan'  => $jenis_jenjang_pendidikan]);
         $this->orderBy('jenjang_pendidikan.tanggal_publish','DESC');
@@ -98,9 +98,9 @@ class Jenjang_pendidikan_model extends Model
     public function sidebar()
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [  'status_jenjang_pendidikan' => 'Publish',
                             'jenis_jenjang_pendidikan'  => 'Jenjang_pendidikan']);
         $this->orderBy('jenjang_pendidikan.tanggal_publish','DESC');
@@ -114,9 +114,9 @@ class Jenjang_pendidikan_model extends Model
     public function home()
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [     'status_jenjang_pendidikan' => 'Publish',
                             'jenis_jenjang_pendidikan'  => 'Jenjang_pendidikan']);
         $this->orderBy('jenjang_pendidikan.tanggal_publish','DESC');
@@ -128,9 +128,9 @@ class Jenjang_pendidikan_model extends Model
     public function jenis_publish($jenis_jenjang_pendidikan)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [     'status_jenjang_pendidikan'    => 'Publish',
                             'jenis_jenjang_pendidikan'  => $jenis_jenjang_pendidikan
                         ]);
@@ -143,9 +143,9 @@ class Jenjang_pendidikan_model extends Model
     public function jenjang($id_jenjang)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [  'status_jenjang_pendidikan'         => 'Publish',
                             'jenis_jenjang_pendidikan'          => 'Jenjang_pendidikan',
                             'jenjang_pendidikan.id_jenjang'    => $id_jenjang]);
@@ -158,9 +158,9 @@ class Jenjang_pendidikan_model extends Model
     public function jenjang_status_jenis_all($id_jenjang,$jenis_jenjang_pendidikan,$status_jenjang_pendidikan,$limit,$start)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [ 'jenjang_pendidikan.id_jenjang'    => $id_jenjang,
                         'jenjang_pendidikan.jenis_jenjang_pendidikan'   => $jenis_jenjang_pendidikan,
                         'jenjang_pendidikan.status_jenjang_pendidikan'  => $status_jenjang_pendidikan,
@@ -187,9 +187,9 @@ class Jenjang_pendidikan_model extends Model
     public function jenjang_all($id_jenjang,$limit,$start)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [  'jenjang_pendidikan.id_jenjang'    => $id_jenjang]);
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('jenjang_pendidikan.tanggal_publish','DESC');
@@ -209,10 +209,10 @@ class Jenjang_pendidikan_model extends Model
     public function author_all($id_user)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
-        $this->where( [  'jenjang_pendidikan.id_user'    => $id_user]);
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
+        $this->where( [  'jenjang_pendidikan.id_admin'    => $id_user]);
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
         $query = $this->get();
         return $query->getResult();
@@ -221,7 +221,7 @@ class Jenjang_pendidikan_model extends Model
     // total
     public function total_author($id_user)
     {
-        $this->table('jenjang_pendidikan')->where('id_user',$id_user);
+        $this->table('jenjang_pendidikan')->where('id_admin',$id_user);
         $query = $this->get();
         return $query->getNumRows();
     }
@@ -230,9 +230,9 @@ class Jenjang_pendidikan_model extends Model
     public function jenis_jenjang_pendidikan_all($jenis_jenjang_pendidikan,$limit,$start)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [  'jenjang_pendidikan.jenis_jenjang_pendidikan'    => $jenis_jenjang_pendidikan]);
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
@@ -252,9 +252,9 @@ class Jenjang_pendidikan_model extends Model
     public function status_jenjang_pendidikan_all($status_jenjang_pendidikan,$limit,$start)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [  'jenjang_pendidikan.status_jenjang_pendidikan'    => $status_jenjang_pendidikan]);
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
@@ -266,9 +266,9 @@ class Jenjang_pendidikan_model extends Model
     public function jenis_status_jenjang_pendidikan_all($jenis_jenjang_pendidikan,$status_jenjang_pendidikan,$limit,$start)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where( [     'jenjang_pendidikan.jenis_jenjang_pendidikan'   => $jenis_jenjang_pendidikan,
                             'jenjang_pendidikan.status_jenjang_pendidikan'  => $status_jenjang_pendidikan,  
                         ]);
@@ -306,9 +306,9 @@ class Jenjang_pendidikan_model extends Model
     public function detail($id_jenjang_pendidikan)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where('jenjang_pendidikan.id_jenjang_pendidikan',$id_jenjang_pendidikan);
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
         $query = $this->get();
@@ -329,9 +329,9 @@ class Jenjang_pendidikan_model extends Model
     public function read($slug_jenjang_pendidikan)
     {
         $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, users.nama');
+        $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
-        $this->join('users','users.id_user = jenjang_pendidikan.id_user','LEFT');
+        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
         $this->where('jenjang_pendidikan.slug_jenjang_pendidikan',$slug_jenjang_pendidikan);
         $this->where('jenjang_pendidikan.status_jenjang_pendidikan','Publish');
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');

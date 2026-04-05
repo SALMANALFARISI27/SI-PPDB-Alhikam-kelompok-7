@@ -37,7 +37,7 @@ class Link_website extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_link_websitebaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_link_website')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_link_website'			=> $slug,
 							'nama_link_website'			=> $this->request->getPost('nama_link_website'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -55,7 +55,7 @@ class Link_website extends BaseController
 			}else{
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_link_website')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_link_website'			=> $slug,
 							'nama_link_website'			=> $this->request->getPost('nama_link_website'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -109,7 +109,7 @@ class Link_website extends BaseController
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_link_website')));
 				$data = [	'id_link_website'		=> $id_link_website,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_link_website'		=> $slug,
 							'nama_link_website'		=> $this->request->getPost('nama_link_website'),
 							'keterangan'			=> $this->request->getPost('keterangan'),
@@ -127,7 +127,7 @@ class Link_website extends BaseController
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_link_website')));
 				$data = [	'id_link_website'		=> $id_link_website,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_link_website'		=> $slug,
 							'nama_link_website'		=> $this->request->getPost('nama_link_website'),
 							'keterangan'			=> $this->request->getPost('keterangan'),

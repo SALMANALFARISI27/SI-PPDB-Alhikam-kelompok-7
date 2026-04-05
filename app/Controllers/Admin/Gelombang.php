@@ -58,7 +58,7 @@ class Gelombang extends BaseController
 			for ($i = 0; $i < sizeof($id_calon_peserta_didik ?? []); $i++) {
 				$data = array(
 					'id_calon_peserta_didik' => $id_calon_peserta_didik[$i],
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'status_pendaftaran' => $this->request->getVar('status_pendaftaran')
 				);
 				$m_calon_peserta_didik->edit($data);
@@ -246,7 +246,7 @@ class Gelombang extends BaseController
 				// masuk database
 				$slug = strtolower(url_title($this->request->getVar('judul')));
 				$data = [
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'tahun_ajaran' => $this->request->getPost('tahun_ajaran'),
 					'tahap' => $tahap,
 					'tahun' => $this->request->getPost('tahun'),
@@ -267,7 +267,7 @@ class Gelombang extends BaseController
 				// masuk database
 				$slug = strtolower(url_title($this->request->getVar('judul')));
 				$data = [
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'tahun_ajaran' => $this->request->getPost('tahun_ajaran'),
 					'tahap' => $tahap,
 					'tahun' => $this->request->getPost('tahun'),
@@ -329,7 +329,7 @@ class Gelombang extends BaseController
 				$slug = strtolower(url_title($this->request->getVar('judul')));
 				$data = [
 					'id_gelombang' => $id_gelombang,
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'tahun_ajaran' => $this->request->getPost('tahun_ajaran'),
 					'tahun' => $this->request->getPost('tahun'),
 					'slug' => $slug,
@@ -350,7 +350,7 @@ class Gelombang extends BaseController
 				$slug = strtolower(url_title($this->request->getVar('judul')));
 				$data = [
 					'id_gelombang' => $id_gelombang,
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'tahun_ajaran' => $this->request->getPost('tahun_ajaran'),
 					'tahun' => $this->request->getPost('tahun'),
 					'slug' => $slug,
@@ -447,7 +447,7 @@ class Gelombang extends BaseController
 				// masuk database
 				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 				$data = [
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_gelombang' => $id_gelombang,
 					'id_agama' => $this->request->getPost('id_agama'),
 					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
@@ -519,7 +519,7 @@ class Gelombang extends BaseController
 				// masuk database
 				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 				$data = [
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_gelombang' => $id_gelombang,
 					'id_agama' => $this->request->getPost('id_agama'),
 					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
@@ -678,7 +678,7 @@ class Gelombang extends BaseController
 				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 				$data = [
 					'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_gelombang' => $id_gelombang,
 					'id_agama' => $this->request->getPost('id_agama'),
 					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
@@ -747,7 +747,7 @@ class Gelombang extends BaseController
 				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 				$data = [
 					'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
-					'id_user' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_user'),
 					'id_gelombang' => $id_gelombang,
 					'id_agama' => $this->request->getPost('id_agama'),
 					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
@@ -875,7 +875,7 @@ class Gelombang extends BaseController
 		if (isset($_POST['status'])) {
 			$data = [
 				'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
-				'id_user' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_user'),
 				'status_pendaftaran' => $this->request->getPost('status_pendaftaran')
 			];
 			// masuk database

@@ -93,7 +93,7 @@
 			<td><?php echo $fasilitas->judul_fasilitas ?>
 				<small>
 					<br><i class="fa fa-graduation-cap"></i> <?php echo $fasilitas->kode_nomor_fasilitas ?>
-					<br><i class="fa fa-calendar"></i> <?php echo $fasilitas->tahun_fasilitas ?> (<?php echo $this->website->tanggal_bulan($fasilitas->tanggal_fasilitas) ?>)
+					<br><i class="fa fa-calendar"></i>  (<?php echo $this->website->tanggal_bulan($fasilitas->tanggal_fasilitas) ?>)
 				
 				</small>
 			</td>

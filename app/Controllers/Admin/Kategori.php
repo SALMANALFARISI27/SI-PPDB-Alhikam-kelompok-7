@@ -22,7 +22,7 @@ class Kategori extends BaseController
         	])) {
 			// masuk database
 			$slug = url_title($this->request->getPost('nama_kategori'), '-', TRUE); 
-			$data = [	'id_user'		=> $this->session->get('id_user'),
+			$data = [	'id_admin' => $this->session->get('id_user'),
 						'nama_kategori'	=> $this->request->getPost('nama_kategori'),
 						'slug_kategori'	=> $slug,
 						'urutan'		=> $this->request->getPost('urutan')
@@ -56,7 +56,7 @@ class Kategori extends BaseController
 			// masuk database
 			$slug = url_title($this->request->getPost('nama_kategori'), '-', TRUE); 
 			$data = [	'id_kategori'	=> $id_kategori,
-						'id_user'		=> $this->session->get('id_user'),
+						'id_admin' => $this->session->get('id_user'),
 						'nama_kategori'	=> $this->request->getPost('nama_kategori'),
 						'slug_kategori'	=> $slug,
 						'urutan'		=> $this->request->getPost('urutan')

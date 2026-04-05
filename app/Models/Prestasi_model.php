@@ -13,9 +13,9 @@ class Prestasi_model extends Model
     public function listing()
     {
         $builder = $this->db->table('prestasi');
-        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama');
+        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $builder->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $builder->join('users','users.id_user = prestasi.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
         $builder->orderBy('prestasi.id_prestasi','DESC');
         $query = $builder->get();
         return $query->getResult();
@@ -25,9 +25,9 @@ class Prestasi_model extends Model
     public function read($slug_prestasi)
     {
         $builder = $this->db->table('prestasi');
-        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama');
+        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $builder->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $builder->join('users','users.id_user = prestasi.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
         $builder->where('prestasi.slug_prestasi',$slug_prestasi);
         $builder->orderBy('prestasi.id_prestasi','DESC');
         $query = $builder->get();
@@ -38,9 +38,9 @@ class Prestasi_model extends Model
     public function home($limit,$status_prestasi)
     {
         $builder = $this->db->table('prestasi');
-        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama');
+        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $builder->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $builder->join('users','users.id_user = prestasi.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
         $builder->where('prestasi.status_prestasi',$status_prestasi);
         $this->limit((int)$limit);
         $builder->orderBy('prestasi.id_prestasi','DESC');
@@ -52,9 +52,9 @@ class Prestasi_model extends Model
     public function status_prestasi($limit,$start,$status_prestasi)
     {
         $builder = $this->db->table('prestasi');
-        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama');
+        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $builder->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $builder->join('users','users.id_user = prestasi.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
         $builder->where('prestasi.status_prestasi',$status_prestasi);
         $builder->limit($limit,$start);
         $builder->orderBy('prestasi.id_prestasi','DESC');
@@ -75,9 +75,9 @@ class Prestasi_model extends Model
     public function kategori_prestasi($limit, $start, $slug_kategori_prestasi)
     {
         $builder = $this->db->table('prestasi');
-        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama');
+        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $builder->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $builder->join('users','users.id_user = prestasi.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
 
         $builder->where('kategori_prestasi.slug_kategori_prestasi',$slug_kategori_prestasi);
         $builder->limit($limit,$start);
@@ -91,9 +91,9 @@ class Prestasi_model extends Model
     public function kategori_prestasi_status($limit, $start, $id_kategori_prestasi,$status_prestasi)
     {
         $builder = $this->db->table('prestasi');
-        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama');
+        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $builder->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $builder->join('users','users.id_user = prestasi.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
         $builder->where(array(  'prestasi.id_kategori_prestasi' => $id_kategori_prestasi,
                                 'prestasi.status_prestasi'      => $status_prestasi
                         ));
@@ -117,9 +117,9 @@ class Prestasi_model extends Model
     public function paginasi_admin($limit,$start)
     {
         $this->table('prestasi');
-        $this->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama');
+        $this->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $this->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $this->join('users','users.id_user = prestasi.id_user','LEFT');
+        $this->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('prestasi.id_prestasi','DESC');
         $query = $this->get();
@@ -130,9 +130,9 @@ class Prestasi_model extends Model
     public function paginasi_admin_cari($keywords,$limit,$start)
     {
         $this->table('prestasi');
-        $this->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama');
+        $this->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $this->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $this->join('users','users.id_user = prestasi.id_user','LEFT');
+        $this->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
         $this->like('prestasi.judul_prestasi',$keywords,'BOTH');
         $this->orLike('prestasi.isi',$keywords,'BOTH');
         $this->limit((int)$limit,(int)$start);
@@ -145,9 +145,9 @@ class Prestasi_model extends Model
     public function total_cari($keywords)
     {
         $this->table('prestasi');
-        $this->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama AS nama_user');
+        $this->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama AS nama_user');
         $this->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $this->join('users','users.id_user = prestasi.id_user','LEFT');
+        $this->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
         $this->like('prestasi.judul_prestasi',$keywords,'BOTH');
         $this->orLike('prestasi.isi',$keywords,'BOTH');
         $this->orderBy('prestasi.id_prestasi','DESC');
@@ -178,9 +178,9 @@ class Prestasi_model extends Model
     public function detail($id_prestasi)
     {
         $builder = $this->db->table('prestasi');
-        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, users.nama');
+        $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $builder->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
-        $builder->join('users','users.id_user = prestasi.id_user','LEFT');
+        $builder->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
         $builder->where('prestasi.id_prestasi',$id_prestasi);
         $builder->orderBy('prestasi.id_prestasi','DESC');
         $query = $builder->get();

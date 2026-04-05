@@ -526,12 +526,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi/sekolah') ?>"
-                  class="nav-link <?php if ($uri->getSegment(3) == "sekolah") {
+                <a href="<?php echo base_url('admin/konfigurasi/yayasan') ?>"
+                  class="nav-link <?php if ($uri->getSegment(3) == "yayasan") {
                     echo 'active';
                   } ?>">
                   <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Informasi Sekolah</p>
+                  <p>Informasi Yayasan</p>
                 </a>
               </li>
             </ul>

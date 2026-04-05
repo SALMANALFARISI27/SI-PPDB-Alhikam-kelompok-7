@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\User_model;
+use App\Models\Admin_model;
 use App\Models\Konfigurasi_model;
 
 class Login extends BaseController
@@ -44,7 +44,7 @@ class Login extends BaseController
     public function lupa()
     {
         $m_site         = new Konfigurasi_model();
-        $m_user         = new User_model();
+        $m_admin         = new Admin_model();
         $site           = $m_site->listing();
         $this->email    = \Config\Services::email();
         // email setting
@@ -53,9 +53,9 @@ class Login extends BaseController
             'SMTPHost'     => $site->smtp_host, 
             'SMTPUser'     => $site->smtp_user, 
             'SMTPPass'     => $site->smtp_pass, 
-            'SMTPPort'     => $site->smtp_port, 
-            'SMTPTimeout'  => $site->smtp_timeout, 
-            'SMTPCrypto'   => 'tls', 
+            'SMTPPort'     => (int) $site->smtp_port, 
+            'SMTPTimeout'  => (int) $site->smtp_timeout, 
+            'SMTPCrypto'   => ($site->smtp_port == 465) ? 'ssl' : 'tls', 
             'mailType'     => 'html',
             'charset'      => 'utf-8',
             'validate'     => true,
@@ -69,14 +69,14 @@ class Login extends BaseController
             ])) 
         {           
             $email  = $this->request->getPost('email');
-            $check  = $m_user->check($email);
+            $check  = $m_admin->check($email);
             if($check) {
-                $data = [   'id_user'       => $check->id_user,
+                $data = [   'id_admin'       => $check->id_admin,
                             'kode_rahasia'  => random_string('alnum',64),
                             'ip_address'    => $_SERVER['REMOTE_ADDR']
                     ];
-                $m_user->edit($data);
-                $hasil              = $m_user->check($email);
+                $m_admin->edit($data);
+                $hasil              = $m_admin->check($email);
 
                 $subject            = 'Reset Password - '.$site->namaweb;
                 $message            = 'Hai '.$check->nama.'. Untuk melakukan reset password, silakan klik link ini: <a href="'.base_url('login/reset/'.$hasil->kode_rahasia).'">'.base_url('login/reset/'.$hasil->kode_rahasia).'</a>. Lalu lakukan pergantian password.<hr>'.$site->namaweb;
@@ -90,7 +90,9 @@ class Login extends BaseController
                 if ($this->email->send()) {
                     return redirect()->to(base_url('login/lupa'))->with('sukses', 'Link reset password telah dikirimkan email. Silakan check folder spam email jika email tidak ditemukan.');
                 } else {
-                    return redirect()->to(base_url('login/lupa'))->with('sukses', $this->email->printDebugger());
+                    $error = $this->email->printDebugger();
+                    log_message('error', $error);
+                    return redirect()->to(base_url('login/lupa'))->with('warning', 'Gagal mengirim email reset: Periksa pengaturan SMTP.');
                 } 
             }else{
                 return redirect()->to(base_url('login/lupa'))->with('warning', 'Mohon Maaf. Email tidak ditemukan atau tidak terdaftar.');
@@ -110,9 +112,9 @@ class Login extends BaseController
     public function reset($kode_rahasia='')
     {
         $m_site         = new Konfigurasi_model();
-        $m_user         = new User_model();
+        $m_admin         = new Admin_model();
         $site           = $m_site->listing();
-        $user           = $m_user->kode_rahasia($kode_rahasia);
+        $user           = $m_admin->kode_rahasia($kode_rahasia);
 
         if($kode_rahasia == '')//! validate empty token
         {
@@ -131,11 +133,11 @@ class Login extends BaseController
             'password_konfirmasi'       => 'required|matches[password]'
         ])) {
             
-            $data = [   'id_user'       => $user->id_user,
+            $data = [   'id_admin'       => $user->id_admin,
                         'password'      => sha1($this->request->getPost('password')),
                         'kode_rahasia'  => ''
                     ];
-            $m_user->edit($data);
+            $m_admin->edit($data);
             // masuk database
             $this->session->setFlashdata('sukses','Password telah diupdate');
             return redirect()->to(base_url('login'));

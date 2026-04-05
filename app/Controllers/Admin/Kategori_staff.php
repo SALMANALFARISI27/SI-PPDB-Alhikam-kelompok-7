@@ -36,7 +36,7 @@ class Kategori_staff extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_staffbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_staff')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_staff'		=> $slug,
 							'nama_kategori_staff'		=> $this->request->getPost('nama_kategori_staff'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -52,7 +52,7 @@ class Kategori_staff extends BaseController
 			}else{
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_staff')));
-				$data = [	'id_user'					=> $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_staff'		=> $slug,
 							'nama_kategori_staff'		=> $this->request->getPost('nama_kategori_staff'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -104,7 +104,7 @@ class Kategori_staff extends BaseController
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_staff')));
 				$data = [	'id_kategori_staff'		=> $id_kategori_staff,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_staff'	=> $slug,
 							'nama_kategori_staff'	=> $this->request->getPost('nama_kategori_staff'),
 							'keterangan'			=> $this->request->getPost('keterangan'),
@@ -120,7 +120,7 @@ class Kategori_staff extends BaseController
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_staff')));
 				$data = [	'id_kategori_staff'		=> $id_kategori_staff,
-							'id_user'				=> $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_user'),
 							'slug_kategori_staff'	=> $slug,
 							'nama_kategori_staff'	=> $this->request->getPost('nama_kategori_staff'),
 							'keterangan'			=> $this->request->getPost('keterangan'),
