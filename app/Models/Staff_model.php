@@ -138,22 +138,22 @@ class Staff_model extends Model
     }
 
     // author
-    public function author_all($id_user)
+    public function author_all($id_admin)
     {
         $this->table('staff');
         $this->select('staff.*, kategori_staff.nama_kategori_staff, kategori_staff.slug_kategori_staff, admin.nama AS nama_user');
         $this->join('kategori_staff','kategori_staff.id_kategori_staff = staff.id_kategori_staff','LEFT');
         $this->join('admin','admin.id_admin = staff.id_admin','LEFT');
-        $this->where( [  'staff.id_admin'    => $id_user]);
+        $this->where( [  'staff.id_admin'    => $id_admin]);
         $this->orderBy('staff.id_staff','DESC');
         $query = $this->get();
         return $query->getResult();
     }
 
     // total
-    public function total_author($id_user)
+    public function total_author($id_admin)
     {
-        $this->table('staff')->where('id_admin',$id_user);
+        $this->table('staff')->where('id_admin',$id_admin);
         $query = $this->get();
         return $query->getNumRows();
     }
@@ -270,3 +270,4 @@ class Staff_model extends Model
     }
 
 }
+

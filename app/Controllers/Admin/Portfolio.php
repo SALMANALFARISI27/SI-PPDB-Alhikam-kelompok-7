@@ -79,7 +79,7 @@ class Portfolio extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
 	        	// masuk database
 	        	$data = array(
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio'),
 					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
 					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
@@ -93,7 +93,7 @@ class Portfolio extends BaseController
         		return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
         	}else{
         		$data = array(
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio'),
 					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
 					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
@@ -134,7 +134,7 @@ class Portfolio extends BaseController
 		if($submit=='Update') {
    			for($i=0; $i < sizeof($id_portfolio ?? []);$i++) {
 				$data = array(	'id_portfolio'				=> $id_portfolio[$i],
-								'id_admin' => $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_admin'),
 								'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio')
 							);
    				$m_portfolio->edit($data);
@@ -143,7 +143,7 @@ class Portfolio extends BaseController
 		}elseif($submit=='Publish') {
 			for($i=0; $i < sizeof($id_portfolio ?? []);$i++) {
 				$data = array(	'id_portfolio'		=> $id_portfolio[$i],
-								'id_admin' => $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_admin'),
 								'status_portfolio'	=> 'Publish'
 							);
    				$m_portfolio->edit($data);
@@ -152,7 +152,7 @@ class Portfolio extends BaseController
 		}elseif($submit=='Draft') {
 			for($i=0; $i < sizeof($id_portfolio ?? []);$i++) {
 				$data = array(	'id_portfolio'		=> $id_portfolio[$i],
-								'id_admin' => $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_admin'),
 								'status_portfolio'	=> 'Draft'
 							);
    				$m_portfolio->edit($data);
@@ -198,7 +198,7 @@ class Portfolio extends BaseController
 	        	// masuk database
 			    $data = array(
 	        		'id_portfolio'			=> $id_portfolio,
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio'),
 					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
 					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
@@ -212,7 +212,7 @@ class Portfolio extends BaseController
 			}else{
 				$data = array(
 	        		'id_portfolio'			=> $id_portfolio,
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio'),
 					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
 					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),

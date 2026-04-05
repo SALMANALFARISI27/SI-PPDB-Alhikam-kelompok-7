@@ -104,22 +104,22 @@ class Download_model extends Model
     }
 
     // author
-    public function author_all($id_user)
+    public function author_all($id_admin)
     {
         $this->table('download');
         $this->select('download.*, kategori_download.nama_kategori_download, kategori_download.slug_kategori_download, admin.nama');
         $this->join('kategori_download','kategori_download.id_kategori_download = download.id_kategori_download','LEFT');
         $this->join('admin','admin.id_admin = download.id_admin','LEFT');
-        $this->where( [  'download.id_admin'    => $id_user]);
+        $this->where( [  'download.id_admin'    => $id_admin]);
         $this->orderBy('download.id_download','DESC');
         $query = $this->get();
         return $query->getResult();
     }
 
     // total
-    public function total_author($id_user)
+    public function total_author($id_admin)
     {
-        $this->table('download')->where('id_admin',$id_user);
+        $this->table('download')->where('id_admin',$id_admin);
         $query = $this->get();
         return $query->getNumRows();
     }
@@ -205,3 +205,4 @@ class Download_model extends Model
     }
 
 }
+

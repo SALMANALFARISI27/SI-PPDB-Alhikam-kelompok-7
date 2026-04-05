@@ -205,22 +205,22 @@ class Berita_model extends Model
     }
 
     // author
-    public function author_all($id_user)
+    public function author_all($id_admin)
     {
         $this->table('berita');
         $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
         $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
-        $this->where( [  'berita.id_admin'    => $id_user]);
+        $this->where( [  'berita.id_admin'    => $id_admin]);
         $this->orderBy('berita.id_berita','DESC');
         $query = $this->get();
         return $query->getResult();
     }
 
     // total
-    public function total_author($id_user)
+    public function total_author($id_admin)
     {
-        $this->table('berita')->where('id_admin',$id_user);
+        $this->table('berita')->where('id_admin',$id_admin);
         $query = $this->get();
         return $query->getNumRows();
     }
@@ -361,3 +361,4 @@ class Berita_model extends Model
     }
 
 }
+

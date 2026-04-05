@@ -206,22 +206,22 @@ class Jenjang_pendidikan_model extends Model
     }
 
     // author
-    public function author_all($id_user)
+    public function author_all($id_admin)
     {
         $this->table('jenjang_pendidikan');
         $this->select('jenjang_pendidikan.*, jenjang.nama_jenjang, admin.nama');
         $this->join('jenjang','jenjang.id_jenjang = jenjang_pendidikan.id_jenjang','LEFT');
         $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
-        $this->where( [  'jenjang_pendidikan.id_admin'    => $id_user]);
+        $this->where( [  'jenjang_pendidikan.id_admin'    => $id_admin]);
         $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
         $query = $this->get();
         return $query->getResult();
     }
 
     // total
-    public function total_author($id_user)
+    public function total_author($id_admin)
     {
-        $this->table('jenjang_pendidikan')->where('id_admin',$id_user);
+        $this->table('jenjang_pendidikan')->where('id_admin',$id_admin);
         $query = $this->get();
         return $query->getNumRows();
     }
@@ -362,3 +362,4 @@ class Jenjang_pendidikan_model extends Model
     }
 
 }
+

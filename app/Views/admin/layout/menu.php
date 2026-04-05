@@ -30,14 +30,12 @@
         <?php if ($this->website->fitur_pendaftaran() == 'On') { ?>
 
           <!-- berita -->
-          <li
-            class="nav-item <?php if ($uri->getSegment(2) == "pendaftar" || $uri->getSegment(2) == "kategori") {
-              echo 'menu-open';
+          <li class="nav-item <?php if ($uri->getSegment(2) == "pendaftar" || $uri->getSegment(2) == "kategori") {
+            echo 'menu-open';
+          } ?>">
+            <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "pendaftar" || $uri->getSegment(2) == "kategori") {
+              echo 'active';
             } ?>">
-            <a href="#"
-              class="nav-link <?php if ($uri->getSegment(2) == "pendaftar" || $uri->getSegment(2) == "kategori") {
-                echo 'active';
-              } ?>">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>PPDB Online <i class="right fas fa-angle-left"></i></p>
             </a>
@@ -63,10 +61,9 @@
               </li> -->
 
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/jenis_dokumen') ?>"
-                  class="nav-link <?php if ($uri->getSegment(2) == "jenis_dokumen") {
-                    echo 'active';
-                  } ?>">
+                <a href="<?php echo base_url('admin/jenis_dokumen') ?>" class="nav-link <?php if ($uri->getSegment(2) == "jenis_dokumen") {
+                     echo 'active';
+                   } ?>">
                   <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Jenis Dokumen PPDB</p>
                 </a>
@@ -78,14 +75,12 @@
 
 
         <!-- berita -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "berita" || $uri->getSegment(2) == "kategori") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "berita" || $uri->getSegment(2) == "kategori") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "berita" || $uri->getSegment(2) == "kategori") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "berita" || $uri->getSegment(2) == "kategori") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-newspaper"></i>
             <p>Berita &amp; Profil <i class="right fas fa-angle-left"></i></p>
           </a>
@@ -112,14 +107,12 @@
         </li>
 
         <!-- galeri -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "galeri" || $uri->getSegment(2) == "kategori_galeri") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "galeri" || $uri->getSegment(2) == "kategori_galeri") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "galeri" || $uri->getSegment(2) == "kategori_galeri") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "galeri" || $uri->getSegment(2) == "kategori_galeri") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-image"></i>
             <p>Galeri<i class="right fas fa-angle-left active"></i></p>
           </a>
@@ -146,14 +139,12 @@
         </li>
 
         <!-- download -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "download" || $uri->getSegment(2) == "kategori_download") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "download" || $uri->getSegment(2) == "kategori_download") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "download" || $uri->getSegment(2) == "kategori_download") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "download" || $uri->getSegment(2) == "kategori_download") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-upload"></i>
             <p>File &amp; Download<i class="right fas fa-angle-left"></i></p>
           </a>
@@ -180,14 +171,12 @@
         </li>
 
         <!-- PRESTASI -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "prestasi" || $uri->getSegment(2) == "kategori_prestasi") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "prestasi" || $uri->getSegment(2) == "kategori_prestasi") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "prestasi" || $uri->getSegment(2) == "kategori_prestasi") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "prestasi" || $uri->getSegment(2) == "kategori_prestasi") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-certificate"></i>
             <p>Prestasi<i class="right fas fa-angle-left"></i></p>
           </a>
@@ -216,24 +205,21 @@
 
         <!-- video -->
         <li class="nav-item">
-          <a href="<?php echo base_url('admin/video') ?>"
-            class="nav-link <?php if ($uri->getSegment(2) == "video") {
-              echo 'active';
-            } ?>">
+          <a href="<?php echo base_url('admin/video') ?>" class="nav-link <?php if ($uri->getSegment(2) == "video") {
+               echo 'active';
+             } ?>">
             <i class="nav-icon fab fa-youtube"></i>
             <p>Video Youtube</p>
           </a>
         </li>
 
         <!-- PORTFOLIO -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "portfolio" || $uri->getSegment(2) == "kategori_portfolio") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "portfolio" || $uri->getSegment(2) == "kategori_portfolio") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "portfolio" || $uri->getSegment(2) == "kategori_portfolio") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "portfolio" || $uri->getSegment(2) == "kategori_portfolio") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-tasks"></i>
             <p>Karya<i class="right fas fa-angle-left"></i></p>
           </a>
@@ -261,14 +247,12 @@
 
 
         <!-- Fasilitas -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "fasilitas" || $uri->getSegment(2) == "kategori_fasilitas") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "fasilitas" || $uri->getSegment(2) == "kategori_fasilitas") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "fasilitas" || $uri->getSegment(2) == "kategori_fasilitas") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "fasilitas" || $uri->getSegment(2) == "kategori_fasilitas") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-home"></i>
             <p>Fasilitas <i class="right fas fa-angle-left"></i></p>
           </a>
@@ -295,14 +279,12 @@
         </li>
 
         <!-- EKSTRAKULIKULER -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "ekstrakurikuler" || $uri->getSegment(2) == "kategori_ekstrakurikuler") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "ekstrakurikuler" || $uri->getSegment(2) == "kategori_ekstrakurikuler") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "ekstrakurikuler" || $uri->getSegment(2) == "kategori_ekstrakurikuler") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "ekstrakurikuler" || $uri->getSegment(2) == "kategori_ekstrakurikuler") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-futbol"></i>
             <p>Ekstrakurikuler <i class="right fas fa-angle-left"></i></p>
           </a>
@@ -329,14 +311,12 @@
         </li>
 
         <!-- jenjang_pendidikan -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "jenjang_pendidikan" || $uri->getSegment(2) == "kategori") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "jenjang_pendidikan" || $uri->getSegment(2) == "kategori") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "jenjang_pendidikan" || $uri->getSegment(2) == "kategori") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "jenjang_pendidikan" || $uri->getSegment(2) == "kategori") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-chair"></i>
             <p>Jenjang Pendidikan <i class="right fas fa-angle-left"></i></p>
           </a>
@@ -362,14 +342,12 @@
 
 
         <!-- Guru -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "staff" || $uri->getSegment(2) == "kategori_staff") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "staff" || $uri->getSegment(2) == "kategori_staff") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "staff" || $uri->getSegment(2) == "kategori_staff") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "staff" || $uri->getSegment(2) == "kategori_staff") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-chair"></i>
             <p>Staff <i class="right fas fa-angle-left"></i></p>
           </a>
@@ -396,14 +374,12 @@
         </li>
 
         <!-- master -->
-        <li
-          class="nav-item <?php if ($uri->getSegment(2) == "link_website" || $uri->getSegment(2) == "jenjang" || $uri->getSegment(2) == "hubungan" || $uri->getSegment(2) == "pekerjaan" || $uri->getSegment(2) == "agama") {
-            echo 'menu-open';
+        <li class="nav-item <?php if ($uri->getSegment(2) == "link_website" || $uri->getSegment(2) == "jenjang" || $uri->getSegment(2) == "hubungan" || $uri->getSegment(2) == "pekerjaan" || $uri->getSegment(2) == "agama") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "link_website" || $uri->getSegment(2) == "jenjang" || $uri->getSegment(2) == "hubungan" || $uri->getSegment(2) == "pekerjaan" || $uri->getSegment(2) == "agama") {
+            echo 'active';
           } ?>">
-          <a href="#"
-            class="nav-link <?php if ($uri->getSegment(2) == "link_website" || $uri->getSegment(2) == "jenjang" || $uri->getSegment(2) == "hubungan" || $uri->getSegment(2) == "pekerjaan" || $uri->getSegment(2) == "agama") {
-              echo 'active';
-            } ?>">
             <i class="nav-icon fas fa-table"></i>
             <p>Master Data <i class="right fas fa-angle-left"></i></p>
           </a>
@@ -437,106 +413,93 @@
           </ul>
         </li>
 
-        <?php if (Session()->get('akses_level') == 'Admin') { ?>
+        <!-- pengguna -->
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/user') ?>" class="nav-link <?php if ($uri->getSegment(2) == "user") {
+               echo 'active';
+             } ?>">
+            <i class="nav-icon fas fa-user-lock"></i>
+            <p>Pengguna Sistem</p>
+          </a>
+        </li>
 
-
-          <!-- pengguna -->
-          <li class="nav-item">
-            <a href="<?php echo base_url('admin/user') ?>"
-              class="nav-link <?php if ($uri->getSegment(2) == "user") {
-                echo 'active';
-              } ?>">
-              <i class="nav-icon fas fa-user-lock"></i>
-              <p>Pengguna Sistem</p>
-            </a>
-          </li>
-
-          <!-- konfigurasi -->
-          <li class="nav-item <?php if ($uri->getSegment(2) == "konfigurasi") {
-            echo 'menu-open';
+        <!-- konfigurasi -->
+        <li class="nav-item <?php if ($uri->getSegment(2) == "konfigurasi") {
+          echo 'menu-open';
+        } ?>">
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "konfigurasi") {
+            echo 'active';
           } ?>">
-            <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "konfigurasi") {
-              echo 'active';
-            } ?>">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>Setting Aplikasi <i class="right fas fa-angle-left"></i></p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi') ?>"
-                  class="nav-link <?php if ($uri->getSegment(2) == "konfigurasi" && $uri->getSegment(3) == "") {
-                    echo 'active';
-                  } ?>">
-                  <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Setting Aplikasi</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi/email') ?>"
-                  class="nav-link <?php if ($uri->getSegment(3) == "email") {
-                    echo 'active';
-                  } ?>">
-                  <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Setting Email</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi/banner') ?>"
-                  class="nav-link <?php if ($uri->getSegment(3) == "banner") {
-                    echo 'active';
-                  } ?>">
-                  <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>About Us &amp; Banner</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi/logo') ?>"
-                  class="nav-link <?php if ($uri->getSegment(3) == "logo") {
-                    echo 'active';
-                  } ?>">
-                  <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Ganti Logo</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi/icon') ?>"
-                  class="nav-link <?php if ($uri->getSegment(3) == "icon") {
-                    echo 'active';
-                  } ?>">
-                  <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Ganti Icon</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi/login') ?>"
-                  class="nav-link <?php if ($uri->getSegment(3) == "login") {
-                    echo 'active';
-                  } ?>">
-                  <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Background Login</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/jenis_dokumen') ?>"
-                  class="nav-link <?php if ($uri->getSegment(2) == "jenis_dokumen") {
-                    echo 'active';
-                  } ?>">
-                  <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Jenis Dokumen Pendaftaran</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi/yayasan') ?>"
-                  class="nav-link <?php if ($uri->getSegment(3) == "yayasan") {
-                    echo 'active';
-                  } ?>">
-                  <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Informasi Yayasan</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        <?php } ?>
+            <i class="nav-icon fas fa-cog"></i>
+            <p>Setting Aplikasi <i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="<?php echo base_url('admin/konfigurasi') ?>" class="nav-link <?php if ($uri->getSegment(2) == "konfigurasi" && $uri->getSegment(3) == "") {
+                   echo 'active';
+                 } ?>">
+                <i class="fa fa-arrow-right nav-icon"></i>
+                <p>Setting Aplikasi</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('admin/konfigurasi/email') ?>" class="nav-link <?php if ($uri->getSegment(3) == "email") {
+                   echo 'active';
+                 } ?>">
+                <i class="fa fa-arrow-right nav-icon"></i>
+                <p>Setting Email</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('admin/konfigurasi/banner') ?>" class="nav-link <?php if ($uri->getSegment(3) == "banner") {
+                   echo 'active';
+                 } ?>">
+                <i class="fa fa-arrow-right nav-icon"></i>
+                <p>About Us &amp; Banner</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('admin/konfigurasi/logo') ?>" class="nav-link <?php if ($uri->getSegment(3) == "logo") {
+                   echo 'active';
+                 } ?>">
+                <i class="fa fa-arrow-right nav-icon"></i>
+                <p>Ganti Logo</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('admin/konfigurasi/icon') ?>" class="nav-link <?php if ($uri->getSegment(3) == "icon") {
+                   echo 'active';
+                 } ?>">
+                <i class="fa fa-arrow-right nav-icon"></i>
+                <p>Ganti Icon</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('admin/konfigurasi/login') ?>" class="nav-link <?php if ($uri->getSegment(3) == "login") {
+                   echo 'active';
+                 } ?>">
+                <i class="fa fa-arrow-right nav-icon"></i>
+                <p>Background Login</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('admin/jenis_dokumen') ?>" class="nav-link <?php if ($uri->getSegment(2) == "jenis_dokumen") {
+                   echo 'active';
+                 } ?>">
+                <i class="fa fa-arrow-right nav-icon"></i>
+                <p>Jenis Dokumen Pendaftaran</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?php echo base_url('admin/konfigurasi/yayasan') ?>" class="nav-link <?php if ($uri->getSegment(3) == "yayasan") {
+                   echo 'active';
+                 } ?>">
+                <i class="fa fa-arrow-right nav-icon"></i>
+                <p>Informasi Yayasan</p>
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
       <br><br><br>
       <br><br><br>

@@ -132,15 +132,15 @@ class Berita extends BaseController
 	}
 
 	// author
-	public function author($id_user)
+	public function author($id_admin)
 	{
 
 		$m_berita = new Berita_model();
 		$m_kategori = new Kategori_model();
 		$m_admin = new Admin_model();
-		$admin = $m_admin->detail($id_user);
-		$berita = $m_berita->author_all($id_user);
-		$total = $m_berita->total_author($id_user);
+		$admin = $m_admin->detail($id_admin);
+		$berita = $m_berita->author_all($id_admin);
+		$total = $m_berita->total_author($id_admin);
 
 		$data = [
 			'title' => $admin->nama . ' (' . $total . ')',
@@ -185,7 +185,7 @@ class Berita extends BaseController
 					->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
 				// masuk database
 				$data = array(
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori' => $this->request->getVar('id_kategori'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
@@ -202,7 +202,7 @@ class Berita extends BaseController
 				return redirect()->to(base_url('admin/berita/jenis_berita/' . $this->request->getVar('jenis_berita')))->with('sukses', 'Data Berhasil di Simpan');
 			} else {
 				$data = array(
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori' => $this->request->getVar('id_kategori'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
@@ -264,7 +264,7 @@ class Berita extends BaseController
 				// masuk database
 				$data = array(
 					'id_berita' => $id_berita,
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori' => $this->request->getVar('id_kategori'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
@@ -272,7 +272,6 @@ class Berita extends BaseController
 					'isi' => $this->request->getVar('isi'),
 					'status_berita' => $this->request->getVar('status_berita'),
 					'jenis_berita' => $this->request->getVar('jenis_berita'),
-					'keywords' => $this->request->getVar('keywords'),
 
 					'urutan' => $this->request->getVar('urutan'),
 					'gambar' => $namabaru,
@@ -283,7 +282,7 @@ class Berita extends BaseController
 			} else {
 				$data = array(
 					'id_berita' => $id_berita,
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori' => $this->request->getVar('id_kategori'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
@@ -291,7 +290,6 @@ class Berita extends BaseController
 					'isi' => $this->request->getVar('isi'),
 					'status_berita' => $this->request->getVar('status_berita'),
 					'jenis_berita' => $this->request->getVar('jenis_berita'),
-					'keywords' => $this->request->getVar('keywords'),
 
 					'urutan' => $this->request->getVar('urutan'),
 					'tanggal_publish' => date('Y-m-d', strtotime($this->request->getVar('tanggal_publish'))) . ' ' . date('H:i', strtotime($this->request->getVar('jam')))
@@ -330,7 +328,7 @@ class Berita extends BaseController
 			for ($i = 0; $i < sizeof($id_berita ?? []); $i++) {
 				$data = array(
 					'id_berita' => $id_berita[$i],
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'jenis_berita' => $this->request->getVar('jenis_berita')
 				);
 				$m_berita->edit($data);
@@ -340,7 +338,7 @@ class Berita extends BaseController
 			for ($i = 0; $i < sizeof($id_berita ?? []); $i++) {
 				$data = array(
 					'id_berita' => $id_berita[$i],
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'status_berita' => 'Publish'
 				);
 				$m_berita->edit($data);
@@ -350,7 +348,7 @@ class Berita extends BaseController
 			for ($i = 0; $i < sizeof($id_berita ?? []); $i++) {
 				$data = array(
 					'id_berita' => $id_berita[$i],
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'status_berita' => 'Draft'
 				);
 				$m_berita->edit($data);

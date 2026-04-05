@@ -78,7 +78,7 @@ class Prestasi extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
 	        	// masuk database
 	        	$data = array(
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi'),
 					'slug_prestasi'			=> strtolower(url_title($this->request->getVar('judul_prestasi'))),
 					'judul_prestasi'		=> $this->request->getVar('judul_prestasi'),
@@ -96,7 +96,7 @@ class Prestasi extends BaseController
         		return redirect()->to(base_url('admin/prestasi'))->with('sukses', 'Data Berhasil di Simpan');
         	}else{
         		$data = array(
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi'),
 					'slug_prestasi'			=> strtolower(url_title($this->request->getVar('judul_prestasi'))),
 					'judul_prestasi'		=> $this->request->getVar('judul_prestasi'),
@@ -141,7 +141,7 @@ class Prestasi extends BaseController
 		if($submit=='Update') {
    			for($i=0; $i < sizeof($id_prestasi ?? []);$i++) {
 				$data = array(	'id_prestasi'				=> $id_prestasi[$i],
-								'id_admin' => $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_admin'),
 								'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi')
 							);
    				$m_prestasi->edit($data);
@@ -150,7 +150,7 @@ class Prestasi extends BaseController
 		}elseif($submit=='Publish') {
 			for($i=0; $i < sizeof($id_prestasi ?? []);$i++) {
 				$data = array(	'id_prestasi'		=> $id_prestasi[$i],
-								'id_admin' => $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_admin'),
 								'status_prestasi'	=> 'Publish'
 							);
    				$m_prestasi->edit($data);
@@ -159,7 +159,7 @@ class Prestasi extends BaseController
 		}elseif($submit=='Draft') {
 			for($i=0; $i < sizeof($id_prestasi ?? []);$i++) {
 				$data = array(	'id_prestasi'		=> $id_prestasi[$i],
-								'id_admin' => $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_admin'),
 								'status_prestasi'	=> 'Draft'
 							);
    				$m_prestasi->edit($data);
@@ -205,7 +205,7 @@ class Prestasi extends BaseController
 	        	// masuk database
 			    $data = array(
 	        		'id_prestasi'			=> $id_prestasi,
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi'),
 					'slug_prestasi'			=> strtolower(url_title($this->request->getVar('judul_prestasi'))),
 					'judul_prestasi'		=> $this->request->getVar('judul_prestasi'),
@@ -223,7 +223,7 @@ class Prestasi extends BaseController
 			}else{
 				$data = array(
 	        		'id_prestasi'			=> $id_prestasi,
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi'),
 					'slug_prestasi'			=> strtolower(url_title($this->request->getVar('judul_prestasi'))),
 					'judul_prestasi'		=> $this->request->getVar('judul_prestasi'),

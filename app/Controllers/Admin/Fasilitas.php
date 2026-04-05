@@ -79,13 +79,12 @@ class Fasilitas extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
 	        	// masuk database
 	        	$data = array(
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas'		=> strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas'		=> $this->request->getVar('judul_fasilitas'),
 					'kode_nomor_fasilitas'	=> $this->request->getVar('kode_nomor_fasilitas'),
 					'kondisi_fasilitas'		=> $this->request->getVar('kondisi_fasilitas'),
-					'tahun_fasilitas'		=> $this->request->getVar('tahun_fasilitas'),
 					'tanggal_fasilitas'		=> $this->website->tanggal_input($this->request->getVar('tanggal_fasilitas')),
 					'isi'					=> $this->request->getVar('isi'),
 					'gambar' 				=> $namabaru,
@@ -97,13 +96,12 @@ class Fasilitas extends BaseController
         		return redirect()->to(base_url('admin/fasilitas'))->with('sukses', 'Data Berhasil di Simpan');
         	}else{
         		$data = array(
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas'		=> strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas'		=> $this->request->getVar('judul_fasilitas'),
 					'kode_nomor_fasilitas'	=> $this->request->getVar('kode_nomor_fasilitas'),
 					'kondisi_fasilitas'		=> $this->request->getVar('kondisi_fasilitas'),
-					'tahun_fasilitas'		=> $this->request->getVar('tahun_fasilitas'),
 					'tanggal_fasilitas'		=> $this->website->tanggal_input($this->request->getVar('tanggal_fasilitas')),
 					'isi'					=> $this->request->getVar('isi'),
 					'status_text'			=> $this->request->getVar('status_text'),
@@ -142,7 +140,7 @@ class Fasilitas extends BaseController
 		if($submit=='Update') {
    			for($i=0; $i < sizeof($id_fasilitas ?? []);$i++) {
 				$data = array(	'id_fasilitas'				=> $id_fasilitas[$i],
-								'id_admin' => $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_admin'),
 								'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas')
 							);
    				$m_fasilitas->edit($data);
@@ -151,7 +149,7 @@ class Fasilitas extends BaseController
 		}elseif($submit=='Publish') {
 			for($i=0; $i < sizeof($id_fasilitas ?? []);$i++) {
 				$data = array(	'id_fasilitas'		=> $id_fasilitas[$i],
-								'id_admin' => $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_admin'),
 								'status_fasilitas'	=> 'Publish'
 							);
    				$m_fasilitas->edit($data);
@@ -160,7 +158,7 @@ class Fasilitas extends BaseController
 		}elseif($submit=='Draft') {
 			for($i=0; $i < sizeof($id_fasilitas ?? []);$i++) {
 				$data = array(	'id_fasilitas'		=> $id_fasilitas[$i],
-								'id_admin' => $this->session->get('id_user'),
+								'id_admin' => $this->session->get('id_admin'),
 								'status_fasilitas'	=> 'Draft'
 							);
    				$m_fasilitas->edit($data);
@@ -207,13 +205,12 @@ class Fasilitas extends BaseController
 	        	// masuk database
 			    $data = array(
 	        		'id_fasilitas'			=> $id_fasilitas,
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas'		=> strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas'		=> $this->request->getVar('judul_fasilitas'),
 					'kode_nomor_fasilitas'	=> $this->request->getVar('kode_nomor_fasilitas'),
 					'kondisi_fasilitas'		=> $this->request->getVar('kondisi_fasilitas'),
-					'tahun_fasilitas'		=> $this->request->getVar('tahun_fasilitas'),
 					'tanggal_fasilitas'		=> $this->website->tanggal_input($this->request->getVar('tanggal_fasilitas')),
 					'isi'					=> $this->request->getVar('isi'),
 					'gambar' 				=> $namabaru,
@@ -225,13 +222,12 @@ class Fasilitas extends BaseController
 			}else{
 				$data = array(
 	        		'id_fasilitas'			=> $id_fasilitas,
-	        		'id_admin' => $this->session->get('id_user'),
+	        		'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_fasilitas'	=> $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas'		=> strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas'		=> $this->request->getVar('judul_fasilitas'),
 					'kode_nomor_fasilitas'	=> $this->request->getVar('kode_nomor_fasilitas'),
 					'kondisi_fasilitas'		=> $this->request->getVar('kondisi_fasilitas'),
-					'tahun_fasilitas'		=> $this->request->getVar('tahun_fasilitas'),
 					'tanggal_fasilitas'		=> $this->website->tanggal_input($this->request->getVar('tanggal_fasilitas')),
 					'isi'					=> $this->request->getVar('isi'),
 					'status_text'			=> $this->request->getVar('status_text'),

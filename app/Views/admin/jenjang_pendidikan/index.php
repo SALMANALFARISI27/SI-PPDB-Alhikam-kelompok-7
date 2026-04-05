@@ -91,7 +91,7 @@
 				<br><i class="fa fa-home"></i> <a href="<?php echo base_url('admin/jenjang_pendidikan/jenis_jenjang_pendidikan/'.$jenjang_pendidikan->jenis_jenjang_pendidikan) ?>">
 					<?php echo $jenjang_pendidikan->jenis_jenjang_pendidikan ?>
 				</a>
-				<br><i class="fa fa-user"></i> <a href="<?php echo base_url('admin/jenjang_pendidikan/author/'.$jenjang_pendidikan->id_user) ?>">
+				<br><i class="fa fa-user"></i> <a href="<?php echo base_url('admin/jenjang_pendidikan/author/'.$jenjang_pendidikan->id_admin) ?>">
 						<?php echo $jenjang_pendidikan->nama ?>
 					</a>
 			</small>

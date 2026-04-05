@@ -132,14 +132,14 @@ class Jenjang_pendidikan extends BaseController
 	}
 
 	// author
-	public function author($id_user)
+	public function author($id_admin)
 	{
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
 		$m_jenjang = new Jenjang_model();
 		$m_admin = new Admin_model();
-		$admin = $m_admin->detail($id_user);
-		$jenjang_pendidikan = $m_jenjang_pendidikan->author_all($id_user);
-		$total = $m_jenjang_pendidikan->total_author($id_user);
+		$admin = $m_admin->detail($id_admin);
+		$jenjang_pendidikan = $m_jenjang_pendidikan->author_all($id_admin);
+		$total = $m_jenjang_pendidikan->total_author($id_admin);
 
 		$data = [
 			'title' => $admin->nama . ' (' . $total . ')',
@@ -180,7 +180,7 @@ class Jenjang_pendidikan extends BaseController
 					->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
 				// masuk database
 				$data = array(
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'id_jenjang' => $this->request->getVar('id_jenjang'),
 					'slug_jenjang_pendidikan' => strtolower(url_title($this->request->getVar('judul_jenjang_pendidikan'))),
 					'judul_jenjang_pendidikan' => $this->request->getVar('judul_jenjang_pendidikan'),
@@ -197,7 +197,7 @@ class Jenjang_pendidikan extends BaseController
 				return redirect()->to(base_url('admin/jenjang_pendidikan'))->with('sukses', 'Data Berhasil di Simpan');
 			} else {
 				$data = array(
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'id_jenjang' => $this->request->getVar('id_jenjang'),
 					'slug_jenjang_pendidikan' => strtolower(url_title($this->request->getVar('judul_jenjang_pendidikan'))),
 					'judul_jenjang_pendidikan' => $this->request->getVar('judul_jenjang_pendidikan'),
@@ -256,7 +256,7 @@ class Jenjang_pendidikan extends BaseController
 				// masuk database
 				$data = array(
 					'id_jenjang_pendidikan' => $id_jenjang_pendidikan,
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'id_jenjang' => $this->request->getVar('id_jenjang'),
 					'slug_jenjang_pendidikan' => strtolower(url_title($this->request->getVar('judul_jenjang_pendidikan'))),
 					'judul_jenjang_pendidikan' => $this->request->getVar('judul_jenjang_pendidikan'),
@@ -274,7 +274,7 @@ class Jenjang_pendidikan extends BaseController
 			} else {
 				$data = array(
 					'id_jenjang_pendidikan' => $id_jenjang_pendidikan,
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'id_jenjang' => $this->request->getVar('id_jenjang'),
 					'slug_jenjang_pendidikan' => strtolower(url_title($this->request->getVar('judul_jenjang_pendidikan'))),
 					'judul_jenjang_pendidikan' => $this->request->getVar('judul_jenjang_pendidikan'),
@@ -319,7 +319,7 @@ class Jenjang_pendidikan extends BaseController
 			for ($i = 0; $i < sizeof($id_jenjang_pendidikan ?? []); $i++) {
 				$data = array(
 					'id_jenjang_pendidikan' => $id_jenjang_pendidikan[$i],
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'jenis_jenjang_pendidikan' => $this->request->getVar('jenis_jenjang_pendidikan')
 				);
 				$m_jenjang_pendidikan->edit($data);
@@ -329,7 +329,7 @@ class Jenjang_pendidikan extends BaseController
 			for ($i = 0; $i < sizeof($id_jenjang_pendidikan ?? []); $i++) {
 				$data = array(
 					'id_jenjang_pendidikan' => $id_jenjang_pendidikan[$i],
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'status_jenjang_pendidikan' => 'Publish'
 				);
 				$m_jenjang_pendidikan->edit($data);
@@ -339,7 +339,7 @@ class Jenjang_pendidikan extends BaseController
 			for ($i = 0; $i < sizeof($id_jenjang_pendidikan ?? []); $i++) {
 				$data = array(
 					'id_jenjang_pendidikan' => $id_jenjang_pendidikan[$i],
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'status_jenjang_pendidikan' => 'Draft'
 				);
 				$m_jenjang_pendidikan->edit($data);

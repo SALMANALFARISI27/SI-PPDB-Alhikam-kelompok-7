@@ -36,7 +36,7 @@ class Kategori_ekstrakurikuler extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_ekstrakurikulerbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_ekstrakurikuler')));
-				$data = [	'id_admin' => $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_ekstrakurikuler'		=> $slug,
 							'nama_kategori_ekstrakurikuler'		=> $this->request->getPost('nama_kategori_ekstrakurikuler'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -52,7 +52,7 @@ class Kategori_ekstrakurikuler extends BaseController
 			}else{
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_ekstrakurikuler')));
-				$data = [	'id_admin' => $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_ekstrakurikuler'		=> $slug,
 							'nama_kategori_ekstrakurikuler'		=> $this->request->getPost('nama_kategori_ekstrakurikuler'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -104,7 +104,7 @@ class Kategori_ekstrakurikuler extends BaseController
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_ekstrakurikuler')));
 				$data = [	'id_kategori_ekstrakurikuler'		=> $id_kategori_ekstrakurikuler,
-							'id_admin' => $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_ekstrakurikuler'	=> $slug,
 							'nama_kategori_ekstrakurikuler'	=> $this->request->getPost('nama_kategori_ekstrakurikuler'),
 							'keterangan'			=> $this->request->getPost('keterangan'),
@@ -120,7 +120,7 @@ class Kategori_ekstrakurikuler extends BaseController
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_ekstrakurikuler')));
 				$data = [	'id_kategori_ekstrakurikuler'		=> $id_kategori_ekstrakurikuler,
-							'id_admin' => $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_ekstrakurikuler'	=> $slug,
 							'nama_kategori_ekstrakurikuler'	=> $this->request->getPost('nama_kategori_ekstrakurikuler'),
 							'keterangan'			=> $this->request->getPost('keterangan'),

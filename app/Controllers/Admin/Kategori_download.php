@@ -36,7 +36,7 @@ class Kategori_download extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_downloadbaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_download')));
-				$data = [	'id_admin' => $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_download'		=> $slug,
 							'nama_kategori_download'		=> $this->request->getPost('nama_kategori_download'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -52,7 +52,7 @@ class Kategori_download extends BaseController
 			}else{
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_download')));
-				$data = [	'id_admin' => $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_download'		=> $slug,
 							'nama_kategori_download'		=> $this->request->getPost('nama_kategori_download'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -104,7 +104,7 @@ class Kategori_download extends BaseController
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_download')));
 				$data = [	'id_kategori_download'		=> $id_kategori_download,
-							'id_admin' => $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_download'	=> $slug,
 							'nama_kategori_download'	=> $this->request->getPost('nama_kategori_download'),
 							'keterangan'			=> $this->request->getPost('keterangan'),
@@ -120,7 +120,7 @@ class Kategori_download extends BaseController
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_download')));
 				$data = [	'id_kategori_download'		=> $id_kategori_download,
-							'id_admin' => $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_download'	=> $slug,
 							'nama_kategori_download'	=> $this->request->getPost('nama_kategori_download'),
 							'keterangan'			=> $this->request->getPost('keterangan'),

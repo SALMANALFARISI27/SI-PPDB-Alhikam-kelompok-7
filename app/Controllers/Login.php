@@ -72,8 +72,7 @@ class Login extends BaseController
             $check  = $m_admin->check($email);
             if($check) {
                 $data = [   'id_admin'       => $check->id_admin,
-                            'kode_rahasia'  => random_string('alnum',64),
-                            'ip_address'    => $_SERVER['REMOTE_ADDR']
+                            'kode_rahasia'  => random_string('alnum',64)
                     ];
                 $m_admin->edit($data);
                 $hasil              = $m_admin->check($email);

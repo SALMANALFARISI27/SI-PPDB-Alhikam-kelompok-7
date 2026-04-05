@@ -45,7 +45,6 @@
 			<select name="jenis_galeri" class="form-control">
 				<option value="Galeri">Galeri</option>
 				<option value="Homepage">Homepage</option>
-				<option value="Pop Up">Pop Up Homepage</option>
 			</select>
 			<small class="text-secondary">Jenis konten</small>
 		</div>

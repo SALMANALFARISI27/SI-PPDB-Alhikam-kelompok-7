@@ -42,11 +42,11 @@ class User extends BaseController
 	}
 
 	// edit
-	public function edit($id_user)
+	public function edit($id_admin)
 	{
 		
 		$m_admin = new Admin_model();
-		$user 	= $m_admin->detail($id_user);
+		$user 	= $m_admin->detail($id_admin);
 
 		// Start validasi
 		if($this->request->getMethod() === 'POST' && $this->validate(
@@ -55,14 +55,14 @@ class User extends BaseController
         	])) {
 			// masuk database
 			if(strlen($this->request->getPost('password')) >= 6 && strlen($this->request->getPost('password')) <= 32 ) {
-				$data = [	'id_admin'		=> $id_user,
+				$data = [	'id_admin'		=> $id_admin,
 							'nama'			=> $this->request->getPost('nama'),
 							'email'			=> $this->request->getPost('email'),
 							'username'		=> $this->request->getPost('username'),
 							'password'		=> sha1($this->request->getPost('password'))
 					];
 			}else{
-				$data = [	'id_admin'		=> $id_user,
+				$data = [	'id_admin'		=> $id_admin,
 							'nama'			=> $this->request->getPost('nama'),
 							'email'			=> $this->request->getPost('email'),
 							'username'		=> $this->request->getPost('username')
@@ -82,11 +82,11 @@ class User extends BaseController
 	}
 
 	// delete
-	public function delete($id_user)
+	public function delete($id_admin)
 	{
 		
 		$m_admin = new Admin_model();
-		$data = ['id_admin'	=> $id_user];
+		$data = ['id_admin'	=> $id_admin];
 		$m_admin->delete($data);
 		// masuk database
 		$this->session->setFlashdata('sukses','Data telah dihapus');

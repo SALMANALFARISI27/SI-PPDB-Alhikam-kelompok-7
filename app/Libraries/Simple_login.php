@@ -17,7 +17,7 @@ class Simple_login
 			// Jika username password benar
 			$this->session->set('username', $username);
 			$this->session->set('id_admin', $admin->id_admin);
-			$this->session->set('id_user', $admin->id_admin);
+			$this->session->set('id_admin', $admin->id_admin);
 			$this->session->set('nama', $admin->nama);
 			// $this->session->setFlashdata('warning', 'Hai '.$admin->nama.', Anda berhasil login');
 			// return redirect()->to(base_url('admin/dasbor'));

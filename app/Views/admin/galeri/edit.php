@@ -50,10 +50,6 @@
 					echo 'selected';
 				} ?>>Homepage
 					Slider</option>
-				<option value="Pop Up" <?php if ($galeri->jenis_galeri == "Pop Up") {
-					echo 'selected';
-				} ?>>Pop Up Homepage
-				</option>
 			</select>
 			<small class="text-secondary">Jenis konten</small>
 		</div>

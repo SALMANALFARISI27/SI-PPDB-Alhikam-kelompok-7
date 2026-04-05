@@ -36,7 +36,7 @@ class Kategori_prestasi extends BaseController
 			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$nama_kategori_prestasibaru);
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_prestasi')));
-				$data = [	'id_admin' => $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_prestasi'		=> $slug,
 							'nama_kategori_prestasi'		=> $this->request->getPost('nama_kategori_prestasi'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -52,7 +52,7 @@ class Kategori_prestasi extends BaseController
 			}else{
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_prestasi')));
-				$data = [	'id_admin' => $this->session->get('id_user'),
+				$data = [	'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_prestasi'		=> $slug,
 							'nama_kategori_prestasi'		=> $this->request->getPost('nama_kategori_prestasi'),
 							'keterangan'				=> $this->request->getPost('keterangan'),
@@ -104,7 +104,7 @@ class Kategori_prestasi extends BaseController
 	        	// masuk database
 	        	$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_prestasi')));
 				$data = [	'id_kategori_prestasi'		=> $id_kategori_prestasi,
-							'id_admin' => $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_prestasi'	=> $slug,
 							'nama_kategori_prestasi'	=> $this->request->getPost('nama_kategori_prestasi'),
 							'keterangan'			=> $this->request->getPost('keterangan'),
@@ -120,7 +120,7 @@ class Kategori_prestasi extends BaseController
 				// masuk database
 				$slug 	= strtolower(url_title($this->request->getVar('nama_kategori_prestasi')));
 				$data = [	'id_kategori_prestasi'		=> $id_kategori_prestasi,
-							'id_admin' => $this->session->get('id_user'),
+							'id_admin' => $this->session->get('id_admin'),
 							'slug_kategori_prestasi'	=> $slug,
 							'nama_kategori_prestasi'	=> $this->request->getPost('nama_kategori_prestasi'),
 							'keterangan'			=> $this->request->getPost('keterangan'),

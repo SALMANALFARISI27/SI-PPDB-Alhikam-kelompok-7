@@ -1,7 +1,8 @@
 <div class="callout callout-info bg-light">
-	Hai <strong><em class="text-success"><?php echo Session()->get('nama') ?></em></strong>, Selamat datang di <strong><?php echo $this->website->namasekolah() ?>. Semoga Anda senang.</strong>
+	Hai <strong><em class="text-success"><?php echo Session()->get('nama') ?></em></strong>, Selamat datang di
+	<strong><?php echo $this->website->namasekolah() ?></strong>
 </div>
-	<div class="row">
+<div class="row">
 	<div class="col-12 col-sm-6 col-md-3">
 		<div class="info-box">
 			<span class="info-box-icon bg-info elevation-1"><i class="fas fa-calendar-check"></i></span>
@@ -36,93 +37,92 @@
 		</div>
 		<!-- /.info-box -->
 	</div>
+
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box">
+			<span class="info-box-icon bg-success elevation-1"><i class="fas fa-image"></i></span>
+
+			<div class="info-box-content">
+				<span class="info-box-text">Banner dan Galeri</span>
+				<span class="info-box-number">
+					<a href="<?php echo base_url('admin/galeri') ?>" class="btn btn-xs btn-outline-success">
+						<i class="fa fa-users"></i> Lihat dan Kelola
+					</a>
+				</span>
+			</div>
+			<!-- /.info-box-content -->
+		</div>
+		<!-- /.info-box -->
+	</div>
 	<!-- /.col -->
-	<?php if(Session()->get('akses_level')=='Admin') { ?>
-		<div class="col-12 col-sm-6 col-md-3">
-			<div class="info-box">
-				<span class="info-box-icon bg-success elevation-1"><i class="fas fa-image"></i></span>
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box mb-3">
+			<span class="info-box-icon bg-primary elevation-1"><i class="fas fa-graduation-cap"></i></span>
 
-				<div class="info-box-content">
-					<span class="info-box-text">Banner dan Galeri</span>
-					<span class="info-box-number">
-						<a href="<?php echo base_url('admin/galeri') ?>" class="btn btn-xs btn-outline-success">
-							<i class="fa fa-users"></i> Lihat dan Kelola
-						</a>
-					</span>
-				</div>
-				<!-- /.info-box-content -->
+			<div class="info-box-content">
+				<span class="info-box-text">Guru dan Staff</span>
+				<span class="info-box-number">
+					<a href="<?php echo base_url('admin/staff') ?>" class="btn btn-xs btn-outline-success">
+						<i class="fa fa-graduation-cap"></i> Lihat dan Kelola
+					</a>
+				</span>
 			</div>
-			<!-- /.info-box -->
+			<!-- /.info-box-content -->
 		</div>
-		<!-- /.col -->
-		<div class="col-12 col-sm-6 col-md-3">
-			<div class="info-box mb-3">
-				<span class="info-box-icon bg-primary elevation-1"><i class="fas fa-graduation-cap"></i></span>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box">
+			<span class="info-box-icon bg-warning elevation-1"><i class="fab fa-youtube"></i></span>
 
-				<div class="info-box-content">
-					<span class="info-box-text">Guru dan Staff</span>
-					<span class="info-box-number">
-						<a href="<?php echo base_url('admin/staff') ?>" class="btn btn-xs btn-outline-success">
-							<i class="fa fa-graduation-cap"></i> Lihat dan Kelola
-						</a>
-					</span>
-				</div>
-				<!-- /.info-box-content -->
+			<div class="info-box-content">
+				<span class="info-box-text">Video Youtube</span>
+				<span class="info-box-number">
+					<a href="<?php echo base_url('admin/video') ?>" class="btn btn-xs btn-outline-success">
+						<i class="fa fa-eye"></i> Lihat dan Kelola
+					</a>
+				</span>
 			</div>
-			<!-- /.info-box -->
+			<!-- /.info-box-content -->
 		</div>
-		<!-- /.col -->
-		<div class="col-12 col-sm-6 col-md-3">
-			<div class="info-box">
-				<span class="info-box-icon bg-warning elevation-1"><i class="fab fa-youtube"></i></span>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box">
+			<span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-user-lock"></i></span>
 
-				<div class="info-box-content">
-					<span class="info-box-text">Video Youtube</span>
-					<span class="info-box-number">
-						<a href="<?php echo base_url('admin/video') ?>" class="btn btn-xs btn-outline-success">
-							<i class="fa fa-eye"></i> Lihat dan Kelola
-						</a>
-					</span>
-				</div>
-				<!-- /.info-box-content -->
+			<div class="info-box-content">
+				<span class="info-box-text">Pengguna Website</span>
+				<span class="info-box-number">
+					<a href="<?php echo base_url('admin/user') ?>" class="btn btn-xs btn-outline-success">
+						<i class="fa fa-user-lock"></i> Lihat dan Kelola
+					</a>
+				</span>
 			</div>
-			<!-- /.info-box -->
+			<!-- /.info-box-content -->
 		</div>
-		<!-- /.col -->
-		<div class="col-12 col-sm-6 col-md-3">
-			<div class="info-box">
-				<span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-user-lock"></i></span>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
+	<div class="col-12 col-sm-6 col-md-3">
+		<div class="info-box mb-3">
+			<span class="info-box-icon bg-dark elevation-1"><i class="fas fa-home"></i></span>
 
-				<div class="info-box-content">
-					<span class="info-box-text">Pengguna Website</span>
-					<span class="info-box-number">
-						<a href="<?php echo base_url('admin/user') ?>" class="btn btn-xs btn-outline-success">
-							<i class="fa fa-user-lock"></i> Lihat dan Kelola
-						</a>
-					</span>
-				</div>
-				<!-- /.info-box-content -->
+			<div class="info-box-content">
+				<span class="info-box-text">Informasi yayasan</span>
+				<span class="info-box-number">
+					<a href="<?php echo base_url('admin/konfigurasi/yayasan') ?>"
+						class="btn btn-xs btn-outline-success">
+						<i class="fa fa-home"></i> Lihat dan Kelola
+					</a>
+				</span>
 			</div>
-			<!-- /.info-box -->
+			<!-- /.info-box-content -->
 		</div>
-		<!-- /.col -->
-		<div class="col-12 col-sm-6 col-md-3">
-			<div class="info-box mb-3">
-				<span class="info-box-icon bg-dark elevation-1"><i class="fas fa-home"></i></span>
-
-				<div class="info-box-content">
-					<span class="info-box-text">Informasi Sekolah</span>
-					<span class="info-box-number">
-						<a href="<?php echo base_url('admin/konfigurasi/sekolah') ?>" class="btn btn-xs btn-outline-success">
-							<i class="fa fa-home"></i> Lihat dan Kelola
-						</a>
-					</span>
-				</div>
-				<!-- /.info-box-content -->
-			</div>
-			<!-- /.info-box -->
-		</div>
-		<!-- /.col -->
-	<?php } ?>
+		<!-- /.info-box -->
+	</div>
+	<!-- /.col -->
 </div>
-        <!-- /.row -->
+<!-- /.row -->

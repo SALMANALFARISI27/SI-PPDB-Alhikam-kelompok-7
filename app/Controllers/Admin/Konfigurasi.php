@@ -27,13 +27,12 @@ class Konfigurasi extends BaseController
 			// masuk database
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_admin' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_admin'),
 				'namaweb' => $this->request->getPost('namaweb'),
 				'singkatan' => $this->request->getPost('singkatan'),
 				'tagline' => $this->request->getPost('tagline'),
 				'tentang' => $this->request->getPost('tentang'),
 				'deskripsi' => $this->request->getPost('deskripsi'),
-				'website' => $this->request->getPost('website'),
 				'email' => $this->request->getPost('email'),
 				'email_cadangan' => $this->request->getPost('email_cadangan'),
 				'alamat' => $this->request->getPost('alamat'),
@@ -91,7 +90,7 @@ class Konfigurasi extends BaseController
 			// masuk database
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_admin' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_admin'),
 				'fitur_pendaftaran' => $this->request->getPost('fitur_pendaftaran'),
 				'mulai_pendaftaran' => $this->website->tanggal_input($this->request->getPost('mulai_pendaftaran')),
 				'selesai_pendaftaran' => $this->website->tanggal_input($this->request->getPost('selesai_pendaftaran')),
@@ -131,7 +130,7 @@ class Konfigurasi extends BaseController
 			// masuk database
 			$data = [
 				'id_konfigurasi' => $this->request->getPost('id_konfigurasi'),
-				'id_admin' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_admin'),
 				'protocol' => $this->request->getPost('protocol'),
 				'smtp_host' => $this->request->getPost('smtp_host'),
 				'smtp_port' => $this->request->getPost('smtp_port'),
@@ -172,7 +171,7 @@ class Konfigurasi extends BaseController
 			// masuk database
 			$data = [
 				'id_yayasan' => $yayasan->id_yayasan,
-				'id_admin' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_admin'),
 				'nsp' => $this->request->getPost('nsp'),
 				'status_yayasan' => $this->request->getPost('status_yayasan'),
 				'alamat' => $this->request->getPost('alamat'),
@@ -183,7 +182,6 @@ class Konfigurasi extends BaseController
 				'kode_pos' => $this->request->getPost('kode_pos'),
 				'telepon' => $this->request->getPost('telepon'),
 				'email' => $this->request->getPost('email'),
-				'website' => $this->request->getPost('website'),
 				'luas_tanah' => $this->request->getPost('luas_tanah'),
 				'luas_bangunan' => $this->request->getPost('luas_bangunan'),
 				'status_tanah' => $this->request->getPost('status_tanah'),
@@ -245,7 +243,7 @@ class Konfigurasi extends BaseController
 				// masuk database
 				$data = [
 					'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'tentang' => $this->request->getPost('tentang'),
 					'banner' => $namabaru,
 					'ringkasan' => $this->request->getPost('ringkasan')
@@ -254,7 +252,7 @@ class Konfigurasi extends BaseController
 			} else {
 				$data = [
 					'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-					'id_admin' => $this->session->get('id_user'),
+					'id_admin' => $this->session->get('id_admin'),
 					'tentang' => $this->request->getPost('tentang'),
 					'ringkasan' => $this->request->getPost('ringkasan')
 				];
@@ -340,7 +338,7 @@ class Konfigurasi extends BaseController
 			// Update database dengan nama file baru
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_admin' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_admin'),
 				'logo' => $namabaru
 			];
 			$m_konfigurasi->edit($data);
@@ -403,7 +401,7 @@ class Konfigurasi extends BaseController
 			// Update database dengan nama file baru
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_admin' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_admin'),
 				'login' => $namabaru
 			];
 			$m_konfigurasi->edit($data);
@@ -467,7 +465,7 @@ class Konfigurasi extends BaseController
 			// Update database dengan nama file baru
 			$data = [
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
-				'id_admin' => $this->session->get('id_user'),
+				'id_admin' => $this->session->get('id_admin'),
 				'icon' => $namabaru
 			];
 			$m_konfigurasi->edit($data);

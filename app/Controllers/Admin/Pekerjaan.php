@@ -21,7 +21,7 @@ class Pekerjaan extends BaseController
 				'nama_pekerjaan' 	=> 'required|min_length[3]|is_unique[pekerjaan.nama_pekerjaan]',
         	])) {
 			// masuk database
-			$data = [	'id_admin' => $this->session->get('id_user'),
+			$data = [	'id_admin' => $this->session->get('id_admin'),
 						'nama_pekerjaan'	=> $this->request->getPost('nama_pekerjaan'),
 						'urutan'			=> $this->request->getPost('urutan'),
 					];
@@ -52,7 +52,7 @@ class Pekerjaan extends BaseController
         	])) {
 			
 			$data = [	'id_pekerjaan'		=> $id_pekerjaan,
-						'id_admin' => $this->session->get('id_user'),
+						'id_admin' => $this->session->get('id_admin'),
 						'nama_pekerjaan'	=> $this->request->getPost('nama_pekerjaan'),
 						'urutan'			=> $this->request->getPost('urutan'),
 				];

@@ -12,15 +12,8 @@ echo csrf_field();
 
 <div class="form-group row">
 	<label class="col-3">Nama Jenjang Pendidikan</label>
-	<div class="col-7">
+	<div class="col-9">
 		<input type="text" name="nama_jenjang" class="form-control" placeholder="Nama jenjang" value="<?php echo $jenjang->nama_jenjang ?>" required>
-	</div>
-
-	<div class="col-2">
-		<select name="status_aktif" class="form-control">
-			<option value="Ya">Ya Aktif</option>
-			<option value="Tidak" <?php if($jenjang->status_aktif=='Tidak') { echo 'selected'; } ?>>Tidak Aktif</option>
-		</select>
 	</div>
 </div>
 
