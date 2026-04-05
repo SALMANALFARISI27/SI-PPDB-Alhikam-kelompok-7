@@ -48,7 +48,7 @@ class Simple_login
 			// Jika username password benar
 			$this->session->set('username_calon_peserta_didik', $username);
 			$this->session->set('id_akun', $user->id_akun);
-			$this->session->set('nama', $user->nama);
+			$this->session->set('username', $user->username);
 			$this->session->set('jenis_akun', $user->jenis_akun);
 		}
 	}

@@ -27,13 +27,13 @@
             <div class="form-floating mb-4">
               <input type="text" class="form-control" name="nama" value="<?php echo set_value('nama') ?>"
                 placeholder="Name" id="loginName">
-              <label for="loginName" class="text-primary">Nama</label>
+              <label for="loginName" class="text-primary">Username</label>
             </div>
 
             <div class="form-floating mb-4">
               <input type="email" class="form-control" name="email" value="<?php echo set_value('email') ?>"
                 placeholder="Email" id="loginEmail">
-              <label for="loginEmail" class="text-primary">Email (Username)</label>
+              <label for="loginEmail" class="text-primary">Email</label>
             </div>
 
 

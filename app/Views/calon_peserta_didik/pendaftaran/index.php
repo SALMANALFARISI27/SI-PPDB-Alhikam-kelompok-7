@@ -107,9 +107,9 @@
 						<a href="<?php echo base_url('calon_peserta_didik/pendaftaran/dokumen/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
 							class="btn btn-info btn-xs mb-1" title="Edit"><i class="fa fa-upload"></i> Unggah Dokumen</a>
 
-						<a href="<?php echo base_url('calon_peserta_didik/pendaftaran/unduh/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
-							class="btn btn-danger btn-xs mb-1" title="Unduh" target="_blank"><i class="fa fa-file-pdf"></i>
-							Unduh</a>
+						<a href="<?php echo base_url('calon_peserta_didik/pendaftaran/cetak/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
+							class="btn btn-danger btn-xs mb-1" title="Cetak" target="_blank"><i class="fa fa-file-pdf"></i>
+							Cetak PDF</a>
 						<a href="<?php echo base_url('calon_peserta_didik/pendaftaran/edit/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
 							class="btn btn-warning btn-xs mb-1" title="Edit"><i class="fa fa-edit"></i></a>
 						<?php if ($calon_peserta_didik->status_pendaftaran == 'Menunggu') { ?>
