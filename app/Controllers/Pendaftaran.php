@@ -72,8 +72,7 @@ class Pendaftaran extends BaseController
 				'password_hint' => $this->request->getVar('password'),
 				'telepon' => $this->request->getVar('telepon'),
 				'kode_akun' => $kode_akun,
-				'link_reset' => $kode_akun,
-				'tanggal_post' => date('Y-m-d H:i:s')
+				'link_reset' => $kode_akun
 			);
 			$m_akun->tambah($data);
 			// login

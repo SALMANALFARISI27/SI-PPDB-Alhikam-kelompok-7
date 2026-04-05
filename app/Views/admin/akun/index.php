@@ -87,7 +87,14 @@
 				<div class="form-group row">
 					<label class="col-4">Password baru</label>
 					<div class="col-8">
-						<input type="password" name="password" class="form-control" placeholder="Password baru" minlength="6" maxlength="32" value="" required>
+						<div class="input-group">
+							<input type="password" name="password" id="adminPassword" class="form-control" placeholder="Password baru" minlength="6" maxlength="32" value="" required>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="button" onclick="togglePassword('adminPassword', this)">
+									<i class="fas fa-eye"></i>
+								</button>
+							</div>
+						</div>
 						<small class="text-danger">Minimal 6 dan maksimal 32 karakter</small>
 					</div>
 				</div>
@@ -95,7 +102,14 @@
 				<div class="form-group row">
 					<label class="col-4">Konfirmasi Password baru</label>
 					<div class="col-8">
-						<input type="password" name="konfirmasi_password" class="form-control" placeholder="Konfirmasi Password baru" minlength="6" maxlength="32" value="" required>
+						<div class="input-group">
+							<input type="password" name="konfirmasi_password" id="adminPasswordConfirm" class="form-control" placeholder="Konfirmasi Password baru" minlength="6" maxlength="32" value="" required>
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="button" onclick="togglePassword('adminPasswordConfirm', this)">
+									<i class="fas fa-eye"></i>
+								</button>
+							</div>
+						</div>
 						<small class="text-danger">Konfirmasi Password. Minimal 6 dan maksimal 32 karakter</small>
 					</div>
 				</div>
@@ -116,3 +130,19 @@
 
 	
 </div>
+
+<script>
+function togglePassword(inputId, btn) {
+	var input = document.getElementById(inputId);
+	var icon = btn.querySelector('i');
+	if (input.type === 'password') {
+		input.type = 'text';
+		icon.classList.remove('fa-eye');
+		icon.classList.add('fa-eye-slash');
+	} else {
+		input.type = 'password';
+		icon.classList.remove('fa-eye-slash');
+		icon.classList.add('fa-eye');
+	}
+}
+</script>

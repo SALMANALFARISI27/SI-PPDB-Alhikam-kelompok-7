@@ -116,29 +116,5 @@ class Berita extends BaseController
         return view('layout/wrapper', $data);
     }
 
-    // layanan
-    public function layanan($slug_berita)
-    {
-        $m_berita = new Berita_model();
-        $m_nav = new Nav_model();
-        $berita = $m_berita->read($slug_berita);
-        $news = $m_nav->profil('Layanan');
-
-        $data = array(
-            'id_berita' => $berita->id_berita,
-            'hits' => $berita->hits + 1
-        );
-        $m_berita->edit($data);
-
-        $data = [
-            'title' => $berita->judul_berita,
-            'description' => $berita->ringkasan,
-            'keywords' => $berita->judul_berita . ', ' . $berita->keywords,
-            'berita' => $berita,
-            'news' => $news,
-            'content' => 'berita/profil'
-        ];
-        return view('layout/wrapper', $data);
-    }
 
 }

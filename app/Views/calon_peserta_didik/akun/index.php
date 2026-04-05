@@ -9,18 +9,14 @@
 				<table class="table table-sm table-bordered">
 					<thead>
 						<tr>
-							<th>Nama</th>
-							<th><?php echo $akun->nama ?></th>
+							<th>Username</th>
+							<th><?php echo $akun->username ?></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>Email</td>
 							<td><?php echo $akun->email ?></td>
-						</tr>
-						<tr>
-							<td>Username</td>
-							<td><?php echo $akun->username ?></td>
 						</tr>
 						<tr>
 							<td>Status</td>
@@ -50,30 +46,45 @@
 			<div class="card-body">
 				<?php echo form_open(base_url('calon_peserta_didik/akun')) ?>
 				<div class="form-group mb-4">
-					<input type="text" class="form-control" name="nama" value="<?php echo $akun->nama ?>"
+					<input type="text" class="form-control" name="username" value="<?php echo $akun->username ?>"
 						placeholder="Name" id="loginName">
-					<label for="loginName" class="text-primary">Nama</label>
+					<label for="loginName" class="text-primary">Username</label>
 				</div>
 
 				<div class="form-group mb-4">
 					<input type="email" class="form-control" name="email" value="<?php echo $akun->email ?>"
 						placeholder="Email" id="loginEmail">
-					<label for="loginEmail" class="text-primary">Email (Username)</label>
+					<label for="loginEmail" class="text-primary">Email</label>
 				</div>
 
 
-				<div class="form-group password-field mb-4">
-					<input type="password" class="form-control" name="password" placeholder="Password"
-						id="loginPassword" minlength="6" maxlength="32">
-					<span class="password-toggle"><i class="uil uil-eye"></i></span>
-					<label for="loginPassword" class="text-primary">Password minimal 6 dan maksimal 32 karakter</label>
+				<div class="form-group mb-4">
+					<label for="loginPassword" class="text-primary">Password baru minimal 6 dan maksimal 32
+						karakter</label>
+					<div class="input-group">
+						<input type="password" class="form-control" name="password" placeholder="Password"
+							id="loginPassword" minlength="6" maxlength="32">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button"
+								onclick="togglePassword('loginPassword', this)">
+								<i class="fas fa-eye"></i>
+							</button>
+						</div>
+					</div>
 				</div>
 
-				<div class="form-group password-field mb-4">
-					<input type="password" class="form-control" name="konfirmasi_password"
-						placeholder="Konfirmasi Password" id="loginPasswordConfirm" minlength="6" maxlength="32">
-					<span class="password-toggle"><i class="uil uil-eye"></i></span>
+				<div class="form-group mb-4">
 					<label for="loginPasswordConfirm" class="text-primary">Konfirmasi Password</label>
+					<div class="input-group">
+						<input type="password" class="form-control" name="konfirmasi_password"
+							placeholder="Konfirmasi Password" id="loginPasswordConfirm" minlength="6" maxlength="32">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button"
+								onclick="togglePassword('loginPasswordConfirm', this)">
+								<i class="fas fa-eye"></i>
+							</button>
+						</div>
+					</div>
 				</div>
 
 
@@ -86,11 +97,8 @@
 
 
 				<p>
-					<button type="reset" name="reset" value="reset"
-						class="btn btn-warning rounded-pill btn-login w-40 mb-2">Reset &nbsp; <i
-							class="fa fa-times-circle"></i></button>
 					<button type="submit" name="submit" value="submit"
-						class="btn btn-primary rounded-pill btn-login w-60 mb-2">Buat Akun dan Lanjutkan &nbsp; <i
+						class="btn btn-primary rounded-pill btn-login w-60 mb-2">Update Akun &nbsp; <i
 							class="fa fa-arrow-circle-right"></i></button>
 				</p>
 				</form>
@@ -98,3 +106,19 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	function togglePassword(inputId, btn) {
+		var input = document.getElementById(inputId);
+		var icon = btn.querySelector('i');
+		if (input.type === 'password') {
+			input.type = 'text';
+			icon.classList.remove('fa-eye');
+			icon.classList.add('fa-eye-slash');
+		} else {
+			input.type = 'password';
+			icon.classList.remove('fa-eye-slash');
+			icon.classList.add('fa-eye');
+		}
+	}
+</script>

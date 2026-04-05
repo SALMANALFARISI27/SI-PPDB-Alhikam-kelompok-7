@@ -16,10 +16,24 @@ if(!empty($errors))
 
 
 <div class="form-group">
-	<input type="password" name="password" class="form-control form-control-user" id="password" placeholder="Password Baru" minlength="6" maxlength="32">
+	<div class="input-group">
+		<input type="password" name="password" class="form-control form-control-user" id="password" placeholder="Password Baru" minlength="6" maxlength="32">
+		<div class="input-group-append">
+			<button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password', this)">
+				<i class="fas fa-eye"></i>
+			</button>
+		</div>
+	</div>
 </div>
 <div class="form-group">
-	<input type="password" name="password_konfirmasi" class="form-control form-control-user" id="password_konfirmasi" placeholder="Konfirmasi Password" minlength="6" maxlength="32">
+	<div class="input-group">
+		<input type="password" name="password_konfirmasi" class="form-control form-control-user" id="password_konfirmasi" placeholder="Konfirmasi Password" minlength="6" maxlength="32">
+		<div class="input-group-append">
+			<button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password_konfirmasi', this)">
+				<i class="fas fa-eye"></i>
+			</button>
+		</div>
+	</div>
 	<div id="konfirmasiError">
 		
 	</div>
@@ -46,3 +60,19 @@ if(!empty($errors))
 	<?php echo session('error'); ?>
 </div>
 <?php endif; ?>
+
+<script>
+function togglePassword(inputId, btn) {
+	var input = document.getElementById(inputId);
+	var icon = btn.querySelector('i');
+	if (input.type === 'password') {
+		input.type = 'text';
+		icon.classList.remove('fa-eye');
+		icon.classList.add('fa-eye-slash');
+	} else {
+		input.type = 'password';
+		icon.classList.remove('fa-eye-slash');
+		icon.classList.add('fa-eye');
+	}
+}
+</script>

@@ -59,7 +59,7 @@
 				<option value="Publish">Publish</option>
 				<option value="Draft">Draft</option>
 			</select>
-			<small class="text-secondary">Status status_portfolio</small>
+			<small class="text-secondary">status_portfolio</small>
 		</div>
 	</div>
 

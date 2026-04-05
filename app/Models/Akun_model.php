@@ -130,8 +130,10 @@ class Akun_model extends Model
         $builder = $this->db->table('akun');
         $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
         $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-
-        $builder->where('akun.email', $username);
+        $builder->groupStart();
+            $builder->where('akun.email', $username);
+            $builder->orWhere('akun.username', $username);
+        $builder->groupEnd();
         $builder->where('akun.password', $password);
         $builder->orderBy('akun.id_akun', 'DESC');
         $query = $builder->get();

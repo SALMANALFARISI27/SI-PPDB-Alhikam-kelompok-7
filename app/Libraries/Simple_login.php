@@ -68,7 +68,7 @@ class Simple_login
 			// Jika username password benar
 			$this->session->set('username_calon_peserta_didik', $username);
 			$this->session->set('id_akun', $user->id_akun);
-			$this->session->set('nama_calon_peserta_didik', $user->nama);
+			$this->session->set('nama_calon_peserta_didik', $user->username);
 			$this->session->set('jenis_akun', $user->jenis_akun);
 			header("Location: " . base_url('calon_peserta_didik/dasbor'));
 			exit;

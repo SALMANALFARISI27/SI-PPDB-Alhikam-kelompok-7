@@ -26,7 +26,14 @@
 								</div>
 								<div class="form-group mb-3">
 									<label class="label" for="password">Password</label>
-									<input type="password" name="password" class="form-control" placeholder="Password" required>
+									<div class="input-group">
+										<input type="password" name="password" id="adminLoginPassword" class="form-control" placeholder="Password" required>
+										<div class="input-group-append">
+											<button class="btn btn-outline-secondary" type="button" onclick="togglePassword('adminLoginPassword', this)">
+												<i class="fas fa-eye"></i>
+											</button>
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
 									<button type="submit" class="form-control btn btn-primary submit px-3">Login</button>
@@ -38,4 +45,18 @@
 							
 							<?php echo form_close(); ?>
 
-
+<script>
+function togglePassword(inputId, btn) {
+	var input = document.getElementById(inputId);
+	var icon = btn.querySelector('i');
+	if (input.type === 'password') {
+		input.type = 'text';
+		icon.classList.remove('fa-eye');
+		icon.classList.add('fa-eye-slash');
+	} else {
+		input.type = 'password';
+		icon.classList.remove('fa-eye-slash');
+		icon.classList.add('fa-eye');
+	}
+}
+</script>
