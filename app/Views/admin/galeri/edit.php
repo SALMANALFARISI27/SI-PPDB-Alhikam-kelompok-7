@@ -25,12 +25,13 @@
 			<input type="file" name="gambar" class="form-control" value="<?php echo $galeri->gambar ?>">
 		</div>
 		<div class="col-md-1">
-			<img src="<?php echo base_url('assets/upload/image/thumbs/' . $galeri->gambar) ?>" class="img img-thumbnail">
+			<img src="<?php echo base_url('assets/upload/image/thumbs/' . $galeri->gambar) ?>"
+				class="img img-thumbnail">
 		</div>
 	</div>
 
 	<div class="form-group row">
-		<label class="col-md-3">Kategori, Jenis &amp; Status</label>
+		<label class="col-md-3">Kategori, &amp; Jenis</label>
 		<div class="col-md-3">
 			<select name="id_kategori_galeri" class="form-control">
 				<?php foreach ($kategori_galeri as $kategori_galeri) { ?>
@@ -54,16 +55,6 @@
 			<small class="text-secondary">Jenis konten</small>
 		</div>
 
-		<div class="col-md-3">
-			<select name="status_text" class="form-control">
-				<option value="Ya">Aktif</option>
-				<option value="Tidak" <?php if ($galeri->status_text == "Tidak") {
-					echo 'selected';
-				} ?>>Tidak Aktif
-				</option>
-			</select>
-			<small class="text-secondary">Text pada slider</small>
-		</div>
 	</div>
 
 	<div class="form-group row">

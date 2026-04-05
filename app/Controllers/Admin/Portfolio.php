@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Controllers\Admin;
 
 use CodeIgniter\Controller;
@@ -7,163 +7,167 @@ use App\Models\Kategori_portfolio_model;
 
 class Portfolio extends BaseController
 {
-	
+
 	// index
 	public function index()
 	{
-		
-		$m_portfolio 			= new Portfolio_model();
-		$m_kategori_portfolio 	= new Kategori_portfolio_model();
-		$kategori_portfolio 	= $m_kategori_portfolio->listing();
-		$pager 				= service('pager'); 
+
+		$m_portfolio = new Portfolio_model();
+		$m_kategori_portfolio = new Kategori_portfolio_model();
+		$kategori_portfolio = $m_kategori_portfolio->listing();
+		$pager = service('pager');
 		// portfolio
-		if(isset($_GET['keywords'])) 
-		{
-			$keywords 		= $this->request->getVar('keywords');
-			$total 			= $m_portfolio->total_cari($keywords);
-			$title 			= 'Hasil pencarian: '.$_GET['keywords'].' - '.$total.' ditemukan';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $portfolio 		= $m_portfolio->paginasi_admin_cari($keywords,$perPage, $page);
-		}else{
-			$total 			= $m_portfolio->total();
-			$title 			= 'Karya Portofolio('.$total.')';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $portfolio 		= $m_portfolio->paginasi_admin($perPage, $page);
+		if (isset($_GET['keywords'])) {
+			$keywords = $this->request->getVar('keywords');
+			$total = $m_portfolio->total_cari($keywords);
+			$title = 'Hasil pencarian: ' . $_GET['keywords'] . ' - ' . $total . ' ditemukan';
+			$page = (int) ($this->request->getGet('page') ?? 1);
+			$perPage = $this->website->paginasi();
+			$total = $total;
+			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
+			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
+			$portfolio = $m_portfolio->paginasi_admin_cari($keywords, $perPage, $page);
+		} else {
+			$total = $m_portfolio->total();
+			$title = 'Karya Portofolio(' . $total . ')';
+			$page = (int) ($this->request->getGet('page') ?? 1);
+			$perPage = $this->website->paginasi();
+			$total = $total;
+			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
+			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
+			$portfolio = $m_portfolio->paginasi_admin($perPage, $page);
 		}
 		// end portfolio
 
-		$data = [	'title'				=> $title,
-					'portfolio'			=> $portfolio,
-					'kategori_portfolio'	=> $kategori_portfolio,
-					'pagination'		=> $pager_links,
-					'content'			=> 'admin/portfolio/index'
-				];
-		echo view('admin/layout/wrapper',$data);
+		$data = [
+			'title' => $title,
+			'portfolio' => $portfolio,
+			'kategori_portfolio' => $kategori_portfolio,
+			'pagination' => $pager_links,
+			'content' => 'admin/portfolio/index'
+		];
+		echo view('admin/layout/wrapper', $data);
 	}
 
 	// Tambah
 	public function tambah()
 	{
-		
-		$m_portfolio 			= new Portfolio_model();
-		$m_kategori_portfolio 	= new Kategori_portfolio_model();
-		$kategori_portfolio 	= $m_kategori_portfolio->listing();
+
+		$m_portfolio = new Portfolio_model();
+		$m_kategori_portfolio = new Kategori_portfolio_model();
+		$kategori_portfolio = $m_kategori_portfolio->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'POST' && $this->validate(
-			[
-				'judul_portfolio' 	=> 'required',
-				'gambar'	 	=> [
-					                'uploaded[gambar]',
-					                'ext_in[gambar,jpg,jpeg,gif,png,svg]',
-					                'max_size[gambar,4096]',
-            					],
-        	])) {
-			if(!empty($_FILES['gambar']['name'])) {
+		if (
+			$this->request->getMethod() === 'POST' && $this->validate(
+				[
+					'judul_portfolio' => 'required',
+					'gambar' => [
+						'uploaded[gambar]',
+						'ext_in[gambar,jpg,jpeg,gif,png,svg]',
+						'max_size[gambar,4096]',
+					],
+				]
+			)
+		) {
+			if (!empty($_FILES['gambar']['name'])) {
 				// Image upload
-				$avatar  	= $this->request->getFile('gambar');
-				$namabaru 	= $avatar->getRandomName();
-	            $avatar->move(FCPATH . 'assets/upload/image/',$namabaru);
-	            // Create thumb
-	            $image = \Config\Services::image()
-			    ->withFile(FCPATH . 'assets/upload/image/'.$namabaru)
-			    ->fit(100, 100, 'center')
-			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
-	        	// masuk database
-	        	$data = array(
-	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio'),
-					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
-					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
-					'isi'					=> $this->request->getVar('isi'),
-					'gambar' 				=> $namabaru,
-					'status_text'			=> $this->request->getVar('status_text'),
-					'status_portfolio'		=> $this->request->getVar('status_portfolio'),
-					'tanggal_post'			=> date('Y-m-d H:i:s')
-	        	);
-	        	$m_portfolio->tambah($data);
-        		return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
-        	}else{
-        		$data = array(
-	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio'),
-					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
-					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
-					'isi'					=> $this->request->getVar('isi'),
-					'status_text'			=> $this->request->getVar('status_text'),
-					'status_portfolio'		=> $this->request->getVar('status_portfolio'),
-					'tanggal_post'			=> date('Y-m-d H:i:s')
-	        	);
-	        	$m_portfolio->tambah($data);
-        		return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
-        	}
-        }
+				$avatar = $this->request->getFile('gambar');
+				$namabaru = $avatar->getRandomName();
+				$avatar->move(FCPATH . 'assets/upload/image/', $namabaru);
+				// Create thumb
+				$image = \Config\Services::image()
+					->withFile(FCPATH . 'assets/upload/image/' . $namabaru)
+					->fit(100, 100, 'center')
+					->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
+				// masuk database
+				$data = array(
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_portfolio' => $this->request->getVar('id_kategori_portfolio'),
+					'judul_portfolio' => $this->request->getVar('judul_portfolio'),
+					'isi' => $this->request->getVar('isi'),
+					'gambar' => $namabaru,
 
-		$data = [	'title'				=> 'Tambah Portfolio',
-					'kategori_portfolio'	=> $kategori_portfolio,
-					'content'			=> 'admin/portfolio/tambah'
-				];
-		echo view('admin/layout/wrapper',$data);
+					'status_portfolio' => $this->request->getVar('status_portfolio'),
+					'tanggal_post' => date('Y-m-d H:i:s')
+				);
+				$m_portfolio->tambah($data);
+				return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
+			} else {
+				$data = array(
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_portfolio' => $this->request->getVar('id_kategori_portfolio'),
+					'judul_portfolio' => $this->request->getVar('judul_portfolio'),
+					'isi' => $this->request->getVar('isi'),
+
+					'status_portfolio' => $this->request->getVar('status_portfolio'),
+					'tanggal_post' => date('Y-m-d H:i:s')
+				);
+				$m_portfolio->tambah($data);
+				return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
+			}
+		}
+
+		$data = [
+			'title' => 'Tambah Portfolio',
+			'kategori_portfolio' => $kategori_portfolio,
+			'content' => 'admin/portfolio/tambah'
+		];
+		echo view('admin/layout/wrapper', $data);
 	}
 
 	// proses
 	public function proses()
 	{
-		
-		$m_kategori 	= new Kategori_portfolio_model();
-		$m_portfolio 		= new Portfolio_model();
+
+		$m_kategori = new Kategori_portfolio_model();
+		$m_portfolio = new Portfolio_model();
 		// proses
 		$pengalihan = $this->request->getVar('pengalihan');
-		$submit 	= $this->request->getVar('submit');
-		$id_portfolio 	= $this->request->getVar('id_portfolio');
+		$submit = $this->request->getVar('submit');
+		$id_portfolio = $this->request->getVar('id_portfolio');
 		// check portfolio
-		if(empty($this->request->getVar('id_portfolio')))
-		{
+		if (empty($this->request->getVar('id_portfolio'))) {
 			return redirect()->to($pengalihan)->with('warning', 'Anda belum memilih portfolio. Pilih salah satu portfolio');
 		}
 		// end check portfolio
 		// proses
-		if($submit=='Update') {
-   			for($i=0; $i < sizeof($id_portfolio ?? []);$i++) {
-				$data = array(	'id_portfolio'				=> $id_portfolio[$i],
-								'id_admin' => $this->session->get('id_admin'),
-								'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio')
-							);
-   				$m_portfolio->edit($data);
-   			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Portfolio berhasil diupdate jenis portfolionya');
-		}elseif($submit=='Publish') {
-			for($i=0; $i < sizeof($id_portfolio ?? []);$i++) {
-				$data = array(	'id_portfolio'		=> $id_portfolio[$i],
-								'id_admin' => $this->session->get('id_admin'),
-								'status_portfolio'	=> 'Publish'
-							);
-   				$m_portfolio->edit($data);
-   			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Portfolio berhasil dipublikasikan');
-		}elseif($submit=='Draft') {
-			for($i=0; $i < sizeof($id_portfolio ?? []);$i++) {
-				$data = array(	'id_portfolio'		=> $id_portfolio[$i],
-								'id_admin' => $this->session->get('id_admin'),
-								'status_portfolio'	=> 'Draft'
-							);
-   				$m_portfolio->edit($data);
-   			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Portfolio berhasil tidak dipublikasikan');
-		}elseif($submit=='Delete') {
-			for($i=0; $i < sizeof($id_portfolio ?? []);$i++) {
-				$data = array(	'id_portfolio'	=> $id_portfolio[$i]);
-   				$m_portfolio->delete($data);
-   			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Data berhasil dihapus');
+		if ($submit == 'Update') {
+			for ($i = 0; $i < sizeof($id_portfolio ?? []); $i++) {
+				$data = array(
+					'id_portfolio' => $id_portfolio[$i],
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_portfolio' => $this->request->getVar('id_kategori_portfolio')
+				);
+				$m_portfolio->edit($data);
+			}
+			return redirect()->to($pengalihan)->with('sukses', 'Portfolio berhasil diupdate');
+		} elseif ($submit == 'Publish') {
+			for ($i = 0; $i < sizeof($id_portfolio ?? []); $i++) {
+				$data = array(
+					'id_portfolio' => $id_portfolio[$i],
+					'id_admin' => $this->session->get('id_admin'),
+					'status_portfolio' => 'Publish'
+				);
+				$m_portfolio->edit($data);
+			}
+			return redirect()->to($pengalihan)->with('sukses', 'Portfolio berhasil dipublikasikan');
+		} elseif ($submit == 'Draft') {
+			for ($i = 0; $i < sizeof($id_portfolio ?? []); $i++) {
+				$data = array(
+					'id_portfolio' => $id_portfolio[$i],
+					'id_admin' => $this->session->get('id_admin'),
+					'status_portfolio' => 'Draft'
+				);
+				$m_portfolio->edit($data);
+			}
+			return redirect()->to($pengalihan)->with('sukses', 'Portfolio berhasil tidak dipublikasikan');
+		} elseif ($submit == 'Delete') {
+			for ($i = 0; $i < sizeof($id_portfolio ?? []); $i++) {
+				$data = array('id_portfolio' => $id_portfolio[$i]);
+				$m_portfolio->delete($data);
+			}
+			return redirect()->to($pengalihan)->with('sukses', 'Data berhasil dihapus');
 		}
 		// end proses
 	}
@@ -171,77 +175,80 @@ class Portfolio extends BaseController
 	// edit
 	public function edit($id_portfolio)
 	{
-		
-		$m_kategori_portfolio 	= new Kategori_portfolio_model();
-		$m_portfolio 			= new Portfolio_model();
-		$kategori_portfolio 	= $m_kategori_portfolio->listing();
-		$portfolio 			= $m_portfolio->detail($id_portfolio);
+
+		$m_kategori_portfolio = new Kategori_portfolio_model();
+		$m_portfolio = new Portfolio_model();
+		$kategori_portfolio = $m_kategori_portfolio->listing();
+		$portfolio = $m_portfolio->detail($id_portfolio);
 		// Start validasi
-		if($this->request->getMethod() === 'POST' && $this->validate(
-			[
-				'judul_portfolio' 	=> 'required',
-				'gambar'	 	=> [
-					                'ext_in[gambar,jpg,jpeg,gif,png,svg]',
-					                'max_size[gambar,4096]',
-            					],
-        	])) {
-			if(!empty($_FILES['gambar']['name'])) {
+		if (
+			$this->request->getMethod() === 'POST' && $this->validate(
+				[
+					'judul_portfolio' => 'required',
+					'gambar' => [
+						'ext_in[gambar,jpg,jpeg,gif,png,svg]',
+						'max_size[gambar,4096]',
+					],
+				]
+			)
+		) {
+			if (!empty($_FILES['gambar']['name'])) {
 				// Image upload
-				$avatar  	= $this->request->getFile('gambar');
-				$namabaru 	= $avatar->getRandomName();
-	            $avatar->move(FCPATH . 'assets/upload/image/',$namabaru);
-	            // Create thumb
-	            $image = \Config\Services::image()
-			    ->withFile(FCPATH . 'assets/upload/image/'.$namabaru)
-			    ->fit(100, 100, 'center')
-			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
-	        	// masuk database
-			    $data = array(
-	        		'id_portfolio'			=> $id_portfolio,
-	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio'),
-					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
-					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
-					'isi'					=> $this->request->getVar('isi'),
-					'gambar' 				=> $namabaru,
-					'status_text'			=> $this->request->getVar('status_text'),
-					'status_portfolio'		=> $this->request->getVar('status_portfolio'),
-	        	);
-	        	$m_portfolio->edit($data);
-        		return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
-			}else{
+				$avatar = $this->request->getFile('gambar');
+				$namabaru = $avatar->getRandomName();
+				$avatar->move(FCPATH . 'assets/upload/image/', $namabaru);
+				// Create thumb
+				$image = \Config\Services::image()
+					->withFile(FCPATH . 'assets/upload/image/' . $namabaru)
+					->fit(100, 100, 'center')
+					->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
+				// masuk database
 				$data = array(
-	        		'id_portfolio'			=> $id_portfolio,
-	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_portfolio'	=> $this->request->getVar('id_kategori_portfolio'),
-					'judul_portfolio'		=> $this->request->getVar('judul_portfolio'),
-					'jenis_portfolio'		=> $this->request->getVar('jenis_portfolio'),
-					'isi'					=> $this->request->getVar('isi'),
-					'status_text'			=> $this->request->getVar('status_text'),
-					'status_portfolio'		=> $this->request->getVar('status_portfolio'),
-	        	);
-	        	$m_portfolio->edit($data);
-        		return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
+					'id_portfolio' => $id_portfolio,
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_portfolio' => $this->request->getVar('id_kategori_portfolio'),
+					'judul_portfolio' => $this->request->getVar('judul_portfolio'),
+
+					'isi' => $this->request->getVar('isi'),
+					'gambar' => $namabaru,
+
+					'status_portfolio' => $this->request->getVar('status_portfolio'),
+				);
+				$m_portfolio->edit($data);
+				return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
+			} else {
+				$data = array(
+					'id_portfolio' => $id_portfolio,
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_portfolio' => $this->request->getVar('id_kategori_portfolio'),
+					'judul_portfolio' => $this->request->getVar('judul_portfolio'),
+					'isi' => $this->request->getVar('isi'),
+
+					'status_portfolio' => $this->request->getVar('status_portfolio'),
+				);
+				$m_portfolio->edit($data);
+				return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
 			}
 		}
 
-		$data = [	'title'				=> 'Edit Portfolio: '.$portfolio->judul_portfolio,
-					'kategori_portfolio'	=> $kategori_portfolio,
-					'portfolio'			=> $portfolio,
-					'content'			=> 'admin/portfolio/edit'
-				];
-		echo view('admin/layout/wrapper',$data);
+		$data = [
+			'title' => 'Edit Portfolio: ' . $portfolio->judul_portfolio,
+			'kategori_portfolio' => $kategori_portfolio,
+			'portfolio' => $portfolio,
+			'content' => 'admin/portfolio/edit'
+		];
+		echo view('admin/layout/wrapper', $data);
 	}
 
 	// Delete
 	public function delete($id_portfolio)
 	{
-		
+
 		$m_portfolio = new Portfolio_model();
-		$data = ['id_portfolio'	=> $id_portfolio];
+		$data = ['id_portfolio' => $id_portfolio];
 		$m_portfolio->delete($data);
 		// masuk database
-		$this->session->setFlashdata('sukses','Data telah dihapus');
+		$this->session->setFlashdata('sukses', 'Data telah dihapus');
 		return redirect()->to(base_url('admin/portfolio'));
 	}
 }

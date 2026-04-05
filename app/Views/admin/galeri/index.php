@@ -2,10 +2,9 @@
 	<div class="col-md-6">
 		<?php echo form_open(base_url('admin/galeri'), ' method="get"') ?>
 		<div class="input-group">
-			<input type="text" name="keywords" class="form-control" placeholder="Keywords..."
-				value="<?php if (isset($_GET['keywords'])) {
-					echo $_GET['keywords'];
-				} ?>" required>
+			<input type="text" name="keywords" class="form-control" placeholder="Keywords..." value="<?php if (isset($_GET['keywords'])) {
+				echo $_GET['keywords'];
+			} ?>" required>
 			<span class="input-group-append">
 				<button type="submit" name="submit" value="Cari" class="btn btn-secondary btn-flat">
 					<i class="fa fa-search"></i> Cari
@@ -93,7 +92,6 @@
 						</td>
 						<td><?php echo $galeri->judul_galeri ?>
 							<small>
-								<br><i class="fa fa-tasks"></i> <?php echo $galeri->status_text ?>
 
 								<textarea title="Copy link gambar/file ini"
 									class="form-control"><?php echo base_url('assets/upload/image/' . $galeri->gambar) ?></textarea>

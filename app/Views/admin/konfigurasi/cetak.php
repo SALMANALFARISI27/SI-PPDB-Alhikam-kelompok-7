@@ -127,7 +127,7 @@ $this->website = new Website();
 
 					<tr>
 						<td class="bg-light">Tanggal Akreditasi</td>
-						<td><?php echo $this->website->tanggal_id($yayasan->tanggal_berlaku) ?></td>
+						<td><?php echo $this->website->tanggal_id($yayasan->tanggal_akreditasi) ?></td>
 					</tr>
 					<tr>
 						<td class="bg-light">Tanggal Kadaluarsa Akreditasi</td>

@@ -191,7 +191,7 @@ class Konfigurasi extends BaseController
 				'tanggal_berdiri' => $this->website->tanggal_input($this->request->getPost('tanggal_berdiri')),
 				'jumlah_pegawai' => $this->request->getPost('jumlah_pegawai'),
 				'nilai_akreditasi' => $this->request->getPost('nilai_akreditasi'),
-				'tanggal_berlaku' => $this->website->tanggal_input($this->request->getPost('tanggal_berlaku')),
+				'tanggal_akreditasi' => $this->website->tanggal_input($this->request->getPost('tanggal_akreditasi')),
 				'tanggal_kadaluarsa' => $this->website->tanggal_input($this->request->getPost('tanggal_kadaluarsa')),
 				'nomor_izin' => $this->request->getPost('nomor_izin'),
 				'keterangan' => $this->request->getPost('keterangan'),
