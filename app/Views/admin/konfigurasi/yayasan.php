@@ -61,7 +61,7 @@ echo csrf_field();
 		</tr>
 		<tr>
 			<td class="bg-light">Tahun Akreditasi</td>
-			<td><input type="text" name="tanggal_berlaku" class="form-control tanggal"
+			<td><input type="text" name="tanggal_akreditasi" class="form-control tanggal"
 					value="<?php echo $this->website->tanggal_id($yayasan->tanggal_akreditasi) ?>"></td>
 		</tr>
 		<tr>

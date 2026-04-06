@@ -66,14 +66,6 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Nama Panggilan<span class="text-danger">*</span></label>
-              <div class="col-md-9">
-                <input type="text" name="nama_panggilan" class="form-control" placeholder="Nama panggilan" value="<?php echo set_value('nama_panggilan') ?>">
-                <small class="text-warning">Nama panggilan</small>
-              </div>
-            </div>
-
-            <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">NIS dan NISN</label>
               <div class="col-md-4">
                 <input type="text" name="nis" class="form-control" placeholder="Nomor Induk Calon Peserta Didik (NIS)" value="<?php echo set_value('nis') ?>">

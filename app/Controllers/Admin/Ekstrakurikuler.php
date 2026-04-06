@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Controllers\Admin;
 
 use CodeIgniter\Controller;
@@ -7,142 +7,151 @@ use App\Models\Kategori_ekstrakurikuler_model;
 
 class Ekstrakurikuler extends BaseController
 {
-	
+
 	// index
 	public function index()
 	{
-		
-		$m_ekstrakurikuler 			= new Ekstrakurikuler_model();
-		$m_kategori_ekstrakurikuler 	= new Kategori_ekstrakurikuler_model();
-		$kategori_ekstrakurikuler 	= $m_kategori_ekstrakurikuler->listing();
+
+		$m_ekstrakurikuler = new Ekstrakurikuler_model();
+		$m_kategori_ekstrakurikuler = new Kategori_ekstrakurikuler_model();
+		$kategori_ekstrakurikuler = $m_kategori_ekstrakurikuler->listing();
 		$ekstrakurikuler = $m_ekstrakurikuler->listing();
 		$title = 'Ekstrakurikuler (' . count($ekstrakurikuler) . ')';
 
-		$data = [	'title'						=> $title,
-					'ekstrakurikuler'			=> $ekstrakurikuler,
-					'kategori_ekstrakurikuler'	=> $kategori_ekstrakurikuler,
-					'content'					=> 'admin/ekstrakurikuler/index'
-				];
-		echo view('admin/layout/wrapper',$data);
+		$data = [
+			'title' => $title,
+			'ekstrakurikuler' => $ekstrakurikuler,
+			'kategori_ekstrakurikuler' => $kategori_ekstrakurikuler,
+			'content' => 'admin/ekstrakurikuler/index'
+		];
+		echo view('admin/layout/wrapper', $data);
 	}
 
 	// Tambah
 	public function tambah()
 	{
-		
-		$m_ekstrakurikuler 			= new Ekstrakurikuler_model();
-		$m_kategori_ekstrakurikuler	= new Kategori_ekstrakurikuler_model();
-		$kategori_ekstrakurikuler 	= $m_kategori_ekstrakurikuler->listing();
+
+		$m_ekstrakurikuler = new Ekstrakurikuler_model();
+		$m_kategori_ekstrakurikuler = new Kategori_ekstrakurikuler_model();
+		$kategori_ekstrakurikuler = $m_kategori_ekstrakurikuler->listing();
 
 		// Start validasi
-		if($this->request->getMethod() === 'POST' && $this->validate(
-			[
-				'judul_ekstrakurikuler' 	=> 'required|is_unique[ekstrakurikuler.judul_ekstrakurikuler]',
-				'gambar'	 	=> [
-					                'ext_in[gambar,jpg,jpeg,gif,png,svg]',
-					                'max_size[gambar,4096]',
-            					],
-        	])) {
-			if(!empty($_FILES['gambar']['name'])) {
+		if (
+			$this->request->getMethod() === 'POST' && $this->validate(
+				[
+					'judul_ekstrakurikuler' => 'required|is_unique[ekstrakurikuler.judul_ekstrakurikuler]',
+					'gambar' => [
+						'ext_in[gambar,jpg,jpeg,gif,png,svg]',
+						'max_size[gambar,4096]',
+					],
+				]
+			)
+		) {
+			if (!empty($_FILES['gambar']['name'])) {
 				// Image upload
-				$avatar  	= $this->request->getFile('gambar');
-				$namabaru 	= $avatar->getRandomName();
-				if(!is_dir(FCPATH . 'assets/upload/image/thumbs/')) { mkdir(FCPATH . 'assets/upload/image/thumbs/', 0777, true); }
-	            $avatar->move(FCPATH . 'assets/upload/image/',$namabaru);
-	            // Create thumb
-	            $image = \Config\Services::image()
-			    ->withFile(FCPATH . 'assets/upload/image/'.$namabaru)
-			    ->fit(100, 100, 'center')
-			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
-	        	// masuk database
-	        	$data = array(
-	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler'),
-					'slug_ekstrakurikuler'			=> strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
-					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),
-					'nama_penanggung_jawab'			=> $this->request->getVar('nama_penanggung_jawab'),
-					'isi'							=> $this->request->getVar('isi'),
-					'gambar' 						=> $namabaru,
-					'status_text'					=> $this->request->getVar('status_text'),
-					'status_ekstrakurikuler'		=> $this->request->getVar('status_ekstrakurikuler'),
-					'tanggal_post'					=> date('Y-m-d H:i:s')
-	        	);
-	        	$m_ekstrakurikuler->tambah($data);
-        		return redirect()->to(base_url('admin/ekstrakurikuler'))->with('sukses', 'Data Berhasil di Simpan');
-        	}else{
-        		$data = array(
-	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler'),
-					'slug_ekstrakurikuler'			=> strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
-					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),
-					'nama_penanggung_jawab'			=> $this->request->getVar('nama_penanggung_jawab'),
-					'isi'							=> $this->request->getVar('isi'),
-					'status_text'					=> $this->request->getVar('status_text'),
-					'status_ekstrakurikuler'		=> $this->request->getVar('status_ekstrakurikuler'),
-					'tanggal_post'					=> date('Y-m-d H:i:s')
-	        	);
-	        	$m_ekstrakurikuler->tambah($data);
-        		return redirect()->to(base_url('admin/ekstrakurikuler'))->with('sukses', 'Data Berhasil di Simpan');
-        	}
-        }
+				$avatar = $this->request->getFile('gambar');
+				$namabaru = $avatar->getRandomName();
+				if (!is_dir(FCPATH . 'assets/upload/image/thumbs/')) {
+					mkdir(FCPATH . 'assets/upload/image/thumbs/', 0777, true);
+				}
+				$avatar->move(FCPATH . 'assets/upload/image/', $namabaru);
+				// Create thumb
+				$image = \Config\Services::image()
+					->withFile(FCPATH . 'assets/upload/image/' . $namabaru)
+					->fit(100, 100, 'center')
+					->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
+				// masuk database
+				$data = array(
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler'),
+					'slug_ekstrakurikuler' => strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
+					'judul_ekstrakurikuler' => $this->request->getVar('judul_ekstrakurikuler'),
+					'nama_penanggung_jawab' => $this->request->getVar('nama_penanggung_jawab'),
+					'isi' => $this->request->getVar('isi'),
+					'gambar' => $namabaru,
 
-		$data = [	'title'						=> 'Tambah Ekstrakurikuler ',
-					'kategori_ekstrakurikuler'	=> $kategori_ekstrakurikuler,
-					'content'					=> 'admin/ekstrakurikuler/tambah'
-				];
-		echo view('admin/layout/wrapper',$data);
+					'status_ekstrakurikuler' => $this->request->getVar('status_ekstrakurikuler'),
+					'tanggal_post' => date('Y-m-d H:i:s')
+				);
+				$m_ekstrakurikuler->tambah($data);
+				return redirect()->to(base_url('admin/ekstrakurikuler'))->with('sukses', 'Data Berhasil di Simpan');
+			} else {
+				$data = array(
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler'),
+					'slug_ekstrakurikuler' => strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
+					'judul_ekstrakurikuler' => $this->request->getVar('judul_ekstrakurikuler'),
+					'nama_penanggung_jawab' => $this->request->getVar('nama_penanggung_jawab'),
+					'isi' => $this->request->getVar('isi'),
+
+					'status_ekstrakurikuler' => $this->request->getVar('status_ekstrakurikuler'),
+					'tanggal_post' => date('Y-m-d H:i:s')
+				);
+				$m_ekstrakurikuler->tambah($data);
+				return redirect()->to(base_url('admin/ekstrakurikuler'))->with('sukses', 'Data Berhasil di Simpan');
+			}
+		}
+
+		$data = [
+			'title' => 'Tambah Ekstrakurikuler ',
+			'kategori_ekstrakurikuler' => $kategori_ekstrakurikuler,
+			'content' => 'admin/ekstrakurikuler/tambah'
+		];
+		echo view('admin/layout/wrapper', $data);
 	}
 
 	// proses
 	public function proses()
 	{
-		
-		$m_kategori 		= new Kategori_ekstrakurikuler_model();
-		$m_ekstrakurikuler	= new Ekstrakurikuler_model();
+
+		$m_kategori = new Kategori_ekstrakurikuler_model();
+		$m_ekstrakurikuler = new Ekstrakurikuler_model();
 		// proses
-		$pengalihan 		= $this->request->getVar('pengalihan');
-		$submit 			= $this->request->getVar('submit');
-		$id_ekstrakurikuler 	= $this->request->getVar('id_ekstrakurikuler');
+		$pengalihan = $this->request->getVar('pengalihan');
+		$submit = $this->request->getVar('submit');
+		$id_ekstrakurikuler = $this->request->getVar('id_ekstrakurikuler');
 		// check ekstrakurikuler
-		if(empty($this->request->getVar('id_ekstrakurikuler')))
-		{
+		if (empty($this->request->getVar('id_ekstrakurikuler'))) {
 			return redirect()->to($pengalihan)->with('warning', 'Anda belum memilih ekstrakurikuler. Pilih salah satu ekstrakurikuler');
 		}
 		// end check ekstrakurikuler
 		// proses
-		if($submit=='Update') {
-   			for($i=0; $i < sizeof($id_ekstrakurikuler ?? []);$i++) {
-				$data = array(	'id_ekstrakurikuler'			=> $id_ekstrakurikuler[$i],
-								'id_admin' => $this->session->get('id_admin'),
-								'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler')
-							);
-   				$m_ekstrakurikuler->edit($data);
-   			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Ekstrakurikuler berhasil diupdate jenis ekstrakurikulernya');
-		}elseif($submit=='Publish') {
-			for($i=0; $i < sizeof($id_ekstrakurikuler ?? []);$i++) {
-				$data = array(	'id_ekstrakurikuler'		=> $id_ekstrakurikuler[$i],
-								'id_admin' => $this->session->get('id_admin'),
-								'status_ekstrakurikuler'	=> 'Publish'
-							);
-   				$m_ekstrakurikuler->edit($data);
-   			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Ekstrakurikuler berhasil dipublikasikan');
-		}elseif($submit=='Draft') {
-			for($i=0; $i < sizeof($id_ekstrakurikuler ?? []);$i++) {
-				$data = array(	'id_ekstrakurikuler'		=> $id_ekstrakurikuler[$i],
-								'id_admin' => $this->session->get('id_admin'),
-								'status_ekstrakurikuler'	=> 'Draft'
-							);
-   				$m_ekstrakurikuler->edit($data);
-   			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Ekstrakurikuler berhasil tidak dipublikasikan');
-		}elseif($submit=='Delete') {
-			for($i=0; $i < sizeof($id_ekstrakurikuler ?? []);$i++) {
-				$data = array(	'id_ekstrakurikuler'	=> $id_ekstrakurikuler[$i]);
-   				$m_ekstrakurikuler->delete($data);
-   			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Data berhasil dihapus');
+		if ($submit == 'Update') {
+			for ($i = 0; $i < sizeof($id_ekstrakurikuler ?? []); $i++) {
+				$data = array(
+					'id_ekstrakurikuler' => $id_ekstrakurikuler[$i],
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler')
+				);
+				$m_ekstrakurikuler->edit($data);
+			}
+			return redirect()->to($pengalihan)->with('sukses', 'Ekstrakurikuler berhasil diupdate jenis ekstrakurikulernya');
+		} elseif ($submit == 'Publish') {
+			for ($i = 0; $i < sizeof($id_ekstrakurikuler ?? []); $i++) {
+				$data = array(
+					'id_ekstrakurikuler' => $id_ekstrakurikuler[$i],
+					'id_admin' => $this->session->get('id_admin'),
+					'status_ekstrakurikuler' => 'Publish'
+				);
+				$m_ekstrakurikuler->edit($data);
+			}
+			return redirect()->to($pengalihan)->with('sukses', 'Ekstrakurikuler berhasil dipublikasikan');
+		} elseif ($submit == 'Draft') {
+			for ($i = 0; $i < sizeof($id_ekstrakurikuler ?? []); $i++) {
+				$data = array(
+					'id_ekstrakurikuler' => $id_ekstrakurikuler[$i],
+					'id_admin' => $this->session->get('id_admin'),
+					'status_ekstrakurikuler' => 'Draft'
+				);
+				$m_ekstrakurikuler->edit($data);
+			}
+			return redirect()->to($pengalihan)->with('sukses', 'Ekstrakurikuler berhasil tidak dipublikasikan');
+		} elseif ($submit == 'Delete') {
+			for ($i = 0; $i < sizeof($id_ekstrakurikuler ?? []); $i++) {
+				$data = array('id_ekstrakurikuler' => $id_ekstrakurikuler[$i]);
+				$m_ekstrakurikuler->delete($data);
+			}
+			return redirect()->to($pengalihan)->with('sukses', 'Data berhasil dihapus');
 		}
 		// end proses
 	}
@@ -150,80 +159,85 @@ class Ekstrakurikuler extends BaseController
 	// edit
 	public function edit($id_ekstrakurikuler)
 	{
-		
-		$m_kategori_ekstrakurikuler	= new Kategori_ekstrakurikuler_model();
-		$m_ekstrakurikuler 			= new Ekstrakurikuler_model();
-		$kategori_ekstrakurikuler 	= $m_kategori_ekstrakurikuler->listing();
-		$ekstrakurikuler 			= $m_ekstrakurikuler->detail($id_ekstrakurikuler);
+
+		$m_kategori_ekstrakurikuler = new Kategori_ekstrakurikuler_model();
+		$m_ekstrakurikuler = new Ekstrakurikuler_model();
+		$kategori_ekstrakurikuler = $m_kategori_ekstrakurikuler->listing();
+		$ekstrakurikuler = $m_ekstrakurikuler->detail($id_ekstrakurikuler);
 		// Start validasi
-		if($this->request->getMethod() === 'POST' && $this->validate(
-			[
-				'judul_ekstrakurikuler' 	=> 'required',
-				'gambar'	 	=> [
-					                'ext_in[gambar,jpg,jpeg,gif,png,svg]',
-					                'max_size[gambar,4096]',
-            					],
-        	])) {
-			if(!empty($_FILES['gambar']['name'])) {
+		if (
+			$this->request->getMethod() === 'POST' && $this->validate(
+				[
+					'judul_ekstrakurikuler' => 'required',
+					'gambar' => [
+						'ext_in[gambar,jpg,jpeg,gif,png,svg]',
+						'max_size[gambar,4096]',
+					],
+				]
+			)
+		) {
+			if (!empty($_FILES['gambar']['name'])) {
 				// Image upload
-				$avatar  	= $this->request->getFile('gambar');
-				$namabaru 	= $avatar->getRandomName();
-				if(!is_dir(FCPATH . 'assets/upload/image/thumbs/')) { mkdir(FCPATH . 'assets/upload/image/thumbs/', 0777, true); }
-	            $avatar->move(FCPATH . 'assets/upload/image/',$namabaru);
-	            // Create thumb
-	            $image = \Config\Services::image()
-			    ->withFile(FCPATH . 'assets/upload/image/'.$namabaru)
-			    ->fit(100, 100, 'center')
-			    ->save(FCPATH . 'assets/upload/image/thumbs/'.$namabaru);
-	        	// masuk database
-			    $data = array(
-	        		'id_ekstrakurikuler'			=> $id_ekstrakurikuler,
-	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler'),
-					'slug_ekstrakurikuler'			=> strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
-					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),
-					'nama_penanggung_jawab'			=> $this->request->getVar('nama_penanggung_jawab'),
-					'isi'							=> $this->request->getVar('isi'),
-					'gambar' 						=> $namabaru,
-					'status_text'					=> $this->request->getVar('status_text'),
-					'status_ekstrakurikuler'		=> $this->request->getVar('status_ekstrakurikuler'),
-	        	);
-	        	$m_ekstrakurikuler->edit($data);
-        		return redirect()->to(base_url('admin/ekstrakurikuler'))->with('sukses', 'Data Berhasil di Simpan');
-			}else{
+				$avatar = $this->request->getFile('gambar');
+				$namabaru = $avatar->getRandomName();
+				if (!is_dir(FCPATH . 'assets/upload/image/thumbs/')) {
+					mkdir(FCPATH . 'assets/upload/image/thumbs/', 0777, true);
+				}
+				$avatar->move(FCPATH . 'assets/upload/image/', $namabaru);
+				// Create thumb
+				$image = \Config\Services::image()
+					->withFile(FCPATH . 'assets/upload/image/' . $namabaru)
+					->fit(100, 100, 'center')
+					->save(FCPATH . 'assets/upload/image/thumbs/' . $namabaru);
+				// masuk database
 				$data = array(
-	        		'id_ekstrakurikuler'			=> $id_ekstrakurikuler,
-	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_ekstrakurikuler'	=> $this->request->getVar('id_kategori_ekstrakurikuler'),
-					'slug_ekstrakurikuler'			=> strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
-					'judul_ekstrakurikuler'			=> $this->request->getVar('judul_ekstrakurikuler'),
-					'nama_penanggung_jawab'			=> $this->request->getVar('nama_penanggung_jawab'),
-					'isi'							=> $this->request->getVar('isi'),
-					'status_text'					=> $this->request->getVar('status_text'),
-					'status_ekstrakurikuler'		=> $this->request->getVar('status_ekstrakurikuler'),
-	        	);
-	        	$m_ekstrakurikuler->edit($data);
-        		return redirect()->to(base_url('admin/ekstrakurikuler'))->with('sukses', 'Data Berhasil di Simpan');
+					'id_ekstrakurikuler' => $id_ekstrakurikuler,
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler'),
+					'slug_ekstrakurikuler' => strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
+					'judul_ekstrakurikuler' => $this->request->getVar('judul_ekstrakurikuler'),
+					'nama_penanggung_jawab' => $this->request->getVar('nama_penanggung_jawab'),
+					'isi' => $this->request->getVar('isi'),
+					'gambar' => $namabaru,
+
+					'status_ekstrakurikuler' => $this->request->getVar('status_ekstrakurikuler'),
+				);
+				$m_ekstrakurikuler->edit($data);
+				return redirect()->to(base_url('admin/ekstrakurikuler'))->with('sukses', 'Data Berhasil di Simpan');
+			} else {
+				$data = array(
+					'id_ekstrakurikuler' => $id_ekstrakurikuler,
+					'id_admin' => $this->session->get('id_admin'),
+					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler'),
+					'slug_ekstrakurikuler' => strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
+					'judul_ekstrakurikuler' => $this->request->getVar('judul_ekstrakurikuler'),
+					'nama_penanggung_jawab' => $this->request->getVar('nama_penanggung_jawab'),
+					'isi' => $this->request->getVar('isi'),
+					'status_ekstrakurikuler' => $this->request->getVar('status_ekstrakurikuler'),
+				);
+				$m_ekstrakurikuler->edit($data);
+				return redirect()->to(base_url('admin/ekstrakurikuler'))->with('sukses', 'Data Berhasil di Simpan');
 			}
 		}
 
-		$data = [	'title'						=> 'Edit Ekstrakurikuler: '.$ekstrakurikuler->judul_ekstrakurikuler,
-					'kategori_ekstrakurikuler'	=> $kategori_ekstrakurikuler,
-					'ekstrakurikuler'			=> $ekstrakurikuler,
-					'content'					=> 'admin/ekstrakurikuler/edit'
-				];
-		echo view('admin/layout/wrapper',$data);
+		$data = [
+			'title' => 'Edit Ekstrakurikuler: ' . $ekstrakurikuler->judul_ekstrakurikuler,
+			'kategori_ekstrakurikuler' => $kategori_ekstrakurikuler,
+			'ekstrakurikuler' => $ekstrakurikuler,
+			'content' => 'admin/ekstrakurikuler/edit'
+		];
+		echo view('admin/layout/wrapper', $data);
 	}
 
 	// Delete
 	public function delete($id_ekstrakurikuler)
 	{
-		
+
 		$m_ekstrakurikuler = new Ekstrakurikuler_model();
-		$data = ['id_ekstrakurikuler'	=> $id_ekstrakurikuler];
+		$data = ['id_ekstrakurikuler' => $id_ekstrakurikuler];
 		$m_ekstrakurikuler->delete($data);
 		// masuk database
-		$this->session->setFlashdata('sukses','Data telah dihapus');
+		$this->session->setFlashdata('sukses', 'Data telah dihapus');
 		return redirect()->to(base_url('admin/ekstrakurikuler'));
 	}
 }

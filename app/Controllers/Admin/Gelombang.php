@@ -467,7 +467,6 @@ class Gelombang extends BaseController
 					'status_wn' => $this->request->getPost('status_wn'),
 					'negara_asal' => $this->request->getPost('negara_asal'),
 					'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
-					'nama_panggilan' => $this->request->getPost('nama_panggilan'),
 					'tempat_lahir' => $this->request->getPost('tempat_lahir'),
 					'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
 					'alamat' => $this->request->getPost('alamat'),
@@ -492,21 +491,14 @@ class Gelombang extends BaseController
 					'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
 					'tinggi' => $this->request->getPost('tinggi'),
 					'berat' => $this->request->getPost('berat'),
-					'kelompok' => $this->request->getPost('kelompok'),
-					'tanggal_masuk' => $this->website->tanggal_input($this->request->getPost('tanggal_masuk')),
 					'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
 					'asal_sekolah' => $this->request->getPost('asal_sekolah'),
 					'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
-					'dari_kelompok' => $this->request->getPost('dari_kelompok'),
 					'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
 					'anak_ke' => $this->request->getPost('anak_ke'),
 					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
-					'gambar' => $nama_calon_peserta_didik_baru,
-					'status_calon_peserta_didik' => 'Menunggu',
 					'status_pendaftaran' => $this->request->getPost('status_pendaftaran'),
-					'identitas_wali' => $this->request->getPost('identitas_wali'),
-					'tanggal_baca' => date('Y-m-d H:i:s'),
-					'tanggal_post' => date('Y-m-d H:i:s')
+					'identitas_wali' => $this->request->getPost('identitas_wali')
 				];
 				$m_calon_peserta_didik->tambah($data);
 				// masuk database
@@ -539,7 +531,6 @@ class Gelombang extends BaseController
 					'status_wn' => $this->request->getPost('status_wn'),
 					'negara_asal' => $this->request->getPost('negara_asal'),
 					'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
-					'nama_panggilan' => $this->request->getPost('nama_panggilan'),
 					'tempat_lahir' => $this->request->getPost('tempat_lahir'),
 					'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
 					'alamat' => $this->request->getPost('alamat'),
@@ -564,21 +555,14 @@ class Gelombang extends BaseController
 					'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
 					'tinggi' => $this->request->getPost('tinggi'),
 					'berat' => $this->request->getPost('berat'),
-					'kelompok' => $this->request->getPost('kelompok'),
-					'tanggal_masuk' => $this->website->tanggal_input($this->request->getPost('tanggal_masuk')),
 					'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
 					'asal_sekolah' => $this->request->getPost('asal_sekolah'),
 					'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
-					'dari_kelompok' => $this->request->getPost('dari_kelompok'),
 					'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
 					'anak_ke' => $this->request->getPost('anak_ke'),
 					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
-					// 'gambar'				=> $nama_calon_peserta_didik_baru,
-					'status_calon_peserta_didik' => 'Menunggu',
 					'status_pendaftaran' => $this->request->getPost('status_pendaftaran'),
-					'identitas_wali' => $this->request->getPost('identitas_wali'),
-					'tanggal_baca' => date('Y-m-d H:i:s'),
-					'tanggal_post' => date('Y-m-d H:i:s')
+					'identitas_wali' => $this->request->getPost('identitas_wali')
 				];
 				// masuk database
 				$m_calon_peserta_didik->tambah($data);
@@ -698,7 +682,6 @@ class Gelombang extends BaseController
 					'status_wn' => $this->request->getPost('status_wn'),
 					'negara_asal' => $this->request->getPost('negara_asal'),
 					'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
-					'nama_panggilan' => $this->request->getPost('nama_panggilan'),
 					'tempat_lahir' => $this->request->getPost('tempat_lahir'),
 					'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
 					'alamat' => $this->request->getPost('alamat'),
@@ -723,16 +706,12 @@ class Gelombang extends BaseController
 					'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
 					'tinggi' => $this->request->getPost('tinggi'),
 					'berat' => $this->request->getPost('berat'),
-					'kelompok' => $this->request->getPost('kelompok'),
-					'tanggal_masuk' => $this->website->tanggal_input($this->request->getPost('tanggal_masuk')),
 					'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
 					'asal_sekolah' => $this->request->getPost('asal_sekolah'),
 					'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
-					'dari_kelompok' => $this->request->getPost('dari_kelompok'),
 					'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
 					'anak_ke' => $this->request->getPost('anak_ke'),
 					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
-					'gambar' => $nama_calon_peserta_didik_baru,
 					'identitas_wali' => $this->request->getPost('identitas_wali'),
 					'status_pendaftaran' => $this->request->getPost('status_pendaftaran')
 				];
@@ -767,7 +746,6 @@ class Gelombang extends BaseController
 					'status_wn' => $this->request->getPost('status_wn'),
 					'negara_asal' => $this->request->getPost('negara_asal'),
 					'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
-					'nama_panggilan' => $this->request->getPost('nama_panggilan'),
 					'tempat_lahir' => $this->request->getPost('tempat_lahir'),
 					'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
 					'alamat' => $this->request->getPost('alamat'),
@@ -792,12 +770,9 @@ class Gelombang extends BaseController
 					'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
 					'tinggi' => $this->request->getPost('tinggi'),
 					'berat' => $this->request->getPost('berat'),
-					'kelompok' => $this->request->getPost('kelompok'),
-					'tanggal_masuk' => $this->website->tanggal_input($this->request->getPost('tanggal_masuk')),
 					'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
 					'asal_sekolah' => $this->request->getPost('asal_sekolah'),
 					'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
-					'dari_kelompok' => $this->request->getPost('dari_kelompok'),
 					'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
 					'anak_ke' => $this->request->getPost('anak_ke'),
 					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
@@ -908,9 +883,7 @@ class Gelombang extends BaseController
 				'kode_dokumen' => strtoupper(random_string('alnum', 32)),
 				'gambar' => $namabaru,
 				'file_ext' => $file_ext,
-				'file_size' => $file_size,
-				'status_dokumen' => 'Menunggu',
-				'tanggal_post' => date('Y-m-d H:i:s')
+				'file_size' => $file_size
 			);
 			$m_dokumen->tambah($data);
 			return redirect()->to(base_url('admin/gelombang/dokumen/' . $slug_calon_peserta_didik))->with('sukses', 'Data Berhasil di Simpan');

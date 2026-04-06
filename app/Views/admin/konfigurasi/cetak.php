@@ -17,10 +17,10 @@ $this->website = new Website();
 	<page size="A4" layout="portrait">
 		<div class="cetak">
 
-			<table>
+			<table style="width: 100%; border: none;">
 				<tbody>
 					<tr>
-						<td style="width: 1.8cm;">
+						<td style="width: 1.8cm; border: none;">
 							<?php
 							$icon_url = $this->website->icon();
 							// Convert URL ke path file untuk mPDF
@@ -33,7 +33,7 @@ $this->website = new Website();
 							?>
 							<img src="<?php echo $icon_src ?>" style="width: 1.5cm; height: auto;">
 						</td>
-						<td>
+						<td style="border: none;">
 							<h1>INFORMASI YAYASAN
 								<br><?php echo $yayasan->nama_yayasan ?>
 							</h1>
@@ -170,18 +170,19 @@ $this->website = new Website();
 				</tbody>
 			</table>
 
-			<table>
+			<!-- Footer Tanda Tangan Pemimpin Yayasan -->
+			<table style="width: 100%; margin-top: 50px; border: none;">
 				<tbody>
 					<tr>
-						<td width="60%"></td>
-						<td>
+						<td width="60%" style="border: none;"></td>
+						<td width="40%" style="text-align: center; vertical-align: bottom; border: none;">
 							<?php echo $yayasan->kabupaten ?>,
 							<?php echo $this->website->tanggal_bulan(date('Y-m-d')) ?>
 							<br>
 							<br>
 							<br>
 							<br>
-							<br><strong>(........................................)</strong>
+							<br><strong>(...........................................)</strong>
 							<br>Pemimpin Yayasan
 						</td>
 					</tr>

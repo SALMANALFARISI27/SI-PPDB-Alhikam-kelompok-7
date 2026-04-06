@@ -8,3 +8,4 @@ include('about.php');
 include('video.php');
 include('berita.php');
 include('prestasi.php');
+include('fasilitas.php');

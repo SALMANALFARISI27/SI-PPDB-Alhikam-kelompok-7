@@ -46,7 +46,7 @@ class Nav_model extends Model
         $builder = $this->db->table('download');
         $builder->select('download.id_kategori_download, MAX(download.gambar) AS gambar, kategori_download.nama_kategori_download, kategori_download.slug_kategori_download');
         $builder->join('kategori_download', 'kategori_download.id_kategori_download = download.id_kategori_download');
-        $builder->where('download.jenis_download', 'Download');
+        $builder->where('download.status_download', 'Publish');
         $builder->groupBy('download.id_kategori_download');
         $query = $builder->get();
         return $query->getResult();
@@ -89,17 +89,6 @@ class Nav_model extends Model
         return $query->getResult();
     }
 
-    // Listing
-    public function kreatif()
-    {
-        $builder = $this->db->table('kreatif');
-        $builder->select('kreatif.*, kategori_kreatif.nama_kategori_kreatif, kategori_kreatif.slug_kategori_kreatif, admin.nama');
-        $builder->join('kategori_kreatif', 'kategori_kreatif.id_kategori_kreatif = kreatif.id_kategori_kreatif', 'LEFT');
-        $builder->join('admin', 'admin.id_admin = kreatif.id_admin', 'LEFT');
-        $builder->orderBy('kreatif.urutan', 'ASC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
 
     // Nav profil
     public function jenis_berita($jenis_berita)

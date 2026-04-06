@@ -18,17 +18,7 @@
                <?php endif ?>
 
               <?php 
-        use App\Models\Agama_model;
-        use App\Models\Jenjang_model;
-        use App\Models\Pekerjaan_model;
-        use App\Models\Hubungan_model;
-        use App\Models\Tahun_model;
         use App\Models\Jenjang_pendidikan_model;
-        $m_agama    = new Agama_model();
-        $m_jenjang    = new Jenjang_model();
-        $m_pekerjaan  = new Pekerjaan_model();
-        $m_hubungan   = new Hubungan_model();
-        $m_tahun    = new Tahun_model();
         $m_jenjang_pendidikan   = new Jenjang_pendidikan_model();
 
         echo form_open_multipart(base_url('admin/gelombang/edit_calon_peserta_didik/'.$calon_peserta_didik->slug_calon_peserta_didik));
@@ -79,14 +69,6 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Nama Panggilan<span class="text-danger">*</span></label>
-              <div class="col-md-9">
-                <input type="text" name="nama_panggilan" class="form-control" placeholder="Nama panggilan" value="<?php if(isset($_POST['submit'])) { echo set_value('nama_panggilan'); }else{ echo $calon_peserta_didik->nama_panggilan; } ?>" required>
-                <small class="text-warning">Nama panggilan</small>
-              </div>
-            </div>
-
-            <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">NIS dan NISN</label>
               <div class="col-md-4">
                 <input type="text" name="nis" class="form-control" placeholder="Nomor Induk Calon Peserta Didik (NIS)" value="<?php if(isset($_POST['submit'])) { echo set_value('nis'); }else{ echo $calon_peserta_didik->nis; } ?>">
@@ -101,7 +83,6 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Agama &amp; Status Kewarganegaraan<span class="text-danger">*</span></label>
               <div class="col-md-3">
-                <?php $agama = $m_agama->listing(); ?>
                 <select name="agama" class="form-control" required><option value="">-- Pilih Agama --</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen">Kristen</option>
@@ -135,23 +116,12 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Status/Hubungan Anak dengan Wali<span class="text-danger">*</span></label>
-              <div class="col-md-3">
-                <?php $hubungan = $m_hubungan->listing(); ?>
-                <select name="id_hubungan" class="form-control  form-select" required>
-                  <?php foreach($hubungan as $hubungan) { ?>
-                    <option value="<?php echo $hubungan->id_hubungan ?>" <?php if(set_value('id_hubungan')==$hubungan->id_hubungan) { echo 'selected'; } ?>>
-                      <?php echo $hubungan->nama_hubungan ?>
-                    </option>
-                  <?php } ?>
-                </select>
-                <small class="text-secondary">Status Anak</small>
-              </div>
-              <div class="col-md-3">
+              <label class="col-md-3 text-dark">Urutan Keluarga<span class="text-danger">*</span></label>
+              <div class="col-md-4">
                 <input type="number" name="anak_ke" class="form-control" placeholder="Anak nomor ke?" value="<?php if(isset($_POST['submit'])) { echo set_value('anak_ke'); }else{ echo $calon_peserta_didik->anak_ke; } ?>" required>
                 <small class="text-secondary">Anak nomor ke</small>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-5">
                 <input type="number" name="jumlah_saudara" class="form-control" placeholder="Jumlah saudara" value="<?php if(isset($_POST['submit'])) { echo set_value('jumlah_saudara'); }else{ echo $calon_peserta_didik->jumlah_saudara; } ?>" required>
                 <small class="text-secondary">Jumlah saudara</small>
               </div>
@@ -359,7 +329,6 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Agama Ayah</label>
               <div class="col-md-9">
-                <?php $agama = $m_agama->listing(); ?>
                 <select name="agama_ayah" class="form-control"><option value="">-- Pilih Agama --</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen">Kristen</option>
@@ -382,7 +351,6 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Pendidikan Ayah</label>
               <div class="col-md-9">
-                <?php $jenjang = $m_jenjang->listing(); ?>
                 <select name="jenjang_ayah" class="form-control"><option value="">-- Pilih Jenjang --</option>
                      <option value="Tidak Sekolah">Tidak Sekolah</option>
                      <option value="SD">SD</option>
@@ -434,7 +402,6 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Agama Ibu</label>
               <div class="col-md-9">
-                <?php $agama = $m_agama->listing(); ?>
                 <select name="agama_ibu" class="form-control"><option value="">-- Pilih Agama --</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen">Kristen</option>
@@ -457,7 +424,6 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Pendidikan Ibu</label>
               <div class="col-md-9">
-                <?php $jenjang = $m_jenjang->listing(); ?>
                 <select name="jenjang_ibu" class="form-control"><option value="">-- Pilih Jenjang --</option>
                      <option value="Tidak Sekolah">Tidak Sekolah</option>
                      <option value="SD">SD</option>
@@ -534,7 +500,6 @@
               <div class="form-group row mb-3">
                 <label class="col-md-3 text-dark">Agama Wali</label>
                 <div class="col-md-9">
-                  <?php $agama = $m_agama->listing(); ?>
                   <select name="agama_wali" class="form-control"><option value="">-- Pilih Agama --</option>
                   <option value="Islam">Islam</option>
                   <option value="Kristen">Kristen</option>
@@ -549,7 +514,6 @@
               <div class="form-group row mb-3">
                 <label class="col-md-3 text-dark">Pekerjaan Wali</label>
                 <div class="col-md-9">
-                  <?php $pekerjaan = $m_pekerjaan->listing(); ?>
                   <input type="text" name="pekerjaan_wali" class="form-control" placeholder="Pekerjaan Wali">
                 </div>
               </div>
@@ -557,7 +521,6 @@
               <div class="form-group row mb-3">
                 <label class="col-md-3 text-dark">Pendidikan Wali</label>
                 <div class="col-md-9">
-                  <?php $jenjang = $m_jenjang->listing(); ?>
                   <select name="jenjang_wali" class="form-control"><option value="">-- Pilih Jenjang --</option>
                      <option value="Tidak Sekolah">Tidak Sekolah</option>
                      <option value="SD">SD</option>

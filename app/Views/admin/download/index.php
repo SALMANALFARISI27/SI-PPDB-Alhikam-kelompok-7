@@ -34,8 +34,12 @@
 			<button type="submit" name="submit" value="Publish" class="btn btn-info" title="Publikasikan">
 				<i class="fa fa-eye"></i>
 			</button>
-			<select name="jenis_download" class="form-control">
-				<option value="Download">Download</option>
+			<select name="id_kategori_download" class="form-control">
+				<?php foreach ($kategori_download as $kategori_download) { ?>
+					<option value="<?php echo $kategori_download->id_kategori_download ?>">
+						<?php echo $kategori_download->nama_kategori_download ?>
+					</option>
+				<?php } ?>
 			</select>
 			<span class="input-group-append">
 				<button type="submit" name="submit" value="Update" class="btn btn-warning">
@@ -94,9 +98,6 @@
 										href="<?php echo base_url('admin/download/kategori_download/' . $download->id_kategori_download) ?>">
 										<?php echo $download->nama_kategori_download ?>
 									</a>
-									<br><i class="fa fa-home"></i> <a
-										href="<?php echo base_url('admin/download/jenis_download/' . $download->jenis_download) ?>">
-										<?php echo $download->jenis_download ?></a>
 									<br><i class="fa fa-user"></i> <a
 										href="<?php echo base_url('admin/download/author/' . $download->id_admin) ?>"><?php echo $download->nama ?></a>
 									<br><i class="fa fa-file-code"></i> <?php echo strtoupper($download->file_ext) ?>

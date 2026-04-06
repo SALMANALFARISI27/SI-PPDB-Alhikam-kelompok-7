@@ -23,7 +23,7 @@ class Jenjang_pendidikan extends BaseController
         $jenjang_pendidikan = $m_jenjang_pendidikan->status_jenjang_pendidikan_all($status_jenjang_pendidikan, $perPage, $page);
 
         $data = [
-            'title' => 'Program Unggulan',
+            'title' => 'PROGRAM UNGGULAN',
             'description' => 'Program Unggulan',
             'keywords' => 'Program Unggulan',
             'site' => $site,

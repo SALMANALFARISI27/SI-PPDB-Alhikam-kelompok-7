@@ -27,11 +27,6 @@
                           <tr>
                             <td class="font-bold" width="35%">Nama lengkap</td>
                             <td><?php echo strtoupper($calon_peserta_didik->nama_calon_peserta_didik) ?></td>
-                          </tr>
-                          <tr>
-                            <td class="font-bold">Nama panggilan</td>
-                            <td><?php echo $calon_peserta_didik->nama_panggilan ?></td>
-                          </tr>
                           <tr>
                             <td class="font-bold">NIS / NISN</td>
                             <td><?php echo $calon_peserta_didik->nis ?> / <?php echo $calon_peserta_didik->nisn ?></td>

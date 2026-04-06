@@ -346,11 +346,4 @@ class Calon_peserta_didik_model extends Model
         $builder = $this->db->table('calon_peserta_didik');
         $builder->insert($data);
     }
-
-    // tambah  log
-    public function calon_peserta_didik_log($data)
-    {
-        $builder = $this->db->table('user_logs');
-        $builder->insert($data);
-    }
 }

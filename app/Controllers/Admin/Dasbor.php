@@ -18,7 +18,7 @@ class Dasbor extends BaseController
 	public function panduan()
 	{
 		$m_download 	= new Download_model();
-		$download 		= $m_download->jenis_download('Panduan');
+		$download 		= $m_download->status_download('Publish');
 
 		$data = [   'title'     => 'Manual dan User Guide',
 					'download'	=> $download,

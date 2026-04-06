@@ -12,6 +12,7 @@ use App\Models\Berita_model;
 use App\Models\Staff_model;
 use App\Models\Prestasi_model;
 use App\Models\Video_model;
+use App\Models\Fasilitas_model;
 
 use App\Models\Jenjang_pendidikan_model;
 
@@ -23,6 +24,7 @@ class Home extends BaseController
     protected $staff_model;
     protected $prestasi_model;
     protected $video_model;
+    protected $fasilitas_model;
     protected $jenjang_pendidikan_model;
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
@@ -34,6 +36,7 @@ class Home extends BaseController
         $this->staff_model          = new Staff_model();
         $this->prestasi_model       = new Prestasi_model();
         $this->video_model          = new Video_model();
+        $this->fasilitas_model      = new Fasilitas_model();
 
         $this->jenjang_pendidikan_model   = new Jenjang_pendidikan_model();
     }
@@ -48,6 +51,7 @@ class Home extends BaseController
         $berita     = $this->berita_model->beranda('Berita',6);
         $staff      = $this->staff_model->home(6);
         $prestasi   = $this->prestasi_model->home(6,'Publish');
+        $fasilitas  = $this->fasilitas_model->home(6,'Publish');
         $video      = $this->video_model->home();
 
         $jenjang_pendidikan     = $this->jenjang_pendidikan_model->main();
@@ -61,6 +65,7 @@ class Home extends BaseController
                     'berita'        => $berita,
                     'staff'         => $staff,
                     'prestasi'      => $prestasi,
+                    'fasilitas'     => $fasilitas,
                     'video'         => $video,
 
                     'jenjang_pendidikan'    => $jenjang_pendidikan,

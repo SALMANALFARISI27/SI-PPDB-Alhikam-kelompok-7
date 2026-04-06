@@ -77,7 +77,7 @@ class Galeri extends BaseController
 					'isi' => $this->request->getVar('isi'),
 					'gambar' => $namabaru,
 
-					'tanggal_post' => date('Y-m-d H:i:s')
+
 				);
 				$m_galeri->tambah($data);
 				return redirect()->to(base_url('admin/galeri'))->with('sukses', 'Data Berhasil di Simpan');
@@ -89,7 +89,7 @@ class Galeri extends BaseController
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
 
-					'tanggal_post' => date('Y-m-d H:i:s')
+
 				);
 				$m_galeri->tambah($data);
 				return redirect()->to(base_url('admin/galeri'))->with('sukses', 'Data Berhasil di Simpan');
