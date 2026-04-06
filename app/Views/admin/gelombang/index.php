@@ -8,7 +8,8 @@
 	<div class="card-header">
 		<div class="card-tools">
 			<div class="input-group input-group-sm" style="width: 250px;">
-				<input type="text" id="pencarian-kustom" class="form-control float-right" placeholder="Cari periode/tahap...">
+				<input type="text" id="pencarian-kustom" class="form-control float-right"
+					placeholder="Cari periode/tahap...">
 				<div class="input-group-append">
 					<button type="submit" class="btn btn-default">
 						<i class="fas fa-search"></i>
@@ -22,17 +23,17 @@
 			<table class="table table-bordered table-sm" id="tabel-gelombang">
 				<thead>
 					<tr>
-						<th width="2%" class="text-left align-middle">No</th>
-						<th width="5%" class="text-left align-middle">Gambar</th>
-						<th width="20%" class="text-left align-middle">Periode PPDB</th>
-						<th width="8%" class="text-left align-middle">Status</th>
+						<th width="2%" class="text-center align-middle">No</th>
+						<th width="5%" class="text-center align-middle">Gambar</th>
+						<th width="20%" class="text-center align-middle">Periode PPDB</th>
+						<th width="8%" class="text-center align-middle">Status</th>
 						<th class="text-center align-middle"><small>Pendaftar</small></th>
 						<th class="text-center align-middle"><small>Menunggu</small></th>
 						<th class="text-center align-middle"><small>Diperiksa</small></th>
 						<th class="text-center align-middle"><small>Diterima Tahap 1</small></th>
 						<th class="text-center align-middle"><small>Lulus</small></th>
 						<th class="text-center align-middle"><small>Tidak Diterima</small></th>
-						<th>Aksi</th>
+						<th class="text-center align-middle">Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -109,28 +110,28 @@
 </div>
 
 <script>
-$(document).ready(function() {
-    // Memberikan jeda sebentar agar inisialisasi global selesai
-    setTimeout(function() {
-        if ($.fn.DataTable.isDataTable('#tabel-gelombang')) {
-            $('#tabel-gelombang').DataTable().destroy();
-        }
-        
-        var table = $('#tabel-gelombang').DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true, // Tetap true tapi disembunyikan DOM-nya
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": false,
-            "dom": "lrtip" // Menghilangkan 'f' (filter default) agar tidak ganda
-        });
+	$(document).ready(function () {
+		// Memberikan jeda sebentar agar inisialisasi global selesai
+		setTimeout(function () {
+			if ($.fn.DataTable.isDataTable('#tabel-gelombang')) {
+				$('#tabel-gelombang').DataTable().destroy();
+			}
 
-        // Hubungkan input kustom ke mesin pencari DataTables
-        $('#pencarian-kustom').on('keyup', function() {
-            table.search(this.value).draw();
-        });
-    }, 500);
-});
+			var table = $('#tabel-gelombang').DataTable({
+				"paging": true,
+				"lengthChange": true,
+				"searching": true, // Tetap true tapi disembunyikan DOM-nya
+				"ordering": true,
+				"info": true,
+				"autoWidth": false,
+				"responsive": false,
+				"dom": "lrtip" // Menghilangkan 'f' (filter default) agar tidak ganda
+			});
+
+			// Hubungkan input kustom ke mesin pencari DataTables
+			$('#pencarian-kustom').on('keyup', function () {
+				table.search(this.value).draw();
+			});
+		}, 500);
+	});
 </script>
