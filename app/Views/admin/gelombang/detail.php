@@ -259,7 +259,7 @@
 					</th>
 					<th width="20%" class="align-middle" rowspan="2">Nama dan Informasi</th>
 					<th width="20%" class="align-middle" rowspan="2">Alamat</th>
-					<th width="32%" class="align-middle text-center" colspan="4">Dokumen Pendukung</th>
+					<th width="24%" class="align-middle text-center" colspan="3">Dokumen Pendukung</th>
 					<th width="6%" class="align-middle" rowspan="2">Status</th>
 					<th rowspan="2"></th>
 				</tr>
@@ -267,7 +267,6 @@
 					<th class="text-center align-middle" width="8%">Wajib</th>
 					<th class="text-center align-middle" width="8%">Sudah Diunggah</th>
 					<th class="text-center align-middle" width="8%">Tidak Wajib</th>
-					<th class="text-center align-middle" width="8%">Sudah Diunggah</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -330,11 +329,6 @@
 							echo 'text-danger';
 						} ?>"><?php echo $dokumen_wajib; ?></td>
 						<td class="text-center"><?php echo $tidak_wajib->total ?></td>
-						<td class="text-center <?php if ($dokumen_tidak_wajib >= $tidak_wajib->total) {
-							echo 'text-success';
-						} else {
-							echo 'text-danger';
-						} ?>"><?php echo $dokumen_tidak_wajib; ?></td>
 						<td>
 							<?php if ($calon_peserta_didik->status_pendaftaran == 'Menunggu') { ?>
 								<span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;Menunggu</span>

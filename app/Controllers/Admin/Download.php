@@ -16,34 +16,11 @@ class Download extends BaseController
 		$m_download 			= new Download_model();
 		$m_kategori_download 	= new Kategori_download_model();
 		$kategori_download 		= $m_kategori_download->listing();
-		$pager 					= service('pager'); 
-		// download
-		if(isset($_GET['keywords'])) 
-		{
-			$keywords 		= $this->request->getVar('keywords');
-			$total 			= $m_download->total_cari($keywords);
-			$title 			= 'Hasil pencarian: '.$_GET['keywords'].' - '.$total.' ditemukan';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $download 		= $m_download->paginasi_admin_cari($keywords,$perPage, $page);
-		}else{
-			$total 			= $m_download->total();
-			$title 			= 'Download ('.$total.')';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $download 		= $m_download->paginasi_admin($perPage, $page);
-		}
-		// end download
+		$download = $m_download->listing();
+		$title = 'Download (' . count($download) . ')';
 		
 		$data = [	'title'					=> $title,
 					'download'				=> $download,
-					'pagination'			=> $pager_links,
 					'kategori_download'		=> $kategori_download,
 					'content'				=> 'admin/download/index'
 				];
@@ -67,16 +44,9 @@ class Download extends BaseController
 		$m_download 			= new Download_model();
 		$m_kategori_download 	= new Kategori_download_model();
 		$kategori_download 		= $m_kategori_download->detail($id_kategori_download);
-		$total 					= $m_download->total_kategori_download($id_kategori_download);
-		$pager 					= service('pager');
-        $page    				= (int) ($this->request->getGet('page') ?? 1);
-        $perPage 				= $this->website->paginasi();
-        $total   				= $total;
-        $pager_links 			= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-        $page 					= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-        $download 				= $m_download->kategori_download_all($id_kategori_download,$perPage, $page);
+        $download = $m_download->kategori_download_all($id_kategori_download, 99999, 0);
 
-		$data = [	'title'			=> $kategori_download->nama_kategori_download.' ('.$total.')',
+		$data = [	'title'			=> $kategori_download->nama_kategori_download.' ('.count($download).')',
 					'download'		=> $download,
 					'content'		=> 'admin/download/index'
 				];
@@ -89,18 +59,10 @@ class Download extends BaseController
 		
 		$m_download 			= new Download_model();
 		$m_kategori_download 	= new Kategori_download_model();
-		$total 					= $m_download->total_jenis_download($jenis_download);
-		$pager 					= service('pager');
-        $page    				= (int) ($this->request->getGet('page') ?? 1);
-        $perPage 				= $this->website->paginasi();
-        $total   				= $total;
-        $pager_links 			= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-        $page 					= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-        $download 				= $m_download->jenis_download_all($jenis_download,$perPage, $page);
+        $download = $m_download->jenis_download_all($jenis_download, 99999, 0);
 
-		$data = [	'title'			=> $jenis_download.' ('.$total.')',
+		$data = [	'title'			=> $jenis_download.' ('.count($download).')',
 					'download'		=> $download,
-					'pagination'	=> $pager_links,
 					'content'		=> 'admin/download/index'
 				];
 		echo view('admin/layout/wrapper',$data);

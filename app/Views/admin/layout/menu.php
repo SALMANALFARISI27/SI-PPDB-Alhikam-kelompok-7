@@ -221,25 +221,25 @@
             echo 'active';
           } ?>">
             <i class="nav-icon fas fa-tasks"></i>
-            <p>Karya<i class="right fas fa-angle-left"></i></p>
+            <p>Portofolio<i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="<?php echo base_url('admin/portfolio') ?>" class="nav-link">
                 <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data Karya</p>
+                <p>Data Portofolio</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="<?php echo base_url('admin/portfolio/tambah') ?>" class="nav-link">
                 <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah Karya</p>
+                <p>Tambah Portofolio</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="<?php echo base_url('admin/kategori_portfolio') ?>" class="nav-link">
                 <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Kategori Karya</p>
+                <p>Kategori Portofolio</p>
               </a>
             </li>
           </ul>
@@ -341,14 +341,14 @@
 
 
 
-        <!-- Guru -->
+        <!-- Staff -->
         <li class="nav-item <?php if ($uri->getSegment(2) == "staff" || $uri->getSegment(2) == "kategori_staff") {
           echo 'menu-open';
         } ?>">
           <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "staff" || $uri->getSegment(2) == "kategori_staff") {
             echo 'active';
           } ?>">
-            <i class="nav-icon fas fa-chair"></i>
+            <i class="nav-icon fas fa-user-tie"></i>
             <p>Staff <i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
@@ -390,26 +390,6 @@
                 <p>Link Website</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/jenjang') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Jenjang Pendidikan</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/pekerjaan') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Jenis Pekerjaan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/agama') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Agama</p>
-              </a>
-            </li>
-
           </ul>
         </li>
 

@@ -15,35 +15,12 @@ class Ekstrakurikuler extends BaseController
 		$m_ekstrakurikuler 			= new Ekstrakurikuler_model();
 		$m_kategori_ekstrakurikuler 	= new Kategori_ekstrakurikuler_model();
 		$kategori_ekstrakurikuler 	= $m_kategori_ekstrakurikuler->listing();
-		$pager 				= service('pager'); 
-		// ekstrakurikuler
-		if(isset($_GET['keywords'])) 
-		{
-			$keywords 		= $this->request->getVar('keywords');
-			$total 			= $m_ekstrakurikuler->total_cari($keywords);
-			$title 			= 'Hasil pencarian: '.$_GET['keywords'].' - '.$total.' ditemukan';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $ekstrakurikuler 		= $m_ekstrakurikuler->paginasi_admin_cari($keywords,$perPage, $page);
-		}else{
-			$total 			= $m_ekstrakurikuler->total();
-			$title 			= 'Ekstrakurikuler  ('.$total.')';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $ekstrakurikuler 		= $m_ekstrakurikuler->paginasi_admin($perPage, $page);
-		}
-		// end ekstrakurikuler
+		$ekstrakurikuler = $m_ekstrakurikuler->listing();
+		$title = 'Ekstrakurikuler (' . count($ekstrakurikuler) . ')';
 
 		$data = [	'title'						=> $title,
 					'ekstrakurikuler'			=> $ekstrakurikuler,
 					'kategori_ekstrakurikuler'	=> $kategori_ekstrakurikuler,
-					'pagination'				=> $pager_links,
 					'content'					=> 'admin/ekstrakurikuler/index'
 				];
 		echo view('admin/layout/wrapper',$data);

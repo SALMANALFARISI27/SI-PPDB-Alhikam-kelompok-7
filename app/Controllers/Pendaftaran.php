@@ -406,8 +406,6 @@ class Pendaftaran extends BaseController
 				'gambar' => $namabaru,
 				'file_ext' => $file_ext,
 				'file_size' => $file_size,
-				'status_dokumen' => 'Menunggu',
-				'tanggal_post' => date('Y-m-d H:i:s')
 			);
 			$m_dokumen->tambah($data);
 			return redirect()->to(base_url('pendaftaran/dokumen/' . $slug_calon_peserta_didik))->with('sukses', 'Data Berhasil di Simpan');
@@ -473,7 +471,7 @@ class Pendaftaran extends BaseController
 		$data = [
 			'title' => 'Pendaftaran Peserta Didik Baru - Pendaftaran Berhasil',
 			'description' => 'Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
-			'keywords' => 'Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->keywords,
+			'keywords' => 'Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb,
 			'konfigurasi' => $konfigurasi,
 			'akun' => $akun,
 			'jenis_dokumen' => $jenis_dokumen,

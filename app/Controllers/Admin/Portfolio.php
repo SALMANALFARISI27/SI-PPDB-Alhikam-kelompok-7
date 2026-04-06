@@ -15,35 +15,13 @@ class Portfolio extends BaseController
 		$m_portfolio = new Portfolio_model();
 		$m_kategori_portfolio = new Kategori_portfolio_model();
 		$kategori_portfolio = $m_kategori_portfolio->listing();
-		$pager = service('pager');
-		// portfolio
-		if (isset($_GET['keywords'])) {
-			$keywords = $this->request->getVar('keywords');
-			$total = $m_portfolio->total_cari($keywords);
-			$title = 'Hasil pencarian: ' . $_GET['keywords'] . ' - ' . $total . ' ditemukan';
-			$page = (int) ($this->request->getGet('page') ?? 1);
-			$perPage = $this->website->paginasi();
-			$total = $total;
-			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-			$portfolio = $m_portfolio->paginasi_admin_cari($keywords, $perPage, $page);
-		} else {
-			$total = $m_portfolio->total();
-			$title = 'Karya Portofolio(' . $total . ')';
-			$page = (int) ($this->request->getGet('page') ?? 1);
-			$perPage = $this->website->paginasi();
-			$total = $total;
-			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-			$portfolio = $m_portfolio->paginasi_admin($perPage, $page);
-		}
-		// end portfolio
+		$portfolio = $m_portfolio->listing();
+		$title = 'Portofolio(' . count($portfolio) . ')';
 
 		$data = [
 			'title' => $title,
 			'portfolio' => $portfolio,
 			'kategori_portfolio' => $kategori_portfolio,
-			'pagination' => $pager_links,
 			'content' => 'admin/portfolio/index'
 		];
 		echo view('admin/layout/wrapper', $data);

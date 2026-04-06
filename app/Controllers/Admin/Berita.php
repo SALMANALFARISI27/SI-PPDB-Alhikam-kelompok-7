@@ -16,34 +16,12 @@ class Berita extends BaseController
 		$m_berita = new Berita_model();
 		$m_kategori = new Kategori_model();
 		$kategori = $m_kategori->listing();
-		$pager = service('pager');
-		// berita
-		if (isset($_GET['keywords'])) {
-			$keywords = $this->request->getVar('keywords');
-			$total = $m_berita->total_cari($keywords);
-			$title = 'Hasil pencarian: ' . $_GET['keywords'] . ' - ' . $total . ' ditemukan';
-			$page = (int) ($this->request->getGet('page') ?? 1);
-			$perPage = $this->website->paginasi();
-			$total = $total;
-			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-			$berita = $m_berita->paginasi_admin_cari($keywords, $perPage, $page);
-		} else {
-			$total = $m_berita->total();
-			$title = 'Berita, Profil (' . $total . ')';
-			$page = (int) ($this->request->getGet('page') ?? 1);
-			$perPage = $this->website->paginasi();
-			$total = $total;
-			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-			$berita = $m_berita->paginasi_admin($perPage, $page);
-		}
-		// end berita
+		$berita = $m_berita->listing();
+		$title = 'Berita, Profil (' . count($berita) . ')';
 
 		$data = [
 			'title' => $title,
 			'berita' => $berita,
-			'pagination' => $pager_links,
 			'kategori' => $kategori,
 			'content' => 'admin/berita/index'
 		];
@@ -66,14 +44,8 @@ class Berita extends BaseController
 		$m_berita = new Berita_model();
 		$m_kategori = new Kategori_model();
 		$kategori = $m_kategori->detail($id_kategori);
-		$total = $m_berita->total_kategori($id_kategori);
-		$pager = service('pager');
-		$page = (int) ($this->request->getGet('page') ?? 1);
-		$perPage = $this->website->paginasi();
-		$total = $total;
-		$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-		$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-		$berita = $m_berita->kategori_all($id_kategori, $perPage, $page);
+		$berita = $m_berita->kategori($id_kategori);
+		$total = count($berita);
 
 		$data = [
 			'title' => $kategori->nama_kategori . ' (' . $total . ')',
@@ -89,19 +61,11 @@ class Berita extends BaseController
 
 		$m_berita = new Berita_model();
 		$m_kategori = new Kategori_model();
-		$total = $m_berita->total_jenis_berita($jenis_berita);
-		$pager = service('pager');
-		$page = (int) ($this->request->getGet('page') ?? 1);
-		$perPage = $this->website->paginasi();
-		$total = $total;
-		$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-		$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-		$berita = $m_berita->jenis_berita_all($jenis_berita, $perPage, $page);
+		$berita = $m_berita->jenis_publish($jenis_berita);
 
 		$data = [
-			'title' => $jenis_berita . ' (' . $total . ')',
+			'title' => $jenis_berita . ' (' . count($berita) . ')',
 			'berita' => $berita,
-			'pagination' => $pager_links,
 			'content' => 'admin/berita/index'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -113,19 +77,11 @@ class Berita extends BaseController
 
 		$m_berita = new Berita_model();
 		$m_kategori = new Kategori_model();
-		$total = $m_berita->total_status_berita($status_berita);
-		$pager = service('pager');
-		$page = (int) ($this->request->getGet('page') ?? 1);
-		$perPage = $this->website->paginasi();
-		$total = $total;
-		$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-		$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-		$berita = $m_berita->status_berita_all($status_berita, $perPage, $page);
+		$berita = $m_berita->status_berita_all($status_berita, 99999, 0);
 
 		$data = [
-			'title' => $status_berita . ' (' . $total . ')',
+			'title' => $status_berita . ' (' . count($berita) . ')',
 			'berita' => $berita,
-			'pagination' => $pager_links,
 			'content' => 'admin/berita/index'
 		];
 		echo view('admin/layout/wrapper', $data);

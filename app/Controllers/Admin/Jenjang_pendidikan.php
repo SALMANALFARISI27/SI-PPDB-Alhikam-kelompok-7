@@ -13,32 +13,12 @@ class Jenjang_pendidikan extends BaseController
 	{
 
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$pager = service('pager');
-		// jenjang_pendidikan
-		if (isset($_GET['keywords'])) {
-			$keywords = $this->request->getVar('keywords');
-			$total = $m_jenjang_pendidikan->total_cari($keywords);
-			$title = 'Hasil pencarian: ' . $_GET['keywords'] . ' - ' . $total . ' ditemukan';
-			$page = (int) ($this->request->getGet('page') ?? 1);
-			$perPage = $this->website->paginasi();
-			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-			$jenjang_pendidikan = $m_jenjang_pendidikan->paginasi_admin_cari($keywords, $perPage, $page);
-		} else {
-			$total = $m_jenjang_pendidikan->total();
-			$title = 'Jenjang Pendidikan (' . $total . ')';
-			$page = (int) ($this->request->getGet('page') ?? 1);
-			$perPage = $this->website->paginasi();
-			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-			$jenjang_pendidikan = $m_jenjang_pendidikan->paginasi_admin($perPage, $page);
-		}
-		// end jenjang_pendidikan
+		$jenjang_pendidikan = $m_jenjang_pendidikan->listing();
+		$title = 'Jenjang Pendidikan (' . count($jenjang_pendidikan) . ')';
 
 		$data = [
 			'title' => $title,
 			'jenjang_pendidikan' => $jenjang_pendidikan,
-			'pagination' => $pager_links,
 			'content' => 'admin/jenjang_pendidikan/index'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -59,19 +39,11 @@ class Jenjang_pendidikan extends BaseController
 	{
 
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$total = $m_jenjang_pendidikan->total_jenis_jenjang_pendidikan($jenis_jenjang_pendidikan);
-		$pager = service('pager');
-		$page = (int) ($this->request->getGet('page') ?? 1);
-		$perPage = $this->website->paginasi();
-		$total = $total;
-		$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-		$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-		$jenjang_pendidikan = $m_jenjang_pendidikan->jenis_jenjang_pendidikan_all($jenis_jenjang_pendidikan, $perPage, $page);
+		$jenjang_pendidikan = $m_jenjang_pendidikan->jenis_jenjang_pendidikan_all($jenis_jenjang_pendidikan, 99999, 0);
 
 		$data = [
-			'title' => $jenis_jenjang_pendidikan . ' (' . $total . ')',
+			'title' => $jenis_jenjang_pendidikan . ' (' . count($jenjang_pendidikan) . ')',
 			'jenjang_pendidikan' => $jenjang_pendidikan,
-			'pagination' => $pager_links,
 			'content' => 'admin/jenjang_pendidikan/index'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -82,19 +54,11 @@ class Jenjang_pendidikan extends BaseController
 	{
 
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$total = $m_jenjang_pendidikan->total_status_jenjang_pendidikan($status_jenjang_pendidikan);
-		$pager = service('pager');
-		$page = (int) ($this->request->getGet('page') ?? 1);
-		$perPage = $this->website->paginasi();
-		$total = $total;
-		$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-		$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-		$jenjang_pendidikan = $m_jenjang_pendidikan->status_jenjang_pendidikan_all($status_jenjang_pendidikan, $perPage, $page);
+		$jenjang_pendidikan = $m_jenjang_pendidikan->status_jenjang_pendidikan_all($status_jenjang_pendidikan, 99999, 0);
 
 		$data = [
-			'title' => $status_jenjang_pendidikan . ' (' . $total . ')',
+			'title' => $status_jenjang_pendidikan . ' (' . count($jenjang_pendidikan) . ')',
 			'jenjang_pendidikan' => $jenjang_pendidikan,
-			'pagination' => $pager_links,
 			'content' => 'admin/jenjang_pendidikan/index'
 		];
 		echo view('admin/layout/wrapper', $data);

@@ -15,35 +15,12 @@ class Prestasi extends BaseController
 		$m_prestasi 			= new Prestasi_model();
 		$m_kategori_prestasi 	= new Kategori_prestasi_model();
 		$kategori_prestasi 	= $m_kategori_prestasi->listing();
-		$pager 				= service('pager'); 
-		// prestasi
-		if(isset($_GET['keywords'])) 
-		{
-			$keywords 		= $this->request->getVar('keywords');
-			$total 			= $m_prestasi->total_cari($keywords);
-			$title 			= 'Hasil pencarian: '.$_GET['keywords'].' - '.$total.' ditemukan';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $prestasi 		= $m_prestasi->paginasi_admin_cari($keywords,$perPage, $page);
-		}else{
-			$total 			= $m_prestasi->total();
-			$title 			= 'Prestasi dan Penghargaan ('.$total.')';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $prestasi 		= $m_prestasi->paginasi_admin($perPage, $page);
-		}
-		// end prestasi
+		$prestasi = $m_prestasi->listing();
+		$title = 'Prestasi dan Penghargaan (' . count($prestasi) . ')';
 
 		$data = [	'title'				=> $title,
 					'prestasi'			=> $prestasi,
 					'kategori_prestasi'	=> $kategori_prestasi,
-					'pagination'		=> $pager_links,
 					'content'			=> 'admin/prestasi/index'
 				];
 		echo view('admin/layout/wrapper',$data);

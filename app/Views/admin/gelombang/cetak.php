@@ -98,7 +98,8 @@ $this->website = new Website();
           <tr>
             <td class="font-bold">Tempat, tanggal lahir</td>
             <td><?php echo $calon_peserta_didik->tempat_lahir ?>,
-              <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
+              <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?>
+            </td>
           </tr>
           <tr>
             <td class="font-bold">Kode Pendaftaran</td>
@@ -155,7 +156,7 @@ $this->website = new Website();
           </tr>
           <tr>
             <td class="font-bold">Tanggal Pindah (Sesuai Surat Pindah)</td>
-            <td><?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_pindah) ?></td>
+            <td><?php echo (!empty($calon_peserta_didik->tanggal_pindah) && $calon_peserta_didik->tanggal_pindah != '0000-00-00') ? $this->website->tanggal_id($calon_peserta_didik->tanggal_pindah) : '-'; ?></td>
           </tr>
         </tbody>
       </table>
@@ -212,7 +213,7 @@ $this->website = new Website();
           </tr>
           <tr>
             <td class="font-bold">Pekerjaan Ayah</td>
-            <td><?php echo $calon_peserta_didik->nama_pekerjaan ?></td>
+            <td><?php echo $calon_peserta_didik->pekerjaan_ayah ?></td>
           </tr>
           <tr>
             <td class="font-bold">Pendidikan Ayah</td>

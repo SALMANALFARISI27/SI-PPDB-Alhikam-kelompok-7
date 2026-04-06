@@ -2,14 +2,7 @@
 	<div class="col-md-6">
 		<?php echo form_open(base_url('admin/download'), ' method="get"') ?>
 		<div class="input-group">
-			<input type="text" name="keywords" class="form-control" placeholder="Keywords..."
-				value="<?php if (isset($_GET['keywords'])) {
-					echo $_GET['keywords'];
-				} ?>" required>
 			<span class="input-group-append">
-				<button type="submit" name="submit" value="Cari" class="btn btn-secondary btn-flat">
-					<i class="fa fa-search"></i> Cari
-				</button>
 				<a href="<?php echo base_url('admin/download/tambah') ?>" class="btn btn-info">
 					<i class="fa fa-plus"></i> Tambah Baru
 				</a>
@@ -21,11 +14,6 @@
 			</span>
 		</div>
 		<?php echo form_close() ?>
-	</div>
-	<div class="col-md-6">
-		<?php if (isset($pagination)) {
-			echo str_replace('index.php/', '', $pagination);
-		} ?>
 	</div>
 </div>
 <hr>

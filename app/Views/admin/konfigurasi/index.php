@@ -1,6 +1,6 @@
-<?php 
-echo form_open(base_url('admin/konfigurasi')); 
-echo csrf_field(); 
+<?php
+echo form_open(base_url('admin/konfigurasi'));
+echo csrf_field();
 ?>
 
 <h4>Informasi Dasar</h4>
@@ -36,11 +36,8 @@ echo csrf_field();
 <div class="form-group row">
 	<label class="col-3">Setting Pagination</label>
 	<div class="col-3">
-		<input type="number" name="paginasi" class="form-control" value="<?php echo $konfigurasi->paginasi ?>">
-		<small class="text-gray">Paginasi back end</small>
-	</div>
-	<div class="col-3">
-		<input type="number" name="paginasi_depan" class="form-control" value="<?php echo $konfigurasi->paginasi_depan ?>">
+		<input type="number" name="paginasi_depan" class="form-control"
+			value="<?php echo $konfigurasi->paginasi_depan ?>">
 		<small class="text-gray">Paginasi front end</small>
 	</div>
 </div>
@@ -78,7 +75,8 @@ echo csrf_field();
 <div class="form-group row">
 	<label class="col-3">Secondary Email</label>
 	<div class="col-6">
-		<input type="text" name="email_cadangan" class="form-control" value="<?php echo $konfigurasi->email_cadangan ?>">
+		<input type="text" name="email_cadangan" class="form-control"
+			value="<?php echo $konfigurasi->email_cadangan ?>">
 	</div>
 </div>
 
@@ -140,7 +138,8 @@ echo csrf_field();
 		<small class="text-secondary">Nama akun</small>
 	</div>
 	<div class="col-6">
-		<input type="url" name="facebook" class="form-control" placeholder="https://facebook.com/namakamu" value="<?php echo $konfigurasi->facebook ?>">
+		<input type="url" name="facebook" class="form-control" placeholder="https://facebook.com/namakamu"
+			value="<?php echo $konfigurasi->facebook ?>">
 		<small class="text-secondary">Alamat link akun (Harap sertakan awalan http:// atau https://)</small>
 	</div>
 </div>
@@ -148,11 +147,13 @@ echo csrf_field();
 <div class="form-group row">
 	<label class="col-3">Tiktok <i class="fab fa-tiktok"></i></label>
 	<div class="col-3">
-		<input type="text" name="nama_tiktok" class="form-control" value="<?php echo $konfigurasi->nama_tiktok ?? '' ?>"> 
+		<input type="text" name="nama_tiktok" class="form-control"
+			value="<?php echo $konfigurasi->nama_tiktok ?? '' ?>">
 		<small class="text-secondary">Nama akun</small>
 	</div>
 	<div class="col-6">
-		<input type="url" name="tiktok" class="form-control" placeholder="https://tiktok.com/@namakamu" value="<?php echo $konfigurasi->tiktok ?? '' ?>">
+		<input type="url" name="tiktok" class="form-control" placeholder="https://tiktok.com/@namakamu"
+			value="<?php echo $konfigurasi->tiktok ?? '' ?>">
 		<small class="text-secondary">Alamat link akun (Harap sertakan awalan http:// atau https://)</small>
 	</div>
 </div>
@@ -160,11 +161,13 @@ echo csrf_field();
 <div class="form-group row">
 	<label class="col-3">Instagram <i class="fab fa-instagram"></i></label>
 	<div class="col-3">
-		<input type="text" name="nama_instagram" class="form-control" value="<?php echo $konfigurasi->nama_instagram ?>">
+		<input type="text" name="nama_instagram" class="form-control"
+			value="<?php echo $konfigurasi->nama_instagram ?>">
 		<small class="text-secondary">Nama akun</small>
 	</div>
 	<div class="col-6">
-		<input type="url" name="instagram" class="form-control" placeholder="https://instagram.com/namakamu" value="<?php echo $konfigurasi->instagram ?>">
+		<input type="url" name="instagram" class="form-control" placeholder="https://instagram.com/namakamu"
+			value="<?php echo $konfigurasi->instagram ?>">
 		<small class="text-secondary">Alamat link akun (Harap sertakan awalan http:// atau https://)</small>
 	</div>
 </div>
@@ -176,7 +179,8 @@ echo csrf_field();
 		<small class="text-secondary">Nama akun</small>
 	</div>
 	<div class="col-6">
-		<input type="url" name="youtube" class="form-control" placeholder="https://youtube.com/namakamu" value="<?php echo $konfigurasi->youtube ?>">
+		<input type="url" name="youtube" class="form-control" placeholder="https://youtube.com/namakamu"
+			value="<?php echo $konfigurasi->youtube ?>">
 		<small class="text-secondary">Alamat link akun (Harap sertakan awalan http:// atau https://)</small>
 	</div>
 </div>
@@ -190,7 +194,10 @@ echo csrf_field();
 	<div class="col-6">
 		<select name="fitur_pendaftaran" class="form-control">
 			<option value="Off">Off - Non Aktif</option>
-			<option value="On" <?php if($konfigurasi->fitur_pendaftaran=='On') { echo 'selected'; } ?>>On - Aktif</option>
+			<option value="On" <?php if ($konfigurasi->fitur_pendaftaran == 'On') {
+				echo 'selected';
+			} ?>>On - Aktif
+			</option>
 		</select>
 	</div>
 </div>
@@ -198,15 +205,18 @@ echo csrf_field();
 <div class="form-group row">
 	<label class="col-3">Periode Pendaftaran Online</label>
 	<div class="col-2">
-		<input type="text" name="mulai_pendaftaran" placeholder="dd-mm-yyyy" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($konfigurasi->mulai_pendaftaran) ?>">
+		<input type="text" name="mulai_pendaftaran" placeholder="dd-mm-yyyy" class="form-control tanggal"
+			value="<?php echo $this->website->tanggal_id($konfigurasi->mulai_pendaftaran) ?>">
 		<small class="text-secondary">Tanggal mulai</small>
 	</div>
 	<div class="col-2">
-		<input type="text" name="selesai_pendaftaran" placeholder="dd-mm-yyyy" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($konfigurasi->selesai_pendaftaran) ?>">
+		<input type="text" name="selesai_pendaftaran" placeholder="dd-mm-yyyy" class="form-control tanggal"
+			value="<?php echo $this->website->tanggal_id($konfigurasi->selesai_pendaftaran) ?>">
 		<small class="text-secondary">Tanggal selesai</small>
 	</div>
 	<div class="col-2">
-		<input type="text" name="pengumuman_pendaftaran" placeholder="dd-mm-yyyy" class="form-control tanggal" value="<?php echo $this->website->tanggal_id($konfigurasi->pengumuman_pendaftaran) ?>">
+		<input type="text" name="pengumuman_pendaftaran" placeholder="dd-mm-yyyy" class="form-control tanggal"
+			value="<?php echo $this->website->tanggal_id($konfigurasi->pengumuman_pendaftaran) ?>">
 		<small class="text-secondary">Tanggal pengumuman</small>
 	</div>
 </div>
@@ -214,7 +224,8 @@ echo csrf_field();
 <div class="form-group row">
 	<label class="col-3">Informasi pendaftaran</label>
 	<div class="col-9">
-		<textarea name="keterangan_pendaftaran" class="form-control konten" rows="5"><?php echo $konfigurasi->keterangan_pendaftaran ?></textarea>
+		<textarea name="keterangan_pendaftaran" class="form-control konten"
+			rows="5"><?php echo $konfigurasi->keterangan_pendaftaran ?></textarea>
 	</div>
 </div>
 

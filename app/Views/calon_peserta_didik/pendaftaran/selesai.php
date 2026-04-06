@@ -153,7 +153,7 @@
     </tr>
     <tr>
       <td class="font-bold">Pekerjaan Ayah</td>
-      <td><?php echo $calon_peserta_didik->nama_pekerjaan ?></td>
+      <td><?php echo $calon_peserta_didik->pekerjaan_ayah ?></td>
     </tr>
     <tr>
       <td class="font-bold">Pendidikan Ayah</td>

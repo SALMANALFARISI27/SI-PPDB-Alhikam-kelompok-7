@@ -101,8 +101,25 @@ if($content) {
 <script>
   $(function () {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "responsive": false, "lengthChange": false, "autoWidth": false, "scrollX": true,
+      "buttons": [
+        "csv", 
+        "excel", 
+        {
+          extend: 'pdfHtml5',
+          orientation: 'landscape',
+          pageSize: 'A1', // Use huge page size to fit 45 columns
+          exportOptions: {
+            columns: ':visible'
+          },
+          customize: function(doc) {
+            doc.defaultStyle.fontSize = 8;
+            doc.styles.tableHeader.fontSize = 9;
+            // Let pdfMake auto-size columns instead of forcing equal widths
+          }
+        },
+        "colvis"
+      ]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": false,

@@ -56,32 +56,50 @@
 		<thead>
 			<tr>
 				<th>No</th>
+				<th>Kode Pendaftaran</th>
+				<th>Status Pendaftaran</th>
 				<th>Nama</th>
-				<th>Panggilan</th>
 				<th>L/P</th>
-				<th>Tempat lahir</th>
-				<th>Tgl lahir</th>
+				<th>Tempat Lahir</th>
+				<th>Tgl Lahir</th>
 				<th>NIS</th>
 				<th>NISN</th>
-				<th>Alamat</th>
-				<th>Telepon</th>
-				<th>Kewarganegaraan</th>
-				<th>Status Anak</th>
-				<th>Anak nomor</th>
-				<th>Jumlah Saudara</th>
 				<th>Agama</th>
-				<th>Berkebutuhan Khusus</th>
-				<th>Ayah</th>
-				<th>Ibu</th>
-				<th>Wali</th>
-				<th>Alamat wali</th>
-				<th>Telepon Wali</th>
-				<th>Status Pendaftaran</th>
+				<th>Kewarganegaraan</th>
+				<th>Alamat</th>
+				<th>Kode Pos</th>
+				<th>Telepon</th>
+				<th>Email</th>
+				<th>Anak Ke</th>
+				<th>Jumlah Saudara</th>
+				<th>Jenis Masuk</th>
+				<th>Asal Sekolah</th>
+				<th>Alamat Sekolah Asal</th>
 				<th>Golongan Darah</th>
 				<th>Tinggi (cm)</th>
 				<th>Berat (kg)</th>
-				<th>Asal Sekolah</th>
-				<th>Status Masuk</th>
+				<th>Penyakit</th>
+				<th>Hobi</th>
+				<th>Berkebutuhan Khusus</th>
+				<th>Deskripsi</th>
+				<th>Nama Ayah</th>
+				<th>Agama Ayah</th>
+				<th>Pekerjaan Ayah</th>
+				<th>Pendidikan Ayah</th>
+				<th>Alamat Ayah</th>
+				<th>Telepon Ayah</th>
+				<th>Nama Ibu</th>
+				<th>Agama Ibu</th>
+				<th>Pekerjaan Ibu</th>
+				<th>Pendidikan Ibu</th>
+				<th>Alamat Ibu</th>
+				<th>Telepon Ibu</th>
+				<th>Nama Wali</th>
+				<th>Agama Wali</th>
+				<th>Pekerjaan Wali</th>
+				<th>Pendidikan Wali</th>
+				<th>Alamat Wali</th>
+				<th>Telepon Wali</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -89,30 +107,50 @@
 			foreach ($calon_peserta_didik as $calon_peserta_didik) { ?>
 				<tr>
 					<td><?php echo $no ?></td>
+					<td><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></td>
+					<td><?php echo $calon_peserta_didik->status_pendaftaran ?></td>
 					<td><?php echo $calon_peserta_didik->nama_calon_peserta_didik ?></td>
 					<td><?php echo $calon_peserta_didik->jenis_kelamin ?></td>
 					<td><?php echo $calon_peserta_didik->tempat_lahir ?></td>
 					<td><?php echo $calon_peserta_didik->tanggal_lahir ?></td>
 					<td><?php echo $calon_peserta_didik->nis ?></td>
 					<td><?php echo $calon_peserta_didik->nisn ?></td>
-					<td><?php echo $calon_peserta_didik->alamat ?></td>
-					<td><?php echo $calon_peserta_didik->telepon ?></td>
+					<td><?php echo $calon_peserta_didik->agama ?></td>
 					<td><?php echo $calon_peserta_didik->status_wn ?></td>
+					<td><?php echo $calon_peserta_didik->alamat ?></td>
+					<td><?php echo $calon_peserta_didik->kode_pos ?></td>
+					<td><?php echo $calon_peserta_didik->telepon ?></td>
+					<td><?php echo $calon_peserta_didik->email ?></td>
 					<td><?php echo $calon_peserta_didik->anak_ke ?></td>
 					<td><?php echo $calon_peserta_didik->jumlah_saudara ?></td>
-					<td><?php echo $calon_peserta_didik->nama_agama ?></td>
-					<td><?php echo $calon_peserta_didik->berkebutuhan_khusus ?></td>
-					<td><?php echo $calon_peserta_didik->nama_ayah ?></td>
-					<td><?php echo $calon_peserta_didik->nama_ibu ?></td>
-					<td><?php echo $calon_peserta_didik->nama_wali ?></td>
-					<td><?php echo $calon_peserta_didik->alamat_wali ?></td>
-					<td><?php echo $calon_peserta_didik->telepon_wali ?></td>
-					<td><?php echo $calon_peserta_didik->status_pendaftaran ?></td>
+					<td><?php echo $calon_peserta_didik->jenis_calon_peserta_didik ?></td>
+					<td><?php echo $calon_peserta_didik->asal_sekolah ?></td>
+					<td><?php echo $calon_peserta_didik->alamat_sekolah_asal ?></td>
 					<td><?php echo $calon_peserta_didik->goldar_calon_peserta_didik ?></td>
 					<td><?php echo $calon_peserta_didik->tinggi ?></td>
 					<td><?php echo $calon_peserta_didik->berat ?></td>
-					<td><?php echo $calon_peserta_didik->asal_sekolah ?></td>
-					<td><?php echo $calon_peserta_didik->jenis_calon_peserta_didik ?></td>
+					<td><?php echo $calon_peserta_didik->penyakit_calon_peserta_didik ?></td>
+					<td><?php echo $calon_peserta_didik->hobi_calon_peserta_didik ?></td>
+					<td><?php echo $calon_peserta_didik->berkebutuhan_khusus ?></td>
+					<td><?php echo $calon_peserta_didik->isi ?></td>
+					<td><?php echo $calon_peserta_didik->nama_ayah ?></td>
+					<td><?php echo $calon_peserta_didik->agama_ayah ?></td>
+					<td><?php echo $calon_peserta_didik->pekerjaan_ayah ?></td>
+					<td><?php echo $calon_peserta_didik->jenjang_ayah ?></td>
+					<td><?php echo $calon_peserta_didik->alamat_ayah ?></td>
+					<td><?php echo $calon_peserta_didik->telepon_ayah ?></td>
+					<td><?php echo $calon_peserta_didik->nama_ibu ?></td>
+					<td><?php echo $calon_peserta_didik->agama_ibu ?></td>
+					<td><?php echo $calon_peserta_didik->pekerjaan_ibu ?></td>
+					<td><?php echo $calon_peserta_didik->jenjang_ibu ?></td>
+					<td><?php echo $calon_peserta_didik->alamat_ibu ?></td>
+					<td><?php echo $calon_peserta_didik->telepon_ibu ?></td>
+					<td><?php echo $calon_peserta_didik->nama_wali ?></td>
+					<td><?php echo $calon_peserta_didik->agama_wali ?></td>
+					<td><?php echo $calon_peserta_didik->pekerjaan_wali ?></td>
+					<td><?php echo $calon_peserta_didik->jenjang_wali ?></td>
+					<td><?php echo $calon_peserta_didik->alamat_wali ?></td>
+					<td><?php echo $calon_peserta_didik->telepon_wali ?></td>
 				</tr>
 				<?php $no++;
 			} ?>

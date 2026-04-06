@@ -4,74 +4,133 @@
 	</a>
 </p>
 
-<table class="tabelku table-sm" id="example3">
-	<thead>
-		<tr>
-			<th width="2%" rowspan="2" class="text-left align-middle">No</th>
-			<th width="5%" rowspan="2" class="text-left align-middle">Gambar</th>
-			<th width="30%" rowspan="2" class="text-left align-middle">Periode PPDB</th>
-			<th width="8%" rowspan="2" class="text-left align-middle">Status</th>
-			<th width="25%" colspan="5" class="text-center align-middle">Jumlah</th>
-			
-			<th rowspan="2"></th>
-		</tr>
-		<tr>
-			<th width="6%" class="text-center align-middle"><small>Pendaftar</small></th>
-			<th width="6%" class="text-center align-middle"><small>Menunggu</small></th>
-			<th width="6%" class="text-center align-middle"><small>Diperiksa</small></th>
-			<th width="6%" class="text-center align-middle"><small>Diterima</small></th>
-			<th width="6%" class="text-center align-middle"><small>Tidak Diterima</small></th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php 
-		$no=1; foreach($gelombang as $gelombang) { 
-			$calon_peserta_didik1 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Semua','Semua');
-			$calon_peserta_didik4 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Menunggu','Semua');
-			$calon_peserta_didik5 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Diperiksa','Semua');
-			$calon_peserta_didik2 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Diterima','Semua');
-			$calon_peserta_didik3 	= $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($gelombang->id_gelombang,'Tidak-Diterima','Semua');
-		?>
-		<tr>
-			<td class="text-center"><?php echo $no ?></td>
-			<td>
-				<?php if($gelombang->gambar=="") { echo '-'; }else{ ?>
-					<img src="<?php echo base_url('assets/upload/image/thumbs/'.$gelombang->gambar) ?>" class="img img-thumbnail">
-				<?php } ?>
-			</td>
-			<td><strong><?php echo $gelombang->judul ?></strong>
-				<small>
-					<br><span class="text-secondary">Pembukaan:</span> <?php echo $this->website->hari($gelombang->tanggal_buka) ?>
-					<br><span class="text-secondary">Penutupan:</span> <?php echo $this->website->hari($gelombang->tanggal_tutup) ?>
-					<br><span class="text-secondary">Pengumuman:</span> <?php echo $this->website->hari($gelombang->tanggal_pengumuman) ?>
-				</small>
-			</td>
-			<td>
-				<?php if($gelombang->status_gelombang=='Buka') { ?>
-					<span class="badge bg-info">
-						<i class="fa fa-eye"></i> <?php echo $gelombang->status_gelombang ?>
-					</span>
-				<?php }else{ ?>
-					<span class="badge bg-secondary">
-						<i class="fa fa-eye-slash"></i> <?php echo $gelombang->status_gelombang ?>
-					</span>
-				<?php } ?>
-			</td>
-			<td class="text-center"><?php if($calon_peserta_didik1) { echo $calon_peserta_didik1->total; }else{ echo 0; } ?></td>
-			<td class="text-center"><?php if($calon_peserta_didik4) { echo $calon_peserta_didik4->total; }else{ echo 0; } ?></td>
-			<td class="text-center"><?php if($calon_peserta_didik5) { echo $calon_peserta_didik5->total; }else{ echo 0; } ?></td>
-			<td class="text-center"><?php if($calon_peserta_didik2) { echo $calon_peserta_didik2->total; }else{ echo 0; } ?></td>
-			<td class="text-center"><?php if($calon_peserta_didik3) { echo $calon_peserta_didik3->total; }else{ echo 0; } ?></td>
-			
-			<td>
-				<a href="<?php echo base_url('admin/gelombang/detail/'.$gelombang->id_gelombang.'/Semua/Semua') ?>" class="btn btn-info btn-xs mb-1"><i class="fa fa-user-check"></i> Data Pendaftar</a>
-				<a href="<?php echo base_url('admin/gelombang/export/'.$gelombang->id_gelombang.'/Semua/Semua') ?>" class="btn btn-success btn-xs mb-1" target="_blank"><i class="fa fa-file-excel"></i> Ekspor</a>
-				<a href="<?php echo base_url('admin/gelombang/unduh_data/'.$gelombang->id_gelombang.'/Semua/Semua') ?>" class="btn btn-danger btn-xs mb-1" target="_blank"><i class="fa fa-file-pdf"></i> Unduh</a>
-				
-				<a href="<?php echo base_url('admin/gelombang/edit/'.$gelombang->id_gelombang) ?>" class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
-				<a href="<?php echo base_url('admin/gelombang/delete/'.$gelombang->id_gelombang) ?>" class="btn btn-secondary btn-xs mb-1 delete-link"><i class="fa fa-trash"></i></a>
-			</td>
-		</tr>
-		<?php $no++; } ?>
-	</tbody>
-</table>
+<div class="card">
+	<div class="card-header">
+		<div class="card-tools">
+			<div class="input-group input-group-sm" style="width: 250px;">
+				<input type="text" id="pencarian-kustom" class="form-control float-right" placeholder="Cari periode/tahap...">
+				<div class="input-group-append">
+					<button type="submit" class="btn btn-default">
+						<i class="fas fa-search"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered table-sm" id="tabel-gelombang">
+				<thead>
+					<tr>
+						<th width="2%" class="text-left align-middle">No</th>
+						<th width="5%" class="text-left align-middle">Gambar</th>
+						<th width="20%" class="text-left align-middle">Periode PPDB</th>
+						<th width="8%" class="text-left align-middle">Status</th>
+						<th class="text-center align-middle"><small>Pendaftar</small></th>
+						<th class="text-center align-middle"><small>Menunggu</small></th>
+						<th class="text-center align-middle"><small>Diperiksa</small></th>
+						<th class="text-center align-middle"><small>Diterima Tahap 1</small></th>
+						<th class="text-center align-middle"><small>Lulus</small></th>
+						<th class="text-center align-middle"><small>Tidak Diterima</small></th>
+						<th>Aksi</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					$no = 1;
+					foreach ($gelombang as $row) {
+						$pendaftar = $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($row->id_gelombang, 'Semua', 'Semua');
+						$menunggu = $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($row->id_gelombang, 'Menunggu', 'Semua');
+						$diperiksa = $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($row->id_gelombang, 'Diperiksa', 'Semua');
+						$diterima_tahap1 = $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($row->id_gelombang, 'Diterima-Tahap-1', 'Semua');
+						$lulus = $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($row->id_gelombang, 'Lulus', 'Semua');
+						$tidak_diterima = $m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($row->id_gelombang, 'Tidak-Diterima', 'Semua');
+						?>
+						<tr>
+							<td class="text-center"><?php echo $no ?></td>
+							<td>
+								<?php if ($row->gambar == "") {
+									echo '-';
+								} else { ?>
+									<img src="<?php echo base_url('assets/upload/image/thumbs/' . $row->gambar) ?>"
+										class="img img-thumbnail">
+								<?php } ?>
+							</td>
+							<td><strong><?php echo $row->judul ?></strong>
+								<small>
+									<br><span class="text-secondary">Pembukaan:</span>
+									<?php echo $this->website->hari($row->tanggal_buka) ?>
+									<br><span class="text-secondary">Penutupan:</span>
+									<?php echo $this->website->hari($row->tanggal_tutup) ?>
+									<br><span class="text-secondary">Pengumuman:</span>
+									<?php echo $this->website->hari($row->tanggal_pengumuman) ?>
+								</small>
+							</td>
+							<td>
+								<?php if ($row->status_gelombang == 'Buka') { ?>
+									<span class="badge bg-info">
+										<i class="fa fa-eye"></i> <?php echo $row->status_gelombang ?>
+									</span>
+								<?php } else { ?>
+									<span class="badge bg-secondary">
+										<i class="fa fa-eye-slash"></i> <?php echo $row->status_gelombang ?>
+									</span>
+								<?php } ?>
+							</td>
+							<td class="text-center"><?php echo $pendaftar ? $pendaftar->total : 0; ?></td>
+							<td class="text-center"><?php echo $menunggu ? $menunggu->total : 0; ?></td>
+							<td class="text-center"><?php echo $diperiksa ? $diperiksa->total : 0; ?></td>
+							<td class="text-center"><?php echo $diterima_tahap1 ? $diterima_tahap1->total : 0; ?></td>
+							<td class="text-center"><?php echo $lulus ? $lulus->total : 0; ?></td>
+							<td class="text-center"><?php echo $tidak_diterima ? $tidak_diterima->total : 0; ?></td>
+
+							<td>
+								<a href="<?php echo base_url('admin/gelombang/detail/' . $row->id_gelombang . '/Semua/Semua') ?>"
+									class="btn btn-info btn-xs mb-1"><i class="fa fa-user-check"></i> Data Pendaftar</a>
+								<a href="<?php echo base_url('admin/gelombang/export/' . $row->id_gelombang . '/Semua/Semua') ?>"
+									class="btn btn-success btn-xs mb-1" target="_blank"><i class="fa fa-file-excel"></i>
+									Ekspor</a>
+								<a href="<?php echo base_url('admin/gelombang/unduh_data/' . $row->id_gelombang . '/Semua/Semua') ?>"
+									class="btn btn-danger btn-xs mb-1" target="_blank"><i class="fa fa-file-pdf"></i>
+									Unduh</a>
+
+								<a href="<?php echo base_url('admin/gelombang/edit/' . $row->id_gelombang) ?>"
+									class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
+								<a href="<?php echo base_url('admin/gelombang/delete/' . $row->id_gelombang) ?>"
+									class="btn btn-secondary btn-xs mb-1 delete-link"><i class="fa fa-trash"></i></a>
+							</td>
+						</tr>
+						<?php $no++;
+					} ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+    // Memberikan jeda sebentar agar inisialisasi global selesai
+    setTimeout(function() {
+        if ($.fn.DataTable.isDataTable('#tabel-gelombang')) {
+            $('#tabel-gelombang').DataTable().destroy();
+        }
+        
+        var table = $('#tabel-gelombang').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true, // Tetap true tapi disembunyikan DOM-nya
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": false,
+            "dom": "lrtip" // Menghilangkan 'f' (filter default) agar tidak ganda
+        });
+
+        // Hubungkan input kustom ke mesin pencari DataTables
+        $('#pencarian-kustom').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+    }, 500);
+});
+</script>

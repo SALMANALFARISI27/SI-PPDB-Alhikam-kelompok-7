@@ -15,35 +15,12 @@ class Fasilitas extends BaseController
 		$m_fasilitas 			= new Fasilitas_model();
 		$m_kategori_fasilitas 	= new Kategori_fasilitas_model();
 		$kategori_fasilitas 	= $m_kategori_fasilitas->listing();
-		$pager 				= service('pager'); 
-		// fasilitas
-		if(isset($_GET['keywords'])) 
-		{
-			$keywords 		= $this->request->getVar('keywords');
-			$total 			= $m_fasilitas->total_cari($keywords);
-			$title 			= 'Hasil pencarian: '.$_GET['keywords'].' - '.$total.' ditemukan';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $fasilitas 		= $m_fasilitas->paginasi_admin_cari($keywords,$perPage, $page);
-		}else{
-			$total 			= $m_fasilitas->total();
-			$title 			= 'Fasilitas  ('.$total.')';
-	        $page    		= (int) ($this->request->getGet('page') ?? 1);
-	        $perPage 		= $this->website->paginasi();
-	        $total   		= $total;
-	        $pager_links 	= $pager->makeLinks($page, $perPage, $total,'bootstrap_pagination');
-	        $page 			= ($this->request->getGet('page'))?($this->request->getGet('page')-1)*$perPage:0;
-	        $fasilitas 		= $m_fasilitas->paginasi_admin($perPage, $page);
-		}
-		// end fasilitas
+		$fasilitas = $m_fasilitas->listing();
+		$title = 'Fasilitas (' . count($fasilitas) . ')';
 
 		$data = [	'title'					=> $title,
 					'fasilitas'				=> $fasilitas,
 					'kategori_fasilitas'	=> $kategori_fasilitas,
-					'pagination'			=> $pager_links,
 					'content'				=> 'admin/fasilitas/index'
 				];
 		echo view('admin/layout/wrapper',$data);

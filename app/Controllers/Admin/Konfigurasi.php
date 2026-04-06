@@ -49,7 +49,6 @@ class Konfigurasi extends BaseController
 				'nama_tiktok' => $this->request->getPost('nama_tiktok'),
 				'tiktok' => $this->request->getPost('tiktok'),
 				'google_map' => $this->request->getPost('google_map'),
-				'paginasi' => $this->request->getPost('paginasi'),
 				'paginasi_depan' => $this->request->getPost('paginasi_depan'),
 				'fitur_pendaftaran' => $this->request->getPost('fitur_pendaftaran'),
 				'mulai_pendaftaran' => $this->website->tanggal_input($this->request->getPost('mulai_pendaftaran')),

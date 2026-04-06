@@ -71,8 +71,7 @@ class Dokumen_model extends Model
         $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_calon_peserta_didik');
         $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
         $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_calon_peserta_didik','LEFT');
-        $this->where( [  'status_dokumen'         => 'Publish',
-                            'jenis_dokumen'         => 'Dokumen',
+        $this->where( [  'jenis_dokumen'         => 'Dokumen',
                             'dokumen.id_jenis_dokumen'    => $id_jenis_dokumen]);
         $this->orderBy('dokumen.id_dokumen','DESC');
         $query = $this->get();

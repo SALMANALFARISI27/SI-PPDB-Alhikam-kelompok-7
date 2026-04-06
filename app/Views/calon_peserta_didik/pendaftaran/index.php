@@ -9,15 +9,14 @@
 				<th width="5%" rowspan="2">NO</th>
 				<th width="20%" class="align-middle" rowspan="2">Nama dan Informasi</th>
 				<th width="20%" class="align-middle" rowspan="2">Alamat</th>
-				<th width="36%" class="align-middle text-center" colspan="4">Dokumen Pendukung</th>
+				<th width="27%" class="align-middle text-center" colspan="3">Dokumen Pendukung</th>
 				<th width="6%" class="align-middle" rowspan="2">Status</th>
 				<th rowspan="2"></th>
 			</tr>
 			<tr>
-				<th class="text-center align-middle" width="6%">Wajib</th>
-				<th class="text-center align-middle" width="6%">Sudah Diunggah</th>
-				<th class="text-center align-middle" width="6%">Tidak Wajib</th>
-				<th class="text-center align-middle" width="6%">Sudah Diunggah</th>
+				<th class="text-center align-middle" width="9%">Wajib</th>
+				<th class="text-center align-middle" width="9%">Sudah Diunggah</th>
+				<th class="text-center align-middle" width="9%">Tidak Wajib</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -72,21 +71,21 @@
 						</small>
 					</td>
 					<td class="text-center"><?php echo $wajib->total ?></td>
-					<td
-						class="text-center <?php if ($dokumen_wajib >= $wajib->total) {
-							echo 'text-success';
-						} else {
-							echo 'text-danger';
-						} ?>">
-						<?php echo $dokumen_wajib; ?></td>
+					<td class="text-center <?php if ($dokumen_wajib >= $wajib->total) {
+						echo 'text-success';
+					} else {
+						echo 'text-danger';
+					} ?>">
+						<?php echo $dokumen_wajib; ?>
+					</td>
 					<td class="text-center"><?php echo $tidak_wajib->total ?></td>
-					<td
-						class="text-center <?php if ($dokumen_tidak_wajib >= $tidak_wajib->total) {
-							echo 'text-success';
-						} else {
-							echo 'text-danger';
-						} ?>">
-						<?php echo $dokumen_tidak_wajib; ?></td>
+					<td class="text-center <?php if ($dokumen_tidak_wajib >= $tidak_wajib->total) {
+						echo 'text-success';
+					} else {
+						echo 'text-danger';
+					} ?>">
+						<?php echo $dokumen_tidak_wajib; ?>
+					</td>
 
 					<td>
 						<?php if ($calon_peserta_didik->status_pendaftaran == 'Menunggu') { ?>

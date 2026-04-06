@@ -15,35 +15,13 @@ class Galeri extends BaseController
 		$m_galeri = new Galeri_model();
 		$m_kategori_galeri = new Kategori_galeri_model();
 		$kategori_galeri = $m_kategori_galeri->listing();
-		$pager = service('pager');
-		// galeri
-		if (isset($_GET['keywords'])) {
-			$keywords = $this->request->getVar('keywords');
-			$total = $m_galeri->total_cari($keywords);
-			$title = 'Hasil pencarian: ' . $_GET['keywords'] . ' - ' . $total . ' ditemukan';
-			$page = (int) ($this->request->getGet('page') ?? 1);
-			$perPage = $this->website->paginasi();
-			$total = $total;
-			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-			$galeri = $m_galeri->paginasi_admin_cari($keywords, $perPage, $page);
-		} else {
-			$total = $m_galeri->total();
-			$title = 'Galeri Gambar (' . $total . ')';
-			$page = (int) ($this->request->getGet('page') ?? 1);
-			$perPage = $this->website->paginasi();
-			$total = $total;
-			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-			$galeri = $m_galeri->paginasi_admin($perPage, $page);
-		}
-		// end galeri
+		$galeri = $m_galeri->listing();
+		$title = 'Galeri Gambar (' . count($galeri) . ')';
 
 		$data = [
 			'title' => $title,
 			'galeri' => $galeri,
 			'kategori_galeri' => $kategori_galeri,
-			'pagination' => $pager_links,
 			'content' => 'admin/galeri/index'
 		];
 		echo view('admin/layout/wrapper', $data);

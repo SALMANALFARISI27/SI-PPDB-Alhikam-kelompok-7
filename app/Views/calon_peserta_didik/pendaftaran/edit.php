@@ -18,17 +18,7 @@
                <?php endif ?>
 
               <?php 
-        use App\Models\Agama_model;
-        use App\Models\Jenjang_model;
-        use App\Models\Pekerjaan_model;
-        use App\Models\Hubungan_model;
-        use App\Models\Kelas_model;
-        use App\Models\Tahun_model;
         use App\Models\Jenjang_pendidikan_model;
-        $m_agama    = new Agama_model();
-        $m_jenjang    = new Jenjang_model();
-        $m_pekerjaan  = new Pekerjaan_model();
-
         $m_jenjang_pendidikan   = new Jenjang_pendidikan_model();
 
         echo form_open_multipart(base_url('calon_peserta_didik/pendaftaran/edit/'.$calon_peserta_didik->slug_calon_peserta_didik));
@@ -45,12 +35,14 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Status Pendaftaran<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <select name="status_pendaftaran" class="form-control">
-                  <option value="Menunggu">Menunggu</option>
-                  <option value="Diterima" <?php if(set_value('status_pendaftaran')=='Diterima' || $calon_peserta_didik->status_pendaftaran=='Diterima') { echo 'selected'; } ?>>Diterima</option>
-                  <option value="Tidak-Diterima" <?php if(set_value('status_pendaftaran')=='Tidak-Diterima' || $calon_peserta_didik->status_pendaftaran=='Tidak-Diterima') { echo 'selected'; } ?>>Tidak Diterima</option>
-                  <option value="Diperiksa" <?php if(set_value('status_pendaftaran')=='Diperiksa' || $calon_peserta_didik->status_pendaftaran=='Diperiksa') { echo 'selected'; } ?>>Diperiksa</option>
-                </select>
+                <?php 
+                  $status = $calon_peserta_didik->status_pendaftaran ?? 'Menunggu';
+                  $badge_class = 'secondary';
+                  if($status == 'Diterima') $badge_class = 'success';
+                  elseif($status == 'Tidak-Diterima') $badge_class = 'danger';
+                  elseif($status == 'Diperiksa') $badge_class = 'warning';
+                ?>
+                <span class="badge bg-<?php echo $badge_class; ?> text-white px-3 py-2" style="font-size: 14px;"><?php echo $status; ?></span>
               </div>
             </div>
 
@@ -95,15 +87,14 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Agama &amp; Status Kewarganegaraan<span class="text-danger">*</span></label>
               <div class="col-md-3">
-                <?php $agama = $m_agama->listing(); ?>
                 <select name="agama" class="form-control" required><option value="">-- Pilih Agama --</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Katolik">Katolik</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghucu">Konghucu</option>
-                  <option value="Lainnya">Lainnya</option></select>
+                  <option value="Islam" <?php if($calon_peserta_didik->agama=='Islam') echo 'selected'; ?>>Islam</option>
+                  <option value="Kristen" <?php if($calon_peserta_didik->agama=='Kristen') echo 'selected'; ?>>Kristen</option>
+                  <option value="Katolik" <?php if($calon_peserta_didik->agama=='Katolik') echo 'selected'; ?>>Katolik</option>
+                  <option value="Hindu" <?php if($calon_peserta_didik->agama=='Hindu') echo 'selected'; ?>>Hindu</option>
+                  <option value="Buddha" <?php if($calon_peserta_didik->agama=='Buddha') echo 'selected'; ?>>Buddha</option>
+                  <option value="Konghucu" <?php if($calon_peserta_didik->agama=='Konghucu') echo 'selected'; ?>>Konghucu</option>
+                  <option value="Lainnya" <?php if($calon_peserta_didik->agama=='Lainnya') echo 'selected'; ?>>Lainnya</option></select>
                 <small class="text-secondary">Agama Calon Peserta Didik</small>
               </div>
               <div class="col-md-3">
@@ -128,7 +119,8 @@
               </div>
             </div>
 
-        
+         <div class="form-group row mb-3">
+              <label class="col-md-3 text-dark">Anak ke<span class="text-danger">*</span></label>
               <div class="col-md-3">
                 <input type="number" name="anak_ke" class="form-control" placeholder="Anak nomor ke?" value="<?php if(isset($_POST['submit'])) { echo set_value('anak_ke'); }else{ echo $calon_peserta_didik->anak_ke; } ?>" required>
                 <small class="text-secondary">Anak nomor ke</small>
@@ -231,7 +223,7 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Tanggal Pindah (Sesuai Surat Pindah)</label>
               <div class="col-md-9">
-                <input type="text" name="tanggal_pindah" class="form-control tanggal" placeholder="Tanggal pindah" value="<?php if(isset($_POST['submit'])) { echo set_value('tanggal_pindah'); }else{ echo $this->website->tanggal_id($calon_peserta_didik->tanggal_pindah); } ?>">
+                <input type="text" name="tanggal_pindah" class="form-control tanggal" placeholder="Tanggal pindah" value="<?php if(isset($_POST['submit'])) { echo set_value('tanggal_pindah'); }elseif(!empty($calon_peserta_didik->tanggal_pindah) && $calon_peserta_didik->tanggal_pindah != '0000-00-00'){ echo $this->website->tanggal_id($calon_peserta_didik->tanggal_pindah); } ?>">
                 <small class="text-secondary">Tanggal pindah (Jika CALON PESERTA DIDIK pindahan). Format: dd-mm-yyyy</small>
               </div>
             </div>
@@ -335,41 +327,38 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Agama Ayah</label>
               <div class="col-md-9">
-                <?php $agama = $m_agama->listing(); ?>
                 <select name="agama_ayah" class="form-control"><option value="">-- Pilih Agama --</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Katolik">Katolik</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghucu">Konghucu</option>
-                  <option value="Lainnya">Lainnya</option></select>
+                  <option value="Islam" <?php if($calon_peserta_didik->agama_ayah=='Islam') echo 'selected'; ?>>Islam</option>
+                  <option value="Kristen" <?php if($calon_peserta_didik->agama_ayah=='Kristen') echo 'selected'; ?>>Kristen</option>
+                  <option value="Katolik" <?php if($calon_peserta_didik->agama_ayah=='Katolik') echo 'selected'; ?>>Katolik</option>
+                  <option value="Hindu" <?php if($calon_peserta_didik->agama_ayah=='Hindu') echo 'selected'; ?>>Hindu</option>
+                  <option value="Buddha" <?php if($calon_peserta_didik->agama_ayah=='Buddha') echo 'selected'; ?>>Buddha</option>
+                  <option value="Konghucu" <?php if($calon_peserta_didik->agama_ayah=='Konghucu') echo 'selected'; ?>>Konghucu</option>
+                  <option value="Lainnya" <?php if($calon_peserta_didik->agama_ayah=='Lainnya') echo 'selected'; ?>>Lainnya</option></select>
               </div>
             </div>
 
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Pekerjaan Ayah<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <?php $pekerjaan = $m_pekerjaan->listing(); ?>
-                <input type="text" name="pekerjaan_ayah" class="form-control" placeholder="Pekerjaan Ayah">
+                <input type="text" name="pekerjaan_ayah" class="form-control" placeholder="Pekerjaan Ayah" value="<?php if(isset($_POST['submit'])) { echo set_value('pekerjaan_ayah'); }else{ echo $calon_peserta_didik->pekerjaan_ayah; } ?>">
               </div>
             </div>
 
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Pendidikan Ayah</label>
               <div class="col-md-9">
-                <?php $jenjang = $m_jenjang->listing(); ?>
                 <select name="jenjang_ayah" class="form-control"><option value="">-- Pilih Jenjang --</option>
-                     <option value="Tidak Sekolah">Tidak Sekolah</option>
-                     <option value="SD">SD</option>
-                     <option value="SMP/Sederajat">SMP/Sederajat</option>
-                     <option value="SMA/Sederajat">SMA/Sederajat</option>
-                     <option value="D1">D1</option>
-                     <option value="D2">D2</option>
-                     <option value="D3">D3</option>
-                     <option value="S1">S1</option>
-                     <option value="S2">S2</option>
-                     <option value="S3">S3</option></select>
+                     <option value="Tidak Sekolah" <?php if($calon_peserta_didik->jenjang_ayah=='Tidak Sekolah') echo 'selected'; ?>>Tidak Sekolah</option>
+                     <option value="SD" <?php if($calon_peserta_didik->jenjang_ayah=='SD') echo 'selected'; ?>>SD</option>
+                     <option value="SMP/Sederajat" <?php if($calon_peserta_didik->jenjang_ayah=='SMP/Sederajat') echo 'selected'; ?>>SMP/Sederajat</option>
+                     <option value="SMA/Sederajat" <?php if($calon_peserta_didik->jenjang_ayah=='SMA/Sederajat') echo 'selected'; ?>>SMA/Sederajat</option>
+                     <option value="D1" <?php if($calon_peserta_didik->jenjang_ayah=='D1') echo 'selected'; ?>>D1</option>
+                     <option value="D2" <?php if($calon_peserta_didik->jenjang_ayah=='D2') echo 'selected'; ?>>D2</option>
+                     <option value="D3" <?php if($calon_peserta_didik->jenjang_ayah=='D3') echo 'selected'; ?>>D3</option>
+                     <option value="S1" <?php if($calon_peserta_didik->jenjang_ayah=='S1') echo 'selected'; ?>>S1</option>
+                     <option value="S2" <?php if($calon_peserta_didik->jenjang_ayah=='S2') echo 'selected'; ?>>S2</option>
+                     <option value="S3" <?php if($calon_peserta_didik->jenjang_ayah=='S3') echo 'selected'; ?>>S3</option></select>
               </div>
             </div>
 
@@ -410,41 +399,38 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Agama Ibu</label>
               <div class="col-md-9">
-                <?php $agama = $m_agama->listing(); ?>
                 <select name="agama_ibu" class="form-control"><option value="">-- Pilih Agama --</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Katolik">Katolik</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghucu">Konghucu</option>
-                  <option value="Lainnya">Lainnya</option></select>
+                  <option value="Islam" <?php if($calon_peserta_didik->agama_ibu=='Islam') echo 'selected'; ?>>Islam</option>
+                  <option value="Kristen" <?php if($calon_peserta_didik->agama_ibu=='Kristen') echo 'selected'; ?>>Kristen</option>
+                  <option value="Katolik" <?php if($calon_peserta_didik->agama_ibu=='Katolik') echo 'selected'; ?>>Katolik</option>
+                  <option value="Hindu" <?php if($calon_peserta_didik->agama_ibu=='Hindu') echo 'selected'; ?>>Hindu</option>
+                  <option value="Buddha" <?php if($calon_peserta_didik->agama_ibu=='Buddha') echo 'selected'; ?>>Buddha</option>
+                  <option value="Konghucu" <?php if($calon_peserta_didik->agama_ibu=='Konghucu') echo 'selected'; ?>>Konghucu</option>
+                  <option value="Lainnya" <?php if($calon_peserta_didik->agama_ibu=='Lainnya') echo 'selected'; ?>>Lainnya</option></select>
               </div>
             </div>
 
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Pekerjaan Ibu<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <?php $pekerjaan = $m_pekerjaan->listing(); ?>
-                <input type="text" name="pekerjaan_ibu" class="form-control" placeholder="Pekerjaan Ibu">
+                <input type="text" name="pekerjaan_ibu" class="form-control" placeholder="Pekerjaan Ibu" value="<?php if(isset($_POST['submit'])) { echo set_value('pekerjaan_ibu'); }else{ echo $calon_peserta_didik->pekerjaan_ibu; } ?>">
               </div>
             </div>
 
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Pendidikan Ibu</label>
               <div class="col-md-9">
-                <?php $jenjang = $m_jenjang->listing(); ?>
                 <select name="jenjang_ibu" class="form-control"><option value="">-- Pilih Jenjang --</option>
-                     <option value="Tidak Sekolah">Tidak Sekolah</option>
-                     <option value="SD">SD</option>
-                     <option value="SMP/Sederajat">SMP/Sederajat</option>
-                     <option value="SMA/Sederajat">SMA/Sederajat</option>
-                     <option value="D1">D1</option>
-                     <option value="D2">D2</option>
-                     <option value="D3">D3</option>
-                     <option value="S1">S1</option>
-                     <option value="S2">S2</option>
-                     <option value="S3">S3</option></select>
+                     <option value="Tidak Sekolah" <?php if($calon_peserta_didik->jenjang_ibu=='Tidak Sekolah') echo 'selected'; ?>>Tidak Sekolah</option>
+                     <option value="SD" <?php if($calon_peserta_didik->jenjang_ibu=='SD') echo 'selected'; ?>>SD</option>
+                     <option value="SMP/Sederajat" <?php if($calon_peserta_didik->jenjang_ibu=='SMP/Sederajat') echo 'selected'; ?>>SMP/Sederajat</option>
+                     <option value="SMA/Sederajat" <?php if($calon_peserta_didik->jenjang_ibu=='SMA/Sederajat') echo 'selected'; ?>>SMA/Sederajat</option>
+                     <option value="D1" <?php if($calon_peserta_didik->jenjang_ibu=='D1') echo 'selected'; ?>>D1</option>
+                     <option value="D2" <?php if($calon_peserta_didik->jenjang_ibu=='D2') echo 'selected'; ?>>D2</option>
+                     <option value="D3" <?php if($calon_peserta_didik->jenjang_ibu=='D3') echo 'selected'; ?>>D3</option>
+                     <option value="S1" <?php if($calon_peserta_didik->jenjang_ibu=='S1') echo 'selected'; ?>>S1</option>
+                     <option value="S2" <?php if($calon_peserta_didik->jenjang_ibu=='S2') echo 'selected'; ?>>S2</option>
+                     <option value="S3" <?php if($calon_peserta_didik->jenjang_ibu=='S3') echo 'selected'; ?>>S3</option></select>
               </div>
             </div>
 
@@ -510,41 +496,38 @@
               <div class="form-group row mb-3">
                 <label class="col-md-3 text-dark">Agama Wali</label>
                 <div class="col-md-9">
-                  <?php $agama = $m_agama->listing(); ?>
                   <select name="agama_wali" class="form-control"><option value="">-- Pilih Agama --</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Katolik">Katolik</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghucu">Konghucu</option>
-                  <option value="Lainnya">Lainnya</option></select>
+                  <option value="Islam" <?php if($calon_peserta_didik->agama_wali=='Islam') echo 'selected'; ?>>Islam</option>
+                  <option value="Kristen" <?php if($calon_peserta_didik->agama_wali=='Kristen') echo 'selected'; ?>>Kristen</option>
+                  <option value="Katolik" <?php if($calon_peserta_didik->agama_wali=='Katolik') echo 'selected'; ?>>Katolik</option>
+                  <option value="Hindu" <?php if($calon_peserta_didik->agama_wali=='Hindu') echo 'selected'; ?>>Hindu</option>
+                  <option value="Buddha" <?php if($calon_peserta_didik->agama_wali=='Buddha') echo 'selected'; ?>>Buddha</option>
+                  <option value="Konghucu" <?php if($calon_peserta_didik->agama_wali=='Konghucu') echo 'selected'; ?>>Konghucu</option>
+                  <option value="Lainnya" <?php if($calon_peserta_didik->agama_wali=='Lainnya') echo 'selected'; ?>>Lainnya</option></select>
                 </div>
               </div>
 
               <div class="form-group row mb-3">
                 <label class="col-md-3 text-dark">Pekerjaan Wali</label>
                 <div class="col-md-9">
-                  <?php $pekerjaan = $m_pekerjaan->listing(); ?>
-                  <input type="text" name="pekerjaan_wali" class="form-control" placeholder="Pekerjaan Wali">
+                  <input type="text" name="pekerjaan_wali" class="form-control" placeholder="Pekerjaan Wali" value="<?php if(isset($_POST['submit'])) { echo set_value('pekerjaan_wali'); }else{ echo $calon_peserta_didik->pekerjaan_wali; } ?>">
                 </div>
               </div>
 
               <div class="form-group row mb-3">
                 <label class="col-md-3 text-dark">Pendidikan Wali</label>
                 <div class="col-md-9">
-                  <?php $jenjang = $m_jenjang->listing(); ?>
                   <select name="jenjang_wali" class="form-control"><option value="">-- Pilih Jenjang --</option>
-                     <option value="Tidak Sekolah">Tidak Sekolah</option>
-                     <option value="SD">SD</option>
-                     <option value="SMP/Sederajat">SMP/Sederajat</option>
-                     <option value="SMA/Sederajat">SMA/Sederajat</option>
-                     <option value="D1">D1</option>
-                     <option value="D2">D2</option>
-                     <option value="D3">D3</option>
-                     <option value="S1">S1</option>
-                     <option value="S2">S2</option>
-                     <option value="S3">S3</option></select>
+                     <option value="Tidak Sekolah" <?php if($calon_peserta_didik->jenjang_wali=='Tidak Sekolah') echo 'selected'; ?>>Tidak Sekolah</option>
+                     <option value="SD" <?php if($calon_peserta_didik->jenjang_wali=='SD') echo 'selected'; ?>>SD</option>
+                     <option value="SMP/Sederajat" <?php if($calon_peserta_didik->jenjang_wali=='SMP/Sederajat') echo 'selected'; ?>>SMP/Sederajat</option>
+                     <option value="SMA/Sederajat" <?php if($calon_peserta_didik->jenjang_wali=='SMA/Sederajat') echo 'selected'; ?>>SMA/Sederajat</option>
+                     <option value="D1" <?php if($calon_peserta_didik->jenjang_wali=='D1') echo 'selected'; ?>>D1</option>
+                     <option value="D2" <?php if($calon_peserta_didik->jenjang_wali=='D2') echo 'selected'; ?>>D2</option>
+                     <option value="D3" <?php if($calon_peserta_didik->jenjang_wali=='D3') echo 'selected'; ?>>D3</option>
+                     <option value="S1" <?php if($calon_peserta_didik->jenjang_wali=='S1') echo 'selected'; ?>>S1</option>
+                     <option value="S2" <?php if($calon_peserta_didik->jenjang_wali=='S2') echo 'selected'; ?>>S2</option>
+                     <option value="S3" <?php if($calon_peserta_didik->jenjang_wali=='S3') echo 'selected'; ?>>S3</option></select>
                 </div>
               </div>
 
