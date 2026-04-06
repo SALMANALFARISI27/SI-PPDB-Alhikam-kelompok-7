@@ -19,17 +19,7 @@ if (session('msg')):
 <?php endif ?>
 
 <?php
-use App\Models\Agama_model;
-use App\Models\Jenjang_model;
-use App\Models\Pekerjaan_model;
-use App\Models\Hubungan_model;
-use App\Models\Kelas_model;
-use App\Models\Tahun_model;
 use App\Models\Jenjang_pendidikan_model;
-$m_agama = new Agama_model();
-$m_jenjang = new Jenjang_model();
-$m_pekerjaan = new Pekerjaan_model();
-
 $m_jenjang_pendidikan = new Jenjang_pendidikan_model();
 
 echo form_open_multipart(base_url('calon_peserta_didik/pendaftaran/biodata/' . $gelombang->id_gelombang));
@@ -89,16 +79,14 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Agama &amp; Status Kewarganegaraan<span class="text-danger">*</span></label>
       <div class="col-md-3">
-        <?php $agama = $m_agama->listing(); ?>
-        <select name="id_agama" class="form-control form-select" required>
-          <?php foreach ($agama as $agama) { ?>
-            <option value="<?php echo $agama->id_agama ?>" <?php if (set_value('id_agama') == $agama->id_agama) {
-                 echo 'selected';
-               } ?>>
-              <?php echo $agama->nama_agama ?>
-            </option>
-          <?php } ?>
-        </select>
+        <select name="agama" class="form-control" required><option value="">-- Pilih Agama --</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Kristen">Kristen</option>
+                  <option value="Katolik">Katolik</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Buddha">Buddha</option>
+                  <option value="Konghucu">Konghucu</option>
+                  <option value="Lainnya">Lainnya</option></select>
         <small class="text-secondary">Agama Calon Peserta Didik</small>
       </div>
       <div class="col-md-3">
@@ -345,6 +333,30 @@ echo csrf_field();
 
 </div>
 
+<!-- DATA KELUARGA -->
+<div class="card mb-2">
+  <div class="card-header bg-dark text-white mb-2">
+    DATA KELUARGA
+  </div>
+  <div class="card-body">
+
+    <div class="form-group row mb-3">
+      <label class="col-md-3 text-dark">Anak ke dan Jumlah Saudara</label>
+      <div class="col-md-4">
+        <input type="number" name="anak_ke" class="form-control" placeholder="Anak ke-"
+          value="<?php echo set_value('anak_ke') ?>" min="1">
+        <small class="text-secondary">Anak ke berapa</small>
+      </div>
+      <div class="col-md-5">
+        <input type="number" name="jumlah_saudara" class="form-control" placeholder="Jumlah saudara"
+          value="<?php echo set_value('jumlah_saudara') ?>" min="0">
+        <small class="text-secondary">Jumlah saudara kandung</small>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- data ayah -->
 <div class="card mb-2">
   <div class="card-header bg-dark text-white mb-2">
@@ -364,51 +376,38 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Agama Ayah</label>
       <div class="col-md-9">
-        <?php $agama = $m_agama->listing(); ?>
-        <select name="id_agama_ayah" class="form-control  form-select">
-          <option value="">Pilih Agama</option>
-          <?php foreach ($agama as $agama) { ?>
-            <option value="<?php echo $agama->id_agama ?>" <?php if (set_value('id_agama_ayah') == $agama->id_agama) {
-                 echo 'selected';
-               } ?>>
-              <?php echo $agama->nama_agama ?>
-            </option>
-          <?php } ?>
-        </select>
+        <select name="agama_ayah" class="form-control"><option value="">-- Pilih Agama --</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Kristen">Kristen</option>
+                  <option value="Katolik">Katolik</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Buddha">Buddha</option>
+                  <option value="Konghucu">Konghucu</option>
+                  <option value="Lainnya">Lainnya</option></select>
       </div>
     </div>
 
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Pekerjaan Ayah<span class="text-danger">*</span></label>
       <div class="col-md-9">
-        <?php $pekerjaan = $m_pekerjaan->listing(); ?>
-        <select name="id_pekerjaan_ayah" class="form-control form-select" required>
-          <option value="">Pilih Pekerjaan</option>
-          <?php foreach ($pekerjaan as $pekerjaan) { ?>
-            <option value="<?php echo $pekerjaan->id_pekerjaan ?>" <?php if (set_value('id_pekerjaan_ayah') == $pekerjaan->id_pekerjaan) {
-                 echo 'selected';
-               } ?>>
-              <?php echo $pekerjaan->nama_pekerjaan ?>
-            </option>
-          <?php } ?>
-        </select>
+        <input type="text" name="pekerjaan_ayah" class="form-control" placeholder="Pekerjaan Ayah">
       </div>
     </div>
 
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Pendidikan Ayah</label>
       <div class="col-md-9">
-        <?php $jenjang = $m_jenjang->listing(); ?>
-        <select name="id_jenjang_ayah" class="form-control  form-select">
-          <option value="">Pilih Jenjang Pendidikan</option>
-          <?php foreach ($jenjang as $jenjang) { ?>
-            <option value="<?php echo $jenjang->id_jenjang ?>" <?php if (set_value('id_jenjang_ayah') == $jenjang->id_jenjang) {
-                 echo 'selected';
-               } ?>>
-              <?php echo $jenjang->nama_jenjang ?>
-            </option>
-          <?php } ?>
-        </select>
+        <select name="jenjang_ayah" class="form-control"><option value="">-- Pilih Jenjang --</option>
+                     <option value="Tidak Sekolah">Tidak Sekolah</option>
+                     <option value="SD">SD</option>
+                     <option value="SMP/Sederajat">SMP/Sederajat</option>
+                     <option value="SMA/Sederajat">SMA/Sederajat</option>
+                     <option value="D1">D1</option>
+                     <option value="D2">D2</option>
+                     <option value="D3">D3</option>
+                     <option value="S1">S1</option>
+                     <option value="S2">S2</option>
+                     <option value="S3">S3</option></select>
       </div>
     </div>
 
@@ -452,51 +451,38 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Agama Ibu</label>
       <div class="col-md-9">
-        <?php $agama = $m_agama->listing(); ?>
-        <select name="id_agama_ibu" class="form-control  form-select">
-          <option value="">Pilih Agama</option>
-          <?php foreach ($agama as $agama) { ?>
-            <option value="<?php echo $agama->id_agama ?>" <?php if (set_value('id_agama_ibu') == $agama->id_agama) {
-                 echo 'selected';
-               } ?>>
-              <?php echo $agama->nama_agama ?>
-            </option>
-          <?php } ?>
-        </select>
+        <select name="agama_ibu" class="form-control"><option value="">-- Pilih Agama --</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Kristen">Kristen</option>
+                  <option value="Katolik">Katolik</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Buddha">Buddha</option>
+                  <option value="Konghucu">Konghucu</option>
+                  <option value="Lainnya">Lainnya</option></select>
       </div>
     </div>
 
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Pekerjaan Ibu<span class="text-danger">*</span></label>
       <div class="col-md-9">
-        <?php $pekerjaan = $m_pekerjaan->listing(); ?>
-        <select name="id_pekerjaan_ibu" class="form-control  form-select" required>
-          <option value="">Pilih Pekerjaan</option>
-          <?php foreach ($pekerjaan as $pekerjaan) { ?>
-            <option value="<?php echo $pekerjaan->id_pekerjaan ?>" <?php if (set_value('id_pekerjaan_ibu') == $pekerjaan->id_pekerjaan) {
-                 echo 'selected';
-               } ?>>
-              <?php echo $pekerjaan->nama_pekerjaan ?>
-            </option>
-          <?php } ?>
-        </select>
+        <input type="text" name="pekerjaan_ibu" class="form-control" placeholder="Pekerjaan Ibu">
       </div>
     </div>
 
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Pendidikan Ibu</label>
       <div class="col-md-9">
-        <?php $jenjang = $m_jenjang->listing(); ?>
-        <select name="id_jenjang_ibu" class="form-control  form-select">
-          <option value="">Pilih Jenjang Pendidikan</option>
-          <?php foreach ($jenjang as $jenjang) { ?>
-            <option value="<?php echo $jenjang->id_jenjang ?>" <?php if (set_value('id_jenjang_ibu') == $jenjang->id_jenjang) {
-                 echo 'selected';
-               } ?>>
-              <?php echo $jenjang->nama_jenjang ?>
-            </option>
-          <?php } ?>
-        </select>
+        <select name="jenjang_ibu" class="form-control"><option value="">-- Pilih Jenjang --</option>
+                     <option value="Tidak Sekolah">Tidak Sekolah</option>
+                     <option value="SD">SD</option>
+                     <option value="SMP/Sederajat">SMP/Sederajat</option>
+                     <option value="SMA/Sederajat">SMA/Sederajat</option>
+                     <option value="D1">D1</option>
+                     <option value="D2">D2</option>
+                     <option value="D3">D3</option>
+                     <option value="S1">S1</option>
+                     <option value="S2">S2</option>
+                     <option value="S3">S3</option></select>
       </div>
     </div>
 
@@ -574,51 +560,38 @@ echo csrf_field();
       <div class="form-group row mb-3">
         <label class="col-md-3 text-dark">Agama Wali</label>
         <div class="col-md-9">
-          <?php $agama = $m_agama->listing(); ?>
-          <select name="id_agama_wali" class="form-control form-select">
-            <option value="">Pilih Agama</option>
-            <?php foreach ($agama as $agama) { ?>
-              <option value="<?php echo $agama->id_agama ?>" <?php if (set_value('id_agama_wali') == $agama->id_agama) {
-                   echo 'selected';
-                 } ?>>
-                <?php echo $agama->nama_agama ?>
-              </option>
-            <?php } ?>
-          </select>
+          <select name="agama_wali" class="form-control"><option value="">-- Pilih Agama --</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Kristen">Kristen</option>
+                  <option value="Katolik">Katolik</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Buddha">Buddha</option>
+                  <option value="Konghucu">Konghucu</option>
+                  <option value="Lainnya">Lainnya</option></select>
         </div>
       </div>
 
       <div class="form-group row mb-3">
         <label class="col-md-3 text-dark">Pekerjaan Wali</label>
         <div class="col-md-9">
-          <?php $pekerjaan = $m_pekerjaan->listing(); ?>
-          <select name="id_pekerjaan_wali" class="form-control form-select">
-            <option value="">Pilih Pekerjaan</option>
-            <?php foreach ($pekerjaan as $pekerjaan) { ?>
-              <option value="<?php echo $pekerjaan->id_pekerjaan ?>" <?php if (set_value('id_pekerjaan_wali') == $pekerjaan->id_pekerjaan) {
-                   echo 'selected';
-                 } ?>>
-                <?php echo $pekerjaan->nama_pekerjaan ?>
-              </option>
-            <?php } ?>
-          </select>
+          <input type="text" name="pekerjaan_wali" class="form-control" placeholder="Pekerjaan Wali">
         </div>
       </div>
 
       <div class="form-group row mb-3">
         <label class="col-md-3 text-dark">Pendidikan Wali</label>
         <div class="col-md-9">
-          <?php $jenjang = $m_jenjang->listing(); ?>
-          <select name="id_jenjang_wali" class="form-control form-select">
-            <option value="">Pilih Jenjang Pendidikan</option>
-            <?php foreach ($jenjang as $jenjang) { ?>
-              <option value="<?php echo $jenjang->id_jenjang ?>" <?php if (set_value('id_jenjang_wali') == $jenjang->id_jenjang) {
-                   echo 'selected';
-                 } ?>>
-                <?php echo $jenjang->nama_jenjang ?>
-              </option>
-            <?php } ?>
-          </select>
+          <select name="jenjang_wali" class="form-control"><option value="">-- Pilih Jenjang --</option>
+                     <option value="Tidak Sekolah">Tidak Sekolah</option>
+                     <option value="SD">SD</option>
+                     <option value="SMP/Sederajat">SMP/Sederajat</option>
+                     <option value="SMA/Sederajat">SMA/Sederajat</option>
+                     <option value="D1">D1</option>
+                     <option value="D2">D2</option>
+                     <option value="D3">D3</option>
+                     <option value="S1">S1</option>
+                     <option value="S2">S2</option>
+                     <option value="S3">S3</option></select>
         </div>
       </div>
 

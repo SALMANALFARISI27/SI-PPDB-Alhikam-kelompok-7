@@ -6,9 +6,6 @@ use App\Models\Konfigurasi_model;
 use App\Models\Galeri_model;
 use App\Models\Berita_model;
 use App\Models\Calon_peserta_didik_model;
-use App\Models\Jenjang_model;
-use App\Models\Pekerjaan_model;
-use App\Models\Agama_model;
 use App\Models\Akun_model;
 use App\Models\Jenis_dokumen_model;
 use App\Models\Dokumen_model;
@@ -56,7 +53,7 @@ class Pendaftaran extends BaseController
 				[
 					'nama' => 'required',
 					'email' => 'required|valid_email|is_unique[akun.email]',
-					'password' => 'min_length[6]|max_length[32]',
+					'password' => 'required|min_length[6]|max_length[32]',
 					'telepon' => 'required',
 					'konfirmasi_password' => 'required|matches[password]',
 				]
@@ -68,18 +65,12 @@ class Pendaftaran extends BaseController
 				'username' => $this->request->getVar('nama'),
 				'email' => $this->request->getVar('email'),
 				'password' => sha1($this->request->getVar('password')),
-				'password_hint' => $this->request->getVar('password'),
 				'telepon' => $this->request->getVar('telepon'),
 				'kode_akun' => $kode_akun,
 				'link_reset' => $kode_akun
 			);
 			$m_akun->tambah($data);
-			// login
-			$username = $this->request->getPost('email');
-			$password = $this->request->getPost('password');
-			$this->simple_login->login_calon_peserta_didik_akun($username, $password);
-			// echo Session()->get('username_calon_peserta_didik');
-			// Link reset
+			// Kirim email aktivasi (jangan auto-login, akun harus diaktivasi dulu)
 			$email = $this->request->getVar('email');
 			$link_reset = base_url('pendaftaran/aktivasi/' . $kode_akun);
 			$subject = 'Pendaftaran Akun Berhasil - ' . $this->website->namaweb();
@@ -118,11 +109,11 @@ class Pendaftaran extends BaseController
 
 			// Kirim email
 			if ($email_service->send()) {
-				$this->session->setFlashdata('sukses', 'Data Akun Berhasil Dibuat. Silakan lanjutkan memilih periode pendaftaran dan mengisi biodata.');
+				$this->session->setFlashdata('sukses', 'Akun berhasil dibuat! Silakan cek email Anda untuk mengaktifkan akun sebelum melakukan pendaftaran.');
 			} else {
-				$this->session->setFlashdata('sukses', 'Data Akun Berhasil Dibuat. Silakan lanjutkan memilih periode pendaftaran dan mengisi biodata.');
+				$this->session->setFlashdata('sukses', 'Akun berhasil dibuat! Silakan cek email Anda untuk mengaktifkan akun. Jika email tidak masuk, hubungi admin.');
 			}
-			return redirect()->to(base_url('pendaftaran'));
+			return redirect()->to(base_url('signin'));
 			// end login
 		} else {
 			$data = [
@@ -140,6 +131,26 @@ class Pendaftaran extends BaseController
 	{
 		// $this->simple_login->login_calon_peserta_didik_akun('andoyoandoyo@gmail.com','andoyoandoyo');
 		echo Session()->get('username_calon_peserta_didik');
+	}
+
+	// Aktivasi Akun
+	public function aktivasi($kode_akun)
+	{
+		$m_akun = new Akun_model();
+		$akun = $m_akun->kode_akun($kode_akun);
+		
+		if (!$akun) {
+			$this->session->setFlashdata('warning', 'Kode aktivasi tidak valid atau akun tidak ditemukan');
+			return redirect()->to(base_url('signin'));
+		}
+		
+		$data = [
+			'id_akun' => $akun->id_akun,
+			'status_akun' => 'Aktif'
+		];
+		$m_akun->edit($data);
+		$this->session->setFlashdata('sukses', 'Aktivasi akun berhasil. Silakan login menggunakan akun Anda.');
+		return redirect()->to(base_url('signin'));
 	}
 
 	// biodata
@@ -184,23 +195,23 @@ class Pendaftaran extends BaseController
 		) {
 
 			if ($this->request->getPost('identitas_wali') == 'Ayah') {
-				$id_agama_wali = $this->request->getPost('id_agama_ayah');
-				$id_pekerjaan_wali = $this->request->getPost('id_pekerjaan_ayah');
-				$id_jenjang_wali = $this->request->getPost('id_jenjang_ayah');
+				$agama_wali = $this->request->getPost('agama_ayah');
+				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_ayah');
+				$id_jenjang_wali = $this->request->getPost('jenjang_ayah');
 				$nama_wali = $this->request->getPost('nama_ayah');
 				$alamat_wali = $this->request->getPost('alamat_ayah');
 				$telepon_wali = $this->request->getPost('telepon_ayah');
 			} elseif ($this->request->getPost('identitas_wali') == 'Ibu') {
-				$id_agama_wali = $this->request->getPost('id_agama_ibu');
-				$id_pekerjaan_wali = $this->request->getPost('id_pekerjaan_ibu');
-				$id_jenjang_wali = $this->request->getPost('id_jenjang_ibu');
+				$agama_wali = $this->request->getPost('agama_ibu');
+				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_ibu');
+				$id_jenjang_wali = $this->request->getPost('jenjang_ibu');
 				$nama_wali = $this->request->getPost('nama_ibu');
 				$alamat_wali = $this->request->getPost('alamat_ibu');
 				$telepon_wali = $this->request->getPost('telepon_ibu');
 			} else {
-				$id_agama_wali = $this->request->getPost('id_agama_wali');
-				$id_pekerjaan_wali = $this->request->getPost('id_pekerjaan_wali');
-				$id_jenjang_wali = $this->request->getPost('id_jenjang_wali');
+				$agama_wali = $this->request->getPost('agama_wali');
+				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_wali');
+				$id_jenjang_wali = $this->request->getPost('jenjang_wali');
 				$nama_wali = $this->request->getPost('nama_wali');
 				$alamat_wali = $this->request->getPost('alamat_wali');
 				$telepon_wali = $this->request->getPost('telepon_wali');
@@ -220,16 +231,16 @@ class Pendaftaran extends BaseController
 				$data = [
 					'id_admin' => $this->session->get('id_admin'),
 					'id_gelombang' => $id_gelombang,
-					'id_agama' => $this->request->getPost('id_agama'),
-					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
-					'id_agama_ibu' => $this->request->getPost('id_agama_ibu'),
-					'id_agama_wali' => $id_agama_wali,
-					'id_pekerjaan_ayah' => $this->request->getPost('id_pekerjaan_ayah'),
-					'id_pekerjaan_ibu' => $this->request->getPost('id_pekerjaan_ibu'),
-					'id_pekerjaan_wali' => $id_pekerjaan_wali,
-					'id_jenjang_ayah' => $this->request->getPost('id_jenjang_ayah'),
-					'id_jenjang_ibu' => $this->request->getPost('id_jenjang_ibu'),
-					'id_jenjang_wali' => $id_jenjang_wali,
+					'agama' => $this->request->getPost('agama'),
+					'agama_ayah' => $this->request->getPost('agama_ayah'),
+					'agama_ibu' => $this->request->getPost('agama_ibu'),
+					'agama_wali' => $agama_wali,
+					'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
+					'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
+					'pekerjaan_wali' => $id_pekerjaan_wali,
+					'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
+					'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
+					'jenjang_wali' => $id_jenjang_wali,
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
 					'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
@@ -269,10 +280,7 @@ class Pendaftaran extends BaseController
 					'anak_ke' => $this->request->getPost('anak_ke'),
 					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
 					'gambar' => $nama_calon_peserta_didik_baru,
-					'status_calon_peserta_didik' => 'Menunggu',
-					'status_pendaftaran' => 'Menunggu',
-					'tanggal_baca' => date('Y-m-d H:i:s'),
-					'tanggal_post' => date('Y-m-d H:i:s')
+					'status_pendaftaran' => 'Menunggu'
 				];
 				$m_calon_peserta_didik->tambah($data);
 				// masuk database
@@ -284,16 +292,16 @@ class Pendaftaran extends BaseController
 				$data = [
 					'id_admin' => $this->session->get('id_admin'),
 					'id_gelombang' => $id_gelombang,
-					'id_agama' => $this->request->getPost('id_agama'),
-					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
-					'id_agama_ibu' => $this->request->getPost('id_agama_ibu'),
-					'id_agama_wali' => $id_agama_wali,
-					'id_pekerjaan_ayah' => $this->request->getPost('id_pekerjaan_ayah'),
-					'id_pekerjaan_ibu' => $this->request->getPost('id_pekerjaan_ibu'),
-					'id_pekerjaan_wali' => $id_pekerjaan_wali,
-					'id_jenjang_ayah' => $this->request->getPost('id_jenjang_ayah'),
-					'id_jenjang_ibu' => $this->request->getPost('id_jenjang_ibu'),
-					'id_jenjang_wali' => $id_jenjang_wali,
+					'agama' => $this->request->getPost('agama'),
+					'agama_ayah' => $this->request->getPost('agama_ayah'),
+					'agama_ibu' => $this->request->getPost('agama_ibu'),
+					'agama_wali' => $agama_wali,
+					'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
+					'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
+					'pekerjaan_wali' => $id_pekerjaan_wali,
+					'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
+					'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
+					'jenjang_wali' => $id_jenjang_wali,
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
 					'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
@@ -333,10 +341,7 @@ class Pendaftaran extends BaseController
 					'anak_ke' => $this->request->getPost('anak_ke'),
 					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
 					// 'gambar'				=> $nama_calon_peserta_didik_baru,
-					'status_calon_peserta_didik' => 'Menunggu',
-					'status_pendaftaran' => 'Menunggu',
-					'tanggal_baca' => date('Y-m-d H:i:s'),
-					'tanggal_post' => date('Y-m-d H:i:s')
+					'status_pendaftaran' => 'Menunggu'
 				];
 				// masuk database
 				$m_calon_peserta_didik->tambah($data);

@@ -25,30 +25,21 @@
 			<input type="file" name="gambar" class="form-control" value="<?php echo $jenjang_pendidikan->gambar ?>">
 		</div>
 	</div>
-
 	<div class="form-group row">
-		<label class="col-md-2">Jenjang Pendidikan, Jenis &amp; Status</label>
-		<div class="col-md-3">
-			<select name="id_jenjang" class="form-control">
-				<?php foreach ($jenjang as $jenjang) { ?>
-					<option value="<?php echo $jenjang->id_jenjang ?>" <?php if ($jenjang_pendidikan->id_jenjang == $jenjang->id_jenjang) {
-						   echo 'selected';
-					   } ?>>
-						<?php echo $jenjang->nama_jenjang ?>
-					</option>
-				<?php } ?>
-			</select>
-			<small class="text-secondary">Jenjang Pendidikan</small>
-		</div>
+		<label class="col-md-2">Jenis &amp; Status <span class="text-danger">*</span></label>
+
 		<div class="col-md-2">
 			<select name="jenis_jenjang_pendidikan" class="form-control">
-				<option value="Jenjang">Jenjang Pendidikan</option>
-				<option value="Yayasan" <?php if ($jenjang_pendidikan->jenis_jenjang_pendidikan == "Yayasan") {
+				<option value="Formal">Formal</option>
+				<option value="Non Formal" <?php if ($jenjang_pendidikan->jenis_jenjang_pendidikan == "Non Formal") {
 					echo 'selected';
-				} ?>>Informasi Yayasan</option>
+				} ?>>Non Formal</option>
 			</select>
-			<small class="text-secondary">Jenis konten</small>
+			<small class="text-secondary">Jenis Pendidikan</small>
 		</div>
+
+
+
 		<div class="col-md-2">
 			<select name="status_jenjang_pendidikan" class="form-control">
 				<option value="Publish">Publish</option>

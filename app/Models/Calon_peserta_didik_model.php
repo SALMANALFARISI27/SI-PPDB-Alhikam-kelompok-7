@@ -23,30 +23,10 @@ class Calon_peserta_didik_model extends Model
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
                  
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
    
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
@@ -54,40 +34,20 @@ class Calon_peserta_didik_model extends Model
         return $query->getResult();
     }
 
-    // status_calon_peserta_didik
-    public function status_calon_peserta_didik($status_calon_peserta_didik)
+    // status_pendaftaran
+    public function status_pendaftaran($status_pendaftaran)
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
                 
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
     
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
-        $builder->where('status_calon_peserta_didik',$status_calon_peserta_didik);
+        $builder->where('status_pendaftaran',$status_pendaftaran);
         $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
         $query = $builder->get();
         return $query->getResult();
@@ -100,30 +60,10 @@ class Calon_peserta_didik_model extends Model
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
                
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
      
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->where('id_akun',$id_akun);
@@ -153,30 +93,10 @@ class Calon_peserta_didik_model extends Model
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
               
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
   
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->where('calon_peserta_didik.id_gelombang',$id_gelombang);
@@ -210,14 +130,14 @@ class Calon_peserta_didik_model extends Model
         return $query->getRow();
     }
 
-    // status_calon_peserta_didik_gelombang
-    public function status_calon_peserta_didik_gelombang($status_calon_peserta_didik,$id_gelombang)
+    // status_pendaftaran_gelombang
+    public function status_pendaftaran_gelombang($status_pendaftaran,$id_gelombang)
     {
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('COUNT(*) AS total');
 
-        if($status_calon_peserta_didik != 'Semua') {
-            $builder->where('status_calon_peserta_didik',$status_calon_peserta_didik);
+        if($status_pendaftaran != 'Semua') {
+            $builder->where('status_pendaftaran',$status_pendaftaran);
         }
         
         $builder->where('id_gelombang',$id_gelombang);
@@ -232,30 +152,10 @@ class Calon_peserta_didik_model extends Model
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
                      
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
     
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->limit($limit,$start);
@@ -271,30 +171,10 @@ class Calon_peserta_didik_model extends Model
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
                  
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
    
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->like('nama_calon_peserta_didik',$keywords,'BOTH');
@@ -355,30 +235,10 @@ class Calon_peserta_didik_model extends Model
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
                   
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
     
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->where('id_calon_peserta_didik',$id_calon_peserta_didik);
@@ -394,30 +254,10 @@ class Calon_peserta_didik_model extends Model
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
                
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
    
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->where([   'email'     => $username,
@@ -435,30 +275,10 @@ class Calon_peserta_didik_model extends Model
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
    
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
 
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->where([   'nis'       => $username,
@@ -475,29 +295,9 @@ class Calon_peserta_didik_model extends Model
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->where('slug_calon_peserta_didik',$slug_calon_peserta_didik);
@@ -512,29 +312,9 @@ class Calon_peserta_didik_model extends Model
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                        agama.nama_agama,
-                        a.nama_agama AS agama_ayah,
-                        b.nama_agama AS agama_ibu,
-                        c.nama_agama AS agama_wali,
-                        pekerjaan.nama_pekerjaan,
-                        d.nama_pekerjaan AS pekerjaan_ibu,
-                        e.nama_pekerjaan AS pekerjaan_wali,
-                        h.nama_jenjang AS jenjang_ayah,
-                        g.nama_jenjang AS jenjang_ibu,
-                        f.nama_jenjang AS jenjang_wali,
                         gelombang.judul,
                         gelombang.tahun_ajaran,
                         jenjang_pendidikan.judul_jenjang_pendidikan');
-        $builder->join('agama','agama.id_agama = calon_peserta_didik.id_agama','LEFT');
-        $builder->join('agama a','a.id_agama = calon_peserta_didik.id_agama_ayah','LEFT');
-        $builder->join('agama b','b.id_agama = calon_peserta_didik.id_agama_ibu','LEFT');
-        $builder->join('agama c','c.id_agama = calon_peserta_didik.id_agama_wali','LEFT');
-        $builder->join('pekerjaan','pekerjaan.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ayah','LEFT');
-        $builder->join('pekerjaan d','d.id_pekerjaan = calon_peserta_didik.id_pekerjaan_ibu','LEFT');
-        $builder->join('pekerjaan e','e.id_pekerjaan = calon_peserta_didik.id_pekerjaan_wali','LEFT');
-        $builder->join('jenjang h','h.id_jenjang = calon_peserta_didik.id_jenjang_ayah','LEFT');
-        $builder->join('jenjang g','g.id_jenjang = calon_peserta_didik.id_jenjang_ibu','LEFT');
-        $builder->join('jenjang f','f.id_jenjang = calon_peserta_didik.id_jenjang_wali','LEFT');
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
         $builder->where('kode_calon_peserta_didik',$kode_calon_peserta_didik);

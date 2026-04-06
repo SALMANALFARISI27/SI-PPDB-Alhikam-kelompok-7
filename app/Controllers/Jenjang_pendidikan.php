@@ -3,7 +3,7 @@ namespace App\Controllers;
 use App\Models\Konfigurasi_model;
 use App\Models\Jenjang_pendidikan_model;
 use App\Models\Nav_model;
-use App\Models\Jenjang_model;
+
 
 class Jenjang_pendidikan extends BaseController
 {
@@ -15,14 +15,12 @@ class Jenjang_pendidikan extends BaseController
         $site = $m_site->listing();
         $m_jenjang_pendidikan = new Jenjang_pendidikan_model();
         $status_jenjang_pendidikan = 'Publish';
-        $jenis_jenjang_pendidikan = 'Jenjang';
-        $total = $m_jenjang_pendidikan->total_jenis_status_jenjang_pendidikan($jenis_jenjang_pendidikan, $status_jenjang_pendidikan);
+        $total = $m_jenjang_pendidikan->total_status_jenjang_pendidikan($status_jenjang_pendidikan);
         $page = (int) ($this->request->getGet('page') ?? 1);
         $perPage = $this->website->paginasi_depan();
-        $total = $total;
         $pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
         $page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-        $jenjang_pendidikan = $m_jenjang_pendidikan->jenis_status_jenjang_pendidikan_all($jenis_jenjang_pendidikan, $status_jenjang_pendidikan, $perPage, $page);
+        $jenjang_pendidikan = $m_jenjang_pendidikan->status_jenjang_pendidikan_all($status_jenjang_pendidikan, $perPage, $page);
 
         $data = [
             'title' => 'Program Unggulan',
@@ -36,38 +34,12 @@ class Jenjang_pendidikan extends BaseController
         return view('layout/wrapper', $data);
     }
 
-    // jenjang
+    // jenjang (Obsolete endpoint, safely returns 404 to gracefully avoid Jenjang_model DBException)
     public function jenjang($id_jenjang)
     {
-        $pager = service('pager');
-        $m_site = new Konfigurasi_model();
-        $site = $m_site->listing();
-        $m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-        $m_jenjang = new Jenjang_model();
-        $jenjang = $m_jenjang->detail($id_jenjang);
-        $id_jenjang = $jenjang->id_jenjang;
-        $status_jenjang_pendidikan = 'Publish';
-        $jenis_jenjang_pendidikan = 'Jenjang';
-        $total = $m_jenjang_pendidikan->total_jenjang_status_jenis($id_jenjang, $jenis_jenjang_pendidikan, $status_jenjang_pendidikan, );
-        $page = (int) ($this->request->getGet('page') ?? 1);
-        $perPage = $this->website->paginasi_depan();
-        $total = $total;
-        $pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-        $page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-        $jenjang_pendidikan = $m_jenjang_pendidikan->jenjang_status_jenis_all($id_jenjang, $jenis_jenjang_pendidikan, $status_jenjang_pendidikan, $perPage, $page);
-
-
-        $data = [
-            'title' => $jenjang->nama_jenjang,
-            'description' => $jenjang->nama_jenjang,
-            'keywords' => $jenjang->nama_jenjang,
-            'site' => $site,
-            'jenjang_pendidikan' => $jenjang_pendidikan,
-            'pagination' => $pager_links,
-            'content' => 'jenjang_pendidikan/index'
-        ];
-        return view('layout/wrapper', $data);
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
     }
+
 
     // read
     public function read($slug_jenjang_pendidikan)

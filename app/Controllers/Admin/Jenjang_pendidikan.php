@@ -3,7 +3,6 @@ namespace App\Controllers\Admin;
 
 use CodeIgniter\Controller;
 use App\Models\Jenjang_pendidikan_model;
-use App\Models\Jenjang_model;
 use App\Models\Admin_model;
 
 class Jenjang_pendidikan extends BaseController
@@ -14,8 +13,6 @@ class Jenjang_pendidikan extends BaseController
 	{
 
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$m_jenjang = new Jenjang_model();
-		$jenjang = $m_jenjang->listing();
 		$pager = service('pager');
 		// jenjang_pendidikan
 		if (isset($_GET['keywords'])) {
@@ -24,7 +21,6 @@ class Jenjang_pendidikan extends BaseController
 			$title = 'Hasil pencarian: ' . $_GET['keywords'] . ' - ' . $total . ' ditemukan';
 			$page = (int) ($this->request->getGet('page') ?? 1);
 			$perPage = $this->website->paginasi();
-			$total = $total;
 			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
 			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
 			$jenjang_pendidikan = $m_jenjang_pendidikan->paginasi_admin_cari($keywords, $perPage, $page);
@@ -33,7 +29,6 @@ class Jenjang_pendidikan extends BaseController
 			$title = 'Jenjang Pendidikan (' . $total . ')';
 			$page = (int) ($this->request->getGet('page') ?? 1);
 			$perPage = $this->website->paginasi();
-			$total = $total;
 			$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
 			$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
 			$jenjang_pendidikan = $m_jenjang_pendidikan->paginasi_admin($perPage, $page);
@@ -44,7 +39,6 @@ class Jenjang_pendidikan extends BaseController
 			'title' => $title,
 			'jenjang_pendidikan' => $jenjang_pendidikan,
 			'pagination' => $pager_links,
-			'jenjang' => $jenjang,
 			'content' => 'admin/jenjang_pendidikan/index'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -59,36 +53,12 @@ class Jenjang_pendidikan extends BaseController
 		echo view('admin/jenjang_pendidikan/unggah', $data);
 	}
 
-	// jenjang
-	public function jenjang($id_jenjang)
-	{
-
-		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$m_jenjang = new Jenjang_model();
-		$jenjang = $m_jenjang->detail($id_jenjang);
-		$total = $m_jenjang_pendidikan->total_jenjang($id_jenjang);
-		$pager = service('pager');
-		$page = (int) ($this->request->getGet('page') ?? 1);
-		$perPage = $this->website->paginasi();
-		$total = $total;
-		$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
-		$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-		$jenjang_pendidikan = $m_jenjang_pendidikan->jenjang_all($id_jenjang, $perPage, $page);
-
-		$data = [
-			'title' => $jenjang->nama_jenjang . ' (' . $total . ')',
-			'jenjang_pendidikan' => $jenjang_pendidikan,
-			'content' => 'admin/jenjang_pendidikan/index'
-		];
-		echo view('admin/layout/wrapper', $data);
-	}
 
 	// jenis_jenjang_pendidikan
 	public function jenis_jenjang_pendidikan($jenis_jenjang_pendidikan)
 	{
 
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$m_jenjang = new Jenjang_model();
 		$total = $m_jenjang_pendidikan->total_jenis_jenjang_pendidikan($jenis_jenjang_pendidikan);
 		$pager = service('pager');
 		$page = (int) ($this->request->getGet('page') ?? 1);
@@ -112,7 +82,6 @@ class Jenjang_pendidikan extends BaseController
 	{
 
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$m_jenjang = new Jenjang_model();
 		$total = $m_jenjang_pendidikan->total_status_jenjang_pendidikan($status_jenjang_pendidikan);
 		$pager = service('pager');
 		$page = (int) ($this->request->getGet('page') ?? 1);
@@ -135,7 +104,6 @@ class Jenjang_pendidikan extends BaseController
 	public function author($id_admin)
 	{
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$m_jenjang = new Jenjang_model();
 		$m_admin = new Admin_model();
 		$admin = $m_admin->detail($id_admin);
 		$jenjang_pendidikan = $m_jenjang_pendidikan->author_all($id_admin);
@@ -152,9 +120,7 @@ class Jenjang_pendidikan extends BaseController
 	// Tambah
 	public function tambah()
 	{
-		$m_jenjang = new Jenjang_model();
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$jenjang = $m_jenjang->listing();
 
 		// Start validasi
 		if (
@@ -181,7 +147,6 @@ class Jenjang_pendidikan extends BaseController
 				// masuk database
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_jenjang' => $this->request->getVar('id_jenjang'),
 					'slug_jenjang_pendidikan' => strtolower(url_title($this->request->getVar('judul_jenjang_pendidikan'))),
 					'judul_jenjang_pendidikan' => $this->request->getVar('judul_jenjang_pendidikan'),
 					'ringkasan' => $this->request->getVar('ringkasan'),
@@ -198,7 +163,6 @@ class Jenjang_pendidikan extends BaseController
 			} else {
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_jenjang' => $this->request->getVar('id_jenjang'),
 					'slug_jenjang_pendidikan' => strtolower(url_title($this->request->getVar('judul_jenjang_pendidikan'))),
 					'judul_jenjang_pendidikan' => $this->request->getVar('judul_jenjang_pendidikan'),
 					'ringkasan' => $this->request->getVar('ringkasan'),
@@ -217,7 +181,6 @@ class Jenjang_pendidikan extends BaseController
 
 		$data = [
 			'title' => 'Tambah Jenjang_pendidikan',
-			'jenjang' => $jenjang,
 			'content' => 'admin/jenjang_pendidikan/tambah'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -227,9 +190,7 @@ class Jenjang_pendidikan extends BaseController
 	public function edit($id_jenjang_pendidikan)
 	{
 
-		$m_jenjang = new Jenjang_model();
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$jenjang = $m_jenjang->listing();
 		$jenjang_pendidikan = $m_jenjang_pendidikan->detail($id_jenjang_pendidikan);
 		// Start validasi
 		if (
@@ -257,7 +218,6 @@ class Jenjang_pendidikan extends BaseController
 				$data = array(
 					'id_jenjang_pendidikan' => $id_jenjang_pendidikan,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_jenjang' => $this->request->getVar('id_jenjang'),
 					'slug_jenjang_pendidikan' => strtolower(url_title($this->request->getVar('judul_jenjang_pendidikan'))),
 					'judul_jenjang_pendidikan' => $this->request->getVar('judul_jenjang_pendidikan'),
 					'ringkasan' => $this->request->getVar('ringkasan'),
@@ -275,7 +235,6 @@ class Jenjang_pendidikan extends BaseController
 				$data = array(
 					'id_jenjang_pendidikan' => $id_jenjang_pendidikan,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_jenjang' => $this->request->getVar('id_jenjang'),
 					'slug_jenjang_pendidikan' => strtolower(url_title($this->request->getVar('judul_jenjang_pendidikan'))),
 					'judul_jenjang_pendidikan' => $this->request->getVar('judul_jenjang_pendidikan'),
 					'ringkasan' => $this->request->getVar('ringkasan'),
@@ -292,7 +251,6 @@ class Jenjang_pendidikan extends BaseController
 
 		$data = [
 			'title' => 'Edit Jenjang_pendidikan: ' . $jenjang_pendidikan->judul_jenjang_pendidikan,
-			'jenjang' => $jenjang,
 			'jenjang_pendidikan' => $jenjang_pendidikan,
 			'content' => 'admin/jenjang_pendidikan/edit'
 		];
@@ -303,7 +261,6 @@ class Jenjang_pendidikan extends BaseController
 	public function proses()
 	{
 
-		$m_jenjang = new Jenjang_model();
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
 		// proses
 		$pengalihan = $this->request->getVar('pengalihan');

@@ -28,11 +28,12 @@ class Akun extends BaseController
 				'username' => $this->request->getVar('username'),
 				'status_akun' => $akun->status_akun,
 				'email' => $this->request->getVar('email'),
-				'password' => sha1($this->request->getVar('password')),
-				'password_hint' => $this->request->getVar('password'),
 				'telepon' => $this->request->getVar('telepon'),
-
 			);
+			// Only update password if user actually typed a new one (min 6 chars)
+			if (strlen($this->request->getVar('password')) >= 6) {
+				$data['password'] = sha1($this->request->getVar('password'));
+			}
 			$m_akun->edit($data);
 			return redirect()->to(base_url('calon_peserta_didik/akun'))->with('sukses', 'Akun berhasil diupdate');
 		} else {

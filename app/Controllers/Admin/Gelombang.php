@@ -6,9 +6,6 @@ use App\Models\Konfigurasi_model;
 use App\Models\Galeri_model;
 use App\Models\Berita_model;
 use App\Models\Calon_peserta_didik_model;
-use App\Models\Jenjang_model;
-use App\Models\Pekerjaan_model;
-use App\Models\Agama_model;
 use App\Models\Akun_model;
 use App\Models\Jenis_dokumen_model;
 use App\Models\Dokumen_model;
@@ -413,23 +410,23 @@ class Gelombang extends BaseController
 		) {
 
 			if ($this->request->getPost('identitas_wali') == 'Ayah') {
-				$id_agama_wali = $this->request->getPost('id_agama_ayah');
-				$id_pekerjaan_wali = $this->request->getPost('id_pekerjaan_ayah');
-				$id_jenjang_wali = $this->request->getPost('id_jenjang_ayah');
+				$agama_wali = $this->request->getPost('agama_ayah');
+				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_ayah');
+				$id_jenjang_wali = $this->request->getPost('jenjang_ayah');
 				$nama_wali = $this->request->getPost('nama_ayah');
 				$alamat_wali = $this->request->getPost('alamat_ayah');
 				$telepon_wali = $this->request->getPost('telepon_ayah');
 			} elseif ($this->request->getPost('identitas_wali') == 'Ibu') {
-				$id_agama_wali = $this->request->getPost('id_agama_ibu');
-				$id_pekerjaan_wali = $this->request->getPost('id_pekerjaan_ibu');
-				$id_jenjang_wali = $this->request->getPost('id_jenjang_ibu');
+				$agama_wali = $this->request->getPost('agama_ibu');
+				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_ibu');
+				$id_jenjang_wali = $this->request->getPost('jenjang_ibu');
 				$nama_wali = $this->request->getPost('nama_ibu');
 				$alamat_wali = $this->request->getPost('alamat_ibu');
 				$telepon_wali = $this->request->getPost('telepon_ibu');
 			} else {
-				$id_agama_wali = $this->request->getPost('id_agama_wali');
-				$id_pekerjaan_wali = $this->request->getPost('id_pekerjaan_wali');
-				$id_jenjang_wali = $this->request->getPost('id_jenjang_wali');
+				$agama_wali = $this->request->getPost('agama_wali');
+				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_wali');
+				$id_jenjang_wali = $this->request->getPost('jenjang_wali');
 				$nama_wali = $this->request->getPost('nama_wali');
 				$alamat_wali = $this->request->getPost('alamat_wali');
 				$telepon_wali = $this->request->getPost('telepon_wali');
@@ -449,18 +446,18 @@ class Gelombang extends BaseController
 				$data = [
 					'id_admin' => $this->session->get('id_admin'),
 					'id_gelombang' => $id_gelombang,
-					'id_agama' => $this->request->getPost('id_agama'),
-					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
-					'id_agama_ibu' => $this->request->getPost('id_agama_ibu'),
-					'id_agama_wali' => $id_agama_wali,
-					'id_pekerjaan_ayah' => $this->request->getPost('id_pekerjaan_ayah'),
-					'id_pekerjaan_ibu' => $this->request->getPost('id_pekerjaan_ibu'),
-					'id_pekerjaan_wali' => $id_pekerjaan_wali,
-					'id_jenjang_ayah' => $this->request->getPost('id_jenjang_ayah'),
-					'id_jenjang_ibu' => $this->request->getPost('id_jenjang_ibu'),
-					'id_jenjang_wali' => $id_jenjang_wali,
-					'id_tahun' => $this->request->getPost('id_tahun'),
-					'id_jenjang' => $this->request->getPost('id_jenjang'),
+					'agama' => $this->request->getPost('agama'),
+					'agama_ayah' => $this->request->getPost('agama_ayah'),
+					'agama_ibu' => $this->request->getPost('agama_ibu'),
+					'agama_wali' => $agama_wali,
+					'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
+					'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
+					'pekerjaan_wali' => $id_pekerjaan_wali,
+					'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
+					'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
+					'jenjang_wali' => $id_jenjang_wali,
+
+
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
 					'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
@@ -476,7 +473,7 @@ class Gelombang extends BaseController
 					'alamat' => $this->request->getPost('alamat'),
 					'telepon' => $this->request->getPost('telepon'),
 					'kode_pos' => $this->request->getPost('kode_pos'),
-					'website' => $this->request->getPost('website'),
+
 					'email' => $this->request->getPost('email'),
 					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 					'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
@@ -521,18 +518,18 @@ class Gelombang extends BaseController
 				$data = [
 					'id_admin' => $this->session->get('id_admin'),
 					'id_gelombang' => $id_gelombang,
-					'id_agama' => $this->request->getPost('id_agama'),
-					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
-					'id_agama_ibu' => $this->request->getPost('id_agama_ibu'),
-					'id_agama_wali' => $id_agama_wali,
-					'id_pekerjaan_ayah' => $this->request->getPost('id_pekerjaan_ayah'),
-					'id_pekerjaan_ibu' => $this->request->getPost('id_pekerjaan_ibu'),
-					'id_pekerjaan_wali' => $id_pekerjaan_wali,
-					'id_jenjang_ayah' => $this->request->getPost('id_jenjang_ayah'),
-					'id_jenjang_ibu' => $this->request->getPost('id_jenjang_ibu'),
-					'id_jenjang_wali' => $id_jenjang_wali,
-					'id_tahun' => $this->request->getPost('id_tahun'),
-					'id_jenjang' => $this->request->getPost('id_jenjang'),
+					'agama' => $this->request->getPost('agama'),
+					'agama_ayah' => $this->request->getPost('agama_ayah'),
+					'agama_ibu' => $this->request->getPost('agama_ibu'),
+					'agama_wali' => $agama_wali,
+					'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
+					'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
+					'pekerjaan_wali' => $id_pekerjaan_wali,
+					'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
+					'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
+					'jenjang_wali' => $id_jenjang_wali,
+
+
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
 					'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
@@ -548,7 +545,7 @@ class Gelombang extends BaseController
 					'alamat' => $this->request->getPost('alamat'),
 					'telepon' => $this->request->getPost('telepon'),
 					'kode_pos' => $this->request->getPost('kode_pos'),
-					'website' => $this->request->getPost('website'),
+
 					'email' => $this->request->getPost('email'),
 					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 					'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
@@ -643,23 +640,23 @@ class Gelombang extends BaseController
 		) {
 
 			if ($this->request->getPost('identitas_wali') == 'Ayah') {
-				$id_agama_wali = $this->request->getPost('id_agama_ayah');
-				$id_pekerjaan_wali = $this->request->getPost('id_pekerjaan_ayah');
-				$id_jenjang_wali = $this->request->getPost('id_jenjang_ayah');
+				$agama_wali = $this->request->getPost('agama_ayah');
+				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_ayah');
+				$id_jenjang_wali = $this->request->getPost('jenjang_ayah');
 				$nama_wali = $this->request->getPost('nama_ayah');
 				$alamat_wali = $this->request->getPost('alamat_ayah');
 				$telepon_wali = $this->request->getPost('telepon_ayah');
 			} elseif ($this->request->getPost('identitas_wali') == 'Ibu') {
-				$id_agama_wali = $this->request->getPost('id_agama_ibu');
-				$id_pekerjaan_wali = $this->request->getPost('id_pekerjaan_ibu');
-				$id_jenjang_wali = $this->request->getPost('id_jenjang_ibu');
+				$agama_wali = $this->request->getPost('agama_ibu');
+				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_ibu');
+				$id_jenjang_wali = $this->request->getPost('jenjang_ibu');
 				$nama_wali = $this->request->getPost('nama_ibu');
 				$alamat_wali = $this->request->getPost('alamat_ibu');
 				$telepon_wali = $this->request->getPost('telepon_ibu');
 			} else {
-				$id_agama_wali = $this->request->getPost('id_agama_wali');
-				$id_pekerjaan_wali = $this->request->getPost('id_pekerjaan_wali');
-				$id_jenjang_wali = $this->request->getPost('id_jenjang_wali');
+				$agama_wali = $this->request->getPost('agama_wali');
+				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_wali');
+				$id_jenjang_wali = $this->request->getPost('jenjang_wali');
 				$nama_wali = $this->request->getPost('nama_wali');
 				$alamat_wali = $this->request->getPost('alamat_wali');
 				$telepon_wali = $this->request->getPost('telepon_wali');
@@ -680,18 +677,18 @@ class Gelombang extends BaseController
 					'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_gelombang' => $id_gelombang,
-					'id_agama' => $this->request->getPost('id_agama'),
-					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
-					'id_agama_ibu' => $this->request->getPost('id_agama_ibu'),
-					'id_agama_wali' => $id_agama_wali,
-					'id_pekerjaan_ayah' => $this->request->getPost('id_pekerjaan_ayah'),
-					'id_pekerjaan_ibu' => $this->request->getPost('id_pekerjaan_ibu'),
-					'id_pekerjaan_wali' => $id_pekerjaan_wali,
-					'id_jenjang_ayah' => $this->request->getPost('id_jenjang_ayah'),
-					'id_jenjang_ibu' => $this->request->getPost('id_jenjang_ibu'),
-					'id_jenjang_wali' => $id_jenjang_wali,
-					'id_tahun' => $this->request->getPost('id_tahun'),
-					'id_jenjang' => $this->request->getPost('id_jenjang'),
+					'agama' => $this->request->getPost('agama'),
+					'agama_ayah' => $this->request->getPost('agama_ayah'),
+					'agama_ibu' => $this->request->getPost('agama_ibu'),
+					'agama_wali' => $agama_wali,
+					'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
+					'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
+					'pekerjaan_wali' => $id_pekerjaan_wali,
+					'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
+					'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
+					'jenjang_wali' => $id_jenjang_wali,
+
+
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
 					// 'kode_calon_peserta_didik'			=> strtoupper(random_string('alnum', 8)),
@@ -707,7 +704,7 @@ class Gelombang extends BaseController
 					'alamat' => $this->request->getPost('alamat'),
 					'telepon' => $this->request->getPost('telepon'),
 					'kode_pos' => $this->request->getPost('kode_pos'),
-					'website' => $this->request->getPost('website'),
+
 					'email' => $this->request->getPost('email'),
 					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 					'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
@@ -749,18 +746,18 @@ class Gelombang extends BaseController
 					'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_gelombang' => $id_gelombang,
-					'id_agama' => $this->request->getPost('id_agama'),
-					'id_agama_ayah' => $this->request->getPost('id_agama_ayah'),
-					'id_agama_ibu' => $this->request->getPost('id_agama_ibu'),
-					'id_agama_wali' => $id_agama_wali,
-					'id_pekerjaan_ayah' => $this->request->getPost('id_pekerjaan_ayah'),
-					'id_pekerjaan_ibu' => $this->request->getPost('id_pekerjaan_ibu'),
-					'id_pekerjaan_wali' => $id_pekerjaan_wali,
-					'id_jenjang_ayah' => $this->request->getPost('id_jenjang_ayah'),
-					'id_jenjang_ibu' => $this->request->getPost('id_jenjang_ibu'),
-					'id_jenjang_wali' => $id_jenjang_wali,
-					'id_tahun' => $this->request->getPost('id_tahun'),
-					'id_jenjang' => $this->request->getPost('id_jenjang'),
+					'agama' => $this->request->getPost('agama'),
+					'agama_ayah' => $this->request->getPost('agama_ayah'),
+					'agama_ibu' => $this->request->getPost('agama_ibu'),
+					'agama_wali' => $agama_wali,
+					'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
+					'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
+					'pekerjaan_wali' => $id_pekerjaan_wali,
+					'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
+					'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
+					'jenjang_wali' => $id_jenjang_wali,
+
+
 					'id_akun' => $akun->id_akun,
 					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
 					// 'kode_calon_peserta_didik'			=> strtoupper(random_string('alnum', 8)),
@@ -776,7 +773,7 @@ class Gelombang extends BaseController
 					'alamat' => $this->request->getPost('alamat'),
 					'telepon' => $this->request->getPost('telepon'),
 					'kode_pos' => $this->request->getPost('kode_pos'),
-					'website' => $this->request->getPost('website'),
+
 					'email' => $this->request->getPost('email'),
 					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 					'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),

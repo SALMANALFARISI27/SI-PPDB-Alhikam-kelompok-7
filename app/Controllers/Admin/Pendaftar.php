@@ -25,13 +25,13 @@ class Pendaftar extends BaseController
 	}
 
 	// gelombang
-	public function gelombang($id_gelombang,$status_calon_peserta_didik)
+	public function gelombang($id_gelombang,$status_pendaftaran)
 	{
 		$m_gelombang 	= new Gelombang_model();
 		$m_calon_peserta_didik 		= new Calon_peserta_didik_model();
 		$gelombang 		= $m_gelombang->detail($id_gelombang);
-		$calon_peserta_didik 			= $m_calon_peserta_didik->gelombang_status_calon_peserta_didik($id_gelombang,$status_calon_peserta_didik);
-		$total_calon_peserta_didik	= $m_calon_peserta_didik->status_calon_peserta_didik_gelombang($status_calon_peserta_didik,$id_gelombang);
+		$calon_peserta_didik 			= $m_calon_peserta_didik->gelombang_status_calon_peserta_didik($id_gelombang,$status_pendaftaran,'Semua');
+		$total_calon_peserta_didik	= $m_calon_peserta_didik->status_pendaftaran_gelombang($status_pendaftaran,$id_gelombang);
 
 		$data = [   'title'     	=> 'Data Pendaftar: '.$gelombang->judul,
 					'gelombang'		=> $gelombang,

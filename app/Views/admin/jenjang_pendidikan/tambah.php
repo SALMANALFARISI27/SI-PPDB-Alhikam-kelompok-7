@@ -27,23 +27,13 @@
 	</div>
 
 	<div class="form-group row">
-		<label class="col-md-2">Jenjang Pendidikan, Jenis &amp; Status <span class="text-danger">*</span></label>
-		<div class="col-md-3">
-			<select name="id_jenjang" class="form-control">
-				<?php foreach ($jenjang as $jenjang) { ?>
-					<option value="<?php echo $jenjang->id_jenjang ?>">
-						<?php echo $jenjang->nama_jenjang ?>
-					</option>
-				<?php } ?>
-			</select>
-			<small class="text-secondary">Jenjang Pendidikan</small>
-		</div>
+		<label class="col-md-2">Jenis &amp; Status <span class="text-danger">*</span></label>
 		<div class="col-md-2">
 			<select name="jenis_jenjang_pendidikan" class="form-control">
-				<option value="Jenjang">Jenjang Pendidikan</option>
-				<option value="Yayasan">Informasi Yayasan</option>
+				<option value="Formal">Formal</option>
+				<option value="Non Formal">Non Formal</option>
 			</select>
-			<small class="text-secondary">Jenis konten</small>
+			<small class="text-secondary">Jenis Pendidikan</small>
 		</div>
 		<div class="col-md-2">
 			<select name="status_jenjang_pendidikan" class="form-control">
@@ -57,30 +47,27 @@
 	<div class="form-group row">
 		<label class="col-md-2">Tanggal, jam Publikasi &amp; Urutan</label>
 		<div class="col-md-3">
-			<input type="text" name="tanggal_publish" class="form-control tanggal"
-				value="<?php if (isset($_POST['tanggal_publis'])) {
-					echo set_value('tanggal_publish');
-				} else {
-					echo date('d-m-Y');
-				} ?>">
+			<input type="text" name="tanggal_publish" class="form-control tanggal" value="<?php if (isset($_POST['tanggal_publis'])) {
+				echo set_value('tanggal_publish');
+			} else {
+				echo date('d-m-Y');
+			} ?>">
 			<small class="text-secondary">Format <strong>dd-mm-yyyy</strong>. Misal: <?php echo date('d-m-Y') ?></small>
 		</div>
 		<div class="col-md-3">
-			<input type="text" name="jam" class="form-control jam"
-				value="<?php if (isset($_POST['jam'])) {
-					echo set_value('jam');
-				} else {
-					echo date('H:i:s');
-				} ?>">
+			<input type="text" name="jam" class="form-control jam" value="<?php if (isset($_POST['jam'])) {
+				echo set_value('jam');
+			} else {
+				echo date('H:i:s');
+			} ?>">
 			<small class="text-secondary">Format <strong>HH:MM:SS</strong>. Misal: <?php echo date('H:i:s') ?></small>
 		</div>
 		<div class="col-md-3">
-			<input type="number" name="urutan" class="form-control"
-				value="<?php if (isset($_POST['urutan'])) {
-					echo set_value('urutan');
-				} else {
-					echo 0;
-				} ?>">
+			<input type="number" name="urutan" class="form-control" value="<?php if (isset($_POST['urutan'])) {
+				echo set_value('urutan');
+			} else {
+				echo 0;
+			} ?>">
 			<small class="text-secondary">Nomor urut tampil</small>
 		</div>
 	</div>

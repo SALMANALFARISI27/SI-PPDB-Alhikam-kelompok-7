@@ -45,7 +45,12 @@ class Simple_login
 		$user = $m_akun->login($username, sha1($password));
 
 		if ($user) {
-			// Jika username password benar
+			// Cek apakah akun sudah diaktivasi
+			if ($user->status_akun !== 'Aktif') {
+				$this->session->setFlashdata('warning', 'Akun Anda belum diaktivasi. Silakan cek email untuk link aktivasi.');
+				return;
+			}
+			// Jika username password benar dan akun aktif
 			$this->session->set('username_calon_peserta_didik', $username);
 			$this->session->set('id_akun', $user->id_akun);
 			$this->session->set('username', $user->username);
@@ -65,7 +70,13 @@ class Simple_login
 		$user2 = $m_akun->login_nis($username, sha1($password));
 
 		if ($user) {
-			// Jika username password benar
+			// Cek apakah akun sudah diaktivasi
+			if ($user->status_akun !== 'Aktif') {
+				$this->session->setFlashdata('warning', 'Akun Anda belum diaktivasi. Silakan cek email untuk link aktivasi.');
+				header("Location: " . base_url('signin'));
+				exit;
+			}
+			// Jika username password benar dan akun aktif
 			$this->session->set('username_calon_peserta_didik', $username);
 			$this->session->set('id_akun', $user->id_akun);
 			$this->session->set('nama_calon_peserta_didik', $user->username);
@@ -73,7 +84,13 @@ class Simple_login
 			header("Location: " . base_url('calon_peserta_didik/dasbor'));
 			exit;
 		} elseif ($user2) {
-			// Jika username password benar
+			// Cek apakah akun sudah diaktivasi
+			if ($user2->status_akun !== 'Aktif') {
+				$this->session->setFlashdata('warning', 'Akun Anda belum diaktivasi. Silakan cek email untuk link aktivasi.');
+				header("Location: " . base_url('signin'));
+				exit;
+			}
+			// Jika username password benar dan akun aktif
 			$this->session->set('username_calon_peserta_didik', $username);
 			$this->session->set('id_akun', $user2->id_akun);
 			$this->session->set('nama_calon_peserta_didik', $user2->nama_calon_peserta_didik);
