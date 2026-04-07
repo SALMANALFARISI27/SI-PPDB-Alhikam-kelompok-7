@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Apr 2026 pada 18.04
+-- Waktu pembuatan: 07 Apr 2026 pada 06.42
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -970,7 +970,8 @@ ALTER TABLE `calon_peserta_didik`
 ALTER TABLE `dokumen`
   ADD PRIMARY KEY (`id_dokumen`),
   ADD KEY `id_akun` (`id_akun`,`id_calon_peserta_didik`),
-  ADD KEY `id_calon_peserta_didik` (`id_calon_peserta_didik`);
+  ADD KEY `id_calon_peserta_didik` (`id_calon_peserta_didik`),
+  ADD KEY `id_jenis_dokumen` (`id_jenis_dokumen`);
 
 --
 -- Indeks untuk tabel `download`
@@ -1305,6 +1306,18 @@ ALTER TABLE `video`
 --
 ALTER TABLE `yayasan`
   MODIFY `id_yayasan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `calon_peserta_didik`
+--
+ALTER TABLE `calon_peserta_didik`
+  ADD CONSTRAINT `fk_cpd_agama_ayah` FOREIGN KEY (`id_agama_ayah`) REFERENCES `agama` (`id_agama`),
+  ADD CONSTRAINT `fk_cpd_jenjang_ayah` FOREIGN KEY (`id_jenjang_ayah`) REFERENCES `jenjang` (`id_jenjang`),
+  ADD CONSTRAINT `fk_cpd_pekerjaan_ayah` FOREIGN KEY (`id_pekerjaan_ayah`) REFERENCES `pekerjaan` (`id_pekerjaan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
