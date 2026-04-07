@@ -41,14 +41,14 @@ if(!empty($errors))
 
 
 <div class="form-group mt-1">
-	<button type="submit" class="btn btn-primary btn-user btn-block">
+	<button type="submit" class="btn btn-user btn-block" style="background-color: black; border-color: black; color: white;">
 		Ganti password
 	</button>
 
 </div>
 
 <hr>
-<p class="text-center">Sudah Punya Akun? <a href="<?php echo base_url('') ?>">Login</a></p>
+<p class="text-center">Sudah Punya Akun? <a href="<?php echo base_url('login') ?>" style="color: black; font-weight: bold;">Login</a></p>
 
 <?php echo form_close(); ?>
 <?php if (session()->has('sukses')) : ?>

@@ -51,7 +51,8 @@
 						</button>
 					</th>
 					<th width="8%">Gambar</th>
-					<th width="45%">Judul</th>
+					<th width="35%">Judul</th>
+					<th width="10%">Status</th>
 					<th width="15%">Kategori &amp; Jenis</th>
 					<th width="15%">Author</th>
 					<th></th>
@@ -83,6 +84,13 @@
 								<textarea title="Copy link gambar/file ini"
 									class="form-control"><?php echo base_url('assets/upload/image/' . $galeri->gambar) ?></textarea>
 							</small>
+						</td>
+						<td>
+							<?php if ($galeri->status_galeri == 'Publish') { ?>
+								<span class="badge badge-success"><i class="fa fa-eye"></i> Publish</span>
+							<?php } else { ?>
+								<span class="badge badge-dark"><i class="fa fa-eye-slash"></i> Draft</span>
+							<?php } ?>
 						</td>
 						<td><small><i class="fa fa-tags"></i> <?php echo $galeri->nama_kategori_galeri ?>
 								<br><i class="fa fa-home"></i> <?php echo $galeri->jenis_galeri ?></small></td>

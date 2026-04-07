@@ -30,7 +30,7 @@ class User extends BaseController
 				'email' => $this->request->getPost('email'),
 				'username' => $this->request->getPost('username'),
 				'password' => sha1($this->request->getPost('password')),
-				'tanggal_post' => date('Y-m-d H:i:s')
+
 			];
 			$m_admin->tambah($data);
 			// masuk database

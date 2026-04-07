@@ -248,7 +248,7 @@
 		<hr>
 	</div>
 	<div class="table-responsive mailbox-messages">
-		<table id="example2" class="tabelku table-sm" cellspacing="0" width="100%">
+		<table id="example2" class="tabelku table-sm table-bordered" cellspacing="0" width="100%">
 			<thead>
 				<tr>
 					<th width="5%" rowspan="2" class="text-center align-middle">
@@ -257,15 +257,15 @@
 									class="far fa-square"></i></button>
 						</div>
 					</th>
-					<th width="20%" class="align-middle" rowspan="2">Nama dan Informasi</th>
-					<th width="20%" class="align-middle" rowspan="2">Alamat</th>
+					<th width="20%" class="text-center align-middle" rowspan="2">Nama dan Informasi</th>
+					<th width="20%" class="text-center align-middle" rowspan="2">Alamat</th>
 					<th width="24%" class="align-middle text-center" colspan="3">Dokumen Pendukung</th>
-					<th width="6%" class="align-middle" rowspan="2">Status</th>
-					<th rowspan="2"></th>
+					<th width="8%" class="align-middle text-center" rowspan="2">Status</th>
+					<th rowspan="2" class="text-center align-middle">Aksi</th>
 				</tr>
 				<tr>
 					<th class="text-center align-middle" width="8%">Wajib</th>
-					<th class="text-center align-middle" width="8%">Sudah Diunggah</th>
+					<th class="text-center align-middle" width="8%">Terunggah</th>
 					<th class="text-center align-middle" width="8%">Tidak Wajib</th>
 				</tr>
 			</thead>
@@ -303,7 +303,8 @@
 								} else {
 									echo 'Perempuan';
 								} ?>
-								<br><span class="text-secondary">Wali:</span><?php echo $calon_peserta_didik->nama_wali ?>
+								<br><span class="text-secondary">Orang
+									Tua/Wali: </span><?php echo $calon_peserta_didik->nama_ayah ?>
 								<br><span class="text-secondary">Usia:</span>
 								<?php
 								$date1 = $calon_peserta_didik->tanggal_lahir;
@@ -343,19 +344,25 @@
 								<span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;Diperiksa</span>
 							<?php } ?>
 						</td>
-						<td>
-							<a href="<?php echo base_url('admin/gelombang/dokumen/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
-								class="btn btn-info btn-xs mb-1" title="Review"><i class="fa fa-tasks"></i> Review</a>
-							<a href="<?php echo base_url('admin/gelombang/cetak/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
-								class="btn btn-danger btn-xs mb-1" title="Unduh" target="_blank"><i
-									class="fa fa-file-pdf"></i></a>
-							<a href="<?php echo base_url('admin/gelombang/edit_calon_peserta_didik/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
-								class="btn btn-warning btn-xs mb-1" title="Edit"><i class="fa fa-edit"></i></a>
-							<?php if ($calon_peserta_didik->status_pendaftaran == 'Menunggu') { ?>
-								<a href="<?php echo base_url('admin/gelombang/delete_calon_peserta_didik/' . $calon_peserta_didik->slug_calon_peserta_didik . '/' . $calon_peserta_didik->id_gelombang) ?>"
-									class="btn btn-secondary btn-xs delete-link mb-1" title="Hapus"
-									onclick="return confirm('Yakin ingin menghapus?')"><i class="fa fa-trash"></i></a>
-							<?php } ?>
+						<td class="text-center">
+							<div class="btn-group-vertical btn-block">
+								<a href="<?php echo base_url('admin/gelombang/dokumen/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
+									class="btn btn-info btn-xs mb-1 text-left" title="Review dan Kelola Dokumen"><i
+										class="fa fa-tasks"></i> Review Dokumen</a>
+
+								<a href="<?php echo base_url('admin/gelombang/cetak/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
+									class="btn btn-danger btn-xs mb-1 text-left" title="Unduh PDF" target="_blank">
+									<i class="fa fa-file-pdf"></i> Cetak PDF</a>
+
+								<div class="btn-group">
+									<a href="<?php echo base_url('admin/gelombang/edit_calon_peserta_didik/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
+										class="btn btn-warning btn-xs" title="Edit Data"><i class="fa fa-edit"></i> Edit</a>
+
+									<a href="<?php echo base_url('admin/gelombang/delete_calon_peserta_didik/' . $calon_peserta_didik->slug_calon_peserta_didik . '/' . $calon_peserta_didik->id_gelombang) ?>"
+										class="btn btn-dark btn-xs delete-link" title="Hapus">
+										<i class="fa fa-trash"></i></a>
+								</div>
+							</div>
 						</td>
 					</tr>
 					<?php $i++;

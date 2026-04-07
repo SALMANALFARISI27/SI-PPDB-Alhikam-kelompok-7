@@ -17,16 +17,17 @@ $this->website  = new Website();
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/login/css/style.css">
 	</head>
 
-	<body style="background-color: #66c2ff;">
+	<body style="background-color: #800000;">
 		<section class="ftco-section">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-12 col-lg-10">
 						<div class="wrap d-md-flex">
-							<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
+							<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last" style="background-color: #6c757d;">
 								<div class="text w-100">
 									<p>
-										<img src="<?php echo $this->website->icon() ?>" alt="<?php echo $site->namaweb ?>" class="img img-thumbnail rounded-circle" style="max-height: 100px; width: auto;">
+										<img src="<?php echo $this->website->icon() ?>" alt="<?php echo $site->namaweb ?>"
+											class="img rounded-circle" style="max-height: 120px; width: auto;">
 									</p>
 									<h2><?php echo $site->namaweb ?></h2>
 									<p><?php echo $site->tagline ?></p>

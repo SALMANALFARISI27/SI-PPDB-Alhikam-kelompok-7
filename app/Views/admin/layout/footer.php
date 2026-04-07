@@ -1,38 +1,39 @@
 </div>
 </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                Page rendered: {elapsed_time} | Versi Framework: <?= CodeIgniter\CodeIgniter::CI_VERSION ?>
-              </div>
-              <!-- /.card-footer-->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- /.content -->
+<!-- /.card-body -->
+<div class="card-footer">
+  Page rendered: {elapsed_time} | Versi Framework: <?= CodeIgniter\CodeIgniter::CI_VERSION ?>
+</div>
+<!-- /.card-footer-->
+</div>
+<!-- /.card -->
+</div>
+</div>
+</div>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<footer class="main-footer">
+  <div class="float-right d-none d-sm-block">
+    <b>Version</b> 3.2.0
   </div>
-  <!-- /.content-wrapper -->
+  <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved | Versi
+  Framework: <?= CodeIgniter\CodeIgniter::CI_VERSION ?>
+</footer>
 
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved  | Versi Framework: <?= CodeIgniter\CodeIgniter::CI_VERSION ?>
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
-<?php 
-$sek  = date('Y');
-$awal = $sek-100;
+<?php
+$sek = date('Y');
+$awal = $sek - 100;
 ?>
 
 <script>
@@ -46,21 +47,21 @@ $awal = $sek-100;
       'insertdatetime media table paste code help wordcount'
     ],
     toolbar: 'bold italic backcolor | alignleft aligncenter ' +
-    'alignright alignjustify | bullist numlist outdent indent',
+      'alignright alignjustify | bullist numlist outdent indent',
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
   });
-// ISI
+  // ISI
   tinymce.init({
     selector: '#isi',
-    relative_urls : false,
-    remove_script_host : false,
-    convert_urls : true,
+    relative_urls: false,
+    remove_script_host: false,
+    convert_urls: true,
     height: 500,
     plugins: 'print preview paste searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample code table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools colorpicker textpattern help',
     toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | blocks fontfamily fontsize | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | image | table | removeformat',
     visual_table_class: 'tiny-table'
   });
-// KONTEN
+  // KONTEN
   tinymce.init({
     selector: '.konten-berita',
     relative_urls: false,
@@ -70,8 +71,8 @@ $awal = $sek-100;
     height: 400,
     plugins: 'print preview paste searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample code table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools colorpicker textpattern help',
     toolbar: [
-        'blocks fontfamily fontsize bold italic strikethrough forecolor backcolor copy | code fullscreen preview | save print | pagebreak anchor codesample',
-        'undo redo | alignleft aligncenter alignright alignjustify | link image media table | numlist bullist outdent indent | charmap emoticons removeformat | ltr rtl'
+      'blocks fontfamily fontsize bold italic strikethrough forecolor backcolor copy | code fullscreen preview | save print | pagebreak anchor codesample',
+      'undo redo | alignleft aligncenter alignright alignjustify | link image media table | numlist bullist outdent indent | charmap emoticons removeformat | ltr rtl'
     ],
     visual_table_class: 'tiny-table',
 
@@ -86,19 +87,19 @@ $awal = $sek-100;
 
     // Menyesuaikan gambar agar tidak melebihi lebar textarea
     setup: function (editor) {
-        editor.on('init', function () {
-            editor.getBody().style.maxWidth = "100%"; 
-        });
+      editor.on('init', function () {
+        editor.getBody().style.maxWidth = "100%";
+      });
     }
-});
+  });
 
 
   // ckeditor
   tinymce.init({
     selector: '.ckeditor',
-    relative_urls : false,
-    remove_script_host : false,
-    convert_urls : true,
+    relative_urls: false,
+    remove_script_host: false,
+    convert_urls: true,
     height: 300,
     plugins: 'print preview paste searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample code table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools colorpicker textpattern help',
     toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent | image | table | removeformat',
@@ -107,28 +108,31 @@ $awal = $sek-100;
 
 </script>
 <script>
-  $( ".datepicker" ).datepicker({
+  $(".datepicker").datepicker({
     inline: true,
     changeYear: true,
     changeMonth: true,
     dateFormat: "dd-mm-yy",
-    yearRange: "<?php echo $awal ?>:<?php $tahundepan = date('Y')+2; echo $tahundepan; ?>"
+    yearRange: "<?php echo $awal ?>:<?php $tahundepan = date('Y') + 2;
+       echo $tahundepan; ?>"
   });
 
-  $( ".tanggal" ).datepicker({
+  $(".tanggal").datepicker({
     inline: true,
     changeYear: true,
     changeMonth: true,
     dateFormat: "dd-mm-yy",
-    yearRange: "<?php echo $awal ?>:<?php $tahundepan = date('Y')+2; echo $tahundepan; ?>"
+    yearRange: "<?php echo $awal ?>:<?php $tahundepan = date('Y') + 2;
+       echo $tahundepan; ?>"
   });
 
-  $( ".tanggalan" ).datepicker({
+  $(".tanggalan").datepicker({
     inline: true,
     changeYear: true,
     changeMonth: true,
     dateFormat: "dd-mm-yy",
-    yearRange: "<?php echo $awal ?>:<?php $tahundepan = date('Y')+2; echo $tahundepan; ?>"
+    yearRange: "<?php echo $awal ?>:<?php $tahundepan = date('Y') + 2;
+       echo $tahundepan; ?>"
   });
 
 </script>
@@ -141,16 +145,19 @@ $awal = $sek-100;
 <!-- Select2 -->
 <script src="<?php echo base_url() ?>assets/admin/plugins/select2/js/select2.full.min.js"></script>
 <!-- Bootstrap4 Duallistbox -->
-<script src="<?php echo base_url() ?>assets/admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<script
+  src="<?php echo base_url() ?>assets/admin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
 <!-- InputMask -->
 <script src="<?php echo base_url() ?>assets/admin/plugins/moment/moment.min.js"></script>
 <script src="<?php echo base_url() ?>assets/admin/plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- date-range-picker -->
 <script src="<?php echo base_url() ?>assets/admin/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap color picker -->
-<script src="<?php echo base_url() ?>assets/admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script
+  src="<?php echo base_url() ?>assets/admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="<?php echo base_url() ?>assets/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script
+  src="<?php echo base_url() ?>assets/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Bootstrap Switch -->
 <script src="<?php echo base_url() ?>assets/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- BS-Stepper -->
@@ -159,80 +166,66 @@ $awal = $sek-100;
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>assets/admin/dist/js/adminlte.min.js"></script>
 <script>
-$(document).ready(function(){
+  $(document).ready(function () {
     $('input.jam').timepicker({
-        timeFormat: 'HH:mm:ss',
-        // year, month, day and seconds are not important
-        minTime: new Date(0, 0, 0, 8, 0, 0),
-        maxTime: new Date(0, 0, 0, 15, 0, 0),
-        // time entries start being generated at 6AM but the plugin 
-        // shows only those within the [minTime, maxTime] interval
-        startHour: 6,
-        // the value of the first item in the dropdown, when the input
-        // field is empty. This overrides the startHour and startMinute 
-        // options
-        startTime: new Date(0, 0, 0, 8, 20, 0),
-        // items in the dropdown are separated by at interval minutes
-        interval: 10
+      timeFormat: 'HH:mm:ss',
+      // year, month, day and seconds are not important
+      minTime: new Date(0, 0, 0, 8, 0, 0),
+      maxTime: new Date(0, 0, 0, 15, 0, 0),
+      // time entries start being generated at 6AM but the plugin 
+      // shows only those within the [minTime, maxTime] interval
+      startHour: 6,
+      // the value of the first item in the dropdown, when the input
+      // field is empty. This overrides the startHour and startMinute 
+      // options
+      startTime: new Date(0, 0, 0, 8, 20, 0),
+      // items in the dropdown are separated by at interval minutes
+      interval: 10
     });
-});
+  });
 
   // Popup Delete
-  $(document).on("click", ".delete-link", function(e){
+  $(document).on("click", ".delete-link", function (e) {
     e.preventDefault();
     url = $(this).attr("href");
     Swal.fire({
-        title: 'Anda yakin?',
-        text: "Jika dihapus, data tidak dapat dikembalikan lagi!",
-        icon: 'info',
-        timer: 5000,
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, Hapus Data!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          $.ajax({
-              url: url,
-              success: function(resp){
-                window.location.href = url;
-              }
-            });
-        }
-      })
+      title: 'Anda yakin?',
+      text: "Jika dihapus, data tidak dapat dikembalikan lagi!",
+      icon: 'warning',
+      timer: 5000,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, Hapus Data!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = url;
+      }
+    })
   });
 
- // Popup Delete
-$(document).on("click", ".disable-link", function(e){
-  e.preventDefault();
-  url = $(this).attr("href");
-  Swal.fire({
-    title:"Yakin akan mengupdate data ini?",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonClass: 'btn btn-danger',
-    cancelButtonClass: 'btn btn-success',
-    buttonsStyling: false,
-    confirmButtonText: "Delete",
-    cancelButtonText: "Cancel",
-    closeOnConfirm: false,
-    showLoaderOnConfirm: true,
-  },
-  function(isConfirm){
-    if(isConfirm){
-      $.ajax({
-        url: url,
-        success: function(resp){
-          window.location.href = url;
-        }
-      });
-    }
-    return false;
+  // Popup update
+  $(document).on("click", ".disable-link", function (e) {
+    e.preventDefault();
+    url = $(this).attr("href");
+    Swal.fire({
+      title: "Yakin akan mengupdate data ini?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: "Ya, Update Data",
+      cancelButtonText: "Batal",
+      showLoaderOnConfirm: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = url;
+      }
+    });
   });
-});
 
 
-  <?php if(isset($_GET['logout'])) { ?>
+  <?php if (isset($_GET['logout'])) { ?>
     Swal.fire({
       icon: 'success',
       heightAuto: false,
@@ -240,27 +233,28 @@ $(document).on("click", ".disable-link", function(e){
       title: 'Sukses...',
       text: 'Anda berhasil logout.',
     })
-  <?php }if(Session()->getFlashdata('warning')) { ?>
-  // Notifikasi
-  Swal.fire({
-    icon: 'warning',
-    title: 'Oops...',
-    timer: 3000,
-    heightAuto: false,
-    text: '<?php echo Session()->getFlashdata('warning'); ?>',
-  })
+  <?php }
+  if (Session()->getFlashdata('warning')) { ?>
+    // Notifikasi
+    Swal.fire({
+      icon: 'warning',
+      title: 'Oops...',
+      timer: 3000,
+      heightAuto: false,
+      text: '<?php echo Session()->getFlashdata('warning'); ?>',
+    })
   <?php } ?>
-  <?php if(Session()->getFlashdata('sukses')) { ?>
-  // Notifikasi
-  Swal.fire({
-    icon: 'success',
-    heightAuto: false,
-    timer: 3000,
-    title: 'Alhamdulillah...',
-    text: '<?php echo Session()->getFlashdata('sukses'); ?>',
-  })
+  <?php if (Session()->getFlashdata('sukses')) { ?>
+    // Notifikasi
+    Swal.fire({
+      icon: 'success',
+      heightAuto: false,
+      timer: 3000,
+      title: 'Alhamdulillah...',
+      text: '<?php echo Session()->getFlashdata('sukses'); ?>',
+    })
   <?php } ?>
-  </script>
+</script>
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -281,7 +275,7 @@ $(document).on("click", ".disable-link", function(e){
 
     //Date picker
     $('#reservationdate').datetimepicker({
-        format: 'L'
+      format: 'L'
     });
 
     //Date and time picker
@@ -300,16 +294,16 @@ $(document).on("click", ".disable-link", function(e){
     //Date range as a button
     $('#daterange-btn').daterangepicker(
       {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+        ranges: {
+          'Today': [moment(), moment()],
+          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          'This Month': [moment().startOf('month'), moment().endOf('month')],
+          'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         },
         startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
+        endDate: moment()
       },
       function (start, end) {
         $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
@@ -329,11 +323,11 @@ $(document).on("click", ".disable-link", function(e){
     //color picker with addon
     $('.my-colorpicker2').colorpicker()
 
-    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+    $('.my-colorpicker2').on('colorpickerChange', function (event) {
       $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
     })
 
-    $("input[data-bootstrap-switch]").each(function(){
+    $("input[data-bootstrap-switch]").each(function () {
       $(this).bootstrapSwitch('state', $(this).prop('checked'));
     })
 
@@ -343,7 +337,7 @@ $(document).on("click", ".disable-link", function(e){
     window.stepper = new Stepper(document.querySelector('.bs-stepper'))
   })
 
-  
+
 </script>
 <script>
   $(function () {
@@ -370,7 +364,7 @@ $(document).on("click", ".disable-link", function(e){
       "responsive": true,
     });
   });
-// adada
+  // adada
   $(function () {
     //Enable check and uncheck all functionality
     $('.checkbox-toggle').click(function () {
@@ -392,7 +386,7 @@ $(document).on("click", ".disable-link", function(e){
       e.preventDefault()
       //detect type
       var $this = $(this).find('a > i')
-      var fa    = $this.hasClass('fa')
+      var fa = $this.hasClass('fa')
 
       //Switch states
       if (fa) {
@@ -402,7 +396,8 @@ $(document).on("click", ".disable-link", function(e){
     })
   })
 
-  
+
 </script>
 </body>
+
 </html>

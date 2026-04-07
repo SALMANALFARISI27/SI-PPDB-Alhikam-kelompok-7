@@ -1,7 +1,7 @@
 <?php include('tambah.php'); ?>
 
 <div class="table-responsive">
-	<table class="table table-bordered table-sm table-hover" id="example1">
+	<table class="table table-bordered table-sm table-hover" id="example2">
 		<thead>
 			<tr class="bg-secondary text-center">
 				<th width="5%">No</th>

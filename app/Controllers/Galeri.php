@@ -17,7 +17,6 @@ class Galeri extends BaseController
 		$total = $m_galeri->total();
 		$page = (int) ($this->request->getGet('page') ?? 1);
 		$perPage = $this->website->paginasi_depan();
-		$total = $total;
 		$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
 		$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
 		$galeri = $m_galeri->paginasi_admin($perPage, $page);
@@ -41,6 +40,9 @@ class Galeri extends BaseController
 		$m_galeri = new Galeri_model();
 		$konfigurasi = $m_konfigurasi->listing();
 		$galeri = $m_galeri->detail($id_galeri);
+		if (!$galeri || $galeri->status_galeri != 'Publish') {
+			return redirect()->to(base_url('galeri'));
+		}
 		$galeri_list = $m_galeri->home($this->website->paginasi_depan());
 
 		// Update hits

@@ -85,20 +85,23 @@
 							<td class="text-center"><?php echo $lulus ? $lulus->total : 0; ?></td>
 							<td class="text-center"><?php echo $tidak_diterima ? $tidak_diterima->total : 0; ?></td>
 
-							<td>
-								<a href="<?php echo base_url('admin/gelombang/detail/' . $row->id_gelombang . '/Semua/Semua') ?>"
-									class="btn btn-info btn-xs mb-1"><i class="fa fa-user-check"></i> Data Pendaftar</a>
-								<a href="<?php echo base_url('admin/gelombang/export/' . $row->id_gelombang . '/Semua/Semua') ?>"
-									class="btn btn-success btn-xs mb-1" target="_blank"><i class="fa fa-file-excel"></i>
-									Ekspor</a>
-								<a href="<?php echo base_url('admin/gelombang/unduh_data/' . $row->id_gelombang . '/Semua/Semua') ?>"
-									class="btn btn-danger btn-xs mb-1" target="_blank"><i class="fa fa-file-pdf"></i>
-									Unduh</a>
-
-								<a href="<?php echo base_url('admin/gelombang/edit/' . $row->id_gelombang) ?>"
-									class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
-								<a href="<?php echo base_url('admin/gelombang/delete/' . $row->id_gelombang) ?>"
-									class="btn btn-secondary btn-xs mb-1 delete-link"><i class="fa fa-trash"></i></a>
+							<td class="text-center">
+								<div class="btn-group-vertical btn-block">
+									<a href="<?php echo base_url('admin/gelombang/detail/' . $row->id_gelombang . '/Semua/Semua') ?>"
+										class="btn btn-info btn-xs mb-1 text-left"><i class="fa fa-user-check"></i> Data Pendaftar</a>
+									<a href="<?php echo base_url('admin/gelombang/export/' . $row->id_gelombang . '/Semua/Semua') ?>"
+										class="btn btn-success btn-xs mb-1 text-left" target="_blank"><i class="fa fa-file-excel"></i>
+										Ekspor Excel</a>
+									<a href="<?php echo base_url('admin/gelombang/unduh_data/' . $row->id_gelombang . '/Semua/Semua') ?>"
+										class="btn btn-danger btn-xs mb-1 text-left" target="_blank"><i class="fa fa-file-pdf"></i>
+										Unduh PDF</a>
+								</div>
+								<div class="btn-group btn-block">
+									<a href="<?php echo base_url('admin/gelombang/edit/' . $row->id_gelombang) ?>"
+										class="btn btn-secondary btn-xs" title="Edit"><i class="fa fa-edit"></i> Edit</a>
+									<a href="<?php echo base_url('admin/gelombang/delete/' . $row->id_gelombang) ?>"
+										class="btn btn-dark btn-xs delete-link" title="Hapus"><i class="fa fa-trash"></i></a>
+								</div>
 							</td>
 						</tr>
 						<?php $no++;

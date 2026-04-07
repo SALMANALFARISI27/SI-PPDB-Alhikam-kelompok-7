@@ -25,7 +25,8 @@
             </tr>
             <tr>
               <td class="font-bold">TTL</td>
-              <td><?php echo $calon_peserta_didik->tempat_lahir ?>, <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
+              <td><?php echo $calon_peserta_didik->tempat_lahir ?>,
+                <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
             </tr>
             <tr>
               <td class="font-bold">Alamat</td>
@@ -62,6 +63,13 @@
             <tr>
               <td class="font-bold">Program/Jenjang</td>
               <td><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?? '-' ?></td>
+            </tr>
+            <tr>
+              <td class="font-bold">Anak ke</td>
+              <td>
+                <?php echo $calon_peserta_didik->anak_ke ?? '-' ?> dari
+                <?php echo $calon_peserta_didik->jumlah_saudara ?? '-' ?> Saudara
+              </td>
             </tr>
           </tbody>
         </table>
@@ -130,8 +138,8 @@
               <td><?php echo $calon_peserta_didik->berkebutuhan_khusus ?? 'Tidak' ?></td>
             </tr>
             <tr>
-              <td class="font-bold">Anak ke</td>
-              <td><?php echo $calon_peserta_didik->anak_ke ?? '-' ?> dari <?php echo $calon_peserta_didik->jumlah_saudara ?? '-' ?> Saudara</td>
+              <td class="font-bold">Deskripsi Ringkas</td>
+              <td><?php echo $calon_peserta_didik->isi ?? '-' ?></td>
             </tr>
           </tbody>
         </table>
@@ -261,7 +269,8 @@
         <i class="fa fa-upload"></i> UNGGAH DOKUMEN PENDUKUNG
       </div>
       <div class="card-body">
-        <p class="text-muted mb-3">Pilih semua file berkas terlebih dahulu, lalu klik <strong>"Unggah Semua Dokumen"</strong> di bagian bawah.</p>
+        <p class="text-muted mb-3">Pilih semua file berkas terlebih dahulu, lalu klik <strong>"Unggah Semua
+            Dokumen"</strong> di bagian bawah.</p>
 
         <?php
         $validation = \Config\Services::validation();
@@ -343,7 +352,7 @@
                 <td>
                   <?php if (!$check_dokumen) {
                     $has_pending = true;
-                  ?>
+                    ?>
                     <input type="file" name="dokumen[<?php echo $id_jenis_dokumen ?>]" class="form-control form-control-sm"
                       accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.zip,.rar">
                   <?php } else { ?>

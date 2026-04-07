@@ -26,11 +26,11 @@
 	</div>
 
 	<div class="form-group">
-		<button type="submit" class="form-control btn btn-primary submit px-3">Reset Password</button>
+		<button type="submit" class="form-control btn submit px-3" style="background-color: black; border-color: black; color: white;">Reset Password</button>
 	</div>
 	
 	<p class="text-center">
-		Kembali ke <a href="<?php echo base_url() ?>">Beranda</a> | <a href="<?php echo base_url('login') ?>">Login</a>
+		Kembali ke <a href="<?php echo base_url() ?>" style="color: black; font-weight: bold;">Beranda</a> | <a href="<?php echo base_url('login') ?>" style="color: black; font-weight: bold;">Login</a>
 	</p>
 
 <?php echo form_close(); ?>

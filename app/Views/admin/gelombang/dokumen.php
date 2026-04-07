@@ -17,7 +17,7 @@
       </div>
       <div class="card-body">
 
-        <table class="tabelku table-sm mb-2">
+        <table class="tabelku table-sm mb-3">
           <thead>
             <tr>
               <th width="25%">Kode Pendaftaran</th>
@@ -44,28 +44,42 @@
           </tbody>
         </table>
 
+        <p class="text-muted mb-3">Isi semua file berkas terlebih dahulu, lalu klik <strong>"Unggah Semua
+            Dokumen"</strong> di bagian bawah.</p>
+
         <?php
         $validation = \Config\Services::validation();
         $errors = $validation->getErrors();
         if (!empty($errors)) {
           echo '<span class="text-danger">' . $validation->listErrors() . '</span>';
         }
-        if (session('msg')):
+        if (session('sukses')):
           ?>
-          <div class="alert alert-info alert-dismissible">
-            <?= session('msg') ?>
-            <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+          <div class="alert alert-success alert-dismissible">
+            <?= session('sukses') ?>
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+          </div>
+        <?php endif ?>
+        <?php if (session('warning')): ?>
+          <div class="alert alert-warning alert-dismissible">
+            <?= session('warning') ?>
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
           </div>
         <?php endif ?>
 
-        <table class="table tabelku table-sm">
+        <?php
+        echo form_open_multipart(base_url('admin/gelombang/dokumen_batch/' . $calon_peserta_didik->slug_calon_peserta_didik));
+        echo csrf_field();
+        ?>
+
+        <table class="table tabelku table-sm table-bordered">
           <thead>
-            <tr>
-              <th width="5%" class="text-left">No</th>
+            <tr class="bg-light">
+              <th width="5%" class="text-center">No</th>
               <th width="35%" class="text-left">Nama Dokumen</th>
-              <th width="15%">Wajib?</th>
-              <th width="15%">Unggah</th>
-              <th></th>
+              <th width="15%" class="text-center">Wajib</th>
+              <th width="15%" class="text-center">Status</th>
+              <th class="text-center">Pilih File</th>
             </tr>
           </thead>
           <tbody>
@@ -73,122 +87,113 @@
             $id_calon_peserta_didik = $calon_peserta_didik->id_calon_peserta_didik;
             $no = 1;
             $data_total = 1;
-            foreach ($jenis_dokumen as $jenis_dokumen) {
-              $id_jenis_dokumen = $jenis_dokumen->id_jenis_dokumen;
+            $has_pending = false;
+            foreach ($jenis_dokumen as $jd) {
+              $id_jenis_dokumen = $jd->id_jenis_dokumen;
               $check_dokumen = $m_dokumen->check($id_calon_peserta_didik, $id_jenis_dokumen);
-              if ($jenis_dokumen->status_jenis_dokumen == 'Wajib') {
-                if ($check_dokumen) {
-                  $data_id = 1;
-                } else {
-                  $data_id = 0;
-                }
+              if ($jd->status_jenis_dokumen == 'Wajib') {
+                $data_id = $check_dokumen ? 1 : 0;
               } else {
                 $data_id = 1;
               }
               $data_total += $data_id;
               ?>
-              <tr data-id="<?php echo $data_id ?>">
+              <tr>
                 <td class="text-center"><?php echo $no ?></td>
                 <td>
-                  <?php echo $jenis_dokumen->nama_jenis_dokumen ?>
-                  <small>
-                    <br><?php echo $jenis_dokumen->keterangan ?>
-                  </small>
+                  <?php echo $jd->nama_jenis_dokumen ?>
+                  <small class="d-block text-muted"><?php echo $jd->keterangan ?></small>
                 </td>
-                <td>
-                  <?php if ($jenis_dokumen->status_jenis_dokumen == 'Wajib') { ?>
-                    <span class="badge bg-info">
-                      <i class="fa fa-check-circle"></i> <?php echo $jenis_dokumen->status_jenis_dokumen ?>
-                    </span>
+                <td class="text-center">
+                  <?php if ($jd->status_jenis_dokumen == 'Wajib') { ?>
+                    <span class="badge bg-danger text-white">Wajib</span>
                   <?php } else { ?>
-                    <span class="badge bg-secondary">
-                      <i class="fa fa-times-circle"></i> <?php echo $jenis_dokumen->status_jenis_dokumen ?>
-                    </span>
+                    <span class="badge bg-secondary">Opsional</span>
                   <?php } ?>
                 </td>
-                <td>
+                <td class="text-center">
                   <?php if ($check_dokumen) { ?>
-                    <span class="badge bg-info">
+                    <span class="badge bg-success text-white">
                       <i class="fa fa-check-circle"></i> Sudah
                     </span>
+                    <div class="mt-1">
+                      <button type="button" class="btn btn-outline-info btn-xs" data-toggle="modal"
+                        data-target="#modal-<?php echo $jd->id_jenis_dokumen ?>">
+                        <i class="fa fa-eye"></i>
+                      </button>
+                      <a class="btn btn-outline-dark btn-xs"
+                        href="<?php echo base_url('admin/gelombang/unduh/' . $check_dokumen->kode_dokumen . '/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
+                        target="_blank"><i class="fa fa-download"></i></a>
+                      <a class="btn btn-outline-danger btn-xs delete-link"
+                        href="<?php echo base_url('admin/gelombang/hapus/' . $check_dokumen->kode_dokumen . '/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
+                        onclick="return confirm('Yakin ingin menghapus dokumen ini?')">
+                        <i class="fa fa-trash"></i></a>
+                    </div>
+                    <?php include('lihat.php'); ?>
                   <?php } else { ?>
-                    <span class="badge bg-secondary">
+                    <span class="badge bg-warning text-dark">
                       <i class="fa fa-times-circle"></i> Belum
                     </span>
                   <?php } ?>
                 </td>
                 <td>
-                  <?php if ($check_dokumen) { ?>
-                    <button type="button" class="btn btn-secondary btn-xs mb-1" data-toggle="modal"
-                      data-target="#modal-<?php echo $jenis_dokumen->id_jenis_dokumen ?>">
-                      <i class="fa fa-eye"></i> Lihat
-                    </button>
-                    <a class="btn btn-secondary btn-xs mb-1"
-                      href="<?php echo base_url('admin/gelombang/unduh/' . $check_dokumen->kode_dokumen . '/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
-                      target="_blank">
-                      <i class="fa fa-download"></i>
-                    </a>
-                    <a class="btn btn-secondary btn-xs mb-1 delete-link"
-                      href="<?php echo base_url('admin/gelombang/hapus/' . $check_dokumen->kode_dokumen . '/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
-                      onclick="return confirm('Yakin ingin menghapus dokumen ini?')">
-                      <i class="fa fa-trash"></i>
-                    </a>
-                    <?php include('lihat.php'); ?>
-                  <?php } else { ?>
-                    <?php
-                    echo form_open_multipart(base_url('admin/gelombang/dokumen/' . $calon_peserta_didik->slug_calon_peserta_didik));
-                    echo csrf_field();
+                  <?php if (!$check_dokumen) {
+                    $has_pending = true;
                     ?>
-                    <input type="hidden" name="id_jenis_dokumen" value="<?php echo $jenis_dokumen->id_jenis_dokumen ?>">
-                    <div class="row">
-                      <div class="col-md-8">
-                        <input type="file" name="gambar" class="form-control form-control-sm" placeholder="Unggah" value=""
-                          required>
-                      </div>
-                      <div class="col-md-4">
-                        <button type="submit" name="submit" value="Unggah" class="btn btn-success btn-sm mb-1">
-                          <i class="fa fa-upload"></i> Unggah
-                        </button>
-                      </div>
-                    </div>
-                    <?php echo form_close();
-                  } ?>
+                    <input type="file" name="dokumen[<?php echo $id_jenis_dokumen ?>]" class="form-control form-control-sm"
+                      accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.zip,.rar">
+                  <?php } else { ?>
+                    <span class="text-success"><i class="fa fa-check"></i> Terunggah</span>
+                  <?php } ?>
                 </td>
               </tr>
               <?php $no++;
             } ?>
           </tbody>
           <tfoot>
-            <tr class="bg-secondary">
-              <td colspan="5" class="text-right">
-                <?php echo form_open(base_url('admin/gelombang/dokumen/' . $calon_peserta_didik->slug_calon_peserta_didik)) ?>
-                <div class="input-group">
-
-                  <select name="status_pendaftaran" class="form-control">
-                    <option value="Menunggu" <?php echo (set_value('status_pendaftaran') == 'Menunggu' || $calon_peserta_didik->status_pendaftaran == 'Menunggu') ? 'selected' : ''; ?>>Menunggu</option>
-                    <option value="Diterima-Tahap-1" <?php echo (set_value('status_pendaftaran') == 'Diterima-Tahap-1' || $calon_peserta_didik->status_pendaftaran == 'Diterima-Tahap-1') ? 'selected' : ''; ?>>Diterima Tahap
-                      1</option>
-                    <option value="Tidak-Diterima" <?php echo (set_value('status_pendaftaran') == 'Tidak-Diterima' || $calon_peserta_didik->status_pendaftaran == 'Tidak-Diterima') ? 'selected' : ''; ?>>Tidak Diterima
-                    </option>
-                    <option value="Diperiksa" <?php echo (set_value('status_pendaftaran') == 'Diperiksa' || $calon_peserta_didik->status_pendaftaran == 'Diperiksa') ? 'selected' : ''; ?>>Diperiksa</option>
-                    <option value="Lulus" <?php echo (set_value('status_pendaftaran') == 'Lulus' || $calon_peserta_didik->status_pendaftaran == 'Lulus') ? 'selected' : ''; ?>>Lulus</option>
-                  </select>
-                  <span class="input-group-append">
-                    <?php if ($no == $data_total) { ?>
-                      <button type="submit" class="btn btn-success" name="status" value="update"><i
-                          class="fa fa-save"></i> Update Status PPDB</button>
-                    <?php } else { ?>
-                      <div class="alert alert-info mb-0">
-                        Dokumen masih kurang, silakan lengkapi.
-                      </div>
-                    <?php } ?>
-                  </span>
-                </div>
-                <?php echo form_close(); ?>
+            <tr>
+              <td colspan="5" class="text-right pt-3">
+                <?php if ($has_pending) { ?>
+                  <button type="submit" class="btn btn-success">
+                    <i class="fa fa-upload"></i>&nbsp; Unggah Semua Dokumen
+                  </button>
+                <?php } ?>
               </td>
             </tr>
           </tfoot>
         </table>
+
+        <?php echo form_close(); ?>
+
+        <div class="mt-4 p-3 bg-light border rounded">
+          <h5 class="mb-3">Update Status PPDB</h5>
+          <?php echo form_open(base_url('admin/gelombang/dokumen/' . $calon_peserta_didik->slug_calon_peserta_didik)) ?>
+          <div class="row">
+            <div class="col-md-8">
+              <select name="status_pendaftaran" class="form-control" required>
+                <option value="Menunggu" <?php echo ($calon_peserta_didik->status_pendaftaran == 'Menunggu') ? 'selected' : ''; ?>>Menunggu</option>
+                <option value="Diterima-Tahap-1" <?php echo ($calon_peserta_didik->status_pendaftaran == 'Diterima-Tahap-1') ? 'selected' : ''; ?>>Diterima Tahap 1
+                </option>
+                <option value="Tidak-Diterima" <?php echo ($calon_peserta_didik->status_pendaftaran == 'Tidak-Diterima') ? 'selected' : ''; ?>>Tidak Diterima</option>
+                <option value="Diperiksa" <?php echo ($calon_peserta_didik->status_pendaftaran == 'Diperiksa') ? 'selected' : ''; ?>>Diperiksa</option>
+                <option value="Lulus" <?php echo ($calon_peserta_didik->status_pendaftaran == 'Lulus') ? 'selected' : ''; ?>>Lulus</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <?php if ($no == $data_total) { ?>
+                <button type="submit" class="btn btn-primary btn-block" name="status" value="update">
+                  <i class="fa fa-save"></i> Update Status
+                </button>
+              <?php } else { ?>
+                <div class="alert alert-info py-2 mb-0" style="font-size: 0.85rem;">
+                  <i class="fa fa-info-circle"></i> Dokumen wajib belum lengkap.
+                </div>
+              <?php } ?>
+            </div>
+          </div>
+          <?php echo form_close(); ?>
+        </div>
+
       </div>
     </div>
   </div>

@@ -33,8 +33,8 @@ class Gelombang extends BaseController
 		echo view('admin/layout/wrapper', $data);
 	}
 
-	// edit
-	public function detail($id_gelombang, $status_pendaftaran, $id_jenjang_pendidikan)
+	// detail
+	public function detail($id_gelombang, $status_pendaftaran = 'Semua', $id_jenjang_pendidikan = 'Semua')
 	{
 		$m_gelombang = new Gelombang_model();
 		$m_calon_peserta_didik = new Calon_peserta_didik_model();
@@ -397,17 +397,7 @@ class Gelombang extends BaseController
 		}
 
 		// Start validasi
-		if (
-			$this->request->getMethod() === 'POST' && $this->validate(
-				[
-					'nama_calon_peserta_didik' => 'required',
-					'gambar' => [
-						'ext_in[gambar,jpg,jpeg,gif,png,svg]',
-						'max_size[gambar,4096]',
-					],
-				]
-			)
-		) {
+		if ($this->request->getMethod() === 'POST' && $this->validate(['nama_calon_peserta_didik' => 'required'])) {
 
 			if ($this->request->getPost('identitas_wali') == 'Ayah') {
 				$agama_wali = $this->request->getPost('agama_ayah');
@@ -431,82 +421,61 @@ class Gelombang extends BaseController
 				$alamat_wali = $this->request->getPost('alamat_wali');
 				$telepon_wali = $this->request->getPost('telepon_wali');
 			}
-			if (!empty($_FILES['gambar']['name'])) {
-				// Image upload
-				$avatar = $this->request->getFile('gambar');
-				$nama_calon_peserta_didik_baru = $avatar->getRandomName();
-				$avatar->move(FCPATH . 'assets/upload/image/', $nama_calon_peserta_didik_baru);
-				// Create thumb
-				$image = \Config\Services::image()
-					->withFile(FCPATH . 'assets/upload/image/' . $nama_calon_peserta_didik_baru)
-					->fit(100, 100, 'center')
-					->save(FCPATH . 'assets/upload/image/thumbs/' . $nama_calon_peserta_didik_baru);
-				// masuk database
-				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
-				$data = [
-					'id_admin' => $this->session->get('id_admin'),
-					'id_gelombang' => $id_gelombang,
-					'agama' => $this->request->getPost('agama'),
-					'agama_ayah' => $this->request->getPost('agama_ayah'),
-					'agama_ibu' => $this->request->getPost('agama_ibu'),
-					'agama_wali' => $agama_wali,
-					'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
-					'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
-					'pekerjaan_wali' => $id_pekerjaan_wali,
-					'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
-					'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
-					'jenjang_wali' => $id_jenjang_wali,
-
-
-					'id_akun' => $akun->id_akun,
-					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
-					'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
-					'slug_calon_peserta_didik' => $slug_calon_peserta_didik,
-					'nis' => $this->request->getPost('nis'),
-					'nisn' => $this->request->getPost('nisn'),
-					'status_wn' => $this->request->getPost('status_wn'),
-					'negara_asal' => $this->request->getPost('negara_asal'),
-					'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
-					'tempat_lahir' => $this->request->getPost('tempat_lahir'),
-					'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
-					'alamat' => $this->request->getPost('alamat'),
-					'telepon' => $this->request->getPost('telepon'),
-					'kode_pos' => $this->request->getPost('kode_pos'),
-
-					'email' => $this->request->getPost('email'),
-					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
-					'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
-					'isi' => $this->request->getPost('isi'),
-					'nama_ayah' => $this->request->getPost('nama_ayah'),
-					'nama_ibu' => $this->request->getPost('nama_ibu'),
-					'nama_wali' => $nama_wali,
-					'alamat_ayah' => $this->request->getPost('alamat_ayah'),
-					'alamat_ibu' => $this->request->getPost('alamat_ibu'),
-					'alamat_wali' => $alamat_wali,
-					'telepon_ayah' => $this->request->getPost('telepon_ayah'),
-					'telepon_ibu' => $this->request->getPost('telepon_ibu'),
-					'telepon_wali' => $telepon_wali,
-					'goldar_calon_peserta_didik' => $this->request->getPost('goldar_calon_peserta_didik'),
-					'hobi_calon_peserta_didik' => $this->request->getPost('hobi_calon_peserta_didik'),
-					'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
-					'tinggi' => $this->request->getPost('tinggi'),
-					'berat' => $this->request->getPost('berat'),
-					'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
-					'asal_sekolah' => $this->request->getPost('asal_sekolah'),
-					'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
-					'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
-					'anak_ke' => $this->request->getPost('anak_ke'),
-					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
-					'status_pendaftaran' => $this->request->getPost('status_pendaftaran'),
-					'identitas_wali' => $this->request->getPost('identitas_wali')
-				];
-				$m_calon_peserta_didik->tambah($data);
-				// masuk database
-				$this->session->setFlashdata('sukses', 'Data telah ditambah');
-				return redirect()->to(base_url('admin/gelombang/dokumen/' . $slug_calon_peserta_didik));
-			} else {
-				// masuk database
-				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
+			$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
+			$data = [
+				'id_admin' => $this->session->get('id_admin'),
+				'id_gelombang' => $id_gelombang,
+				'agama' => $this->request->getPost('agama'),
+				'agama_ayah' => $this->request->getPost('agama_ayah'),
+				'agama_ibu' => $this->request->getPost('agama_ibu'),
+				'agama_wali' => $agama_wali,
+				'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
+				'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
+				'pekerjaan_wali' => $id_pekerjaan_wali,
+				'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
+				'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
+				'jenjang_wali' => $id_jenjang_wali,
+				'id_akun' => $akun->id_akun,
+				'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
+				'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
+				'slug_calon_peserta_didik' => $slug_calon_peserta_didik,
+				'nis' => $this->request->getPost('nis'),
+				'nisn' => $this->request->getPost('nisn'),
+				'status_wn' => $this->request->getPost('status_wn'),
+				'negara_asal' => $this->request->getPost('negara_asal'),
+				'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
+				'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+				'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
+				'alamat' => $this->request->getPost('alamat'),
+				'telepon' => $this->request->getPost('telepon'),
+				'kode_pos' => $this->request->getPost('kode_pos'),
+				'email' => $this->request->getPost('email'),
+				'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+				'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
+				'isi' => $this->request->getPost('isi'),
+				'nama_ayah' => $this->request->getPost('nama_ayah'),
+				'nama_ibu' => $this->request->getPost('nama_ibu'),
+				'nama_wali' => $nama_wali,
+				'alamat_ayah' => $this->request->getPost('alamat_ayah'),
+				'alamat_ibu' => $this->request->getPost('alamat_ibu'),
+				'alamat_wali' => $alamat_wali,
+				'telepon_ayah' => $this->request->getPost('telepon_ayah'),
+				'telepon_ibu' => $this->request->getPost('telepon_ibu'),
+				'telepon_wali' => $telepon_wali,
+				'goldar_calon_peserta_didik' => $this->request->getPost('goldar_calon_peserta_didik'),
+				'hobi_calon_peserta_didik' => $this->request->getPost('hobi_calon_peserta_didik'),
+				'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
+				'tinggi' => $this->request->getPost('tinggi'),
+				'berat' => $this->request->getPost('berat'),
+				'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
+				'asal_sekolah' => $this->request->getPost('asal_sekolah'),
+				'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
+				'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
+				'anak_ke' => $this->request->getPost('anak_ke'),
+				'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
+				'status_pendaftaran' => $this->request->getPost('status_pendaftaran'),
+				'identitas_wali' => $this->request->getPost('identitas_wali')
+			];
 				$data = [
 					'id_admin' => $this->session->get('id_admin'),
 					'id_gelombang' => $id_gelombang,
@@ -568,7 +537,6 @@ class Gelombang extends BaseController
 				$m_calon_peserta_didik->tambah($data);
 				$this->session->setFlashdata('sukses', 'Data telah ditambah');
 				return redirect()->to(base_url('admin/gelombang/dokumen/' . $slug_calon_peserta_didik));
-			}
 		} else {
 
 			$data = [
@@ -611,17 +579,7 @@ class Gelombang extends BaseController
 		}
 
 		// Start validasi
-		if (
-			$this->request->getMethod() === 'POST' && $this->validate(
-				[
-					'nama_calon_peserta_didik' => 'required',
-					'gambar' => [
-						'ext_in[gambar,jpg,jpeg,gif,png,svg]',
-						'max_size[gambar,4096]',
-					],
-				]
-			)
-		) {
+		if ($this->request->getMethod() === 'POST' && $this->validate(['nama_calon_peserta_didik' => 'required'])) {
 
 			if ($this->request->getPost('identitas_wali') == 'Ayah') {
 				$agama_wali = $this->request->getPost('agama_ayah');
@@ -645,18 +603,60 @@ class Gelombang extends BaseController
 				$alamat_wali = $this->request->getPost('alamat_wali');
 				$telepon_wali = $this->request->getPost('telepon_wali');
 			}
-			if (!empty($_FILES['gambar']['name'])) {
-				// Image upload
-				$avatar = $this->request->getFile('gambar');
-				$nama_calon_peserta_didik_baru = $avatar->getRandomName();
-				$avatar->move(FCPATH . 'assets/upload/image/', $nama_calon_peserta_didik_baru);
-				// Create thumb
-				$image = \Config\Services::image()
-					->withFile(FCPATH . 'assets/upload/image/' . $nama_calon_peserta_didik_baru)
-					->fit(100, 100, 'center')
-					->save(FCPATH . 'assets/upload/image/thumbs/' . $nama_calon_peserta_didik_baru);
-				// masuk database
-				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
+			$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
+			$data = [
+				'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
+				'id_admin' => $this->session->get('id_admin'),
+				'id_gelombang' => $id_gelombang,
+				'agama' => $this->request->getPost('agama'),
+				'agama_ayah' => $this->request->getPost('agama_ayah'),
+				'agama_ibu' => $this->request->getPost('agama_ibu'),
+				'agama_wali' => $agama_wali,
+				'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
+				'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
+				'pekerjaan_wali' => $id_pekerjaan_wali,
+				'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
+				'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
+				'jenjang_wali' => $id_jenjang_wali,
+				'id_akun' => $akun->id_akun,
+				'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
+				'nis' => $this->request->getPost('nis'),
+				'nisn' => $this->request->getPost('nisn'),
+				'status_wn' => $this->request->getPost('status_wn'),
+				'negara_asal' => $this->request->getPost('negara_asal'),
+				'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
+				'tempat_lahir' => $this->request->getPost('tempat_lahir'),
+				'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
+				'alamat' => $this->request->getPost('alamat'),
+				'telepon' => $this->request->getPost('telepon'),
+				'kode_pos' => $this->request->getPost('kode_pos'),
+				'email' => $this->request->getPost('email'),
+				'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
+				'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
+				'isi' => $this->request->getPost('isi'),
+				'nama_ayah' => $this->request->getPost('nama_ayah'),
+				'nama_ibu' => $this->request->getPost('nama_ibu'),
+				'nama_wali' => $nama_wali,
+				'alamat_ayah' => $this->request->getPost('alamat_ayah'),
+				'alamat_ibu' => $this->request->getPost('alamat_ibu'),
+				'alamat_wali' => $alamat_wali,
+				'telepon_ayah' => $this->request->getPost('telepon_ayah'),
+				'telepon_ibu' => $this->request->getPost('telepon_ibu'),
+				'telepon_wali' => $telepon_wali,
+				'goldar_calon_peserta_didik' => $this->request->getPost('goldar_calon_peserta_didik'),
+				'hobi_calon_peserta_didik' => $this->request->getPost('hobi_calon_peserta_didik'),
+				'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
+				'tinggi' => $this->request->getPost('tinggi'),
+				'berat' => $this->request->getPost('berat'),
+				'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
+				'asal_sekolah' => $this->request->getPost('asal_sekolah'),
+				'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
+				'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
+				'anak_ke' => $this->request->getPost('anak_ke'),
+				'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
+				'identitas_wali' => $this->request->getPost('identitas_wali'),
+				'status_pendaftaran' => $this->request->getPost('status_pendaftaran')
+			];
 				$data = [
 					'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
 					'id_admin' => $this->session->get('id_admin'),
@@ -717,73 +717,7 @@ class Gelombang extends BaseController
 				];
 				$m_calon_peserta_didik->edit($data);
 				$this->session->setFlashdata('sukses', 'Data telah diupdate');
-				return redirect()->to(base_url('admin/gelombang/detail/' . $calon_peserta_didik->id_gelombang . '/' . $this->request->getPost('status_pendaftaran')));
-			} else {
-				// masuk database
-				$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
-				$data = [
-					'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
-					'id_admin' => $this->session->get('id_admin'),
-					'id_gelombang' => $id_gelombang,
-					'agama' => $this->request->getPost('agama'),
-					'agama_ayah' => $this->request->getPost('agama_ayah'),
-					'agama_ibu' => $this->request->getPost('agama_ibu'),
-					'agama_wali' => $agama_wali,
-					'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
-					'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
-					'pekerjaan_wali' => $id_pekerjaan_wali,
-					'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
-					'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
-					'jenjang_wali' => $id_jenjang_wali,
-
-
-					'id_akun' => $akun->id_akun,
-					'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
-					// 'kode_calon_peserta_didik'			=> strtoupper(random_string('alnum', 8)),
-					// 'slug_calon_peserta_didik'			=> $slug_calon_peserta_didik,
-					'nis' => $this->request->getPost('nis'),
-					'nisn' => $this->request->getPost('nisn'),
-					'status_wn' => $this->request->getPost('status_wn'),
-					'negara_asal' => $this->request->getPost('negara_asal'),
-					'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
-					'tempat_lahir' => $this->request->getPost('tempat_lahir'),
-					'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
-					'alamat' => $this->request->getPost('alamat'),
-					'telepon' => $this->request->getPost('telepon'),
-					'kode_pos' => $this->request->getPost('kode_pos'),
-
-					'email' => $this->request->getPost('email'),
-					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
-					'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
-					'isi' => $this->request->getPost('isi'),
-					'nama_ayah' => $this->request->getPost('nama_ayah'),
-					'nama_ibu' => $this->request->getPost('nama_ibu'),
-					'nama_wali' => $nama_wali,
-					'alamat_ayah' => $this->request->getPost('alamat_ayah'),
-					'alamat_ibu' => $this->request->getPost('alamat_ibu'),
-					'alamat_wali' => $alamat_wali,
-					'telepon_ayah' => $this->request->getPost('telepon_ayah'),
-					'telepon_ibu' => $this->request->getPost('telepon_ibu'),
-					'telepon_wali' => $telepon_wali,
-					'goldar_calon_peserta_didik' => $this->request->getPost('goldar_calon_peserta_didik'),
-					'hobi_calon_peserta_didik' => $this->request->getPost('hobi_calon_peserta_didik'),
-					'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
-					'tinggi' => $this->request->getPost('tinggi'),
-					'berat' => $this->request->getPost('berat'),
-					'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
-					'asal_sekolah' => $this->request->getPost('asal_sekolah'),
-					'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
-					'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
-					'anak_ke' => $this->request->getPost('anak_ke'),
-					'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
-					'identitas_wali' => $this->request->getPost('identitas_wali'),
-					'status_pendaftaran' => $this->request->getPost('status_pendaftaran')
-				];
-				// masuk database
-				$m_calon_peserta_didik->edit($data);
-				$this->session->setFlashdata('sukses', 'Data telah diupdate');
-				return redirect()->to(base_url('admin/gelombang/detail/' . $calon_peserta_didik->id_gelombang . '/' . $this->request->getPost('status_pendaftaran')));
-			}
+				return redirect()->to(base_url('admin/gelombang/detail/' . $calon_peserta_didik->id_gelombang . '/' . $this->request->getPost('status_pendaftaran') . '/' . $this->request->getPost('id_jenjang_pendidikan')));
 		} else {
 
 			$data = [
@@ -904,6 +838,64 @@ class Gelombang extends BaseController
 		}
 	}
 
+	// dokumen_batch
+	public function dokumen_batch($slug_calon_peserta_didik)
+	{
+		$m_akun = new Akun_model();
+		$m_calon_peserta_didik = new Calon_peserta_didik_model();
+		$m_dokumen = new Dokumen_model();
+
+		$calon_peserta_didik = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
+		$akun = $m_akun->detail($calon_peserta_didik->id_akun);
+
+		if ($this->request->getMethod() === 'POST') {
+			$uploaded_count = 0;
+
+			// Loop through each jenis_dokumen file input
+			if (isset($_FILES['dokumen'])) {
+				foreach ($_FILES['dokumen']['name'] as $id_jenis_dokumen => $filename) {
+					if (empty($filename)) continue; // Skip empty file inputs
+
+					$namabaru = bin2hex(random_bytes(16)) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
+					$file_ext = pathinfo($filename, PATHINFO_EXTENSION);
+					$file_size = $_FILES['dokumen']['size'][$id_jenis_dokumen] / (1024 * 1024); // Convert to MB
+
+					// Validate extension
+					$allowed = ['jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf'];
+					if (!in_array(strtolower($file_ext), $allowed)) continue;
+
+					// Move file
+					move_uploaded_file(
+						$_FILES['dokumen']['tmp_name'][$id_jenis_dokumen],
+						FCPATH . 'assets/upload/pendaftaran/' . $namabaru
+					);
+
+					// Save to database
+					$data = array(
+						'id_admin' => $this->session->get('id_admin'),
+						'id_akun' => $akun->id_akun,
+						'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
+						'id_jenis_dokumen' => $id_jenis_dokumen,
+						'kode_dokumen' => strtoupper(random_string('alnum', 32)),
+						'gambar' => $namabaru,
+						'file_ext' => $file_ext,
+						'file_size' => round($file_size, 2),
+					);
+					$m_dokumen->tambah($data);
+					$uploaded_count++;
+				}
+			}
+
+			if ($uploaded_count > 0) {
+				$this->session->setFlashdata('sukses', $uploaded_count . ' dokumen berhasil diunggah.');
+			} else {
+				$this->session->setFlashdata('warning', 'Tidak ada dokumen yang dipilih untuk diunggah.');
+			}
+		}
+
+		return redirect()->to(base_url('admin/gelombang/dokumen/' . $slug_calon_peserta_didik));
+	}
+
 	// selesai
 	public function selesai($slug_calon_peserta_didik)
 	{
@@ -997,14 +989,40 @@ class Gelombang extends BaseController
 	public function delete_calon_peserta_didik($slug_calon_peserta_didik, $id_gelombang)
 	{
 		$m_calon_peserta_didik = new Calon_peserta_didik_model();
-		$id_akun = $this->session->get('id_akun');
-		$data = [
-			'slug_calon_peserta_didik' => $slug_calon_peserta_didik,
-			'id_akun' => $id_akun
-		];
-		$m_calon_peserta_didik->hapus($data);
-		// masuk database
-		$this->session->setFlashdata('sukses', 'Data telah dihapus');
+		$this->session = \Config\Services::session();
+		
+		// Ambil data calon peserta didik dulu untuk mendapatkan id_akun-nya
+		$calon = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
+
+		if ($calon) {
+			$m_dokumen = new Dokumen_model();
+			$id_calon_peserta_didik = $calon->id_calon_peserta_didik;
+
+			// Ambil semua dokumen calon peserta didik
+			$list_dokumen = $m_dokumen->listing_calon($id_calon_peserta_didik);
+
+			if ($list_dokumen) {
+				foreach ($list_dokumen as $dokumen) {
+					// Hapus file fisik jika ada
+					if (!empty($dokumen->gambar) && file_exists(FCPATH . 'assets/upload/pendaftaran/' . $dokumen->gambar)) {
+						unlink(FCPATH . 'assets/upload/pendaftaran/' . $dokumen->gambar);
+					}
+				}
+				// Hapus data dokumen dari database
+				$m_dokumen->hapus_calon($id_calon_peserta_didik);
+			}
+
+			// Akhirnya hapus data calon peserta didik
+			$data = [
+				'slug_calon_peserta_didik' => $slug_calon_peserta_didik,
+				'id_akun' => $calon->id_akun
+			];
+			$m_calon_peserta_didik->hapus($data);
+			$this->session->setFlashdata('sukses', 'Data ' . $calon->nama_calon_peserta_didik . ' dan seluruh dokumen pendukung telah dihapus');
+		} else {
+			$this->session->setFlashdata('warning', 'Data tidak ditemukan');
+		}
+
 		return redirect()->to(base_url('admin/gelombang/detail/' . $id_gelombang));
 	}
 

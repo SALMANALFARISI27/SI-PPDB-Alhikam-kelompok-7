@@ -75,9 +75,8 @@ class Galeri extends BaseController
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
+					'status_galeri' => $this->request->getVar('status_galeri'),
 					'gambar' => $namabaru,
-
-
 				);
 				$m_galeri->tambah($data);
 				return redirect()->to(base_url('admin/galeri'))->with('sukses', 'Data Berhasil di Simpan');
@@ -88,8 +87,7 @@ class Galeri extends BaseController
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
-
-
+					'status_galeri' => $this->request->getVar('status_galeri'),
 				);
 				$m_galeri->tambah($data);
 				return redirect()->to(base_url('admin/galeri'))->with('sukses', 'Data Berhasil di Simpan');
@@ -198,8 +196,8 @@ class Galeri extends BaseController
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
+					'status_galeri' => $this->request->getVar('status_galeri'),
 					'gambar' => $namabaru,
-
 				);
 				$m_galeri->edit($data);
 				return redirect()->to(base_url('admin/galeri'))->with('sukses', 'Data Berhasil di Simpan');
@@ -211,7 +209,7 @@ class Galeri extends BaseController
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
-
+					'status_galeri' => $this->request->getVar('status_galeri'),
 				);
 				$m_galeri->edit($data);
 				return redirect()->to(base_url('admin/galeri'))->with('sukses', 'Data Berhasil di Simpan');

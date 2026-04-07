@@ -167,6 +167,20 @@ echo csrf_field();
 
 
 
+    <div class="form-group row mb-3">
+      <label class="col-md-3 text-dark">Anak ke dan Jumlah Saudara</label>
+      <div class="col-md-4">
+        <input type="number" name="anak_ke" class="form-control" placeholder="Anak ke-"
+          value="<?php echo set_value('anak_ke') ?>" min="1">
+        <small class="text-secondary">Anak ke berapa</small>
+      </div>
+      <div class="col-md-5">
+        <input type="number" name="jumlah_saudara" class="form-control" placeholder="Jumlah saudara"
+          value="<?php echo set_value('jumlah_saudara') ?>" min="0">
+        <small class="text-secondary">Jumlah saudara kandung</small>
+      </div>
+    </div>
+
   </div>
 
 </div>
@@ -333,29 +347,7 @@ echo csrf_field();
 
 </div>
 
-<!-- DATA KELUARGA -->
-<div class="card mb-2">
-  <div class="card-header bg-dark text-white mb-2">
-    DATA KELUARGA
-  </div>
-  <div class="card-body">
 
-    <div class="form-group row mb-3">
-      <label class="col-md-3 text-dark">Anak ke dan Jumlah Saudara</label>
-      <div class="col-md-4">
-        <input type="number" name="anak_ke" class="form-control" placeholder="Anak ke-"
-          value="<?php echo set_value('anak_ke') ?>" min="1">
-        <small class="text-secondary">Anak ke berapa</small>
-      </div>
-      <div class="col-md-5">
-        <input type="number" name="jumlah_saudara" class="form-control" placeholder="Jumlah saudara"
-          value="<?php echo set_value('jumlah_saudara') ?>" min="0">
-        <small class="text-secondary">Jumlah saudara kandung</small>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <!-- data ayah -->
 <div class="card mb-2">

@@ -48,6 +48,13 @@
 			</select>
 			<small class="text-secondary">Jenis konten</small>
 		</div>
+		<div class="col-md-3">
+			<select name="status_galeri" class="form-control">
+				<option value="Publish">Publish</option>
+				<option value="Draft">Draft</option>
+			</select>
+			<small class="text-secondary">Status Galeri</small>
+		</div>
 
 	</div>
 

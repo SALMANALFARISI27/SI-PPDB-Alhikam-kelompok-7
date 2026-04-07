@@ -203,4 +203,21 @@ class Dokumen_model extends Model
         $builder->insert($data);
     }
 
+    // hapus_calon
+    public function hapus_calon($id_calon_peserta_didik)
+    {
+        $builder = $this->db->table('dokumen');
+        $builder->where('id_calon_peserta_didik',$id_calon_peserta_didik);
+        $builder->delete();
+    }
+
+    // listing_calon
+    public function listing_calon($id_calon_peserta_didik)
+    {
+        $builder = $this->db->table('dokumen');
+        $builder->where('id_calon_peserta_didik',$id_calon_peserta_didik);
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
 }

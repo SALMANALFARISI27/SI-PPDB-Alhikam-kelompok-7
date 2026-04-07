@@ -29,6 +29,7 @@ class Galeri_model extends Model
         $builder->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
         $builder->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $builder->where('galeri.jenis_galeri',$jenis_galeri);
+        $builder->where('galeri.status_galeri','Publish');
         $builder->limit(5);
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();
@@ -42,6 +43,7 @@ class Galeri_model extends Model
         $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
         $builder->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
         $builder->join('admin','admin.id_admin = galeri.id_admin','LEFT');
+        $builder->where('galeri.status_galeri','Publish');
         $this->limit((int)$limit);
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();
@@ -56,6 +58,7 @@ class Galeri_model extends Model
         $builder->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
         $builder->join('admin','admin.id_admin = galeri.id_admin','LEFT');
         $builder->where('galeri.jenis_galeri',$jenis_galeri);
+        $builder->where('galeri.status_galeri','Publish');
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();
         return $query->getRow();
@@ -68,6 +71,7 @@ class Galeri_model extends Model
         $this->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
         $this->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
         $this->join('admin','admin.id_admin = galeri.id_admin','LEFT');
+        $this->where('galeri.status_galeri','Publish');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('galeri.id_galeri','DESC');
         $query = $this->get();
@@ -107,6 +111,7 @@ class Galeri_model extends Model
     public function total()
     {
         $builder = $this->db->table('galeri');
+        $builder->where('status_galeri','Publish');
         $query = $builder->get();
         return $query->getNumRows();
     }
@@ -144,6 +149,7 @@ class Galeri_model extends Model
     {
         $builder = $this->db->table('galeri');
         $builder->where('jenis_galeri','Homepage');
+        $builder->where('status_galeri','Publish');
         $builder->orderBy('galeri.id_galeri','DESC');
         $builder->limit(5);
         $query = $builder->get();
@@ -155,6 +161,7 @@ class Galeri_model extends Model
     {
         $builder = $this->db->table('galeri');
         $builder->where('jenis_galeri',$jenis_galeri);
+        $builder->where('status_galeri','Publish');
         $builder->limit(5);
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();
@@ -166,6 +173,7 @@ class Galeri_model extends Model
     {
         $builder = $this->db->table('galeri');
         $builder->where('jenis_galeri',$jenis_galeri);
+        $builder->where('status_galeri','Publish');
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();
         return $query->getRow();
@@ -176,6 +184,7 @@ class Galeri_model extends Model
     {
         $builder = $this->db->table('galeri');
         $builder->where('jenis_galeri','Galeri');
+        $builder->where('status_galeri','Publish');
         $builder->orderBy('galeri.id_galeri','DESC');
         $query = $builder->get();
         return $query->getResult();
