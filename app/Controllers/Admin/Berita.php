@@ -17,7 +17,7 @@ class Berita extends BaseController
 		$m_kategori = new Kategori_model();
 		$kategori = $m_kategori->listing();
 		$berita = $m_berita->listing();
-		$title = 'Berita, Profil, Keunggulan (' . count($berita) . ')';
+		$title = 'Berita, Profil, (' . count($berita) . ')';
 
 		$data = [
 			'title' => $title,
