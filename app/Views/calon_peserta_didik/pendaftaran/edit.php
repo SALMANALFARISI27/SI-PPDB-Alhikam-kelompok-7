@@ -1,4 +1,4 @@
-<p class="lead mb-2 text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>, masukkan data Calon Peserta Didik dengan benar dan lengkap.
+<p class="lead mb-2 text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama_calon_peserta_didik') ?></strong>, masukkan data Calon Peserta Didik dengan benar dan lengkap.
                 <br>Anda sedang mendaftar pada <strong><?php echo $gelombang->judul ?></strong> Tahun Ajaran <strong><?php echo $gelombang->tahun_ajaran ?></strong>.
               </p>
 
@@ -119,17 +119,7 @@
               </div>
             </div>
 
-         <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Anak ke<span class="text-danger">*</span></label>
-              <div class="col-md-3">
-                <input type="number" name="anak_ke" class="form-control" placeholder="Anak nomor ke?" value="<?php if(isset($_POST['submit'])) { echo set_value('anak_ke'); }else{ echo $calon_peserta_didik->anak_ke; } ?>" required>
-                <small class="text-secondary">Anak nomor ke</small>
-              </div>
-              <div class="col-md-3">
-                <input type="number" name="jumlah_saudara" class="form-control" placeholder="Jumlah saudara" value="<?php if(isset($_POST['submit'])) { echo set_value('jumlah_saudara'); }else{ echo $calon_peserta_didik->jumlah_saudara; } ?>" required>
-                <small class="text-secondary">Jumlah saudara</small>
-              </div>
-            </div>
+ 
 
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Tempat dan Tanggal Lahir<span class="text-danger">*</span></label>
@@ -169,7 +159,18 @@
                 <small class="text-warning">Email (Username)</small>
               </div>
             </div>
-
+          
+        <div class="form-group row mb-3">
+              <label class="col-md-3 text-dark">Anak ke<span class="text-danger">*</span></label>
+              <div class="col-md-3">
+                <input type="number" name="anak_ke" class="form-control" placeholder="Anak nomor ke?" value="<?php if(isset($_POST['submit'])) { echo set_value('anak_ke'); }else{ echo $calon_peserta_didik->anak_ke; } ?>" required>
+                <small class="text-secondary">Anak nomor ke</small>
+              </div>
+              <div class="col-md-3">
+                <input type="number" name="jumlah_saudara" class="form-control" placeholder="Jumlah saudara" value="<?php if(isset($_POST['submit'])) { echo set_value('jumlah_saudara'); }else{ echo $calon_peserta_didik->jumlah_saudara; } ?>" required>
+                <small class="text-secondary">Jumlah saudara</small>
+              </div>
+            </div>
          
 
           </div>
@@ -552,7 +553,7 @@
             <div class="form-group row mb-3">
                 <label class="col-md-3 text-dark"></label>
                 <div class="col-md-9">
-                  <button type="submit" class="btn btn-success text-white" name="submit" value="submit"><i class="fa fa-save"></i>&nbsp;Simpan dan Lanjutkan Pendaftaran</button>
+                  <button type="submit" class="btn btn-success text-white" name="submit" value="submit"><i class="fa fa-save"></i>&nbsp;Simpan dan Update Pendaftaran</button>
                 </div>
               </div>
           </div>
