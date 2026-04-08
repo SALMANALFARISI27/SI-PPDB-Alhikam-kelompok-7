@@ -21,7 +21,7 @@ class Kategori_fasilitas_model extends Model
     {
         $builder = $this->db->table('kategori_fasilitas');
         $builder->select('*');
-        $builder->orderBy('kategori_fasilitas.id_kategori_fasilitas','DESC');
+        $builder->orderBy('kategori_fasilitas.urutan','ASC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -41,7 +41,7 @@ class Kategori_fasilitas_model extends Model
     {
         $builder = $this->db->table('kategori_fasilitas');
         $builder->select('COUNT(*) AS total');
-        $builder->orderBy('kategori_fasilitas.id_kategori_fasilitas','DESC');
+        $builder->orderBy('kategori_fasilitas.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -51,7 +51,7 @@ class Kategori_fasilitas_model extends Model
     {
         $builder = $this->db->table('kategori_fasilitas');
         $builder->where('id_kategori_fasilitas',$id_kategori_fasilitas);
-        $builder->orderBy('kategori_fasilitas.id_kategori_fasilitas','DESC');
+        $builder->orderBy('kategori_fasilitas.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }

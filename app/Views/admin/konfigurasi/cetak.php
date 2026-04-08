@@ -47,14 +47,18 @@ $this->website = new Website();
 				<tbody>
 					<tr>
 						<td colspan="2" class="bg-secondary text-center">
-							<h3>DATA DASAR YAYASAN</h3>
+							<h3>INFORMASI, AKREDITASI DAN YAYASAN</h3>
 						</td>
 					</tr>
 					<tr>
-						<td class="bg-light" width="30%">Nama lengkap yayasan</td>
+						<td class="bg-light" width="30%">Nama Yayasan</td>
 						<td><?php echo $yayasan->nama_yayasan ?></td>
 					</tr>
 
+					<tr>
+						<td class="bg-light">Tanggal berdiri Yayasan</td>
+						<td><?php echo $this->website->tanggal_id($yayasan->tanggal_berdiri) ?></td>
+					</tr>
 					<tr>
 						<td class="bg-light">NSP</td>
 						<td><?php echo $yayasan->nsp ?></td>
@@ -62,6 +66,33 @@ $this->website = new Website();
 					<tr>
 						<td class="bg-light">Status Yayasan</td>
 						<td><?php echo $yayasan->status_yayasan ?></td>
+					</tr>
+
+					<tr>
+						<td class="bg-light">Jumlah Pegawai</td>
+						<td><?php echo $yayasan->jumlah_pegawai ?></td>
+					</tr>
+					<tr>
+						<td class="bg-light">Jumlah Akreditasi</td>
+						<td><?php echo $yayasan->nilai_akreditasi ?>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="bg-light">Tahun Akreditasi</td>
+						<td><?php echo $this->website->tanggal_id($yayasan->tanggal_akreditasi) ?></td>
+					</tr>
+					<tr>
+						<td class="bg-light">Tanggal Kadaluarsa Akreditasi</td>
+						<td><?php echo $this->website->tanggal_id($yayasan->tanggal_kadaluarsa) ?></td>
+					</tr>
+					<tr>
+						<td class="bg-light">Nomor Izin Yayasan</td>
+						<td><?php echo $yayasan->nomor_izin ?></td>
+					</tr>
+					<tr>
+						<td class="bg-light">Keterangan lain</td>
+						<td><?php echo nl2br($yayasan->keterangan) ?></td>
 					</tr>
 					<tr>
 						<td colspan="2" class="bg-secondary text-center">
@@ -101,46 +132,6 @@ $this->website = new Website();
 						<td><?php echo $yayasan->email ?></td>
 					</tr>
 
-					<tr>
-						<td colspan="2" class="bg-secondary text-center">
-							<h3>INFORMASI, AKREDITASI DAN YAYASAN</h3>
-						</td>
-					</tr>
-					<tr>
-						<td class="bg-light">Nama Yayasan</td>
-						<td><?php echo $yayasan->nama_yayasan ?></td>
-					</tr>
-					<tr>
-						<td class="bg-light">Tanggal berdiri Yayasan/Yayasan</td>
-						<td><?php echo $this->website->tanggal_id($yayasan->tanggal_berdiri) ?></td>
-					</tr>
-
-					<tr>
-						<td class="bg-light">Jumlah Pegawai</td>
-						<td><?php echo $yayasan->jumlah_pegawai ?></td>
-					</tr>
-					<tr>
-						<td class="bg-light">Jumlah Akreditasi</td>
-						<td><?php echo $yayasan->nilai_akreditasi ?>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="bg-light">Tanggal Akreditasi</td>
-						<td><?php echo $this->website->tanggal_id($yayasan->tanggal_akreditasi) ?></td>
-					</tr>
-					<tr>
-						<td class="bg-light">Tanggal Kadaluarsa Akreditasi</td>
-						<td><?php echo $this->website->tanggal_id($yayasan->tanggal_kadaluarsa) ?></td>
-					</tr>
-					<tr>
-						<td class="bg-light">Nomor Izin Yayasan</td>
-						<td><?php echo $yayasan->nomor_izin ?></td>
-					</tr>
-					<tr>
-						<td class="bg-light">Keterangan lain</td>
-						<td><?php echo nl2br($yayasan->keterangan) ?></td>
-					</tr>
 					<tr>
 						<td colspan="2" class="bg-secondary text-center">
 							<h3>INFORMASI TANAH DAN BANGUNAN</h3>

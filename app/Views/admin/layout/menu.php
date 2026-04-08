@@ -30,10 +30,10 @@
         <?php if ($this->website->fitur_pendaftaran() == 'On') { ?>
 
           <!-- berita -->
-          <li class="nav-item <?php if ($uri->getSegment(2) == "pendaftar" || $uri->getSegment(2) == "kategori") {
+          <li class="nav-item <?php if ($uri->getSegment(2) == "pendaftar" || $uri->getSegment(2) == "gelombang" || $uri->getSegment(2) == "jenis_dokumen" || ($uri->getSegment(2) == "konfigurasi" && $uri->getSegment(3) == "pendaftaran")) {
             echo 'menu-open';
           } ?>">
-            <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "pendaftar" || $uri->getSegment(2) == "kategori") {
+            <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "pendaftar" || $uri->getSegment(2) == "gelombang" || $uri->getSegment(2) == "jenis_dokumen" || ($uri->getSegment(2) == "konfigurasi" && $uri->getSegment(3) == "pendaftaran")) {
               echo 'active';
             } ?>">
               <i class="nav-icon fas fa-graduation-cap"></i>
@@ -42,24 +42,21 @@
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/gelombang') ?>" class="nav-link">
+                <a href="<?php echo base_url('admin/gelombang') ?>" class="nav-link <?php if ($uri->getSegment(2) == "gelombang") {
+                     echo 'active';
+                   } ?>">
                   <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Periode PPDB</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('admin/konfigurasi/pendaftaran') ?>" class="nav-link">
+                <a href="<?php echo base_url('admin/konfigurasi/pendaftaran') ?>" class="nav-link <?php if ($uri->getSegment(2) == "konfigurasi" && $uri->getSegment(3) == "pendaftaran") {
+                     echo 'active';
+                   } ?>">
                   <i class="fa fa-arrow-right nav-icon"></i>
                   <p>Buka/Tutup PPDB</p>
                 </a>
               </li>
-              <!-- <li class="nav-item">
-                <a href="<?php echo base_url('admin/pendaftar') ?>" class="nav-link" >
-                  <i class="fa fa-arrow-right nav-icon"></i>
-                  <p>Data Pendaftar</p>
-                </a>
-              </li> -->
-
               <li class="nav-item">
                 <a href="<?php echo base_url('admin/jenis_dokumen') ?>" class="nav-link <?php if ($uri->getSegment(2) == "jenis_dokumen") {
                      echo 'active';
@@ -311,10 +308,10 @@
         </li>
 
         <!-- jenjang_pendidikan -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "jenjang_pendidikan" || $uri->getSegment(2) == "kategori") {
+        <li class="nav-item <?php if ($uri->getSegment(2) == "jenjang_pendidikan") {
           echo 'menu-open';
         } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "jenjang_pendidikan" || $uri->getSegment(2) == "kategori") {
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "jenjang_pendidikan") {
             echo 'active';
           } ?>">
             <i class="nav-icon fas fa-chair"></i>
@@ -404,10 +401,10 @@
         </li>
 
         <!-- konfigurasi -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "konfigurasi") {
+        <li class="nav-item <?php if ($uri->getSegment(2) == "konfigurasi" && $uri->getSegment(3) != "pendaftaran") {
           echo 'menu-open';
         } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "konfigurasi") {
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "konfigurasi" && $uri->getSegment(3) != "pendaftaran") {
             echo 'active';
           } ?>">
             <i class="nav-icon fas fa-cog"></i>
@@ -460,14 +457,6 @@
                  } ?>">
                 <i class="fa fa-arrow-right nav-icon"></i>
                 <p>Background Login</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/jenis_dokumen') ?>" class="nav-link <?php if ($uri->getSegment(2) == "jenis_dokumen") {
-                   echo 'active';
-                 } ?>">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Jenis Dokumen Pendaftaran</p>
               </a>
             </li>
             <li class="nav-item">

@@ -23,17 +23,20 @@
 <div class="mailbox-controls">
 	<div class="input-group">
 
-		<div class="input-group"><button type="submit" name="submit" value="Delete" class="btn btn-secondary"
-				title="Hapus Download" onclick="return confirm('Apakah Anda yakin ingin menghapus Download ini?')">
+		<div class="input-group">
+			<button type="submit" name="submit" value="Delete" class="btn btn-secondary" title="Hapus Download"
+				onclick="return confirm('Apakah Anda yakin ingin menghapus Download ini?')">
 				<i class="fa fa-trash"></i>
 			</button>
 
 			<button type="submit" name="submit" value="Draft" class="btn btn-dark" title="Jangan Publikasikan">
 				<i class="fa fa-eye-slash"></i>
 			</button>
+
 			<button type="submit" name="submit" value="Publish" class="btn btn-info" title="Publikasikan">
 				<i class="fa fa-eye"></i>
 			</button>
+
 			<select name="id_kategori_download" class="form-control">
 				<?php foreach ($kategori_download as $kategori_download) { ?>
 					<option value="<?php echo $kategori_download->id_kategori_download ?>">
@@ -41,6 +44,7 @@
 					</option>
 				<?php } ?>
 			</select>
+
 			<span class="input-group-append">
 				<button type="submit" name="submit" value="Update" class="btn btn-warning">
 					<i class="fa fa-search"></i> Update
@@ -58,10 +62,10 @@
 								<i class="far fa-square"></i>
 							</button>
 						</th>
-						<th width="50%">Judul</th>
-						<th width="20%">Deskripsi</th>
-						<th width="10%">Status</th>
-						<th></th>
+						<th width="50%" class="text-center">Judul</th>
+						<th width="20%" class="text-center">Deskripsi</th>
+						<th width="10%" class="text-center">Status</th>
+						<th width="15%" class="text-center">Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -77,15 +81,16 @@
 								<?php echo $no ?>
 							</td>
 
-							<td><a href="<?php echo base_url('admin/download/edit/' . $download->id_download) ?>">
+							<td>
+								<a href="<?php echo base_url('admin/download/edit/' . $download->id_download) ?>">
 									<?php echo $download->judul_download ?>
 								</a>
 								<small>
 									<br><i class="fa fa-download"></i>
 									<?php echo base_url('download/unduh/' . $download->id_download) ?>
-									<br><i class="fa fa-link"></i> Link file:<br><textarea
-										class="form-control form-control-sm"
-										title="Copy link gambar/file ini"><?php echo base_url('assets/upload/file/' . $download->gambar) ?></textarea>
+									<br><i class="fa fa-link"></i> Link file:<br>
+									<textarea class="form-control form-control-sm" title="Copy link gambar/file ini"
+										rows="2"><?php echo base_url('assets/upload/file/' . $download->gambar) ?></textarea>
 									<i class="fa fa-calendar-check"></i>
 									<?php echo $this->website->tanggal_bulan_menit($download->tanggal) ?>
 									<br><i class="fa fa-calendar-plus"></i>
@@ -93,18 +98,24 @@
 									<br><i class="fa fa-eye"></i> <?php echo $download->hits ?>
 								</small>
 							</td>
-							<td><small>
-									<i class="fa fa-tags"></i> <a
+
+							<td>
+								<small>
+									<i class="fa fa-tags"></i>
+									<a
 										href="<?php echo base_url('admin/download/kategori_download/' . $download->id_kategori_download) ?>">
 										<?php echo $download->nama_kategori_download ?>
 									</a>
-									<br><i class="fa fa-user"></i> <a
-										href="<?php echo base_url('admin/download/author/' . $download->id_admin) ?>"><?php echo $download->nama ?></a>
+									<br><i class="fa fa-user"></i>
+									<a href="<?php echo base_url('admin/download/author/' . $download->id_admin) ?>">
+										<?php echo $download->nama ?>
+									</a>
 									<br><i class="fa fa-file-code"></i> <?php echo strtoupper($download->file_ext) ?>
 									<br><i class="fas fa-file"></i> <?php echo $download->file_size ?> MB
 								</small>
 							</td>
-							<td>
+
+							<td class="text-center">
 								<?php if ($download->status_download == 'Publish') { ?>
 									<span class="badge bg-info">
 										<i class="fa fa-eye"></i> <?php echo $download->status_download ?>
@@ -114,24 +125,26 @@
 										<i class="fa fa-eye-slash"></i> Not Published
 									</span>
 								<?php } ?>
-							</td>
-							<td>
-								<div class="btn-group">
-
-
-									<?php if ($download->gambar == "") {
-										echo '-';
-									} else { ?>
+							<td class="text-center">
+								<div style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap;">
+									<?php if ($download->gambar != "") { ?>
 										<a href="<?php echo base_url('admin/download/unduh/' . $download->id_download) ?>"
-											class="btn btn-info btn-sm mt-1" target="_blank"><i class="fa fa-download"></i>
-											Unduh</a>
+											class="btn btn-info btn-sm" target="_blank">
+											<i class="fa fa-download"></i> Unduh
+										</a>
 									<?php } ?>
+
 									<a href="<?php echo base_url('admin/download/edit/' . $download->id_download) ?>"
-										class="btn btn-success btn-sm mt-1" title="Edit"><i class="fa fa-edit"></i></a>
+										class="btn btn-success btn-sm" title="Edit">
+										<i class="fa fa-edit"></i>
+									</a>
+
 									<a href="<?php echo base_url('admin/download/delete/' . $download->id_download) ?>"
-										class="btn btn-secondary btn-xs mt-1 delete-link" title="Hapus"><i
-											class="fa fa-trash"></i></a>
+										class="btn btn-secondary btn-sm delete-link" title="Hapus">
+										<i class="fa fa-trash"></i>
+									</a>
 								</div>
+
 							</td>
 						</tr>
 						<?php $no++;
@@ -140,4 +153,5 @@
 			</table>
 		</div>
 	</div>
-	<?php echo form_close(); ?>
+</div>
+<?php echo form_close(); ?>

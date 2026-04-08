@@ -47,18 +47,18 @@
 
 		<table class="tabelku table-sm" id="example2">
 			<thead>
-				<tr class="text-left bg-light">
+				<tr class="bg-light">
 					<th width="5%" class="text-center">
 						<button type="button" class="btn btn-default btn-sm checkbox-toggle">
 							<i class="far fa-square"></i>
 						</button>
 					</th>
-					<th width="8%">Gambar</th>
-					<th width="35%">Judul</th>
-					<th width="15%">Kategori</th>
-					<th width="10%">Status</th>
-					<th width="15%">Author</th>
-					<th></th>
+					<th width="8%" class="text-center">Gambar</th>
+					<th width="35%" class="text-center">Judul</th>
+					<th width="15%" class="text-center">Kategori</th>
+					<th width="10%" class="text-center">Status</th>
+					<th width="15%" class="text-center">Author</th>
+					<th width="12%" class="text-center">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -73,7 +73,8 @@
 							</div>
 							<?php echo $no ?>
 						</td>
-						<td>
+
+						<td class="text-center">
 							<?php if ($portfolio->gambar == "") {
 								echo '-';
 							} else {
@@ -87,14 +88,23 @@
 									class="img img-thumbnail">
 							<?php } ?>
 						</td>
-						<td><?php echo $portfolio->judul_portfolio ?>
+
+						<td>
+							<?php echo $portfolio->judul_portfolio ?>
 							<small>
 								<textarea title="Copy link gambar/file ini"
 									class="form-control"><?php echo base_url('assets/upload/image/' . $portfolio->gambar) ?></textarea>
 							</small>
 						</td>
-						<td><small><i class="fa fa-tags"></i> <?php echo $portfolio->nama_kategori_portfolio ?>
-						<td><?php if ($portfolio->status_portfolio == 'Publish') { ?>
+
+						<td>
+							<small>
+								<i class="fa fa-tags"></i> <?php echo $portfolio->nama_kategori_portfolio ?>
+							</small>
+						</td>
+
+						<td class="text-center">
+							<?php if ($portfolio->status_portfolio == 'Publish') { ?>
 								<span class="badge bg-info">
 									<i class="fa fa-eye"></i> <?php echo $portfolio->status_portfolio ?>
 								</span>
@@ -103,16 +113,21 @@
 									<i class="fa fa-eye-slash"></i> Not Published
 								</span>
 							<?php } ?>
-
+							</small>
 						</td>
-						<td><?php echo $portfolio->nama ?></td>
-						<td>
 
-							<a href="<?php echo base_url('admin/portfolio/edit/' . $portfolio->id_portfolio) ?>"
-								class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
-							<a href="<?php echo base_url('admin/portfolio/delete/' . $portfolio->id_portfolio) ?>"
-								class="btn btn-secondary btn-xs mb-1 delete-link" onclick="confirmation(event)"><i
-									class="fa fa-trash"></i></a>
+						<td class="text-center">
+							<?php echo $portfolio->nama ?>
+						</td>
+
+						<td class="text-center">
+							<div style="display: flex; justify-content: center; gap: 5px;">
+								<a href="<?php echo base_url('admin/portfolio/edit/' . $portfolio->id_portfolio) ?>"
+									class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i></a>
+								<a href="<?php echo base_url('admin/portfolio/delete/' . $portfolio->id_portfolio) ?>"
+									class="btn btn-secondary btn-sm delete-link" onclick="confirmation(event)"><i
+										class="fa fa-trash"></i></a>
+							</div>
 						</td>
 					</tr>
 					<?php $no++;
@@ -121,3 +136,4 @@
 		</table>
 	</div>
 </div>
+<?php echo form_close(); ?>

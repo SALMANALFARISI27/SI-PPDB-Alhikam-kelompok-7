@@ -40,11 +40,11 @@
 								<i class="far fa-square"></i>
 							</button>
 						</th>
-						<th width="8%">Gambar</th>
-						<th width="40%">Nama Jenjang</th>
-						<th width="25%">Jenis Pendidikan - Author</th>
-						<th width="10%">Status</th>
-						<th></th>
+						<th width="8%" class="text-center">Gambar</th>
+						<th width="40%" class="text-center">Nama Jenjang</th>
+						<th width="25%" class="text-center">Jenis Pendidikan - Author</th>
+						<th width="10%" class="text-center">Status</th>
+						<th width="10%" class="text-center">Aksi</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -99,7 +99,7 @@
 									</a>
 								</small>
 							</td>
-							<td>
+							<td class="text-center">
 								<a
 									href="<?php echo base_url('admin/jenjang_pendidikan/status_jenjang_pendidikan/' . $jenjang_pendidikan->status_jenjang_pendidikan) ?>">
 									<?php if ($jenjang_pendidikan->status_jenjang_pendidikan == 'Publish') { ?>
@@ -114,14 +114,14 @@
 									<?php } ?>
 								</a>
 							</td>
-							<td>
+							<td class="text-center">
 								<a href="<?php echo base_url('jenjang_pendidikan/read/' . $jenjang_pendidikan->slug_jenjang_pendidikan) ?>"
-									class="btn btn-secondary btn-xs mt-1" target="_blank" title="Baca"><i
+									class="btn btn-secondary btn-sm mt-1" target="_blank" title="Baca"><i
 										class="fa fa-eye"></i></a>
 								<a href="<?php echo base_url('admin/jenjang_pendidikan/edit/' . $jenjang_pendidikan->id_jenjang_pendidikan) ?>"
-									class="btn btn-secondary btn-xs mt-1" title="Edit"><i class="fa fa-edit"></i></a>
+									class="btn btn-secondary btn-sm mt-1" title="Edit"><i class="fa fa-edit"></i></a>
 								<a href="<?php echo base_url('admin/jenjang_pendidikan/delete/' . $jenjang_pendidikan->id_jenjang_pendidikan) ?>"
-									class="btn btn-secondary btn-xs mt-1 delete-link" title="Hapus"><i
+									class="btn btn-secondary btn-sm mt-1 delete-link" title="Hapus"><i
 										class="fa fa-trash"></i></a>
 							</td>
 						</tr>

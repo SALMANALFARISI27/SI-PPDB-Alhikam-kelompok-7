@@ -80,10 +80,4 @@ class Link_website_model extends Model
         $builder->insert($data);
     }
 
-    // tambah  log
-    public function link_website_log($data)
-    {
-        $builder = $this->db->table('link_website_logs');
-        $builder->insert($data);
-    }
 }

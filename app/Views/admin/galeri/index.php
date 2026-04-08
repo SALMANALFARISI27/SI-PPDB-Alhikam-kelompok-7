@@ -15,17 +15,20 @@
 <input type="hidden" name="pengalihan" value="<?php echo str_replace('index.php', '', CURRENT_URL()) ?>">
 <div class="mailbox-controls">
 
-	<div class="input-group"><button type="submit" name="submit" value="Delete" class="btn btn-secondary"
-			title="Hapus Galeri" onclick="return confirm('Apakah Anda yakin ingin menghapus galeri ini?')">
+	<div class="input-group">
+		<button type="submit" name="submit" value="Delete" class="btn btn-secondary" title="Hapus Galeri"
+			onclick="return confirm('Apakah Anda yakin ingin menghapus galeri ini?')">
 			<i class="fa fa-trash"></i>
 		</button>
 
 		<button type="submit" name="submit" value="Draft" class="btn btn-dark" title="Jangan Publikasikan">
 			<i class="fa fa-eye-slash"></i>
 		</button>
+
 		<button type="submit" name="submit" value="Publish" class="btn btn-info" title="Publikasikan">
 			<i class="fa fa-eye"></i>
 		</button>
+
 		<select name="id_kategori_galeri" class="form-control">
 			<?php foreach ($kategori_galeri as $kategori_galeri) { ?>
 				<option value="<?php echo $kategori_galeri->id_kategori_galeri ?>">
@@ -33,6 +36,7 @@
 				</option>
 			<?php } ?>
 		</select>
+
 		<span class="input-group-append">
 			<button type="submit" name="submit" value="Update" class="btn btn-warning">
 				<i class="fa fa-search"></i> Update
@@ -50,12 +54,12 @@
 							<i class="far fa-square"></i>
 						</button>
 					</th>
-					<th width="8%">Gambar</th>
-					<th width="35%">Judul</th>
-					<th width="10%">Status</th>
-					<th width="15%">Kategori &amp; Jenis</th>
-					<th width="15%">Author</th>
-					<th></th>
+					<th width="8%" class="text-center">Gambar</th>
+					<th width="35%" class="text-center">Judul</th>
+					<th width="10%" class="text-center">Status</th>
+					<th width="15%" class="text-center">Kategori &amp; Jenis</th>
+					<th width="15%" class="text-center">Author</th>
+					<th width="10%" class="text-center">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -70,43 +74,60 @@
 							</div>
 							<?php echo $no ?>
 						</td>
-						<td>
+
+						<td class="text-center">
 							<?php if ($galeri->gambar == "") {
 								echo '-';
 							} else { ?>
 								<img src="<?php echo base_url('assets/upload/image/' . $galeri->gambar) ?>"
-									class="img img-thumbnail">
+									class="img img-thumbnail" style="max-width: 80px;">
 							<?php } ?>
 						</td>
-						<td><?php echo $galeri->judul_galeri ?>
-							<small>
 
-								<textarea title="Copy link gambar/file ini"
-									class="form-control"><?php echo base_url('assets/upload/image/' . $galeri->gambar) ?></textarea>
+						<td class="text-center">
+							<?php echo $galeri->judul_galeri ?>
+							<small>
+								<textarea title="Copy link gambar/file ini" class="form-control"
+									rows="2"><?php echo base_url('assets/upload/image/' . $galeri->gambar) ?></textarea>
 							</small>
 						</td>
-						<td>
+
+						<td class="text-center">
 							<?php if ($galeri->status_galeri == 'Publish') { ?>
 								<span class="badge badge-success"><i class="fa fa-eye"></i> Publish</span>
 							<?php } else { ?>
 								<span class="badge badge-dark"><i class="fa fa-eye-slash"></i> Draft</span>
 							<?php } ?>
 						</td>
-						<td><small><i class="fa fa-tags"></i> <?php echo $galeri->nama_kategori_galeri ?>
-								<br><i class="fa fa-home"></i> <?php echo $galeri->jenis_galeri ?></small></td>
-						<td><?php echo $galeri->nama ?></td>
-						<td>
 
-							<a href="<?php echo base_url('admin/galeri/edit/' . $galeri->id_galeri) ?>"
-								class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
-							<a href="<?php echo base_url('admin/galeri/delete/' . $galeri->id_galeri) ?>"
-								class="btn btn-secondary btn-xs mb-1 delete-link" onclick="confirmation(event)"><i
-									class="fa fa-trash"></i></a>
+						<td class="text-center">
+							<small>
+								<i class="fa fa-tags"></i> <?php echo $galeri->nama_kategori_galeri ?>
+								<br>
+								<i class="fa fa-home"></i> <?php echo $galeri->jenis_galeri ?>
+							</small>
+						</td>
+
+						<td class="text-center">
+							<?php echo $galeri->nama ?>
+						</td>
+
+						<td class="text-center">
+							<div style="display: flex; justify-content: center; gap: 5px;">
+								<a href="<?php echo base_url('admin/galeri/edit/' . $galeri->id_galeri) ?>"
+									class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i></a>
+
+								<a href="<?php echo base_url('admin/galeri/delete/' . $galeri->id_galeri) ?>"
+									class="btn btn-secondary btn-sm delete-link" onclick="confirmation(event)"><i
+										class="fa fa-trash"></i></a>
+							</div>
 						</td>
 					</tr>
 					<?php $no++;
 				} ?>
 			</tbody>
 		</table>
+
 	</div>
 </div>
+<?php echo form_close(); ?>

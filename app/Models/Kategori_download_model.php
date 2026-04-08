@@ -21,12 +21,12 @@ class Kategori_download_model extends Model
     {
         $builder = $this->db->table('kategori_download');
         $builder->select('*');
-        $builder->orderBy('kategori_download.id_kategori_download','DESC');
+        $builder->orderBy('kategori_download.urutan','ASC');
         $query = $builder->get();
         return $query->getResult();
     }
 
-     // listing
+     // download count
     public function download($id_kategori_download)
     {
         $builder = $this->db->table('download');
@@ -41,7 +41,7 @@ class Kategori_download_model extends Model
     {
         $builder = $this->db->table('kategori_download');
         $builder->select('COUNT(*) AS total');
-        $builder->orderBy('kategori_download.id_kategori_download','DESC');
+        $builder->orderBy('kategori_download.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -51,7 +51,7 @@ class Kategori_download_model extends Model
     {
         $builder = $this->db->table('kategori_download');
         $builder->where('id_kategori_download',$id_kategori_download);
-        $builder->orderBy('kategori_download.id_kategori_download','DESC');
+        $builder->orderBy('kategori_download.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -61,7 +61,7 @@ class Kategori_download_model extends Model
     {
         $builder = $this->db->table('kategori_download');
         $builder->where('slug_kategori_download',$slug_kategori_download);
-        $builder->orderBy('kategori_download.id_kategori_download','DESC');
+        $builder->orderBy('kategori_download.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }

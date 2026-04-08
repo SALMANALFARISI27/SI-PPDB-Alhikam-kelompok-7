@@ -1,5 +1,5 @@
 <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
-                <p class="text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>. Anda sudah berhasil login. 
+                <p class="text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama_calon_peserta_didik') ?></strong>. Anda sudah berhasil login. 
                   <br>Silakan klik Tombol <strong class="text-danger">Daftar Online</strong> untuk melakukan Proses PPDB.</p>
 
                   

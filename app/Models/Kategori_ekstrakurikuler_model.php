@@ -21,7 +21,7 @@ class Kategori_ekstrakurikuler_model extends Model
     {
         $builder = $this->db->table('kategori_ekstrakurikuler');
         $builder->select('*');
-        $builder->orderBy('kategori_ekstrakurikuler.id_kategori_ekstrakurikuler','DESC');
+        $builder->orderBy('kategori_ekstrakurikuler.urutan','ASC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -41,7 +41,7 @@ class Kategori_ekstrakurikuler_model extends Model
     {
         $builder = $this->db->table('kategori_ekstrakurikuler');
         $builder->select('COUNT(*) AS total');
-        $builder->orderBy('kategori_ekstrakurikuler.id_kategori_ekstrakurikuler','DESC');
+        $builder->orderBy('kategori_ekstrakurikuler.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -51,7 +51,7 @@ class Kategori_ekstrakurikuler_model extends Model
     {
         $builder = $this->db->table('kategori_ekstrakurikuler');
         $builder->where('id_kategori_ekstrakurikuler',$id_kategori_ekstrakurikuler);
-        $builder->orderBy('kategori_ekstrakurikuler.id_kategori_ekstrakurikuler','DESC');
+        $builder->orderBy('kategori_ekstrakurikuler.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -61,7 +61,7 @@ class Kategori_ekstrakurikuler_model extends Model
     {
         $builder = $this->db->table('kategori_ekstrakurikuler');
         $builder->where('slug_kategori_ekstrakurikuler',$slug_kategori_ekstrakurikuler);
-        $builder->orderBy('kategori_ekstrakurikuler.id_kategori_ekstrakurikuler','DESC');
+        $builder->orderBy('kategori_ekstrakurikuler.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }

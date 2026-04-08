@@ -30,7 +30,7 @@
 		<select name="jenis_berita" class="form-control">
 			<option value="Berita">Berita</option>
 			<option value="Profil">Profil</option>
-			<option value="Profil">Keunggulan</option>
+			<option value="Keunggulan">Keunggulan</option>
 		</select>
 		<span class="input-group-append">
 			<button type="submit" name="submit" value="Update" class="btn btn-warning">
@@ -49,11 +49,12 @@
 							<i class="far fa-square"></i>
 						</button>
 					</th>
-					<th width="8%">Gambar</th>
-					<th width="40%">Judul</th>
-					<th width="25%">Kategori - Jenis - Penulis</th>
-					<th width="10%">Status</th>
-					<th></th>
+					<th width="8%" class="text-center">Gambar</th>
+					<th width="35%" class="text-center">Judul</th>
+					<th width="15%" class="text-center">Kategori - Jenis - Author</th>
+					<th width="5%" class="text-center">Urutan</th>
+					<th width="10%" class="text-center">Status</th>
+					<th width="10%" class="text-center">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -90,37 +91,29 @@
 								<?php echo $this->website->tanggal_bulan_menit($berita->tanggal_publish) ?>
 								<br><i class="fa fa-calendar-plus"></i>
 								<?php echo $this->website->tanggal_bulan_menit($berita->tanggal_post) ?>
-
-						</td>
-						<td><small>
-								<i class="fa fa-tags"></i> <a
-									href="<?php echo base_url('admin/berita/kategori/' . $berita->id_kategori) ?>">
-									<?php echo $berita->nama_kategori ?>
-								</a>
-								<br><i class="fa fa-home"></i> <a
-									href="<?php echo base_url('admin/berita/jenis_berita/' . $berita->jenis_berita) ?>">
-									<?php echo $berita->jenis_berita ?>
-								</a>
-								<br><i class="fa fa-user"></i> <a
-									href="<?php echo base_url('admin/berita/author/' . $berita->id_admin) ?>">
-									<?php echo $berita->nama ?>
-								</a>
 							</small>
 						</td>
-						<td>
-							<a href="<?php echo base_url('admin/berita/status_berita/' . $berita->status_berita) ?>">
-								<?php if ($berita->status_berita == 'Publish') { ?>
-									<span class="badge bg-info">
-										<i class="fa fa-eye"></i> <?php echo $berita->status_berita ?>
-									</span>
-								<?php } else { ?>
-									<span class="badge bg-secondary">
-										<i class="fa fa-eye-slash"></i> Not Published
-									</span>
-								<?php } ?>
-							</a>
+						<td><small>
+								<i class="fa fa-tags"></i> <?php echo $berita->nama_kategori ?>
+								<br><i class="fa fa-home"></i> <?php echo $berita->jenis_berita ?>
+								<br><i class="fa fa-user"></i> <?php echo $berita->nama ?>
+							</small>
 						</td>
-						<td>
+						<td class="text-center">
+							<?php echo $berita->urutan ?>
+						</td>
+						<td class="text-center">
+							<?php if ($berita->status_berita == 'Publish') { ?>
+								<span class="badge bg-info">
+									<i class="fa fa-eye"></i> <?php echo $berita->status_berita ?>
+								</span>
+							<?php } else { ?>
+								<span class="badge bg-secondary">
+									<i class="fa fa-eye-slash"></i> Not Published
+								</span>
+							<?php } ?>
+						</td>
+						<td class="text-center">
 							<a href="<?php echo base_url('berita/read/' . $berita->slug_berita) ?>"
 								class="btn btn-secondary btn-xs mt-1" target="_blank" title="Baca"><i
 									class="fa fa-eye"></i></a>

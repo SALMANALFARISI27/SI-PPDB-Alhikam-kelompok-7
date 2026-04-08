@@ -5,9 +5,9 @@
 		<thead>
 			<tr class="bg-secondary text-center">
 				<th width="5%">No</th>
-				<th width="40%">Nama</th>
-				<th width="40%">Username</th>
-				<th width="15%">Aksi</th>
+				<th width="20%">Nama</th>
+				<th width="20%">Username</th>
+				<th width="10%">Aksi</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -19,9 +19,9 @@
 					<td><?php echo htmlspecialchars($user->username) ?></td>
 					<td class="text-center">
 						<a href="<?php echo base_url('admin/user/edit/' . $user->id_admin) ?>"
-							class="btn btn-secondary btn-xs"><i class="fa fa-edit"></i></a>
+							class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i></a>
 						<a href="<?php echo base_url('admin/user/delete/' . $user->id_admin) ?>"
-							class="btn btn-secondary btn-xs delete-link"
+							class="btn btn-secondary btn-sm delete-link"
 							onclick="return confirm('Yakin ingin menghapus?')"><i class="fa fa-trash"></i></a>
 					</td>
 				</tr>

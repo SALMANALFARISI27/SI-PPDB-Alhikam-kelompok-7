@@ -10,118 +10,12 @@ class Akun_model extends Model
     protected $primaryKey = 'id_akun';
     protected $allowedFields = [];
 
-    // Listing
-    public function listing()
-    {
-        $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
-        $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-
-        $builder->orderBy('akun.id_akun', 'DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
-
-    // home
-    public function home()
-    {
-        $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
-        $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-
-        $builder->limit(6);
-        $builder->orderBy('akun.id_akun', 'DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
-
-    // jenis
-    public function jenis_akun_depan($jenis_akun)
-    {
-        $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
-        $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-
-        $builder->where('akun.jenis_akun', $jenis_akun);
-        $builder->orderBy('akun.id_akun', 'DESC');
-        $query = $builder->get();
-        return $query->getRow();
-    }
-
-    // Listing
-    public function paginasi_admin($limit, $start)
-    {
-        $this->table('akun');
-        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
-        $this->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-
-        $this->limit((int) $limit, (int) $start);
-        $this->orderBy('akun.id_akun', 'DESC');
-        $query = $this->get();
-        return $query->getResult();
-    }
-
-    // Listing
-    public function paginasi_admin_cari($keywords, $limit, $start)
-    {
-        $this->table('akun');
-        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
-        $this->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-
-        $this->like('akun.nama', $keywords, 'BOTH');
-        $this->orLike('akun.email', $keywords, 'BOTH');
-        $this->orLike('akun.telepon', $keywords, 'BOTH');
-        $this->limit((int) $limit, (int) $start);
-        $this->orderBy('akun.id_akun', 'DESC');
-        $query = $this->get();
-        return $query->getResult();
-    }
-
-    // Listing
-    public function total_cari($keywords)
-    {
-        $this->table('akun');
-        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
-        $this->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-
-        $this->like('akun.nama', $keywords, 'BOTH');
-        $this->orLike('akun.email', $keywords, 'BOTH');
-        $this->orLike('akun.telepon', $keywords, 'BOTH');
-        $this->orderBy('akun.id_akun', 'DESC');
-        $query = $this->get();
-        return $query->getNumRows();
-    }
-
     // total
     public function total()
     {
         $builder = $this->db->table('akun');
         $query = $builder->get();
         return $query->getNumRows();
-    }
-
-    // Listing
-    public function semua($status_akun, $limit, $start)
-    {
-        $this->table('akun');
-        $this->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
-        $this->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
-
-        $this->where('akun.status_akun', $status_akun);
-        $this->limit((int) $limit, (int) $start);
-        $this->orderBy('akun.id_akun', 'DESC');
-        $query = $this->get();
-        return $query->getResult();
-    }
-
-    // total
-    public function total_status($status_akun)
-    {
-        $builder = $this->db->table('akun');
-        $builder->select('COUNT(*) AS total');
-        $builder->where('akun.status_akun', $status_akun);
-        $query = $builder->get();
-        return $query->getRow();
     }
 
     // login
@@ -208,45 +102,4 @@ class Akun_model extends Model
         $builder->update($data);
     }
 
-    // slider
-    public function slider()
-    {
-        $builder = $this->db->table('akun');
-        $builder->where('jenis_akun', 'Homepage');
-        $builder->orderBy('akun.id_akun', 'DESC');
-        $builder->limit(5);
-        $query = $builder->get();
-        return $query->getRow();
-    }
-
-    // akun
-    public function jenis_akun($jenis_akun)
-    {
-        $builder = $this->db->table('akun');
-        $builder->where('jenis_akun', $jenis_akun);
-        $builder->limit(5);
-        $builder->orderBy('akun.id_akun', 'DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
-
-    // akun
-    public function jenis_akun_1($jenis_akun)
-    {
-        $builder = $this->db->table('akun');
-        $builder->where('jenis_akun', $jenis_akun);
-        $builder->orderBy('akun.id_akun', 'DESC');
-        $query = $builder->get();
-        return $query->getRow();
-    }
-
-    // akun
-    public function akun()
-    {
-        $builder = $this->db->table('akun');
-        $builder->where('jenis_akun', 'Akun');
-        $builder->orderBy('akun.id_akun', 'DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
 }

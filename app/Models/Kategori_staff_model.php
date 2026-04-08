@@ -41,7 +41,7 @@ class Kategori_staff_model extends Model
     {
         $builder = $this->db->table('kategori_staff');
         $builder->select('COUNT(*) AS total');
-        $builder->orderBy('kategori_staff.id_kategori_staff','DESC');
+        $builder->orderBy('kategori_staff.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -51,7 +51,7 @@ class Kategori_staff_model extends Model
     {
         $builder = $this->db->table('kategori_staff');
         $builder->where('id_kategori_staff',$id_kategori_staff);
-        $builder->orderBy('kategori_staff.id_kategori_staff','DESC');
+        $builder->orderBy('kategori_staff.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }

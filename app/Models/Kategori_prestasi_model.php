@@ -21,7 +21,7 @@ class Kategori_prestasi_model extends Model
     {
         $builder = $this->db->table('kategori_prestasi');
         $builder->select('*');
-        $builder->orderBy('kategori_prestasi.id_kategori_prestasi','DESC');
+        $builder->orderBy('kategori_prestasi.urutan','ASC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -41,7 +41,7 @@ class Kategori_prestasi_model extends Model
     {
         $builder = $this->db->table('kategori_prestasi');
         $builder->select('COUNT(*) AS total');
-        $builder->orderBy('kategori_prestasi.id_kategori_prestasi','DESC');
+        $builder->orderBy('kategori_prestasi.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -51,7 +51,7 @@ class Kategori_prestasi_model extends Model
     {
         $builder = $this->db->table('kategori_prestasi');
         $builder->where('id_kategori_prestasi',$id_kategori_prestasi);
-        $builder->orderBy('kategori_prestasi.id_kategori_prestasi','DESC');
+        $builder->orderBy('kategori_prestasi.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -61,7 +61,7 @@ class Kategori_prestasi_model extends Model
     {
         $builder = $this->db->table('kategori_prestasi');
         $builder->where('slug_kategori_prestasi',$slug_kategori_prestasi);
-        $builder->orderBy('kategori_prestasi.id_kategori_prestasi','DESC');
+        $builder->orderBy('kategori_prestasi.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }

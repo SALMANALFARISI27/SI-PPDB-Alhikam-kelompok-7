@@ -55,16 +55,22 @@
 	<table class="tabelku table-sm" id="example1">
 		<thead>
 			<tr>
+				<th width="3%">
+					<button type="button" class="btn btn-default btn-sm checkbox-toggle">
+						<i class="far fa-square"></i>
+					</button>
+				</th>
 				<th>No</th>
 				<th>Kode Pendaftaran</th>
+				<th>Program/Jenjang</th>
 				<th>Status Pendaftaran</th>
 				<th>Nama</th>
 				<th>L/P</th>
+				<th>Agama</th>
 				<th>Tempat Lahir</th>
 				<th>Tgl Lahir</th>
 				<th>NIS</th>
 				<th>NISN</th>
-				<th>Agama</th>
 				<th>Kewarganegaraan</th>
 				<th>Alamat</th>
 				<th>Kode Pos</th>
@@ -75,6 +81,7 @@
 				<th>Jenis Masuk</th>
 				<th>Asal Sekolah</th>
 				<th>Alamat Sekolah Asal</th>
+				<th>Tanggal Pindah</th>
 				<th>Golongan Darah</th>
 				<th>Tinggi (cm)</th>
 				<th>Berat (kg)</th>
@@ -106,16 +113,23 @@
 			<?php $no = 1;
 			foreach ($calon_peserta_didik as $calon_peserta_didik) { ?>
 				<tr>
+					<td class="text-center">
+						<div class="icheck-primary">
+							<input type="checkbox" name="id_calon_peserta_didik[]" value="<?php echo $calon_peserta_didik->id_calon_peserta_didik ?>" id="check<?php echo $no ?>">
+							<label for="check<?php echo $no ?>"></label>
+						</div>
+					</td>
 					<td><?php echo $no ?></td>
 					<td><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></td>
+					<td><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?></td>
 					<td><?php echo $calon_peserta_didik->status_pendaftaran ?></td>
-					<td><?php echo $calon_peserta_didik->nama_calon_peserta_didik ?></td>
+					<td><?php echo strtoupper($calon_peserta_didik->nama_calon_peserta_didik) ?></td>
 					<td><?php echo $calon_peserta_didik->jenis_kelamin ?></td>
+					<td><?php echo $calon_peserta_didik->agama ?></td>
 					<td><?php echo $calon_peserta_didik->tempat_lahir ?></td>
 					<td><?php echo $calon_peserta_didik->tanggal_lahir ?></td>
 					<td><?php echo $calon_peserta_didik->nis ?></td>
 					<td><?php echo $calon_peserta_didik->nisn ?></td>
-					<td><?php echo $calon_peserta_didik->agama ?></td>
 					<td><?php echo $calon_peserta_didik->status_wn ?></td>
 					<td><?php echo $calon_peserta_didik->alamat ?></td>
 					<td><?php echo $calon_peserta_didik->kode_pos ?></td>
@@ -126,6 +140,7 @@
 					<td><?php echo $calon_peserta_didik->jenis_calon_peserta_didik ?></td>
 					<td><?php echo $calon_peserta_didik->asal_sekolah ?></td>
 					<td><?php echo $calon_peserta_didik->alamat_sekolah_asal ?></td>
+					<td><?php echo $calon_peserta_didik->tanggal_pindah ?></td>
 					<td><?php echo $calon_peserta_didik->goldar_calon_peserta_didik ?></td>
 					<td><?php echo $calon_peserta_didik->tinggi ?></td>
 					<td><?php echo $calon_peserta_didik->berat ?></td>

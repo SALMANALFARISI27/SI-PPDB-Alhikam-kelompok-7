@@ -94,7 +94,7 @@
 			<span class="info-box-icon bg-secondary elevation-1"><i class="fas fa-user-lock"></i></span>
 
 			<div class="info-box-content">
-				<span class="info-box-text">Pengguna Website</span>
+				<span class="info-box-text">Admin Website</span>
 				<span class="info-box-number">
 					<a href="<?php echo base_url('admin/user') ?>" class="btn btn-xs btn-outline-success">
 						<i class="fa fa-user-lock"></i> Lihat dan Kelola

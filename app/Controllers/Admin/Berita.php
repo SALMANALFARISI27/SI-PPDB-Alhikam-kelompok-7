@@ -17,7 +17,7 @@ class Berita extends BaseController
 		$m_kategori = new Kategori_model();
 		$kategori = $m_kategori->listing();
 		$berita = $m_berita->listing();
-		$title = 'Berita, Profil (' . count($berita) . ')';
+		$title = 'Berita, Profil, Keunggulan (' . count($berita) . ')';
 
 		$data = [
 			'title' => $title,
@@ -155,7 +155,7 @@ class Berita extends BaseController
 					'tanggal_publish' => date('Y-m-d', strtotime($this->request->getVar('tanggal_publish'))) . ' ' . date('H:i', strtotime($this->request->getVar('jam')))
 				);
 				$m_berita->tambah($data);
-				return redirect()->to(base_url('admin/berita/jenis_berita/' . $this->request->getVar('jenis_berita')))->with('sukses', 'Data Berhasil di Simpan');
+				return redirect()->to(base_url('admin/berita'))->with('sukses', 'Data Berhasil di Simpan');
 			} else {
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
@@ -171,7 +171,7 @@ class Berita extends BaseController
 					'tanggal_publish' => date('Y-m-d', strtotime($this->request->getVar('tanggal_publish'))) . ' ' . date('H:i', strtotime($this->request->getVar('jam')))
 				);
 				$m_berita->tambah($data);
-				return redirect()->to(base_url('admin/berita/jenis_berita/' . $this->request->getVar('jenis_berita')))->with('sukses', 'Data Berhasil di Simpan');
+				return redirect()->to(base_url('admin/berita'))->with('sukses', 'Data Berhasil di Simpan');
 			}
 		}
 
@@ -234,7 +234,7 @@ class Berita extends BaseController
 					'tanggal_publish' => date('Y-m-d', strtotime($this->request->getVar('tanggal_publish'))) . ' ' . date('H:i', strtotime($this->request->getVar('jam')))
 				);
 				$m_berita->edit($data);
-				return redirect()->to(base_url('admin/berita/jenis_berita/' . $this->request->getVar('jenis_berita')))->with('sukses', 'Data Berhasil di Simpan');
+				return redirect()->to(base_url('admin/berita'))->with('sukses', 'Data Berhasil di Simpan');
 			} else {
 				$data = array(
 					'id_berita' => $id_berita,
@@ -251,7 +251,7 @@ class Berita extends BaseController
 					'tanggal_publish' => date('Y-m-d', strtotime($this->request->getVar('tanggal_publish'))) . ' ' . date('H:i', strtotime($this->request->getVar('jam')))
 				);
 				$m_berita->edit($data);
-				return redirect()->to(base_url('admin/berita/jenis_berita/' . $this->request->getVar('jenis_berita')))->with('sukses', 'Data Berhasil di Simpan');
+				return redirect()->to(base_url('admin/berita'))->with('sukses', 'Data Berhasil di Simpan');
 			}
 		}
 

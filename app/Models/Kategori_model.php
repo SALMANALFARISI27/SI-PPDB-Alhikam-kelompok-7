@@ -21,7 +21,7 @@ class Kategori_model extends Model
     {
         $builder = $this->db->table('kategori');
         $builder->select('*');
-        $builder->orderBy('kategori.id_kategori','DESC');
+        $builder->orderBy('kategori.urutan','ASC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -31,7 +31,7 @@ class Kategori_model extends Model
     {
         $builder = $this->db->table('kategori');
         $builder->select('COUNT(*) AS total');
-        $builder->orderBy('kategori.id_kategori','DESC');
+        $builder->orderBy('kategori.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -41,7 +41,7 @@ class Kategori_model extends Model
     {
         $builder = $this->db->table('kategori');
         $builder->where('id_kategori',$id_kategori);
-        $builder->orderBy('kategori.id_kategori','DESC');
+        $builder->orderBy('kategori.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -51,7 +51,7 @@ class Kategori_model extends Model
     {
         $builder = $this->db->table('kategori');
         $builder->where('slug_kategori',$slug_kategori);
-        $builder->orderBy('kategori.id_kategori','DESC');
+        $builder->orderBy('kategori.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }

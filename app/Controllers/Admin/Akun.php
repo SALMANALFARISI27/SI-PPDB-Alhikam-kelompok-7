@@ -14,7 +14,6 @@ class Akun extends BaseController
 		$m_admin 			= new Admin_model();
 		$id_admin 			= $this->session->get('id_admin');
 		$admin 				= $m_admin->detail($id_admin);
-		$staff              = '';
 		
 
 		// Start validasi
@@ -75,7 +74,6 @@ class Akun extends BaseController
 	    }
 		$data = [	'title'			=> 'Profil Saya',
 					'user'			=> $admin,
-					'staff'			=> $staff,
 					'content'		=> 'admin/akun/index'
 				];
 		echo view('admin/layout/wrapper',$data);

@@ -4,7 +4,6 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 
 use App\Models\Konfigurasi_model;
-use App\Models\Client_model;
 use App\Models\Akun_model;
 
 class Signin extends BaseController

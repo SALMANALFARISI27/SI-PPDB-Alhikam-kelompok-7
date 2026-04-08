@@ -10,7 +10,6 @@
 		</div>
 		<?php echo form_close() ?>
 	</div>
-
 </div>
 <hr>
 
@@ -23,7 +22,6 @@
 			onclick="return confirm('Apakah Anda yakin ingin menghapus Fasilitas ini?')">
 			<i class="fa fa-trash"></i>
 		</button>
-
 
 		<button type="submit" name="submit" value="Draft" class="btn btn-dark" title="Jangan Publikasikan">
 			<i class="fa fa-eye-slash"></i>
@@ -49,18 +47,18 @@
 
 		<table class="tabelku table-sm" id="example2">
 			<thead>
-				<tr class="text-left bg-light">
+				<tr class="bg-light">
 					<th width="5%" class="text-center">
 						<button type="button" class="btn btn-default btn-sm checkbox-toggle">
 							<i class="far fa-square"></i>
 						</button>
 					</th>
-					<th width="5%">Gambar</th>
-					<th width="35%">Judul/Nama</th>
-					<th width="15%">Kategori &amp; Kondisi</th>
-					<th width="15%">Status</th>
-					<th width="15%">Author</th>
-					<th></th>
+					<th width="8%" class="text-center">Gambar</th>
+					<th width="20%" class="text-center">Judul/Nama</th>
+					<th width="15%" class="text-center">Kategori &amp; Kondisi</th>
+					<th width="10%" class="text-center">Status</th>
+					<th width="12%" class="text-center">Author</th>
+					<th width="10%" class="text-center">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -75,7 +73,8 @@
 							</div>
 							<?php echo $no ?>
 						</td>
-						<td>
+
+						<td class="text-center">
 							<?php if ($fasilitas->gambar == "") {
 								echo '-';
 							} else {
@@ -89,18 +88,24 @@
 									class="img img-thumbnail">
 							<?php } ?>
 						</td>
-						<td><?php echo $fasilitas->judul_fasilitas ?>
+
+						<td>
+							<?php echo $fasilitas->judul_fasilitas ?>
 							<small>
 								<br><i class="fa fa-graduation-cap"></i> <?php echo $fasilitas->kode_nomor_fasilitas ?>
 								<br><i class="fa fa-calendar"></i>
 								(<?php echo $this->website->tanggal_bulan($fasilitas->tanggal_fasilitas) ?>)
-
 							</small>
 						</td>
-						<td><small><i class="fa fa-tags"></i> <?php echo $fasilitas->nama_kategori_fasilitas ?>
-								<br><i class="fa fa-check-circle"></i> <?php echo $fasilitas->kondisi_fasilitas ?></small>
-						</td>
+
 						<td>
+							<small>
+								<i class="fa fa-tags"></i> <?php echo $fasilitas->nama_kategori_fasilitas ?>
+								<br><i class="fa fa-check-circle"></i> <?php echo $fasilitas->kondisi_fasilitas ?>
+							</small>
+						</td>
+
+						<td class="text-center">
 							<?php if ($fasilitas->status_fasilitas == 'Publish') { ?>
 								<span class="badge bg-info">
 									<i class="fa fa-eye"></i> <?php echo $fasilitas->status_fasilitas ?>
@@ -111,14 +116,19 @@
 								</span>
 							<?php } ?>
 						</td>
-						<td><?php echo $fasilitas->nama ?></td>
-						<td>
 
-							<a href="<?php echo base_url('admin/fasilitas/edit/' . $fasilitas->id_fasilitas) ?>"
-								class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
-							<a href="<?php echo base_url('admin/fasilitas/delete/' . $fasilitas->id_fasilitas) ?>"
-								class="btn btn-secondary btn-xs mb-1 delete-link" onclick="confirmation(event)"><i
-									class="fa fa-trash"></i></a>
+						<td class="text-center">
+							<?php echo $fasilitas->nama ?>
+						</td>
+
+						<td class="text-center">
+							<div style="display: flex; justify-content: center; gap: 5px;">
+								<a href="<?php echo base_url('admin/fasilitas/edit/' . $fasilitas->id_fasilitas) ?>"
+									class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i></a>
+								<a href="<?php echo base_url('admin/fasilitas/delete/' . $fasilitas->id_fasilitas) ?>"
+									class="btn btn-secondary btn-sm delete-link" onclick="confirmation(event)"><i
+										class="fa fa-trash"></i></a>
+							</div>
 						</td>
 					</tr>
 					<?php $no++;
@@ -127,3 +137,4 @@
 		</table>
 	</div>
 </div>
+<?php echo form_close(); ?>

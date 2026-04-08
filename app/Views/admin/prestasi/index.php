@@ -10,7 +10,6 @@
 		</div>
 		<?php echo form_close() ?>
 	</div>
-
 </div>
 <hr>
 
@@ -23,7 +22,6 @@
 			onclick="return confirm('Apakah Anda yakin ingin menghapus Prestasi ini?')">
 			<i class="fa fa-trash"></i>
 		</button>
-
 
 		<button type="submit" name="submit" value="Draft" class="btn btn-dark" title="Jangan Publikasikan">
 			<i class="fa fa-eye-slash"></i>
@@ -49,18 +47,18 @@
 
 		<table class="tabelku table-sm" id="example2">
 			<thead>
-				<tr class="text-left bg-light">
+				<tr class="bg-light">
 					<th width="5%" class="text-center">
 						<button type="button" class="btn btn-default btn-sm checkbox-toggle">
 							<i class="far fa-square"></i>
 						</button>
 					</th>
-					<th width="5%">Gambar</th>
-					<th width="35%">Judul</th>
-					<th width="15%">Kategori &amp; Jenis</th>
-					<th width="15%">Status</th>
-					<th width="15%">Author</th>
-					<th></th>
+					<th width="5%" class="text-center">Gambar</th>
+					<th width="35%" class="text-center">Judul</th>
+					<th width="15%" class="text-center">Kategori &amp; Jenis</th>
+					<th width="15%" class="text-center">Status</th>
+					<th width="15%" class="text-center">Author</th>
+					<th width="10%" class="text-center">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -75,7 +73,8 @@
 							</div>
 							<?php echo $no ?>
 						</td>
-						<td>
+
+						<td class="text-center">
 							<?php if ($prestasi->gambar == "") {
 								echo '-';
 							} else {
@@ -89,16 +88,24 @@
 									class="img img-thumbnail">
 							<?php } ?>
 						</td>
-						<td><?php echo $prestasi->judul_prestasi ?>
+
+						<td>
+							<?php echo $prestasi->judul_prestasi ?>
 							<small>
 								<br><i class="fa fa-graduation-cap"></i> <?php echo $prestasi->nama_penerima ?>
 								<br><i class="fa fa-calendar"></i>
 								<?php echo $this->website->tanggal_bulan($prestasi->tanggal_prestasi) ?>
 							</small>
 						</td>
-						<td><small><i class="fa fa-tags"></i> <?php echo $prestasi->nama_kategori_prestasi ?>
-								<br><i class="fa fa-home"></i> <?php echo $prestasi->jenjang_prestasi ?></small></td>
+
 						<td>
+							<small>
+								<i class="fa fa-tags"></i> <?php echo $prestasi->nama_kategori_prestasi ?>
+								<br><i class="fa fa-home"></i> <?php echo $prestasi->jenjang_prestasi ?>
+							</small>
+						</td>
+
+						<td class="text-center">
 							<?php if ($prestasi->status_prestasi == 'Publish') { ?>
 								<span class="badge bg-info">
 									<i class="fa fa-eye"></i> <?php echo $prestasi->status_prestasi ?>
@@ -109,13 +116,18 @@
 								</span>
 							<?php } ?>
 						</td>
-						<td><?php echo $prestasi->nama ?></td>
-						<td>
 
-							<a href="<?php echo base_url('admin/prestasi/edit/' . $prestasi->id_prestasi) ?>"
-								class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
-							<a href="<?php echo base_url('admin/prestasi/delete/' . $prestasi->id_prestasi) ?>"
-								class="btn btn-secondary btn-xs mb-1 delete-link"><i class="fa fa-trash"></i></a>
+						<td class="text-center">
+							<?php echo $prestasi->nama ?>
+						</td>
+
+						<td class="text-center">
+							<div style="display: flex; justify-content: center; gap: 5px;">
+								<a href="<?php echo base_url('admin/prestasi/edit/' . $prestasi->id_prestasi) ?>"
+									class="btn btn-secondary btn-xs"><i class="fa fa-edit"></i></a>
+								<a href="<?php echo base_url('admin/prestasi/delete/' . $prestasi->id_prestasi) ?>"
+									class="btn btn-secondary btn-xs delete-link"><i class="fa fa-trash"></i></a>
+							</div>
 						</td>
 					</tr>
 					<?php $no++;
@@ -124,3 +136,4 @@
 		</table>
 	</div>
 </div>
+<?php echo form_close(); ?>

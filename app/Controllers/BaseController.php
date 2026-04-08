@@ -43,6 +43,7 @@ abstract class BaseController extends Controller
     protected $pager;
     protected $simple_login;
     protected $website;
+    protected $email;
 
     /**
      * Constructor.

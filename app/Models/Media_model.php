@@ -82,10 +82,4 @@ class Media_model extends Model
         $builder->insert($data);
     }
 
-    // tambah  log
-    public function media_log($data)
-    {
-        $builder = $this->db->table('media_logs');
-        $builder->insert($data);
-    }
 }

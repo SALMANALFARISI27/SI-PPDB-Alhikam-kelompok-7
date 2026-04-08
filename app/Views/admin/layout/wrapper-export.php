@@ -100,7 +100,7 @@ if($content) {
 </body>
 <script>
   $(function () {
-    $("#example1").DataTable({
+    var table = $("#example1").DataTable({
       "responsive": false, "lengthChange": false, "autoWidth": false, "scrollX": true,
       "buttons": [
         "csv", 
@@ -115,12 +115,14 @@ if($content) {
           customize: function(doc) {
             doc.defaultStyle.fontSize = 8;
             doc.styles.tableHeader.fontSize = 9;
-            // Let pdfMake auto-size columns instead of forcing equal widths
           }
         },
+        "print",
         "colvis"
       ]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+    table.buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
     $('#example2').DataTable({
       "paging": false,
       "lengthChange": false,
@@ -142,19 +144,23 @@ if($content) {
   });
 // adada
   $(function () {
-    //Enable check and uncheck all functionality
+    // Enable check and uncheck all functionality with DataTables awareness
     $('.checkbox-toggle').click(function () {
-      var clicks = $(this).data('clicks')
+      var clicks = $(this).data('clicks');
+      var table = $('#example1').DataTable();
+      // Get all rows in the table (all pages)
+      var rows = table.rows({ 'search': 'applied' }).nodes();
+      
       if (clicks) {
-        //Uncheck all checkboxes
-        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', false)
-        $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
+        // Uncheck all checkboxes
+        $('input[type="checkbox"]', rows).prop('checked', false);
+        $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square');
       } else {
-        //Check all checkboxes
-        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', true)
-        $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
+        // Check all checkboxes
+        $('input[type="checkbox"]', rows).prop('checked', true);
+        $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square');
       }
-      $(this).data('clicks', !clicks)
+      $(this).data('clicks', !clicks);
     })
 
     //Handle starring for font awesome

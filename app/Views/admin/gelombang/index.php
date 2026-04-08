@@ -49,7 +49,7 @@
 						?>
 						<tr>
 							<td class="text-center"><?php echo $no ?></td>
-							<td>
+							<td class="text-center">
 								<?php if ($row->gambar == "") {
 									echo '-';
 								} else { ?>
@@ -57,7 +57,8 @@
 										class="img img-thumbnail">
 								<?php } ?>
 							</td>
-							<td><strong><?php echo $row->judul ?></strong>
+							<td>
+								<strong><?php echo $row->judul ?></strong>
 								<small>
 									<br><span class="text-secondary">Pembukaan:</span>
 									<?php echo $this->website->hari($row->tanggal_buka) ?>
@@ -67,7 +68,7 @@
 									<?php echo $this->website->hari($row->tanggal_pengumuman) ?>
 								</small>
 							</td>
-							<td>
+							<td class="text-center">
 								<?php if ($row->status_gelombang == 'Buka') { ?>
 									<span class="badge bg-info">
 										<i class="fa fa-eye"></i> <?php echo $row->status_gelombang ?>
@@ -88,19 +89,21 @@
 							<td class="text-center">
 								<div class="btn-group-vertical btn-block">
 									<a href="<?php echo base_url('admin/gelombang/detail/' . $row->id_gelombang . '/Semua/Semua') ?>"
-										class="btn btn-info btn-xs mb-1 text-left"><i class="fa fa-user-check"></i> Data Pendaftar</a>
+										class="btn btn-info btn-xs mb-1"><i class="fa fa-user-check"></i> Data Pendaftar</a>
 									<a href="<?php echo base_url('admin/gelombang/export/' . $row->id_gelombang . '/Semua/Semua') ?>"
-										class="btn btn-success btn-xs mb-1 text-left" target="_blank"><i class="fa fa-file-excel"></i>
+										class="btn btn-success btn-xs mb-1" target="_blank"><i class="fa fa-file-excel"></i>
 										Ekspor Excel</a>
 									<a href="<?php echo base_url('admin/gelombang/unduh_data/' . $row->id_gelombang . '/Semua/Semua') ?>"
-										class="btn btn-danger btn-xs mb-1 text-left" target="_blank"><i class="fa fa-file-pdf"></i>
+										class="btn btn-danger btn-xs mb-1" target="_blank"><i class="fa fa-file-pdf"></i>
 										Unduh PDF</a>
 								</div>
-								<div class="btn-group btn-block">
+								<div class="btn-group btn-block"
+									style="display: flex; justify-content: center; gap: 5px; margin-top: 5px;">
 									<a href="<?php echo base_url('admin/gelombang/edit/' . $row->id_gelombang) ?>"
 										class="btn btn-secondary btn-xs" title="Edit"><i class="fa fa-edit"></i> Edit</a>
 									<a href="<?php echo base_url('admin/gelombang/delete/' . $row->id_gelombang) ?>"
-										class="btn btn-dark btn-xs delete-link" title="Hapus"><i class="fa fa-trash"></i></a>
+										class="btn btn-dark btn-xs delete-link" title="Hapus"><i
+											class="fa fa-trash"></i></a>
 								</div>
 							</td>
 						</tr>
@@ -114,7 +117,7 @@
 
 <script>
 	$(document).ready(function () {
-		// Memberikan jeda sebentar agar inisialisasi global selesai
+
 		setTimeout(function () {
 			if ($.fn.DataTable.isDataTable('#tabel-gelombang')) {
 				$('#tabel-gelombang').DataTable().destroy();
@@ -123,15 +126,15 @@
 			var table = $('#tabel-gelombang').DataTable({
 				"paging": true,
 				"lengthChange": true,
-				"searching": true, // Tetap true tapi disembunyikan DOM-nya
+				"searching": true,
 				"ordering": true,
 				"info": true,
 				"autoWidth": false,
 				"responsive": false,
-				"dom": "lrtip" // Menghilangkan 'f' (filter default) agar tidak ganda
+				"dom": "lrtip"
 			});
 
-			// Hubungkan input kustom ke mesin pencari DataTables
+
 			$('#pencarian-kustom').on('keyup', function () {
 				table.search(this.value).draw();
 			});

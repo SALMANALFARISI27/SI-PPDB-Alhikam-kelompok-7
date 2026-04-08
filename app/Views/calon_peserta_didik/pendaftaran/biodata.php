@@ -1,4 +1,5 @@
-<p class="lead mb-2 text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>,
+<p class="lead mb-2 text-center">Halo <strong
+    class="text-danger"><?php echo Session()->get('nama_calon_peserta_didik') ?></strong>,
   masukkan data Calon Peserta Didik dengan benar dan lengkap.
   <br>Anda sedang mendaftar pada <strong><?php echo $gelombang->judul ?></strong> Tahun Ajaran
   <strong><?php echo $gelombang->tahun_ajaran ?></strong>.
@@ -79,14 +80,16 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Agama &amp; Status Kewarganegaraan<span class="text-danger">*</span></label>
       <div class="col-md-3">
-        <select name="agama" class="form-control" required><option value="">-- Pilih Agama --</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Katolik">Katolik</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghucu">Konghucu</option>
-                  <option value="Lainnya">Lainnya</option></select>
+        <select name="agama" class="form-control" required>
+          <option value="">-- Pilih Agama --</option>
+          <option value="Islam">Islam</option>
+          <option value="Kristen">Kristen</option>
+          <option value="Katolik">Katolik</option>
+          <option value="Hindu">Hindu</option>
+          <option value="Buddha">Buddha</option>
+          <option value="Konghucu">Konghucu</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
         <small class="text-secondary">Agama Calon Peserta Didik</small>
       </div>
       <div class="col-md-3">
@@ -368,14 +371,16 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Agama Ayah</label>
       <div class="col-md-9">
-        <select name="agama_ayah" class="form-control"><option value="">-- Pilih Agama --</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Katolik">Katolik</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghucu">Konghucu</option>
-                  <option value="Lainnya">Lainnya</option></select>
+        <select name="agama_ayah" class="form-control">
+          <option value="">-- Pilih Agama --</option>
+          <option value="Islam">Islam</option>
+          <option value="Kristen">Kristen</option>
+          <option value="Katolik">Katolik</option>
+          <option value="Hindu">Hindu</option>
+          <option value="Buddha">Buddha</option>
+          <option value="Konghucu">Konghucu</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
       </div>
     </div>
 
@@ -389,17 +394,19 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Pendidikan Ayah</label>
       <div class="col-md-9">
-        <select name="jenjang_ayah" class="form-control"><option value="">-- Pilih Jenjang --</option>
-                     <option value="Tidak Sekolah">Tidak Sekolah</option>
-                     <option value="SD">SD</option>
-                     <option value="SMP/Sederajat">SMP/Sederajat</option>
-                     <option value="SMA/Sederajat">SMA/Sederajat</option>
-                     <option value="D1">D1</option>
-                     <option value="D2">D2</option>
-                     <option value="D3">D3</option>
-                     <option value="S1">S1</option>
-                     <option value="S2">S2</option>
-                     <option value="S3">S3</option></select>
+        <select name="jenjang_ayah" class="form-control">
+          <option value="">-- Pilih Jenjang --</option>
+          <option value="Tidak Sekolah">Tidak Sekolah</option>
+          <option value="SD">SD</option>
+          <option value="SMP/Sederajat">SMP/Sederajat</option>
+          <option value="SMA/Sederajat">SMA/Sederajat</option>
+          <option value="D1">D1</option>
+          <option value="D2">D2</option>
+          <option value="D3">D3</option>
+          <option value="S1">S1</option>
+          <option value="S2">S2</option>
+          <option value="S3">S3</option>
+        </select>
       </div>
     </div>
 
@@ -443,14 +450,16 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Agama Ibu</label>
       <div class="col-md-9">
-        <select name="agama_ibu" class="form-control"><option value="">-- Pilih Agama --</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Katolik">Katolik</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghucu">Konghucu</option>
-                  <option value="Lainnya">Lainnya</option></select>
+        <select name="agama_ibu" class="form-control">
+          <option value="">-- Pilih Agama --</option>
+          <option value="Islam">Islam</option>
+          <option value="Kristen">Kristen</option>
+          <option value="Katolik">Katolik</option>
+          <option value="Hindu">Hindu</option>
+          <option value="Buddha">Buddha</option>
+          <option value="Konghucu">Konghucu</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
       </div>
     </div>
 
@@ -464,17 +473,19 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Pendidikan Ibu</label>
       <div class="col-md-9">
-        <select name="jenjang_ibu" class="form-control"><option value="">-- Pilih Jenjang --</option>
-                     <option value="Tidak Sekolah">Tidak Sekolah</option>
-                     <option value="SD">SD</option>
-                     <option value="SMP/Sederajat">SMP/Sederajat</option>
-                     <option value="SMA/Sederajat">SMA/Sederajat</option>
-                     <option value="D1">D1</option>
-                     <option value="D2">D2</option>
-                     <option value="D3">D3</option>
-                     <option value="S1">S1</option>
-                     <option value="S2">S2</option>
-                     <option value="S3">S3</option></select>
+        <select name="jenjang_ibu" class="form-control">
+          <option value="">-- Pilih Jenjang --</option>
+          <option value="Tidak Sekolah">Tidak Sekolah</option>
+          <option value="SD">SD</option>
+          <option value="SMP/Sederajat">SMP/Sederajat</option>
+          <option value="SMA/Sederajat">SMA/Sederajat</option>
+          <option value="D1">D1</option>
+          <option value="D2">D2</option>
+          <option value="D3">D3</option>
+          <option value="S1">S1</option>
+          <option value="S2">S2</option>
+          <option value="S3">S3</option>
+        </select>
       </div>
     </div>
 
@@ -552,14 +563,16 @@ echo csrf_field();
       <div class="form-group row mb-3">
         <label class="col-md-3 text-dark">Agama Wali</label>
         <div class="col-md-9">
-          <select name="agama_wali" class="form-control"><option value="">-- Pilih Agama --</option>
-                  <option value="Islam">Islam</option>
-                  <option value="Kristen">Kristen</option>
-                  <option value="Katolik">Katolik</option>
-                  <option value="Hindu">Hindu</option>
-                  <option value="Buddha">Buddha</option>
-                  <option value="Konghucu">Konghucu</option>
-                  <option value="Lainnya">Lainnya</option></select>
+          <select name="agama_wali" class="form-control">
+            <option value="">-- Pilih Agama --</option>
+            <option value="Islam">Islam</option>
+            <option value="Kristen">Kristen</option>
+            <option value="Katolik">Katolik</option>
+            <option value="Hindu">Hindu</option>
+            <option value="Buddha">Buddha</option>
+            <option value="Konghucu">Konghucu</option>
+            <option value="Lainnya">Lainnya</option>
+          </select>
         </div>
       </div>
 
@@ -573,17 +586,19 @@ echo csrf_field();
       <div class="form-group row mb-3">
         <label class="col-md-3 text-dark">Pendidikan Wali</label>
         <div class="col-md-9">
-          <select name="jenjang_wali" class="form-control"><option value="">-- Pilih Jenjang --</option>
-                     <option value="Tidak Sekolah">Tidak Sekolah</option>
-                     <option value="SD">SD</option>
-                     <option value="SMP/Sederajat">SMP/Sederajat</option>
-                     <option value="SMA/Sederajat">SMA/Sederajat</option>
-                     <option value="D1">D1</option>
-                     <option value="D2">D2</option>
-                     <option value="D3">D3</option>
-                     <option value="S1">S1</option>
-                     <option value="S2">S2</option>
-                     <option value="S3">S3</option></select>
+          <select name="jenjang_wali" class="form-control">
+            <option value="">-- Pilih Jenjang --</option>
+            <option value="Tidak Sekolah">Tidak Sekolah</option>
+            <option value="SD">SD</option>
+            <option value="SMP/Sederajat">SMP/Sederajat</option>
+            <option value="SMA/Sederajat">SMA/Sederajat</option>
+            <option value="D1">D1</option>
+            <option value="D2">D2</option>
+            <option value="D3">D3</option>
+            <option value="S1">S1</option>
+            <option value="S2">S2</option>
+            <option value="S3">S3</option>
+          </select>
         </div>
       </div>
 

@@ -58,11 +58,11 @@
 						</button>
 					</th>
 					<th width="5%">Gambar</th>
-					<th width="35%">Judul</th>
-					<th width="15%">Kategori</th>
-					<th width="15%">Status</th>
-					<th width="15%">Author</th>
-					<th></th>
+					<th width="35%" class="text-center">Judul</th>
+					<th width="15%" class="text-center">Kategori</th>
+					<th width="15%" class="text-center">Status</th>
+					<th width="15%" class="text-center">Author</th>
+					<th width="10%" class="text-center">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -97,8 +97,10 @@
 								<?php echo $ekstrakurikuler->nama_penanggung_jawab ?>
 							</small>
 						</td>
-						<td><?php echo $ekstrakurikuler->nama_kategori_ekstrakurikuler ?></td>
 						<td>
+							<?php echo $ekstrakurikuler->nama_kategori_ekstrakurikuler ?>
+						</td>
+						<td class="text-center">
 							<?php if ($ekstrakurikuler->status_ekstrakurikuler == 'Publish') { ?>
 								<span class="badge bg-info">
 									<i class="fa fa-eye"></i> <?php echo $ekstrakurikuler->status_ekstrakurikuler ?>
@@ -109,13 +111,15 @@
 								</span>
 							<?php } ?>
 						</td>
-						<td><?php echo $ekstrakurikuler->nama ?></td>
-						<td>
+						<td class="text-center">
+							<?php echo $ekstrakurikuler->nama ?>
+						</td>
+						<td class="text-center">
 
 							<a href="<?php echo base_url('admin/ekstrakurikuler/edit/' . $ekstrakurikuler->id_ekstrakurikuler) ?>"
-								class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
+								class="btn btn-secondary btn-sm mb-1"><i class="fa fa-edit"></i></a>
 							<a href="<?php echo base_url('admin/ekstrakurikuler/delete/' . $ekstrakurikuler->id_ekstrakurikuler) ?>"
-								class="btn btn-secondary btn-xs mb-1 delete-link" onclick="confirmation(event)"><i
+								class="btn btn-secondary btn-sm mb-1 delete-link" onclick="confirmation(event)"><i
 									class="fa fa-trash"></i></a>
 						</td>
 					</tr>

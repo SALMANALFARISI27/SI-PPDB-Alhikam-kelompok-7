@@ -21,12 +21,12 @@ class Kategori_galeri_model extends Model
     {
         $builder = $this->db->table('kategori_galeri');
         $builder->select('*');
-        $builder->orderBy('kategori_galeri.id_kategori_galeri','DESC');
+        $builder->orderBy('kategori_galeri.urutan','ASC');
         $query = $builder->get();
         return $query->getResult();
     }
 
-     // listing
+     // galeri count
     public function galeri($id_kategori_galeri)
     {
         $builder = $this->db->table('galeri');
@@ -41,7 +41,7 @@ class Kategori_galeri_model extends Model
     {
         $builder = $this->db->table('kategori_galeri');
         $builder->select('COUNT(*) AS total');
-        $builder->orderBy('kategori_galeri.id_kategori_galeri','DESC');
+        $builder->orderBy('kategori_galeri.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -51,7 +51,7 @@ class Kategori_galeri_model extends Model
     {
         $builder = $this->db->table('kategori_galeri');
         $builder->where('id_kategori_galeri',$id_kategori_galeri);
-        $builder->orderBy('kategori_galeri.id_kategori_galeri','DESC');
+        $builder->orderBy('kategori_galeri.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }

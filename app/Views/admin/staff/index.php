@@ -51,13 +51,13 @@
 							<i class="far fa-square"></i>
 						</button>
 					</th>
-					<th width="5%">Foto</th>
-					<th width="20%">Nama</th>
-					<th width="20%">Informasi</th>
-					<th width="20%">Kontak</th>
-					<th width="5%">L/P</th>
-					<th width="5%">Status</th>
-					<th></th>
+					<th width="5%" class="text-center">Foto</th>
+					<th width="20%" class="text-center">Nama</th>
+					<th width="20%" class="text-center">Informasi</th>
+					<th width="20%" class="text-center">Kontak</th>
+					<th width="5%" class="text-center">L/P</th>
+					<th width="5%" class="text-center">Status</th>
+					<th width="12%" class="text-center">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -115,7 +115,7 @@
 								</span>
 							<?php } ?>
 						</td>
-						<td>
+						<td class="text-center">
 							<?php if ($staff->status_staff == 'Publish') { ?>
 								<span class="badge bg-info">
 									<i class="fa fa-eye"></i> <?php echo $staff->status_staff ?>
@@ -126,11 +126,11 @@
 								</span>
 							<?php } ?>
 						</td>
-						<td>
+						<td class="text-center">
 							<a href="<?php echo base_url('admin/user?id_staff=' . $staff->id_staff) ?>"
 								class="btn btn-warning btn-sm"><i class="fa fa-lock"></i> Akses</a>
 							<a href="<?php echo base_url('admin/staff/edit/' . $staff->id_staff) ?>"
-								class="btn btn-secondary btn-xs mb-1"><i class="fa fa-edit"></i></a>
+								class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i></a>
 							<a href="<?php echo base_url('admin/staff/delete/' . $staff->id_staff) ?>"
 								class="btn btn-secondary btn-sm delete-link"><i class="fa fa-trash"></i></a>
 						</td>

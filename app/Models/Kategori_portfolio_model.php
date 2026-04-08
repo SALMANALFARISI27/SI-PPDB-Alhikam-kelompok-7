@@ -21,7 +21,7 @@ class Kategori_portfolio_model extends Model
     {
         $builder = $this->db->table('kategori_portfolio');
         $builder->select('*');
-        $builder->orderBy('kategori_portfolio.id_kategori_portfolio','DESC');
+        $builder->orderBy('kategori_portfolio.urutan','ASC');
         $query = $builder->get();
         return $query->getResult();
     }
@@ -41,7 +41,7 @@ class Kategori_portfolio_model extends Model
     {
         $builder = $this->db->table('kategori_portfolio');
         $builder->select('COUNT(*) AS total');
-        $builder->orderBy('kategori_portfolio.id_kategori_portfolio','DESC');
+        $builder->orderBy('kategori_portfolio.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -51,7 +51,7 @@ class Kategori_portfolio_model extends Model
     {
         $builder = $this->db->table('kategori_portfolio');
         $builder->where('id_kategori_portfolio',$id_kategori_portfolio);
-        $builder->orderBy('kategori_portfolio.id_kategori_portfolio','DESC');
+        $builder->orderBy('kategori_portfolio.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
@@ -61,7 +61,7 @@ class Kategori_portfolio_model extends Model
     {
         $builder = $this->db->table('kategori_portfolio');
         $builder->where('slug_kategori_portfolio',$slug_kategori_portfolio);
-        $builder->orderBy('kategori_portfolio.id_kategori_portfolio','DESC');
+        $builder->orderBy('kategori_portfolio.urutan','ASC');
         $query = $builder->get();
         return $query->getRow();
     }
