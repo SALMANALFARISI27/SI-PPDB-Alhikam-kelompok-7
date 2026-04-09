@@ -326,9 +326,9 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Agama Ayah</label>
+              <label class="col-md-3 text-dark">Agama Ayah<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <select name="agama_ayah" class="form-control"><option value="">-- Pilih Agama --</option>
+                <select name="agama_ayah" class="form-control" required><option value="">-- Pilih Agama --</option>
                   <option value="Islam" <?php if($calon_peserta_didik->agama_ayah=='Islam') echo 'selected'; ?>>Islam</option>
                   <option value="Kristen" <?php if($calon_peserta_didik->agama_ayah=='Kristen') echo 'selected'; ?>>Kristen</option>
                   <option value="Katolik" <?php if($calon_peserta_didik->agama_ayah=='Katolik') echo 'selected'; ?>>Katolik</option>
@@ -342,14 +342,14 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Pekerjaan Ayah<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <input type="text" name="pekerjaan_ayah" class="form-control" placeholder="Pekerjaan Ayah" value="<?php if(isset($_POST['submit'])) { echo set_value('pekerjaan_ayah'); }else{ echo $calon_peserta_didik->pekerjaan_ayah; } ?>">
+                <input type="text" name="pekerjaan_ayah" class="form-control" placeholder="Pekerjaan Ayah" value="<?php if(isset($_POST['submit'])) { echo set_value('pekerjaan_ayah'); }else{ echo $calon_peserta_didik->pekerjaan_ayah; } ?>" required>
               </div>
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Pendidikan Ayah</label>
+              <label class="col-md-3 text-dark">Pendidikan Ayah<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <select name="jenjang_ayah" class="form-control"><option value="">-- Pilih Jenjang --</option>
+                <select name="jenjang_ayah" class="form-control" required><option value="">-- Pilih Jenjang --</option>
                      <option value="Tidak Sekolah" <?php if($calon_peserta_didik->jenjang_ayah=='Tidak Sekolah') echo 'selected'; ?>>Tidak Sekolah</option>
                      <option value="SD" <?php if($calon_peserta_didik->jenjang_ayah=='SD') echo 'selected'; ?>>SD</option>
                      <option value="SMP/Sederajat" <?php if($calon_peserta_didik->jenjang_ayah=='SMP/Sederajat') echo 'selected'; ?>>SMP/Sederajat</option>
@@ -366,7 +366,7 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Alamat Ayah<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <textarea name="alamat_ayah" placeholder="Alamat Ayah" class="form-control"><?php if(isset($_POST['submit'])) { echo set_value('alamat_ayah'); }else{ echo $calon_peserta_didik->alamat_ayah; } ?></textarea>
+                <textarea name="alamat_ayah" placeholder="Alamat Ayah" class="form-control" required><?php if(isset($_POST['submit'])) { echo set_value('alamat_ayah'); }else{ echo $calon_peserta_didik->alamat_ayah; } ?></textarea>
               </div>
             </div>
 
@@ -398,9 +398,9 @@
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Agama Ibu</label>
+              <label class="col-md-3 text-dark">Agama Ibu<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <select name="agama_ibu" class="form-control"><option value="">-- Pilih Agama --</option>
+                <select name="agama_ibu" class="form-control" required><option value="">-- Pilih Agama --</option>
                   <option value="Islam" <?php if($calon_peserta_didik->agama_ibu=='Islam') echo 'selected'; ?>>Islam</option>
                   <option value="Kristen" <?php if($calon_peserta_didik->agama_ibu=='Kristen') echo 'selected'; ?>>Kristen</option>
                   <option value="Katolik" <?php if($calon_peserta_didik->agama_ibu=='Katolik') echo 'selected'; ?>>Katolik</option>
@@ -414,14 +414,14 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Pekerjaan Ibu<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <input type="text" name="pekerjaan_ibu" class="form-control" placeholder="Pekerjaan Ibu" value="<?php if(isset($_POST['submit'])) { echo set_value('pekerjaan_ibu'); }else{ echo $calon_peserta_didik->pekerjaan_ibu; } ?>">
+                <input type="text" name="pekerjaan_ibu" class="form-control" placeholder="Pekerjaan Ibu" value="<?php if(isset($_POST['submit'])) { echo set_value('pekerjaan_ibu'); }else{ echo $calon_peserta_didik->pekerjaan_ibu; } ?>" required>
               </div>
             </div>
 
             <div class="form-group row mb-3">
-              <label class="col-md-3 text-dark">Pendidikan Ibu</label>
+              <label class="col-md-3 text-dark">Pendidikan Ibu<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <select name="jenjang_ibu" class="form-control"><option value="">-- Pilih Jenjang --</option>
+                <select name="jenjang_ibu" class="form-control" required><option value="">-- Pilih Jenjang --</option>
                      <option value="Tidak Sekolah" <?php if($calon_peserta_didik->jenjang_ibu=='Tidak Sekolah') echo 'selected'; ?>>Tidak Sekolah</option>
                      <option value="SD" <?php if($calon_peserta_didik->jenjang_ibu=='SD') echo 'selected'; ?>>SD</option>
                      <option value="SMP/Sederajat" <?php if($calon_peserta_didik->jenjang_ibu=='SMP/Sederajat') echo 'selected'; ?>>SMP/Sederajat</option>
@@ -438,7 +438,7 @@
             <div class="form-group row mb-3">
               <label class="col-md-3 text-dark">Alamat Ibu<span class="text-danger">*</span></label>
               <div class="col-md-9">
-                <textarea name="alamat_ibu" placeholder="Alamat Ibu" class="form-control"><?php if(isset($_POST['submit'])) { echo set_value('alamat_ibu'); }else{ echo $calon_peserta_didik->alamat_ibu; } ?></textarea>
+                <textarea name="alamat_ibu" placeholder="Alamat Ibu" class="form-control" required><?php if(isset($_POST['submit'])) { echo set_value('alamat_ibu'); }else{ echo $calon_peserta_didik->alamat_ibu; } ?></textarea>
               </div>
             </div>
 
@@ -468,15 +468,15 @@
                 <!-- radio -->
                 <div class="form-group">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="identitas_wali" value="Ayah"  onclick="Ayah()" <?php if(set_value('identitas_wali')=='Ayah') { echo 'checked'; }elseif($calon_peserta_didik->identitas_wali=='Ayah') { echo 'checked'; } ?> required>
+                    <input class="form-check-input" type="radio" name="identitas_wali" value="Ayah"  onchange="updateWali()" <?php if(set_value('identitas_wali')=='Ayah') { echo 'checked'; }elseif($calon_peserta_didik->identitas_wali=='Ayah') { echo 'checked'; } ?> required>
                     <label class="form-check-label">Sama dengan Ayah</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="identitas_wali" value="Ibu" onclick="Ibu()" <?php if(set_value('identitas_wali')=='Ibu') { echo 'checked'; }elseif($calon_peserta_didik->identitas_wali=='Ibu') { echo 'checked'; } ?> required>
+                    <input class="form-check-input" type="radio" name="identitas_wali" value="Ibu" onchange="updateWali()" <?php if(set_value('identitas_wali')=='Ibu') { echo 'checked'; }elseif($calon_peserta_didik->identitas_wali=='Ibu') { echo 'checked'; } ?> required>
                     <label class="form-check-label">Sama dengan Ibu</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="identitas_wali" value="Berbeda" <?php if(set_value('identitas_wali')=='Berbeda') { echo 'checked'; }elseif($calon_peserta_didik->identitas_wali=='Berbeda') { echo 'checked'; } ?> required>
+                    <input class="form-check-input" type="radio" name="identitas_wali" value="Berbeda" onchange="updateWali()" <?php if(set_value('identitas_wali')=='Berbeda') { echo 'checked'; }elseif($calon_peserta_didik->identitas_wali=='Berbeda') { echo 'checked'; } ?> required>
                     <label class="form-check-label">Berbeda dengan Ayah dan Ibu</label>
                   </div>
                 </div>
@@ -489,15 +489,15 @@
               <div class="form-group row mb-3">
                 <label class="col-md-3 text-dark">Nama Wali<span class="text-danger">*</span></label>
                 <div class="col-md-9">
-                  <input type="text" name="nama_wali" class="form-control" placeholder="Nama Wali" value="<?php if(isset($_POST['submit'])) { echo set_value('nama_wali'); }else{ echo $calon_peserta_didik->nama_wali; } ?>">
+                  <input type="text" name="nama_wali" class="form-control" placeholder="Nama Wali" value="<?php if(isset($_POST['submit'])) { echo set_value('nama_wali'); }else{ echo $calon_peserta_didik->nama_wali; } ?>" required>
                   <small class="text-warning">Nama wali</small>
                 </div>
               </div>
 
               <div class="form-group row mb-3">
-                <label class="col-md-3 text-dark">Agama Wali</label>
+                <label class="col-md-3 text-dark">Agama Wali<span class="text-danger">*</span></label>
                 <div class="col-md-9">
-                  <select name="agama_wali" class="form-control"><option value="">-- Pilih Agama --</option>
+                  <select name="agama_wali" class="form-control" required><option value="">-- Pilih Agama --</option>
                   <option value="Islam" <?php if($calon_peserta_didik->agama_wali=='Islam') echo 'selected'; ?>>Islam</option>
                   <option value="Kristen" <?php if($calon_peserta_didik->agama_wali=='Kristen') echo 'selected'; ?>>Kristen</option>
                   <option value="Katolik" <?php if($calon_peserta_didik->agama_wali=='Katolik') echo 'selected'; ?>>Katolik</option>
@@ -509,16 +509,16 @@
               </div>
 
               <div class="form-group row mb-3">
-                <label class="col-md-3 text-dark">Pekerjaan Wali</label>
+                <label class="col-md-3 text-dark">Pekerjaan Wali<span class="text-danger">*</span></label>
                 <div class="col-md-9">
-                  <input type="text" name="pekerjaan_wali" class="form-control" placeholder="Pekerjaan Wali" value="<?php if(isset($_POST['submit'])) { echo set_value('pekerjaan_wali'); }else{ echo $calon_peserta_didik->pekerjaan_wali; } ?>">
+                  <input type="text" name="pekerjaan_wali" class="form-control" placeholder="Pekerjaan Wali" value="<?php if(isset($_POST['submit'])) { echo set_value('pekerjaan_wali'); }else{ echo $calon_peserta_didik->pekerjaan_wali; } ?>" required>
                 </div>
               </div>
 
               <div class="form-group row mb-3">
-                <label class="col-md-3 text-dark">Pendidikan Wali</label>
+                <label class="col-md-3 text-dark">Pendidikan Wali<span class="text-danger">*</span></label>
                 <div class="col-md-9">
-                  <select name="jenjang_wali" class="form-control"><option value="">-- Pilih Jenjang --</option>
+                  <select name="jenjang_wali" class="form-control" required><option value="">-- Pilih Jenjang --</option>
                      <option value="Tidak Sekolah" <?php if($calon_peserta_didik->jenjang_wali=='Tidak Sekolah') echo 'selected'; ?>>Tidak Sekolah</option>
                      <option value="SD" <?php if($calon_peserta_didik->jenjang_wali=='SD') echo 'selected'; ?>>SD</option>
                      <option value="SMP/Sederajat" <?php if($calon_peserta_didik->jenjang_wali=='SMP/Sederajat') echo 'selected'; ?>>SMP/Sederajat</option>
@@ -535,15 +535,15 @@
               <div class="form-group row mb-3">
                 <label class="col-md-3 text-dark">Alamat Wali<span class="text-danger">*</span></label>
                 <div class="col-md-9">
-                  <textarea name="alamat_wali" placeholder="Alamat Wali" class="form-control"><?php if(isset($_POST['submit'])) { echo set_value('alamat_wali'); }else{ echo $calon_peserta_didik->alamat_wali; } ?></textarea>
+                  <textarea name="alamat_wali" placeholder="Alamat Wali" class="form-control" required><?php if(isset($_POST['submit'])) { echo set_value('alamat_wali'); }else{ echo $calon_peserta_didik->alamat_wali; } ?></textarea>
                 </div>
               </div>
 
 
               <div class="form-group row mb-3">
-                <label class="col-md-3 text-dark">Telepon/HP Wali</label>
+                <label class="col-md-3 text-dark">Telepon/HP Wali<span class="text-danger">*</span></label>
                 <div class="col-md-9">
-                  <input type="text" name="telepon_wali" class="form-control" placeholder="Telepon/HP Wali" value="<?php if(isset($_POST['submit'])) { echo set_value('telepon_wali'); }else{ echo $calon_peserta_didik->telepon_wali; } ?>">
+                  <input type="text" name="telepon_wali" class="form-control" placeholder="Telepon/HP Wali" value="<?php if(isset($_POST['submit'])) { echo set_value('telepon_wali'); }else{ echo $calon_peserta_didik->telepon_wali; } ?>" required>
                 </div>
               </div>
             </div>
@@ -563,30 +563,33 @@
         <?php echo form_close(); ?>
 
         <script>
-        function Ayah() {
-          var x = document.getElementById("myDIV");
-          if (x.style.display === "none") {
-            x.style.display = "block";
+        function updateWali() {
+          var radios = document.getElementsByName('identitas_wali');
+          var selected = '';
+          for(var i=0; i<radios.length; i++){
+            if(radios[i].checked){
+              selected = radios[i].value;
+              break;
+            }
+          }
+          
+          var myDIV = document.getElementById("myDIV");
+          var waliInputs = myDIV.querySelectorAll('input, select, textarea');
+          
+          if (selected === 'Berbeda') {
+            myDIV.style.display = "block";
+            waliInputs.forEach(function(el) {
+              el.required = true;
+            });
           } else {
-            x.style.display = "none";
+            myDIV.style.display = "none";
+            waliInputs.forEach(function(el) {
+              el.required = false;
+            });
           }
         }
 
-        function Ibu() {
-          var x = document.getElementById("myDIV");
-          if (x.style.display === "none") {
-            x.style.display = "block";
-          } else {
-            x.style.display = "none";
-          }
-        }
-
-        function Berbeda() {
-          var x = document.getElementById("myDIV");
-          if (x.style.display === "none") {
-            x.style.display = "block";
-          } else {
-            x.style.display = "none";
-          }
-        }
+        document.addEventListener("DOMContentLoaded", function() {
+          updateWali();
+        });
         </script>

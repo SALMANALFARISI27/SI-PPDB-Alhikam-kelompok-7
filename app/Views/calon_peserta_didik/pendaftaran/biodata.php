@@ -155,7 +155,7 @@ echo csrf_field();
     </div>
 
     <div class="form-group row mb-3">
-      <label class="col-md-3 text-dark">Telepon dan Email</label>
+      <label class="col-md-3 text-dark">Telepon dan Email<span class="text-danger">*</span></label>
       <div class="col-md-4">
         <input type="text" name="telepon" class="form-control" placeholder="Telepon/HP"
           value="<?php echo set_value('telepon') ?>" required>
@@ -187,7 +187,6 @@ echo csrf_field();
   </div>
 
 </div>
-<!-- data dasar CALON PESERTA DIDIK -->
 
 <!-- data dasar CALON PESERTA DIDIK -->
 <div class="card mb-2">
@@ -261,7 +260,7 @@ echo csrf_field();
   <div class="card-body">
 
     <div class="form-group row mb-3">
-      <label class="col-md-3 text-dark">Golongan Darah Calon Peserta Didik</label>
+      <label class="col-md-3 text-dark">Golongan Darah Calon Peserta Didik<span class="text-danger">*</span></label>
       <div class="col-md-9">
         <select name="goldar_calon_peserta_didik" class="form-control  form-select" required>
           <option value="">Pilih Golongan Darah</option>
@@ -369,9 +368,9 @@ echo csrf_field();
     </div>
 
     <div class="form-group row mb-3">
-      <label class="col-md-3 text-dark">Agama Ayah</label>
+      <label class="col-md-3 text-dark">Agama Ayah<span class="text-danger">*</span></label>
       <div class="col-md-9">
-        <select name="agama_ayah" class="form-control">
+        <select name="agama_ayah" class="form-control" required>
           <option value="">-- Pilih Agama --</option>
           <option value="Islam">Islam</option>
           <option value="Kristen">Kristen</option>
@@ -387,14 +386,14 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Pekerjaan Ayah<span class="text-danger">*</span></label>
       <div class="col-md-9">
-        <input type="text" name="pekerjaan_ayah" class="form-control" placeholder="Pekerjaan Ayah">
+        <input type="text" name="pekerjaan_ayah" class="form-control" placeholder="Pekerjaan Ayah" required>
       </div>
     </div>
 
     <div class="form-group row mb-3">
-      <label class="col-md-3 text-dark">Pendidikan Ayah</label>
+      <label class="col-md-3 text-dark">Pendidikan Ayah<span class="text-danger">*</span></label>
       <div class="col-md-9">
-        <select name="jenjang_ayah" class="form-control">
+        <select name="jenjang_ayah" class="form-control" required>
           <option value="">-- Pilih Jenjang --</option>
           <option value="Tidak Sekolah">Tidak Sekolah</option>
           <option value="SD">SD</option>
@@ -414,7 +413,7 @@ echo csrf_field();
       <label class="col-md-3 text-dark">Alamat Ayah<span class="text-danger">*</span></label>
       <div class="col-md-9">
         <textarea name="alamat_ayah" placeholder="Alamat Ayah"
-          class="form-control"><?php echo set_value('alamat_ayah') ?></textarea>
+          class="form-control" required><?php echo set_value('alamat_ayah') ?></textarea>
       </div>
     </div>
 
@@ -448,9 +447,9 @@ echo csrf_field();
     </div>
 
     <div class="form-group row mb-3">
-      <label class="col-md-3 text-dark">Agama Ibu</label>
+      <label class="col-md-3 text-dark">Agama Ibu<span class="text-danger">*</span></label>
       <div class="col-md-9">
-        <select name="agama_ibu" class="form-control">
+        <select name="agama_ibu" class="form-control" required>
           <option value="">-- Pilih Agama --</option>
           <option value="Islam">Islam</option>
           <option value="Kristen">Kristen</option>
@@ -466,14 +465,14 @@ echo csrf_field();
     <div class="form-group row mb-3">
       <label class="col-md-3 text-dark">Pekerjaan Ibu<span class="text-danger">*</span></label>
       <div class="col-md-9">
-        <input type="text" name="pekerjaan_ibu" class="form-control" placeholder="Pekerjaan Ibu">
+        <input type="text" name="pekerjaan_ibu" class="form-control" placeholder="Pekerjaan Ibu" required>
       </div>
     </div>
 
     <div class="form-group row mb-3">
-      <label class="col-md-3 text-dark">Pendidikan Ibu</label>
+      <label class="col-md-3 text-dark">Pendidikan Ibu<span class="text-danger">*</span></label>
       <div class="col-md-9">
-        <select name="jenjang_ibu" class="form-control">
+        <select name="jenjang_ibu" class="form-control" required>
           <option value="">-- Pilih Jenjang --</option>
           <option value="Tidak Sekolah">Tidak Sekolah</option>
           <option value="SD">SD</option>
@@ -493,7 +492,7 @@ echo csrf_field();
       <label class="col-md-3 text-dark">Alamat Ibu<span class="text-danger">*</span></label>
       <div class="col-md-9">
         <textarea name="alamat_ibu" placeholder="Alamat Ibu"
-          class="form-control"><?php echo set_value('alamat_ibu') ?></textarea>
+          class="form-control" required><?php echo set_value('alamat_ibu') ?></textarea>
       </div>
     </div>
 
@@ -524,19 +523,19 @@ echo csrf_field();
         <!-- radio -->
         <div class="form-group">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="identitas_wali" value="Ayah" onclick="Ayah()" <?php if (set_value('identitas_wali') == 'Ayah') {
+            <input class="form-check-input" type="radio" name="identitas_wali" value="Ayah" onchange="updateWali()" <?php if (set_value('identitas_wali') == 'Ayah') {
               echo 'checked';
             } ?> required>
             <label class="form-check-label">Sama dengan Ayah</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="identitas_wali" value="Ibu" onclick="Ibu()" <?php if (set_value('identitas_wali') == 'Ibu') {
+            <input class="form-check-input" type="radio" name="identitas_wali" value="Ibu" onchange="updateWali()" <?php if (set_value('identitas_wali') == 'Ibu') {
               echo 'checked';
             } ?> required>
             <label class="form-check-label">Sama dengan Ibu</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="identitas_wali" value="Berbeda" <?php if (set_value('identitas_wali') == 'Berbeda') {
+            <input class="form-check-input" type="radio" name="identitas_wali" value="Berbeda" onchange="updateWali()" <?php if (set_value('identitas_wali') == 'Berbeda') {
               echo 'checked';
             } ?> required>
             <label class="form-check-label">Berbeda dengan Ayah dan Ibu</label>
@@ -555,15 +554,15 @@ echo csrf_field();
         <label class="col-md-3 text-dark">Nama Wali<span class="text-danger">*</span></label>
         <div class="col-md-9">
           <input type="text" name="nama_wali" class="form-control" placeholder="Nama Wali"
-            value="<?php echo set_value('nama_wali') ?>">
+            value="<?php echo set_value('nama_wali') ?>" required>
           <small class="text-warning">Nama wali</small>
         </div>
       </div>
 
       <div class="form-group row mb-3">
-        <label class="col-md-3 text-dark">Agama Wali</label>
+        <label class="col-md-3 text-dark">Agama Wali<span class="text-danger">*</span></label>
         <div class="col-md-9">
-          <select name="agama_wali" class="form-control">
+          <select name="agama_wali" class="form-control" required>
             <option value="">-- Pilih Agama --</option>
             <option value="Islam">Islam</option>
             <option value="Kristen">Kristen</option>
@@ -577,16 +576,16 @@ echo csrf_field();
       </div>
 
       <div class="form-group row mb-3">
-        <label class="col-md-3 text-dark">Pekerjaan Wali</label>
+        <label class="col-md-3 text-dark">Pekerjaan Wali<span class="text-danger">*</span></label>
         <div class="col-md-9">
-          <input type="text" name="pekerjaan_wali" class="form-control" placeholder="Pekerjaan Wali">
+          <input type="text" name="pekerjaan_wali" class="form-control" placeholder="Pekerjaan Wali" required>
         </div>
       </div>
 
       <div class="form-group row mb-3">
-        <label class="col-md-3 text-dark">Pendidikan Wali</label>
+        <label class="col-md-3 text-dark">Pendidikan Wali<span class="text-danger">*</span></label>
         <div class="col-md-9">
-          <select name="jenjang_wali" class="form-control">
+          <select name="jenjang_wali" class="form-control" required>
             <option value="">-- Pilih Jenjang --</option>
             <option value="Tidak Sekolah">Tidak Sekolah</option>
             <option value="SD">SD</option>
@@ -606,16 +605,16 @@ echo csrf_field();
         <label class="col-md-3 text-dark">Alamat Wali<span class="text-danger">*</span></label>
         <div class="col-md-9">
           <textarea name="alamat_wali" placeholder="Alamat Wali"
-            class="form-control"><?php echo set_value('alamat_wali') ?></textarea>
+            class="form-control" required><?php echo set_value('alamat_wali') ?></textarea>
         </div>
       </div>
 
 
       <div class="form-group row mb-3">
-        <label class="col-md-3 text-dark">Telepon/HP Wali</label>
+        <label class="col-md-3 text-dark">Telepon/HP Wali<span class="text-danger">*</span></label>
         <div class="col-md-9">
           <input type="text" name="telepon_wali" class="form-control" placeholder="Telepon/HP Wali"
-            value="<?php echo set_value('telepon_wali') ?>">
+            value="<?php echo set_value('telepon_wali') ?>" required>
         </div>
       </div>
     </div>
@@ -635,30 +634,33 @@ echo csrf_field();
 <?php echo form_close(); ?>
 
 <script>
-  function Ayah() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-      x.style.display = "block";
+  function updateWali() {
+    var radios = document.getElementsByName('identitas_wali');
+    var selected = '';
+    for(var i=0; i<radios.length; i++){
+      if(radios[i].checked){
+        selected = radios[i].value;
+        break;
+      }
+    }
+    
+    var myDIV = document.getElementById("myDIV");
+    var waliInputs = myDIV.querySelectorAll('input, select, textarea');
+    
+    if (selected === 'Berbeda') {
+      myDIV.style.display = "block";
+      waliInputs.forEach(function(el) {
+        el.required = true;
+      });
     } else {
-      x.style.display = "none";
+      myDIV.style.display = "none";
+      waliInputs.forEach(function(el) {
+        el.required = false;
+      });
     }
   }
 
-  function Ibu() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
-
-  function Berbeda() {
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
+  document.addEventListener("DOMContentLoaded", function() {
+    updateWali();
+  });
 </script>
