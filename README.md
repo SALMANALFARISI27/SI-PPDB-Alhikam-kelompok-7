@@ -74,5 +74,5 @@ Halaman kelola Ekstrakurikuler dan kategorinya
 Halaman kelola Master Data Link website
 <br>
 Halaman kelola Admin sistem
-
+<br>
 Halaman kelola konfigurasi (website, logo dan icon, about us, banner, email, informasi detail Yayasan pendidikan)
