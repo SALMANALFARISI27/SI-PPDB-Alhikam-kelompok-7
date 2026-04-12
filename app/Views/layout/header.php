@@ -7,7 +7,7 @@ $m_nav = new Nav_model();
 $m_site = new Konfigurasi_model();
 $site_setting = $m_site->listing();
 $nav_profil = $m_nav->profil('Profil');
-$nav_profil2 = $m_nav->profil('Profil');
+
 $nav_berita = $m_nav->berita();
 $nav_portfolio = $m_nav->portfolio();
 $nav_prestasi = $m_nav->prestasi();

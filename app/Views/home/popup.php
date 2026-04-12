@@ -23,9 +23,7 @@ if($popup) {
                         <?php echo $popup->isi ?>
                     </div>
 
-                    <div id="mc_embed_signup">
-                   
-                  </div>
+
               </div>
             </div>
             <!-- /.row -->

@@ -23,7 +23,7 @@
                         class="img-fluid rounded rounded-circle w-50" alt="" />
                     </p>
                     <h4 class="text-uppercase"><?php echo $jenjang_pendidikan->judul_jenjang_pendidikan ?></h4>
-                    <!-- <p class="mb-2"><?php echo $jenjang_pendidikan->ringkasan ?></p> -->
+
                     <a href="<?php echo base_url('jenjang_pendidikan/read/' . $jenjang_pendidikan->slug_jenjang_pendidikan) ?>"
                       class="btn btn-dark btn-sm">Baca Selengkapnya...</a>
                   </div>

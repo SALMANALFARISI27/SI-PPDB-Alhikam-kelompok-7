@@ -32,20 +32,3 @@
   </div>
   <!-- /.container-card -->
 </section>
-
-<!-- Modal -->
-<div class="modal fade" id="VideoModal" tabindex="-1" aria-labelledby="VideoModal" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-      <div class="modal-body">
-        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="ratio ratio-16x9 rounded shadow-lg border border-secondary p-2">
-
-          title="<?php echo $this->website->namaweb() ?>" allowfullscreen></iframe>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>

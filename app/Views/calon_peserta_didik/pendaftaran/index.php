@@ -104,12 +104,7 @@
 							<div class="btn-group btn-block">
 								<a href="<?php echo base_url('calon_peserta_didik/pendaftaran/edit/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
 									class="btn btn-warning btn-xs" title="Edit"><i class="fa fa-edit"></i> Edit</a>
-								<?php if ($calon_peserta_didik->status_pendaftaran == 'Menunggu') { ?>
-									<a href="<?php echo base_url('calon_peserta_didik/pendaftaran/delete/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
-										class="btn btn-secondary btn-xs delete-link" title="Hapus"
-										onclick="return confirm('Yakin ingin menghapus pendaftaran ini?')"><i
-											class="fa fa-trash"></i></a>
-								<?php } ?>
+
 							</div>
 						</td>
 					</tr>
