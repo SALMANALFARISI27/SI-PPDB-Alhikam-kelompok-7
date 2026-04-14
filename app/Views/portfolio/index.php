@@ -32,16 +32,16 @@
                 if ($portfolio->gambar == "") {
                   echo '-';
                 } else {
-                  // 1. Tentukan path lokasi gambar
+
                   $img_dipublic = FCPATH . 'assets/upload/image/' . $portfolio->gambar;
                   $img_diluar = FCPATH . '' . $portfolio->gambar;
 
-                  // 2. Logika pengecekan dan penyalinan file
+
                   if (!file_exists($img_dipublic) && file_exists($img_diluar)) {
                     @copy($img_diluar, $img_dipublic);
                   }
 
-                  // 3. Tampilkan HTML-nya
+
                   ?>
                   <a href="<?php echo base_url('portfolio/read/' . $portfolio->slug_portfolio) ?>">
                     <img class="img-fluid" src="<?php echo base_url('assets/upload/image/' . $portfolio->gambar) ?>"
@@ -56,12 +56,15 @@
                     <?php echo $portfolio->judul_portfolio ?>
                   </a>
                 </h4>
-                <p class="mb-0">
+                <p class="mb-0 text-small text-muted">
                   <?php echo $portfolio->nama_kategori_portfolio ?>
                 </p>
                 <ul class="post-meta d-flex flex-wrap gap-2 mb-0 mt-3 text-muted" style="font-size: 13px;">
-                  <li class="post-date"><i class="uil uil-calendar-alt"></i><span><?php echo $this->website->tanggal_bulan_menit($portfolio->tanggal_post ? $portfolio->tanggal_post : $portfolio->tanggal) ?></span></li>
-                  <li class="post-comments"><i class="fa fa-eye"></i><span> Dibaca <?php echo $portfolio->hits ?> kali</span></li>
+                  <li class="post-date"><i
+                      class="uil uil-calendar-alt"></i><span><?php echo $this->website->tanggal_bulan_menit($portfolio->tanggal_post ? $portfolio->tanggal_post : $portfolio->tanggal) ?></span>
+                  </li>
+                  <li class="post-comments"><i class="fa fa-eye"></i><span> Dibaca <?php echo $portfolio->hits ?>
+                      kali</span></li>
                 </ul>
               </div>
               <!--/.card-body -->
