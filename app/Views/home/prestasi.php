@@ -1,6 +1,6 @@
 <!-- /section -->
 <section id="snippet-1" class="wrapper bg-dark text-white wrapper-border">
-  <div class="container pt-10 pt-md-15 pb-13 pb-md-15">
+  <div class="container py-8 py-md-12">
     <h2 class="display-4 mb-3 text-center text-white">Prestasi dan Penghargaan</h2>
     <p class="lead fs-lg mb-10 text-center px-md-16 px-lg-21 px-xl-0"><?php echo $this->website->namaweb() ?></p>
     <div class="swiper-container blog grid-view mb-6" data-margin="30" data-dots="true" data-items-xl="3"

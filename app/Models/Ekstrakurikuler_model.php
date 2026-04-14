@@ -72,14 +72,14 @@ class Ekstrakurikuler_model extends Model
     }
 
     // kategori_ekstrakurikuler
-    public function kategori_ekstrakurikuler($limit, $start, $slug_kategori_ekstrakurikuler)
+    public function kategori_ekstrakurikuler($limit, $start, $id_kategori_ekstrakurikuler)
     {
         $builder = $this->db->table('ekstrakurikuler');
         $builder->select('ekstrakurikuler.*, kategori_ekstrakurikuler.nama_kategori_ekstrakurikuler, kategori_ekstrakurikuler.slug_kategori_ekstrakurikuler, admin.nama');
         $builder->join('kategori_ekstrakurikuler','kategori_ekstrakurikuler.id_kategori_ekstrakurikuler = ekstrakurikuler.id_kategori_ekstrakurikuler','LEFT');
         $builder->join('admin','admin.id_admin = ekstrakurikuler.id_admin','LEFT');
 
-        $builder->where('kategori_ekstrakurikuler.slug_kategori_ekstrakurikuler',$slug_kategori_ekstrakurikuler);
+        $builder->where('kategori_ekstrakurikuler.slug_kategori_ekstrakurikuler',$id_kategori_ekstrakurikuler);
         $builder->limit($limit,$start);
 
         $builder->orderBy('ekstrakurikuler.id_ekstrakurikuler','DESC');

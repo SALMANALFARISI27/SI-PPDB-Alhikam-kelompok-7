@@ -1,7 +1,7 @@
 <?php if($video) { ?>
 <!-- /header -->
 <section class="wrapper bg-dark lower-start">
-  <div class="container pt-7 pt-md-11 pb-8">
+  <div class="container py-8 py-md-12">
     <div class="row gx-0 gy-10 align-items-center">
       <div class="col-lg-6" data-cues="slideInDown" data-group="page-title" data-delay="600">
         <h1 class="display-2 text-white mb-4"><?php echo $video->judul ?></h1>

@@ -9,18 +9,61 @@ $site_setting = $m_site->listing();
   /* Add your custom styles here */
   .whatsapp-link {
     position: fixed;
-    bottom: 30px;
-    right: 80px;
+    bottom: 90px;
+    right: 20px;
     z-index: 9999;
     transition: transform 0.3s ease-in-out;
+  }
+
+  @media (min-width: 768px) {
+    .whatsapp-link {
+      bottom: 100px;
+      right: 30px;
+    }
+  }
+
+  /* Force display progress-wrap on mobile */
+  @media (max-width: 991.98px) {
+    .progress-wrap {
+      display: block !important;
+      right: 20px !important;
+      bottom: 20px !important;
+      z-index: 9999 !important;
+    }
+    .progress-wrap.active-progress {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+    }
+    
+    /* Force display post-meta list items and texts on mobile */
+    .post-meta li, 
+    .post-meta li.post-author, 
+    .post-meta li.post-comments {
+      display: inline-flex !important;
+      align-items: center;
+    }
+    .post-meta li span {
+      display: inline-block !important;
+    }
   }
 
   a.whatsapp-link {
     color: green;
     background-color: #f5f5f5;
     border: solid thin #eee;
-    border-radius: 10px;
-    padding: 10px 20px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .whatsapp-link i {
+    font-size: 30px;
   }
 
   .whatsapp-link:hover {
@@ -76,7 +119,7 @@ $wa_text = urlencode($site_setting->pesan_whatsapp);
 Footer Area
 ==============================-->
 <footer class="bg-navy text-inverse">
-  <div class="container py-13 py-md-15">
+  <div class="container py-10 py-md-15">
     <div class="row gy-6 gy-lg-0">
       <div class="col-md-4 col-lg-4">
         <div class="widget">

@@ -5,6 +5,7 @@ use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
 use App\Models\Akun_model;
 use App\Models\Gelombang_model;
+use App\Models\Calon_peserta_didik_model;
 
 class Pendaftaran extends BaseController
 {
@@ -18,7 +19,16 @@ class Pendaftaran extends BaseController
 		$gelombang = $m_gelombang->aktif();
 
 		$m_akun = new Akun_model();
+		$m_calon = new Calon_peserta_didik_model();
 		$kode_akun = strtoupper(random_string('alnum', 64));
+
+		$registered_ids = [];
+		if (Session()->get('id_akun')) {
+			$my_registrations = $m_calon->akun(Session()->get('id_akun'));
+			foreach ($my_registrations as $reg) {
+				$registered_ids[] = $reg->id_gelombang;
+			}
+		}
 
 		$data = [
 			'title' => 'Periode Pendaftaran',
@@ -27,6 +37,7 @@ class Pendaftaran extends BaseController
 			'konfigurasi' => $konfigurasi,
 			'gelombang' => $gelombang,
 			'gelombang2' => $gelombang,
+			'registered_ids' => $registered_ids,
 			'content' => 'pendaftaran/index'
 		];
 		echo view('layout/wrapper-pendaftaran', $data);

@@ -42,7 +42,10 @@ class Download extends BaseController
 		$m_download = new Download_model();
 		$m_kategori_download = new Kategori_download_model();
 		$konfigurasi = $m_konfigurasi->listing();
-		$kategori_download = $m_kategori_download->read($slug_kategori_download);
+		$kategori_download = $m_kategori_download->read_slug($slug_kategori_download);
+		if (!$kategori_download) {
+			return redirect()->to(base_url('download'));
+		}
 		$id_kategori_download = $kategori_download->id_kategori_download;
 		$pager = service('pager');
 		$total = $m_download->total_kategori_download($id_kategori_download);
@@ -66,23 +69,26 @@ class Download extends BaseController
 	}
 
 	// Unduh
-	public function baca($id_download)
+	public function baca($slug_download)
 	{
 		$m_konfigurasi = new Konfigurasi_model();
 		$m_download = new Download_model();
 		$konfigurasi = $m_konfigurasi->listing();
-		$download = $m_download->detail($id_download);
+		$download = $m_download->read($slug_download);
+		if (!$download) {
+			return redirect()->to(base_url('download'));
+		}
 		// Update hits
 		$data = [
-			'id_download' => $download['id_download'],
-			'hits' => $download['hits'] + 1
+			'id_download' => $download->id_download,
+			'hits' => $download->hits + 1
 		];
 		$m_download->edit($data);
 		// Update hits
 		$data = [
-			'title' => $download['judul_download'],
-			'description' => $download['judul_download'],
-			'keywords' => $download['judul_download'],
+			'title' => $download->judul_download,
+			'description' => $download->judul_download,
+			'keywords' => $download->judul_download,
 			'download' => $download,
 			'konfigurasi' => $konfigurasi,
 			'content' => 'download/baca'
@@ -91,10 +97,13 @@ class Download extends BaseController
 	}
 
 	// Unduh
-	public function unduh($id_download)
+	public function unduh($slug_download)
 	{
 		$m_download = new Download_model();
-		$download = $m_download->detail($id_download);
+		$download = $m_download->read($slug_download);
+		if (!$download) {
+			return redirect()->to(base_url('download'));
+		}
 		// Update hits
 		$data = [
 			'id_download' => $download->id_download,

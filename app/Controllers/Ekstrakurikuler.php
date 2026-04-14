@@ -44,7 +44,10 @@ class Ekstrakurikuler extends BaseController
 		$m_ekstrakurikuler = new Ekstrakurikuler_model();
 		$m_kategori_ekstrakurikuler = new Kategori_ekstrakurikuler_model();
 		$konfigurasi = $m_konfigurasi->listing();
-		$kategori_ekstrakurikuler = $m_kategori_ekstrakurikuler->read($slug_kategori_ekstrakurikuler);
+		$kategori_ekstrakurikuler = $m_kategori_ekstrakurikuler->read_slug($slug_kategori_ekstrakurikuler);
+		if (!$kategori_ekstrakurikuler) {
+			return redirect()->to(base_url('ekstrakurikuler'));
+		}
 		$status_ekstrakurikuler = 'Publish';
 		$id_kategori_ekstrakurikuler = $kategori_ekstrakurikuler->id_kategori_ekstrakurikuler;
 		$total = $m_ekstrakurikuler->total_kategori_ekstrakurikuler_status($id_kategori_ekstrakurikuler, $status_ekstrakurikuler);

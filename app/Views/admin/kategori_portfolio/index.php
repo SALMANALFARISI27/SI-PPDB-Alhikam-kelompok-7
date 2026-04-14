@@ -36,7 +36,7 @@
 				<td>
 					<?php echo $kategori_portfolio->nama_kategori_portfolio ?>
 					<small>
-						<br>Slug: <?php echo $kategori_portfolio->slug_kategori_portfolio ?>
+						
 					</small>
 
 				<td>

@@ -57,7 +57,17 @@ class Kategori_prestasi_model extends Model
     }
 
     // read
-    public function read($slug_kategori_prestasi)
+    public function read($id_kategori_prestasi)
+    {
+        $builder = $this->db->table('kategori_prestasi');
+        $builder->where('id_kategori_prestasi',$id_kategori_prestasi);
+        $builder->orderBy('kategori_prestasi.urutan','ASC');
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
+    // read_slug
+    public function read_slug($slug_kategori_prestasi)
     {
         $builder = $this->db->table('kategori_prestasi');
         $builder->where('slug_kategori_prestasi',$slug_kategori_prestasi);

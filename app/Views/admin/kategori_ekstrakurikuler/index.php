@@ -35,7 +35,7 @@
 				</td>
 				<td><?php echo $kategori_ekstrakurikuler->nama_kategori_ekstrakurikuler ?>
 					<small>
-						<br>Slug: <?php echo $kategori_ekstrakurikuler->slug_kategori_ekstrakurikuler ?>
+						
 					</small>
 				</td>
 				<td><?php echo $kategori_ekstrakurikuler->keterangan ?></td>

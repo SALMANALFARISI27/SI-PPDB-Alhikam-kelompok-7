@@ -9,7 +9,7 @@
           <div class="card-body p-5">
 
               <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
-                <p class="text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama') ?></strong>. Anda sudah berhasil login. 
+                <p class="text-center">Halo <strong class="text-danger"><?php echo Session()->get('nama_calon_peserta_didik') ?></strong>. Anda sudah berhasil login. 
                   <br>Silakan klik Tombol <strong class="text-danger">Daftar Online</strong> untuk melakukan Proses PPDB.</p>
 
                   
@@ -33,10 +33,10 @@
                             <div class="col-md-9">
                                 <h2><?php echo $gelombang->judul ?></h2>
                                 <p>
-                                    <span class="text-secondary">Tahun:</span> <?php echo $gelombang->tahun_ajaran ?>
-                                    <br><span class="text-secondary">Pembukaan:</span> <?php echo $this->website->hari($gelombang->tanggal_buka) ?>
-                                    <br><span class="text-secondary">Penutupan:</span> <?php echo $this->website->hari($gelombang->tanggal_tutup) ?>
-                                    <br><span class="text-secondary">Pengumuman:</span> <?php echo $this->website->hari($gelombang->tanggal_pengumuman) ?>
+                                    <span class="text-dark fw-bold">Tahun:</span> <?php echo $gelombang->tahun_ajaran ?>
+                                    <br><span class="text-dark fw-bold">Pembukaan:</span> <?php echo $this->website->hari($gelombang->tanggal_buka) ?>
+                                    <br><span class="text-dark fw-bold">Penutupan:</span> <?php echo $this->website->hari($gelombang->tanggal_tutup) ?>
+                                    <br><span class="text-dark fw-bold">Pengumuman:</span> <?php echo $this->website->hari($gelombang->tanggal_pengumuman) ?>
                                 </p>
                                 <p>
                                     <button type="button" class="btn btn-primary btn-sm rounded text-white mb-1" 
@@ -45,10 +45,16 @@
                                         Lihat Detail &nbsp;<i class="fa fa-eye"></i>
                                     </button>
                                     <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
-                                        <a href="<?php echo base_url('calon_peserta_didik/pendaftaran/biodata/' . $gelombang->id_gelombang) ?>" 
-                                           class="btn btn-danger btn-sm text-white mb-1">
-                                           <i class="fa fa-edit"></i>&nbsp; Daftar Online
-                                        </a>
+                                        <?php if (in_array($gelombang->id_gelombang, $registered_ids)) { ?>
+                                            <a href="#" class="btn btn-secondary disabled btn-sm text-white mb-1">
+                                                <i class="fa fa-check-circle"></i>&nbsp; Sudah Daftar
+                                            </a>
+                                        <?php } else { ?>
+                                            <a href="<?php echo base_url('calon_peserta_didik/pendaftaran/biodata/' . $gelombang->id_gelombang) ?>" 
+                                               class="btn btn-danger btn-sm text-white mb-1">
+                                               <i class="fa fa-edit"></i>&nbsp; Daftar Online
+                                            </a>
+                                        <?php } ?>
                                     <?php } else { ?>
                                       <a href="#" class="btn btn-secondary disabled btn-sm text-white mb-1">
                                             <i class="fa fa-edit"></i>&nbsp; Daftar Online
@@ -104,24 +110,7 @@
                                 <div class="col-md-9">
                                   <?php echo $gelombang->isi ?>
                                
-                                  <p>
-                                    <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
-                                        <a href="<?php echo base_url('pendaftaran/biodata/' . $gelombang->id_gelombang) ?>" 
-                                           class="btn btn-success btn-sm text-white mb-1">
-                                           <i class="fa fa-edit"></i>&nbsp; Daftar
-                                        </a>
-                                    <?php } else { ?>
-                                        <a href="#" class="btn btn-secondary disabled btn-sm text-white mb-1">
-                                            <i class="fa fa-edit"></i>&nbsp; Daftar Online
-                                        </a>
-                                        <a href="<?php echo base_url('pendaftaran/akun') ?>" class="btn btn-success btn-sm text-white mb-1">
-                                            <i class="fa fa-user-edit"></i>&nbsp; Buat akun
-                                        </a>
-                                        <a href="<?php echo base_url('signin') ?>" class="btn btn-info btn-sm text-white mb-1">
-                                            <i class="fa fa-user-lock"></i>&nbsp; Login
-                                        </a>
-                                    <?php } ?>
-                                  </p>
+
                                 </div>
                               </div>
                             </div>                      

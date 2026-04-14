@@ -68,7 +68,7 @@ class Nav_model extends Model
     public function fasilitas()
     {
         $builder = $this->db->table('fasilitas');
-        $builder->select('fasilitas.judul_fasilitas, fasilitas.slug_fasilitas, fasilitas.hits, fasilitas.gambar, fasilitas.id_fasilitas, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas');
+        $builder->select('fasilitas.judul_fasilitas, fasilitas.slug_fasilitas, fasilitas.hits, fasilitas.gambar, fasilitas.id_fasilitas, kategori_fasilitas.nama_kategori_fasilitas');
         $builder->join('kategori_fasilitas', 'kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas');
         $builder->where(array('fasilitas.status_fasilitas' => 'Publish'));
         $builder->limit(15);

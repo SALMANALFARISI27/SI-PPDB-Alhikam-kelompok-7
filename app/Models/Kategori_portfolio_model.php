@@ -57,7 +57,17 @@ class Kategori_portfolio_model extends Model
     }
 
     // read
-    public function read($slug_kategori_portfolio)
+    public function read($id_kategori_portfolio)
+    {
+        $builder = $this->db->table('kategori_portfolio');
+        $builder->where('id_kategori_portfolio',$id_kategori_portfolio);
+        $builder->orderBy('kategori_portfolio.urutan','ASC');
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
+    // read_slug
+    public function read_slug($slug_kategori_portfolio)
     {
         $builder = $this->db->table('kategori_portfolio');
         $builder->where('slug_kategori_portfolio',$slug_kategori_portfolio);

@@ -17,7 +17,7 @@
         <div class="col-lg-10 mx-auto">
             <div class="blog classic-view pt-10">
 
-                <table class="table table-sm table-bordered tabelku" id="example2">
+                <div class="table-responsive"><table class="table table-sm table-bordered tabelku" id="example2">
                     <thead>
                         <tr class="text-center">
                             <th width="5%" class="text-center">No</th>
@@ -44,7 +44,7 @@
                             <td class="text-center"><?php echo $download->hits ?> kali</td>
                             <td>
                                 <?php if($download->gambar=="") { echo '-'; }else{ ?>
-                                    <a href="<?php echo base_url('download/unduh/'.$download->id_download) ?>" class="btn btn-primary btn-sm mt-1" target="_blank">
+                                    <a href="<?php echo base_url('download/unduh/'.$download->slug_download) ?>" class="btn btn-primary btn-sm mt-1" target="_blank">
                                         <small><i class="fa fa-download"></i> Unduh</small>
                                     </a>
                                 <?php } ?>
@@ -53,7 +53,7 @@
                         </tr>
                         <?php $no++; } ?>
                     </tbody>
-                </table>
+                </table></div>
 
             </div>
         </div>

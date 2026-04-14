@@ -36,7 +36,7 @@
 				<td>
 					<?php echo $kategori_galeri->nama_kategori_galeri ?>
 					<small>
-						<br>Slug: <?php echo $kategori_galeri->slug_kategori_galeri ?>
+						
 					</small>
 				</td>
 				<td>

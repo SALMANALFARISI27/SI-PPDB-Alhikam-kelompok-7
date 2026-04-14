@@ -129,6 +129,20 @@ class Galeri_model extends Model
         return $query->getRow();
     }
 
+    // Read by slug
+    public function read($slug_galeri)
+    {
+        $builder = $this->db->table('galeri');
+        $builder->select('galeri.*, kategori_galeri.nama_kategori_galeri, kategori_galeri.slug_kategori_galeri, admin.nama');
+        $builder->join('kategori_galeri','kategori_galeri.id_kategori_galeri = galeri.id_kategori_galeri','LEFT');
+        $builder->join('admin','admin.id_admin = galeri.id_admin','LEFT');
+        $builder->where('galeri.slug_galeri',$slug_galeri);
+        $builder->where('galeri.status_galeri','Publish');
+        $builder->orderBy('galeri.id_galeri','DESC');
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
     // tambah
     public function tambah($data)
     {

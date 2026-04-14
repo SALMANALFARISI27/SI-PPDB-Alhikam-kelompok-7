@@ -44,7 +44,10 @@ class Portfolio extends BaseController
 		$m_portfolio = new Portfolio_model();
 		$m_kategori_portfolio = new Kategori_portfolio_model();
 		$konfigurasi = $m_konfigurasi->listing();
-		$kategori_portfolio = $m_kategori_portfolio->read($slug_kategori_portfolio);
+		$kategori_portfolio = $m_kategori_portfolio->read_slug($slug_kategori_portfolio);
+		if (!$kategori_portfolio) {
+			return redirect()->to(base_url('portfolio'));
+		}
 		$status_portfolio = 'Publish';
 		$id_kategori_portfolio = $kategori_portfolio->id_kategori_portfolio;
 		$total = $m_portfolio->total_kategori_portfolio_status($id_kategori_portfolio, $status_portfolio);
@@ -87,10 +90,13 @@ class Portfolio extends BaseController
 	}
 
 	// read
-	public function read($id_portfolio)
+	public function read($slug_portfolio)
 	{
 		$m_portfolio = new Portfolio_model();
-		$portfolio = $m_portfolio->detail($id_portfolio);
+		$portfolio = $m_portfolio->read($slug_portfolio);
+		if (!$portfolio) {
+			return redirect()->to(base_url('portfolio'));
+		}
 		$portfolio_list = $m_portfolio->home(10, 'Publish');
 		// Update hits
 		$data = [

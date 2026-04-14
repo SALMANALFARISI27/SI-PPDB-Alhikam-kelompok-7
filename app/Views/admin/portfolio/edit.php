@@ -59,6 +59,18 @@
 	</div>
 
 	<div class="form-group row">
+		<label class="col-md-3">Tanggal &amp; jam Publikasi</label>
+		<div class="col-md-3">
+			<input type="text" name="tanggal_publish" class="form-control tanggal" value="<?php if(isset($_POST['tanggal_publish'])) { echo set_value('tanggal_publish'); }else{ echo date('d-m-Y', strtotime($portfolio->tanggal_post ? $portfolio->tanggal_post : $portfolio->tanggal)); } ?>">
+			<small class="text-secondary">Format <strong>dd-mm-yyyy</strong></small>
+		</div>
+		<div class="col-md-3">
+			<input type="text" name="jam" class="form-control jam" value="<?php if(isset($_POST['jam'])) { echo set_value('jam'); }else{ echo date('H:i:s', strtotime($portfolio->tanggal_post ? $portfolio->tanggal_post : $portfolio->tanggal)); } ?>">
+			<small class="text-secondary">Format <strong>HH:MM:SS</strong></small>
+		</div>
+	</div>
+
+	<div class="form-group row">
 		<label class="col-md-3">Isi Portfolio</label>
 		<div class="col-md-9">
 			<textarea name="isi" class="form-control konten"><?php echo $portfolio->isi ?></textarea>

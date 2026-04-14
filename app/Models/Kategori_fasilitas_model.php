@@ -57,7 +57,17 @@ class Kategori_fasilitas_model extends Model
     }
 
     // read
-    public function read($slug_kategori_fasilitas)
+    public function read($id_kategori_fasilitas)
+    {
+        $builder = $this->db->table('kategori_fasilitas');
+        $builder->where('id_kategori_fasilitas',$id_kategori_fasilitas);
+        $builder->orderBy('kategori_fasilitas.id_kategori_fasilitas','DESC');
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
+    // read_slug
+    public function read_slug($slug_kategori_fasilitas)
     {
         $builder = $this->db->table('kategori_fasilitas');
         $builder->where('slug_kategori_fasilitas',$slug_kategori_fasilitas);

@@ -35,7 +35,7 @@
 				</td>
 				<td><?php echo $kategori_staff->nama_kategori_staff ?>
 					<small>
-						<br>Slug: <?php echo $kategori_staff->slug_kategori_staff ?>
+						
 					</small>
 				</td>
 				<td>

@@ -35,7 +35,7 @@
 				</td>
 				<td><?php echo $kategori_download->nama_kategori_download ?>
 					<small>
-						<br>Slug: <?php echo $kategori_download->slug_kategori_download ?>
+						
 					</small>
 				</td>
 				<td><?php echo $kategori_download->keterangan ?></td>

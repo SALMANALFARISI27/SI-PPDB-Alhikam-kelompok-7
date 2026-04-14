@@ -31,7 +31,7 @@ class Video extends BaseController
 			'pagination' => $pager_links,
 			'content' => 'video/index'
 		];
-		echo view('layout/wrapper', $data);
+		return view('layout/wrapper', $data);
 	}
 
 	// read
@@ -42,6 +42,19 @@ class Video extends BaseController
 		$konfigurasi = $m_konfigurasi->listing();
 		$video = $m_video->read($slug_video);
 
+		// Check if video exists
+		if (!$video) {
+			throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+		}
+
+		// Update hits
+		$data_hits = [
+			'id_video' => $video->id_video,
+			'hits'     => ($video->hits ?? 0) + 1
+		];
+		$m_video->edit($data_hits);
+		// Update hits
+
 		$data = [
 			'title' => $video->judul,
 			'description' => $video->judul,
@@ -50,7 +63,7 @@ class Video extends BaseController
 			'konfigurasi' => $konfigurasi,
 			'content' => 'video/read'
 		];
-		echo view('layout/wrapper', $data);
+		return view('layout/wrapper', $data);
 	}
 
 }

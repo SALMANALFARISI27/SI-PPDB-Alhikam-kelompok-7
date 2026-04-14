@@ -36,40 +36,46 @@
               $imgUrl = base_url('assets/images/placeholder.jpg');
             }
             ?>
-            <img src="<?php echo $imgUrl ?>" class="img img-thumbnail">
+            <img src="<?php echo $imgUrl ?>" class="img img-fluid img-thumbnail w-100">
           </div>
         </div>
       </div>
       <div class="col-md-8">
         <div class="card">
           <div class="card-body">
-            <table class="table table-bordered tabelku">
-              <thead>
-                <tr>
-                  <th width="25%">Nama Fasilitas</th>
-                  <th><?php echo $fasilitas->judul_fasilitas ?></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="bg-light">Kategori</td>
-                  <td><?php echo $fasilitas->nama_kategori_fasilitas ?></td>
-                </tr>
+            <div class="table-responsive">
+              <table class="table table-bordered tabelku">
+                <thead>
+                  <tr>
+                    <th width="25%">Nama Fasilitas</th>
+                    <th><?php echo $fasilitas->judul_fasilitas ?></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="bg-light">Kategori</td>
+                    <td><?php echo $fasilitas->nama_kategori_fasilitas ?></td>
+                  </tr>
 
-                <tr>
-                  <td class="bg-light">Kondisi Fasilitas</td>
-                  <td><?php echo $fasilitas->kondisi_fasilitas ?></td>
-                </tr>
-                <tr>
-                  <td class="bg-light">Tahun dan Tanggal Fasilitas</td>
-                  <td><?php echo $fasilitas->tanggal_fasilitas ?></td>
-                </tr>
-                <tr>
-                  <td class="bg-light">Deskripsi Fasilitas</td>
-                  <td><?php echo $fasilitas->isi ?></td>
-                </tr>
-              </tbody>
-            </table>
+                  <tr>
+                    <td class="bg-light">Kondisi Fasilitas</td>
+                    <td><?php echo $fasilitas->kondisi_fasilitas ?></td>
+                  </tr>
+                  <tr>
+                    <td class="bg-light">Tahun dan Tanggal Fasilitas</td>
+                    <td><?php echo $fasilitas->tanggal_fasilitas ?></td>
+                  </tr>
+                  <tr>
+                    <td class="bg-light">Deskripsi Fasilitas</td>
+                    <td><?php echo $fasilitas->isi ?></td>
+                  </tr>
+                  <tr>
+                    <td class="bg-light">Dilihat</td>
+                    <td><?php echo $fasilitas->hits ?> Kali</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
           <div class="card-footer">
             Tanggal: <?php echo $this->website->tanggal_bulan_menit($fasilitas->tanggal) ?>
@@ -119,8 +125,9 @@
                     <?php echo $fasilitas->judul_fasilitas ?>
                   </a>
                 </h5>
-                <p class="mb-0"><?php echo $fasilitas->nama_kategori_fasilitas ?> |
-                  <?php echo $fasilitas->kondisi_fasilitas ?>
+                <p class="mb-0 text-small">
+                  <span class="text-muted"><?php echo $fasilitas->nama_kategori_fasilitas ?></span> |
+                  <span class="text-muted"><?php echo $fasilitas->kondisi_fasilitas ?></span>
                 </p>
               </div>
               <!--/.card-body -->

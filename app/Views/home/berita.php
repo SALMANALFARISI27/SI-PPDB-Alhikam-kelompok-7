@@ -1,6 +1,6 @@
 <!-- /section -->
     <section class="wrapper bg-light">
-      <div class="container py-14 pt-md-10 pb-md-16">
+      <div class="container py-8 py-md-12">
         
         <div class="row text-center">
           <div class="col-lg-9 col-xl-8 col-xxl-7 mx-auto">
@@ -43,7 +43,7 @@
                         </div>
                         <!--/.card-body -->
                         <div class="card-footer">
-                          <ul class="post-meta d-flex mb-0">
+                          <ul class="post-meta d-flex flex-wrap gap-2 mb-0">
                             <li class="post-date"><i class="uil uil-calendar-alt"></i><span><?php echo $this->website->tanggal_bulan_menit($berita->tanggal_publish) ?></span></li>
                             <li class="post-comments">
                               <a href="<?php echo base_url('berita/kategori/'.$berita->slug_kategori) ?>">

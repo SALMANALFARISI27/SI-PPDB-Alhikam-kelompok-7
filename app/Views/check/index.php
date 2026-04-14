@@ -25,7 +25,7 @@
                 if($calon_peserta_didik) {
                 ?>
                 <div class="alert alert-info text-center">Berikut adalah data pendaftaran Anda:</div>
-                <table class="table table-bordered table-sm">
+                <div class="table-responsive"><table class="table table-bordered table-sm">
                   <thead>
                     <tr>
                       <th width="25%">Nama</th>
@@ -56,7 +56,7 @@
                       </td>
                     </tr>
                   </tbody>
-                </table>
+                </table></div>
 
                 <p class="text-right">
                 <a href="<?php echo base_url('pendaftaran/cetak/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-danger btn-sm w-100" target="_blank">

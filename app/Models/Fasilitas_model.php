@@ -72,14 +72,14 @@ class Fasilitas_model extends Model
     }
 
     // kategori_fasilitas
-    public function kategori_fasilitas($limit, $start, $slug_kategori_fasilitas)
+    public function kategori_fasilitas($limit, $start, $id_kategori_fasilitas)
     {
         $builder = $this->db->table('fasilitas');
         $builder->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
         $builder->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
         $builder->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
 
-        $builder->where('kategori_fasilitas.slug_kategori_fasilitas',$slug_kategori_fasilitas);
+        $builder->where('kategori_fasilitas.slug_kategori_fasilitas',$id_kategori_fasilitas);
         $builder->limit($limit,$start);
 
         $builder->orderBy('fasilitas.id_fasilitas','DESC');

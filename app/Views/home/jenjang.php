@@ -8,29 +8,26 @@
             <h2 class="fs-36 text-uppercase mb-3" style="font-weight: bold; color: #000000;">
               Tentang <?php echo $this->website->namaweb(); ?>
             </h2>
-            <h4 class="display-6 text-center px-xl-10 px-xxl-15 mb-10"><?php echo $site->deskripsi ?></h3>
+            <h4 class="display-6 text-center px-xl-10 px-xxl-15 mb-10"><?php echo $site->deskripsi ?></h4>
 
           </div>
 
-          <?php foreach ($jenjang_pendidikan as $jenjang_pendidikan) { ?>
-
-            <div class="col-md-3">
-              <div class="card" style="border: 3px solid #00000038; border-width: 1px;">
-                <div class="card-body p-8">
-                  <div class="px-md-0 px-lg-0 px-xl-1 text-center">
-                    <p class="text-center">
-                      <img src="<?php echo base_url('assets/upload/image/' . $jenjang_pendidikan->gambar) ?>"
-                        class="img-fluid rounded rounded-circle w-50" alt="" />
+          <?php foreach ($jenjang_pendidikan as $jenjang_pendidikan_item) { ?>
+            <div class="col-md-6 col-lg-3 mb-6">
+              <div class="card h-100 shadow-sm" style="border: 1px solid #eee;">
+                <div class="card-body p-6">
+                  <div class="text-center">
+                    <p>
+                      <img src="<?php echo base_url('assets/upload/image/' . $jenjang_pendidikan_item->gambar) ?>"
+                        class="img-fluid rounded-circle w-50 mb-4" alt="" />
                     </p>
-                    <h4 class="text-uppercase"><?php echo $jenjang_pendidikan->judul_jenjang_pendidikan ?></h4>
-
-                    <a href="<?php echo base_url('jenjang_pendidikan/read/' . $jenjang_pendidikan->slug_jenjang_pendidikan) ?>"
-                      class="btn btn-dark btn-sm">Baca Selengkapnya...</a>
+                    <h4 class="text-uppercase mb-4"><?php echo $jenjang_pendidikan_item->judul_jenjang_pendidikan ?></h4>
+                    <a href="<?php echo base_url('jenjang_pendidikan/read/' . $jenjang_pendidikan_item->slug_jenjang_pendidikan) ?>"
+                      class="btn btn-dark btn-sm rounded-pill">Selengkapnya</a>
                   </div>
                 </div>
               </div>
             </div>
-
           <?php } ?>
 
 

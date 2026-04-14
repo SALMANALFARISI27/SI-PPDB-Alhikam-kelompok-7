@@ -108,6 +108,7 @@ class Download extends BaseController
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_download' => $this->request->getVar('id_kategori_download'),
+					'slug_download' => strtolower(url_title($this->request->getVar('judul_download'))),
 					'judul_download' => $this->request->getVar('judul_download'),
 
 					'isi' => $this->request->getVar('isi'),
@@ -123,6 +124,7 @@ class Download extends BaseController
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_download' => $this->request->getVar('id_kategori_download'),
+					'slug_download' => strtolower(url_title($this->request->getVar('judul_download'))),
 					'judul_download' => $this->request->getVar('judul_download'),
 
 					'isi' => $this->request->getVar('isi'),
@@ -176,6 +178,7 @@ class Download extends BaseController
 					'id_download' => $id_download,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_download' => $this->request->getVar('id_kategori_download'),
+					'slug_download' => strtolower(url_title($this->request->getVar('judul_download'))),
 					'judul_download' => $this->request->getVar('judul_download'),
 
 					'isi' => $this->request->getVar('isi'),
@@ -191,6 +194,7 @@ class Download extends BaseController
 					'id_download' => $id_download,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_download' => $this->request->getVar('id_kategori_download'),
+					'slug_download' => strtolower(url_title($this->request->getVar('judul_download'))),
 					'judul_download' => $this->request->getVar('judul_download'),
 
 					'isi' => $this->request->getVar('isi'),

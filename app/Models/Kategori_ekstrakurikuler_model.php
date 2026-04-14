@@ -57,7 +57,17 @@ class Kategori_ekstrakurikuler_model extends Model
     }
 
     // read
-    public function read($slug_kategori_ekstrakurikuler)
+    public function read($id_kategori_ekstrakurikuler)
+    {
+        $builder = $this->db->table('kategori_ekstrakurikuler');
+        $builder->where('id_kategori_ekstrakurikuler',$id_kategori_ekstrakurikuler);
+        $builder->orderBy('kategori_ekstrakurikuler.urutan','ASC');
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
+    // read_slug
+    public function read_slug($slug_kategori_ekstrakurikuler)
     {
         $builder = $this->db->table('kategori_ekstrakurikuler');
         $builder->where('slug_kategori_ekstrakurikuler',$slug_kategori_ekstrakurikuler);

@@ -62,12 +62,13 @@ class Portfolio extends BaseController
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_portfolio' => $this->request->getVar('id_kategori_portfolio'),
+					'slug_portfolio' => strtolower(url_title($this->request->getVar('judul_portfolio'))),
 					'judul_portfolio' => $this->request->getVar('judul_portfolio'),
 					'isi' => $this->request->getVar('isi'),
 					'gambar' => $namabaru,
 
 					'status_portfolio' => $this->request->getVar('status_portfolio'),
-					'tanggal_post' => date('Y-m-d H:i:s')
+					'tanggal_post' => date('Y-m-d', strtotime($this->request->getVar('tanggal_publish'))) . ' ' . date('H:i:s', strtotime($this->request->getVar('jam')))
 				);
 				$m_portfolio->tambah($data);
 				return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
@@ -75,11 +76,12 @@ class Portfolio extends BaseController
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_portfolio' => $this->request->getVar('id_kategori_portfolio'),
+					'slug_portfolio' => strtolower(url_title($this->request->getVar('judul_portfolio'))),
 					'judul_portfolio' => $this->request->getVar('judul_portfolio'),
 					'isi' => $this->request->getVar('isi'),
 
 					'status_portfolio' => $this->request->getVar('status_portfolio'),
-					'tanggal_post' => date('Y-m-d H:i:s')
+					'tanggal_post' => date('Y-m-d', strtotime($this->request->getVar('tanggal_publish'))) . ' ' . date('H:i:s', strtotime($this->request->getVar('jam')))
 				);
 				$m_portfolio->tambah($data);
 				return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
@@ -185,12 +187,14 @@ class Portfolio extends BaseController
 					'id_portfolio' => $id_portfolio,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_portfolio' => $this->request->getVar('id_kategori_portfolio'),
+					'slug_portfolio' => strtolower(url_title($this->request->getVar('judul_portfolio'))),
 					'judul_portfolio' => $this->request->getVar('judul_portfolio'),
 
 					'isi' => $this->request->getVar('isi'),
 					'gambar' => $namabaru,
 
 					'status_portfolio' => $this->request->getVar('status_portfolio'),
+					'tanggal_post' => date('Y-m-d', strtotime($this->request->getVar('tanggal_publish'))) . ' ' . date('H:i:s', strtotime($this->request->getVar('jam')))
 				);
 				$m_portfolio->edit($data);
 				return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');
@@ -199,10 +203,12 @@ class Portfolio extends BaseController
 					'id_portfolio' => $id_portfolio,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_portfolio' => $this->request->getVar('id_kategori_portfolio'),
+					'slug_portfolio' => strtolower(url_title($this->request->getVar('judul_portfolio'))),
 					'judul_portfolio' => $this->request->getVar('judul_portfolio'),
 					'isi' => $this->request->getVar('isi'),
 
 					'status_portfolio' => $this->request->getVar('status_portfolio'),
+					'tanggal_post' => date('Y-m-d', strtotime($this->request->getVar('tanggal_publish'))) . ' ' . date('H:i:s', strtotime($this->request->getVar('jam')))
 				);
 				$m_portfolio->edit($data);
 				return redirect()->to(base_url('admin/portfolio'))->with('sukses', 'Data Berhasil di Simpan');

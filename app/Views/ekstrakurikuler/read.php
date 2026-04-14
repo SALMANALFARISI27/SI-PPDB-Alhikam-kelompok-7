@@ -22,38 +22,43 @@
         <div class="card">
           <div class="card-body">
             <img src="<?php echo base_url('assets/upload/image/' . $ekstrakurikuler->gambar) ?>"
-              class="img img-thumbnail">
+              class="img img-fluid img-thumbnail w-100">
           </div>
         </div>
       </div>
       <div class="col-md-8">
         <div class="card">
           <div class="card-body">
-            <table class="table table-bordered tabelku">
-              <thead>
-                <tr>
-                  <th width="25%">Nama Ekstrakurikuler</th>
-                  <th><?php echo $ekstrakurikuler->judul_ekstrakurikuler ?></th>
-                </tr>
-              </thead>
-              <tbody>
+            <div class="table-responsive">
+              <table class="table table-bordered tabelku">
+                <thead>
+                  <tr>
+                    <th width="25%">Nama Ekstrakurikuler</th>
+                    <th><?php echo $ekstrakurikuler->judul_ekstrakurikuler ?></th>
+                  </tr>
+                </thead>
+                <tbody>
 
-                <tr>
-                  <td class="bg-light">Penanggung Jawab</td>
-                  <td><?php echo $ekstrakurikuler->nama_penanggung_jawab ?></td>
-                </tr>
-                <tr>
-                  <td class="bg-light">Kategori</td>
-                  <td><?php echo $ekstrakurikuler->nama_kategori_ekstrakurikuler ?></td>
-                </tr>
+                  <tr>
+                    <td class="bg-light">Penanggung Jawab</td>
+                    <td><?php echo $ekstrakurikuler->nama_penanggung_jawab ?></td>
+                  </tr>
+                  <tr>
+                    <td class="bg-light">Kategori</td>
+                    <td><?php echo $ekstrakurikuler->nama_kategori_ekstrakurikuler ?></td>
+                  </tr>
 
 
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
             <?php echo $ekstrakurikuler->isi ?>
           </div>
           <div class="card-footer">
-            Tanggal: <?php echo $this->website->tanggal_bulan_menit($ekstrakurikuler->tanggal) ?>
+            <ul class="post-meta d-flex flex-wrap gap-2 mb-0">
+              <li class="post-comments"><a href="#"><i class="fa fa-eye"></i><span> Dibaca
+                    <?php echo $ekstrakurikuler->hits ?> kali</span></a></li>
+            </ul>
           </div>
         </div>
 

@@ -22,14 +22,14 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-body">
-            <img src="<?php echo base_url('assets/upload/image/' . $portfolio->gambar) ?>" class="img img-thumbnail">
+            <img src="<?php echo base_url('assets/upload/image/' . $portfolio->gambar) ?>" class="img img-fluid img-thumbnail w-100">
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card">
           <div class="card-body">
-            <table class="table table-bordered tabelku">
+            <div class="table-responsive"><table class="table table-bordered tabelku">
               <thead>
                 <tr>
                   <th width="25%">Nama Portofolio</th>
@@ -44,10 +44,13 @@
                   <td><?php echo $portfolio->isi ?></td>
                 </tr>
               </tbody>
-            </table>
+            </table></div>
           </div>
           <div class="card-footer">
-            Tanggal: <?php echo $this->website->tanggal_bulan_menit($portfolio->tanggal) ?>
+            <ul class="post-meta d-flex flex-wrap gap-2 mb-0">
+              <li class="post-date"><i class="uil uil-calendar-alt"></i><span><?php echo $this->website->tanggal_bulan_menit($portfolio->tanggal_post ? $portfolio->tanggal_post : $portfolio->tanggal) ?></span></li>
+              <li class="post-comments"><a href="#"><i class="fa fa-eye"></i><span> Dibaca <?php echo $portfolio->hits ?> kali</span></a></li>
+            </ul>
           </div>
         </div>
 

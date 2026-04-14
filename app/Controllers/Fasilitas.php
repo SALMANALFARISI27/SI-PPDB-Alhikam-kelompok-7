@@ -44,7 +44,10 @@ class Fasilitas extends BaseController
 		$m_fasilitas = new Fasilitas_model();
 		$m_kategori_fasilitas = new Kategori_fasilitas_model();
 		$konfigurasi = $m_konfigurasi->listing();
-		$kategori_fasilitas = $m_kategori_fasilitas->read($slug_kategori_fasilitas);
+		$kategori_fasilitas = $m_kategori_fasilitas->read_slug($slug_kategori_fasilitas);
+		if (!$kategori_fasilitas) {
+			return redirect()->to(base_url('fasilitas'));
+		}
 		$status_fasilitas = 'Publish';
 		$id_kategori_fasilitas = $kategori_fasilitas->id_kategori_fasilitas;
 		$total = $m_fasilitas->total_kategori_fasilitas_status($id_kategori_fasilitas, $status_fasilitas);

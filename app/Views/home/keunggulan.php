@@ -1,5 +1,5 @@
 <section class="wrapper bg-light">
-  <div class="container pt-10 pt-md-10 pb-10 pb-md-10">
+  <div class="container py-8 py-md-12">
     <div class="row text-center">
       <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
         <h2 class="fs-36 text-uppercase text-dark mb-3">Kenapa memilih</h2>

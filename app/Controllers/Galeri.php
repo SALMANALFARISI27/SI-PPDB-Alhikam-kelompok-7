@@ -34,13 +34,13 @@ class Galeri extends BaseController
 	}
 
 	// Read
-	public function read($id_galeri)
+	public function read($slug_galeri)
 	{
 		$m_konfigurasi = new Konfigurasi_model();
 		$m_galeri = new Galeri_model();
 		$konfigurasi = $m_konfigurasi->listing();
-		$galeri = $m_galeri->detail($id_galeri);
-		if (!$galeri || $galeri->status_galeri != 'Publish') {
+		$galeri = $m_galeri->read($slug_galeri);
+		if (!$galeri) {
 			return redirect()->to(base_url('galeri'));
 		}
 		$galeri_list = $m_galeri->home($this->website->paginasi_depan());

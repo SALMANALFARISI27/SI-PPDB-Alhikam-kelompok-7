@@ -55,7 +55,7 @@ class Berita_model extends Model
     public function total_cari($keywords)
     {
         $this->table('berita');
-        $this->select('berita.*, kategori.nama_kategori, kategori.slug_kategori, admin.nama');
+        $this->select('berita.*, kategori.nama_kategori, admin.nama');
         $this->join('kategori','kategori.id_kategori = berita.id_kategori','LEFT');
         $this->join('admin','admin.id_admin = berita.id_admin','LEFT');
         $this->like('berita.judul_berita',$keywords,'BOTH');

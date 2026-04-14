@@ -1,6 +1,6 @@
 <!-- /section -->
 <section id="snippet-fasilitas" class="wrapper bg-light wrapper-border">
-  <div class="container pt-10 pt-md-15 pb-10 pb-md-10">
+  <div class="container py-8 py-md-12">
     <h2 class="display-4 mb-3 text-center text-dark">Fasilitas Kami</h2>
     <p class="lead fs-lg mb-10 text-center px-md-16 px-lg-21 px-xl-0">Fasilitas terbaik untuk menunjang kegiatan di
       <?php echo $this->website->namaweb() ?></p>

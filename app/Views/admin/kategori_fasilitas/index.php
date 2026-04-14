@@ -35,7 +35,7 @@
 				</td>
 				<td><?php echo $kategori_fasilitas->nama_kategori_fasilitas ?>
 					<small>
-						<br>Slug: <?php echo $kategori_fasilitas->slug_kategori_fasilitas ?>
+						
 					</small>
 				</td>
 				<td><?php echo $kategori_fasilitas->keterangan ?></td>

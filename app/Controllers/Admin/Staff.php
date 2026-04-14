@@ -119,6 +119,7 @@ class Staff extends BaseController
 				$data = [
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_staff' => $this->request->getPost('id_kategori_staff'),
+					'slug_staff' => strtolower(url_title($this->request->getPost('nama'))),
 					'urutan' => $this->request->getPost('urutan'),
 					'nama' => $this->request->getPost('nama'),
 					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
@@ -142,6 +143,7 @@ class Staff extends BaseController
 				$data = [
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_staff' => $this->request->getPost('id_kategori_staff'),
+					'slug_staff' => strtolower(url_title($this->request->getPost('nama'))),
 					'urutan' => $this->request->getPost('urutan'),
 					'nama' => $this->request->getPost('nama'),
 					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
@@ -209,6 +211,7 @@ class Staff extends BaseController
 					'id_staff' => $id_staff,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_staff' => $this->request->getPost('id_kategori_staff'),
+					'slug_staff' => strtolower(url_title($this->request->getPost('nama'))),
 					'urutan' => $this->request->getPost('urutan'),
 					'nama' => $this->request->getPost('nama'),
 					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
@@ -232,6 +235,7 @@ class Staff extends BaseController
 					'id_staff' => $id_staff,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_staff' => $this->request->getPost('id_kategori_staff'),
+					'slug_staff' => strtolower(url_title($this->request->getPost('nama'))),
 					'urutan' => $this->request->getPost('urutan'),
 					'nama' => $this->request->getPost('nama'),
 					'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),

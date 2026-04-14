@@ -44,7 +44,10 @@ class Prestasi extends BaseController
 		$m_prestasi = new Prestasi_model();
 		$m_kategori_prestasi = new Kategori_prestasi_model();
 		$konfigurasi = $m_konfigurasi->listing();
-		$kategori_prestasi = $m_kategori_prestasi->read($slug_kategori_prestasi);
+		$kategori_prestasi = $m_kategori_prestasi->read_slug($slug_kategori_prestasi);
+		if (!$kategori_prestasi) {
+			return redirect()->to(base_url('prestasi'));
+		}
 		$status_prestasi = 'Publish';
 		$id_kategori_prestasi = $kategori_prestasi->id_kategori_prestasi;
 		$total = $m_prestasi->total_kategori_prestasi_status($id_kategori_prestasi, $status_prestasi);

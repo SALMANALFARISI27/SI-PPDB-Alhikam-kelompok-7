@@ -37,7 +37,7 @@
                             </p>
                             <div class="text-center">
                                 <h3 class="team-title">
-                                    <a href="<?php echo base_url('staff/detail/'.$staff->id_staff.'/'.strtolower(url_title($staff->nama))) ?>">
+                                    <a href="<?php echo base_url('staff/detail/'.$staff->slug_staff) ?>">
                                         <?php echo $staff->nama ?>
                                     </a>
                                 </h3>

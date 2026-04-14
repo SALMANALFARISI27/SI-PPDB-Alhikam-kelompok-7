@@ -43,7 +43,7 @@
 
                   // 3. Tampilkan HTML-nya
                   ?>
-                  <a href="<?php echo base_url('portfolio/read/' . $portfolio->id_portfolio) ?>">
+                  <a href="<?php echo base_url('portfolio/read/' . $portfolio->slug_portfolio) ?>">
                     <img class="img-fluid" src="<?php echo base_url('assets/upload/image/' . $portfolio->gambar) ?>"
                       srcset="<?php echo base_url('assets/upload/image/' . $portfolio->gambar) ?> 2x"
                       alt="<?php echo $portfolio->judul_portfolio ?>" />
@@ -52,13 +52,17 @@
               </figure>
               <div class="card-body px-6 py-5">
                 <h4 class="mb-1">
-                  <a href="<?php echo base_url('portfolio/read/' . $portfolio->id_portfolio) ?>">
+                  <a href="<?php echo base_url('portfolio/read/' . $portfolio->slug_portfolio) ?>">
                     <?php echo $portfolio->judul_portfolio ?>
                   </a>
                 </h4>
                 <p class="mb-0">
                   <?php echo $portfolio->nama_kategori_portfolio ?>
                 </p>
+                <ul class="post-meta d-flex flex-wrap gap-2 mb-0 mt-3 text-muted" style="font-size: 13px;">
+                  <li class="post-date"><i class="uil uil-calendar-alt"></i><span><?php echo $this->website->tanggal_bulan_menit($portfolio->tanggal_post ? $portfolio->tanggal_post : $portfolio->tanggal) ?></span></li>
+                  <li class="post-comments"><i class="fa fa-eye"></i><span> Dibaca <?php echo $portfolio->hits ?> kali</span></li>
+                </ul>
               </div>
               <!--/.card-body -->
             </div>

@@ -6,7 +6,7 @@
 			</div>
 			<div class="card-body">
 
-				<table class="table table-sm table-bordered">
+				<div class="table-responsive"><table class="table table-sm table-bordered">
 					<thead>
 						<tr>
 							<th>Username</th>
@@ -32,7 +32,7 @@
 						</tr>
 
 					</tbody>
-				</table>
+				</table></div>
 
 			</div>
 		</div>

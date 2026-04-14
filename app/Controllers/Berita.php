@@ -44,7 +44,10 @@ class Berita extends BaseController
         $site = $m_site->listing();
         $m_berita = new Berita_model();
         $m_kategori = new Kategori_model();
-        $kategori = $m_kategori->read($slug_kategori);
+        $kategori = $m_kategori->read_slug($slug_kategori);
+        if (!$kategori) {
+            return redirect()->to(base_url('berita'));
+        }
         $id_kategori = $kategori->id_kategori;
         $status_berita = 'Publish';
         $jenis_berita = 'Berita';

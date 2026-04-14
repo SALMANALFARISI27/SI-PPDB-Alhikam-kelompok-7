@@ -29,14 +29,17 @@ class Staff extends BaseController
 	}
 
 	// detail
-	public function detail($id_staff,$slug_staff)
+	public function detail($slug_staff)
 	{
 		$m_konfigurasi 		= new Konfigurasi_model();
 		$m_staff			= new Staff_model();
 		$m_kategori_staff	= new Kategori_staff_model();
 		$konfigurasi 		= $m_konfigurasi->listing();
 		$kategori_staff 	= $m_kategori_staff->listing();
-		$staff 				= $m_staff->detail($id_staff);
+		$staff 				= $m_staff->read($slug_staff);
+		if (!$staff) {
+			return redirect()->to(base_url('staff'));
+		}
 
 		$data = [	'title'				=> $staff->nama,
 					'description'		=> $staff->nama,

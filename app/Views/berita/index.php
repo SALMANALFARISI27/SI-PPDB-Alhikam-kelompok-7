@@ -35,7 +35,7 @@
                                   $imgUrl = '';
                               }
                               if($imgUrl) { ?>
-                            <img src="<?php echo $imgUrl ?>" alt="<?php echo $berita->judul_berita ?>" class="img-thumbnail">
+                            <img src="<?php echo $imgUrl ?>" alt="<?php echo $berita->judul_berita ?>" class="img-fluid img-thumbnail w-100">
                       <?php } } ?>
                     </a>
                     <figcaption>

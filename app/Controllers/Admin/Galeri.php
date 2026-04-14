@@ -72,6 +72,7 @@ class Galeri extends BaseController
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_galeri' => $this->request->getVar('id_kategori_galeri'),
+					'slug_galeri' => strtolower(url_title($this->request->getVar('judul_galeri'))),
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
@@ -84,6 +85,7 @@ class Galeri extends BaseController
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_galeri' => $this->request->getVar('id_kategori_galeri'),
+					'slug_galeri' => strtolower(url_title($this->request->getVar('judul_galeri'))),
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
@@ -193,6 +195,7 @@ class Galeri extends BaseController
 					'id_galeri' => $id_galeri,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_galeri' => $this->request->getVar('id_kategori_galeri'),
+					'slug_galeri' => strtolower(url_title($this->request->getVar('judul_galeri'))),
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
@@ -206,6 +209,7 @@ class Galeri extends BaseController
 					'id_galeri' => $id_galeri,
 					'id_admin' => $this->session->get('id_admin'),
 					'id_kategori_galeri' => $this->request->getVar('id_kategori_galeri'),
+					'slug_galeri' => strtolower(url_title($this->request->getVar('judul_galeri'))),
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),

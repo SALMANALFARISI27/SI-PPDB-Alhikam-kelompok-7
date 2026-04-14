@@ -57,7 +57,17 @@ class Kategori_download_model extends Model
     }
 
     // read
-    public function read($slug_kategori_download)
+    public function read($id_kategori_download)
+    {
+        $builder = $this->db->table('kategori_download');
+        $builder->where('id_kategori_download',$id_kategori_download);
+        $builder->orderBy('kategori_download.urutan','ASC');
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
+    // read_slug
+    public function read_slug($slug_kategori_download)
     {
         $builder = $this->db->table('kategori_download');
         $builder->where('slug_kategori_download',$slug_kategori_download);

@@ -57,8 +57,9 @@
 					<th width="35%" class="text-center">Judul</th>
 					<th width="15%" class="text-center">Kategori</th>
 					<th width="10%" class="text-center">Status</th>
-					<th width="15%" class="text-center">Author</th>
-					<th width="12%" class="text-center">Aksi</th>
+					<th width="12%" class="text-center">Tgl/Hits</th>
+					<th width="10%" class="text-center">Author</th>
+					<th width="10%" class="text-center">Aksi</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -113,6 +114,12 @@
 									<i class="fa fa-eye-slash"></i> Not Published
 								</span>
 							<?php } ?>
+						</td>
+
+						<td>
+							<small>
+								<i class="fa fa-calendar"></i> <?php echo date('d-m-Y', strtotime($portfolio->tanggal_post ? $portfolio->tanggal_post : $portfolio->tanggal)) ?> <br>
+								<i class="fa fa-eye"></i> <?php echo $portfolio->hits ?> tayang
 							</small>
 						</td>
 

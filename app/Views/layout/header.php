@@ -20,15 +20,15 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
 <div class="content-wrapper">
   <header class="wrapper bg-light">
     <div class="bg-haqi text-white fw-bold fs-14 mb-0">
-      <div class="container py-1 d-md-flex flex-md-row">
-        <div class="d-flex flex-row align-items-center">
+      <div class="container py-1 d-flex flex-column flex-md-row align-items-start align-items-md-center">
+        <div class="d-flex flex-row align-items-center mb-2 mb-md-0">
           <div class="icon text-white fs-14 mt-1 me-2"> <i class="uil uil-check-circle"></i></div>
           <address class="mb-0"><?php echo word_limiter(strip_tags($site_setting->namaweb), 5) ?></address>
         </div>
 
         <?php if ($site_setting->fitur_pendaftaran == 'On') { ?>
 
-          <div class="d-flex flex-row align-items-center me-6 ms-auto">
+          <div class="d-flex flex-row align-items-center me-md-6 ms-md-auto mb-2 mb-md-0">
             <p class="mb-0">
               <a href="<?php echo base_url('check') ?>" class="text-white hover">
                 <i class="fa fa-user-check"></i> Cek Status Pendaftaran
@@ -37,7 +37,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
           </div>
 
           <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
-            <div class="d-flex flex-row align-items-center me-6">
+            <div class="d-flex flex-row align-items-center me-md-6 mb-2 mb-md-0">
               <p class="mb-0">
                 <a href="<?php echo base_url('pendaftaran') ?>" class="text-white hover">
                   <i class="fa fa-edit"></i> Pendaftaran Online
@@ -45,7 +45,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
               </p>
             </div>
 
-            <div class="d-flex flex-row align-items-center me-6">
+            <div class="d-flex flex-row align-items-center me-md-6 mb-2 mb-md-0">
               <p class="mb-0">
                 <a href="<?php echo base_url('calon_peserta_didik/dasbor') ?>" class="text-white hover">
                   <i class="fa fa-tachometer-alt"></i> Dashboard
@@ -53,7 +53,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
               </p>
             </div>
 
-            <div class="d-flex flex-row align-items-center me-6">
+            <div class="d-flex flex-row align-items-center me-md-6 mb-2 mb-md-0">
               <p class="mb-0">
                 <a href="<?php echo base_url('signin/logout') ?>" class="text-white hover">
                   <i class="fa fa-sign-out-alt"></i>
@@ -63,7 +63,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
 
           <?php } else { ?>
 
-            <div class="d-flex flex-row align-items-center me-6">
+            <div class="d-flex flex-row align-items-center me-md-6 mb-2 mb-md-0">
               <p class="mb-0">
                 <a href="<?php echo base_url('pendaftaran') ?>" class="text-white hover">
                   <i class="fa fa-edit"></i> Pendaftaran Online
@@ -71,7 +71,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
               </p>
             </div>
 
-            <div class="d-flex flex-row align-items-center">
+            <div class="d-flex flex-row align-items-center mb-2 mb-md-0">
               <p class="mb-0">
                 <a href="<?php echo base_url('signin') ?>" class="text-white hover">
                   <i class="fa fa-lock"></i> Login
@@ -83,7 +83,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
 
           <?php } ?>
         <?php } else { ?>
-          <div class="d-flex flex-row align-items-center me-6">
+          <div class="d-flex flex-row align-items-center me-md-6 ms-md-auto mb-2 mb-md-0">
             <p class="mb-0">
               <a href="mailto:<?php echo $site_setting->email ?>" class="text-white hover">
                 <i class="fa fa-envelope"></i> <?php echo $site_setting->email ?>
@@ -100,7 +100,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
           <a href="<?php echo base_url() ?>">
             <img src="<?php echo $this->website->logo() ?>" srcset="<?php echo $this->website->logo() ?>"
               alt="<?php echo $this->website->namaweb() ?>"
-              style="max-width: 250px; max-height: 52px; width: auto; height: auto;" />
+              style="max-width: 100%; max-height: 50px; width: auto; height: auto;" />
           </a>
         </div>
         <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
@@ -149,19 +149,6 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                             <li><a class="dropdown-item" href="<?php echo base_url('staff') ?>">STAFF
                                 <?php echo $this->website->namaweb() ?></a></li>
                           </ul>
-                          <?php if ($site_setting->fitur_pendaftaran == 'On') { ?>
-                            <h6 class="dropdown-header mt-lg-6 text-warning">Pendaftaran Online</h6>
-                            <ul class="list-unstyled">
-
-                              <li><a class="dropdown-item" href="<?php echo base_url('pendaftaran') ?>">Pendaftaran
-                                  Online</a></li>
-                              <li><a class="dropdown-item" href="<?php echo base_url('signin') ?>">Login Calon Peserta
-                                  Didik/Calon Peserta Didik</a></li>
-                              <li><a class="dropdown-item" href="<?php echo base_url('check') ?>">Cek Status Pendaftaran
-                                  Online</a></li>
-
-                            </ul>
-                          <?php } ?>
                         </div>
                         <!--/column -->
 
@@ -190,7 +177,7 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                         </div>
                         <!--/column -->
                         <div class="col-lg-4">
-                          <h6 class="dropdown-header text-warning">Fasilitas, Sarana &amp; Prasarana</h6>
+                          <h6 class="dropdown-header text-warning">Fasilitas</h6>
                           <ul class="list-unstyled">
                             <?php foreach ($nav_fasilitas as $nav_fasilitas) { ?>
                               <li><a class="dropdown-item"
@@ -305,20 +292,17 @@ $nav_jenjang_pendidikan = $m_nav->jenjang_pendidikan();
                   <a class="nav-link text-uppercase" href="<?php echo base_url('kontak') ?>">Kontak</a>
                 </li>
               <?php } ?>
-
-
             </ul>
             <!-- /.navbar-nav -->
-            <div class="offcanvas-footer d-lg-none">
+            <div class="offcanvas-footer d-lg-none mt-auto pt-6">
               <div>
-                <a href="mailto:first.last@email.com" class="link-inverse">info@email.com</a>
-                <br /> 00 (123) 456 78 90 <br />
+                <a href="mailto:<?php echo $site_setting->email ?>"
+                  class="link-inverse"><?php echo $site_setting->email ?></a>
+                <br /> <?php echo $site_setting->telepon ?> <br />
                 <nav class="nav social social-white mt-4">
-                  <a href="#"><i class="uil uil-twitter"></i></a>
-                  <a href="#"><i class="uil uil-facebook-f"></i></a>
-                  <a href="#"><i class="uil uil-dribbble"></i></a>
-                  <a href="#"><i class="uil uil-instagram"></i></a>
-                  <a href="#"><i class="uil uil-youtube"></i></a>
+                  <a href="<?php echo $site_setting->facebook ?>"><i class="uil uil-facebook-f"></i></a>
+                  <a href="<?php echo $site_setting->instagram ?>"><i class="uil uil-instagram"></i></a>
+                  <a href="<?php echo $site_setting->youtube ?>"><i class="uil uil-youtube"></i></a>
                 </nav>
                 <!-- /.social -->
               </div>

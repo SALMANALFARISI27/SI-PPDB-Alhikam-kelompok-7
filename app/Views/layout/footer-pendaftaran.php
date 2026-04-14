@@ -10,17 +10,35 @@ $site_setting   = $m_site->listing();
   /* Add your custom styles here */
 .whatsapp-link {
     position: fixed;
-    bottom: 30px;
-    right: 80px;
+    bottom: 20px;
+    right: 20px;
     z-index: 9999;
     transition: transform 0.3s ease-in-out;
 }
+
+@media (min-width: 768px) {
+  .whatsapp-link {
+    bottom: 30px;
+    right: 30px;
+  }
+}
+
 a.whatsapp-link {
   color: green;
   background-color: #f5f5f5;
   border: solid thin #eee;
-  border-radius: 10px;
-  padding: 10px 20px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.whatsapp-link i {
+  font-size: 30px;
 }
 .whatsapp-link:hover {
     transform: scale(1.1);

@@ -37,14 +37,14 @@ class Profil extends BaseController
     }
 
     // kategori
-    public function kategori($slug_kategori)
+    public function kategori($id_kategori)
     {
         $pager = service('pager');
         $m_site = new Konfigurasi_model();
         $site = $m_site->listing();
         $m_berita = new Berita_model();
         $m_kategori = new Kategori_model();
-        $kategori = $m_kategori->read($slug_kategori);
+        $kategori = $m_kategori->read($id_kategori);
         $id_kategori = $kategori->id_kategori;
         $status_berita = 'Publish';
         $jenis_berita = 'Berita';

@@ -202,12 +202,25 @@ class Download_model extends Model
         $builder->insert($data);
     }
 
-    // tambah
+    // edit
     public function edit($data)
     {
         $builder = $this->db->table('download');
         $builder->where('id_download',$data['id_download']);
         $builder->update($data);
+    }
+
+    // read
+    public function read($slug_download)
+    {
+        $this->table('download');
+        $this->select('download.*, kategori_download.nama_kategori_download, kategori_download.slug_kategori_download, admin.nama');
+        $this->join('kategori_download', 'kategori_download.id_kategori_download = download.id_kategori_download', 'LEFT');
+        $this->join('admin', 'admin.id_admin = download.id_admin', 'LEFT');
+        $this->where('download.slug_download', $slug_download);
+        $this->orderBy('download.id_download', 'DESC');
+        $query = $this->get();
+        return $query->getRow();
     }
 
     // testing

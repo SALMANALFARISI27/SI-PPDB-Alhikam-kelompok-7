@@ -15,7 +15,7 @@
 			<tr>
 				<td class="text-center"><?php echo $no ?></td>
 				<td><?php echo $kategori->nama_kategori ?></td>
-				<td><?php echo $kategori->slug_kategori ?></td>
+				
 				<td class="text-center"><?php echo $kategori->urutan ?></td>
 				<td class="text-center">
 					<div style="display: flex; justify-content: center; gap: 5px;">

@@ -72,14 +72,14 @@ class Prestasi_model extends Model
     }
 
     // kategori_prestasi
-    public function kategori_prestasi($limit, $start, $slug_kategori_prestasi)
+    public function kategori_prestasi($limit, $start, $id_kategori_prestasi)
     {
         $builder = $this->db->table('prestasi');
         $builder->select('prestasi.*, kategori_prestasi.nama_kategori_prestasi, kategori_prestasi.slug_kategori_prestasi, admin.nama');
         $builder->join('kategori_prestasi','kategori_prestasi.id_kategori_prestasi = prestasi.id_kategori_prestasi','LEFT');
         $builder->join('admin','admin.id_admin = prestasi.id_admin','LEFT');
 
-        $builder->where('kategori_prestasi.slug_kategori_prestasi',$slug_kategori_prestasi);
+        $builder->where('kategori_prestasi.slug_kategori_prestasi',$id_kategori_prestasi);
         $builder->limit($limit,$start);
 
         $builder->orderBy('prestasi.id_prestasi','DESC');
