@@ -6,147 +6,142 @@ use App\Models\Akun_model;
 
 class Simple_login
 {
-	// check login
-	public function login($username, $password, $pengalihan)
+	protected $session;
+
+	public function __construct()
 	{
 		$this->session = \Config\Services::session();
-		$uri = service('uri');
+	}
+
+	// check login admin
+	public function login($username, $password, $pengalihan)
+	{
 		$m_admin = new Admin_model();
 		$admin = $m_admin->login($username, $password);
 		if ($admin) {
 			// Jika username password benar
 			$this->session->set('username', $username);
 			$this->session->set('id_admin', $admin->id_admin);
-			$this->session->set('id_admin', $admin->id_admin);
 			$this->session->set('nama', $admin->nama);
-			// $this->session->setFlashdata('warning', 'Hai '.$admin->nama.', Anda berhasil login');
-			// return redirect()->to(base_url('admin/dasbor'));
-			if ($pengalihan !== '') {
-				header("Location: " . $pengalihan);
-			} else {
-				header("Location: admin/dasbor");
-			}
 
-			exit;
+			session_write_close();
+			if ($pengalihan !== '') {
+				return redirect()->to($pengalihan);
+			} else {
+				return redirect()->to(base_url('admin/dasbor'));
+			}
 		} else {
 			// jika username password salah
 			$this->session->setFlashdata('warning', 'Username atau password salah');
+			session_write_close();
 			return redirect()->to(base_url('login'));
 		}
 	}
 
-	// check login
+	// login calon peserta didik (hanya set session, tanpa redirect otomatis)
 	public function login_calon_peserta_didik_akun($username, $password)
 	{
-		$this->session = \Config\Services::session();
-		$uri = service('uri');
-		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$m_akun = new Akun_model();
 		$user = $m_akun->login($username, sha1($password));
 
 		if ($user) {
-			// Cek apakah akun sudah diaktivasi
 			if ($user->status_akun !== 'Aktif') {
 				$this->session->setFlashdata('warning', 'Akun Anda belum diaktivasi. Silakan cek email untuk link aktivasi.');
-				return;
+				return false;
 			}
-			// Jika username password benar dan akun aktif
 			$this->session->set('username_calon_peserta_didik', $username);
 			$this->session->set('id_akun', $user->id_akun);
 			$this->session->set('username', $user->username);
 			$this->session->set('jenis_akun', $user->jenis_akun);
+			return true;
 		}
+		return false;
 	}
 
-	// check login
+	// login calon peserta didik dengan redirect
 	public function login_calon_peserta_didik($username, $password)
 	{
-		$this->session = \Config\Services::session();
-		$uri = service('uri');
-		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$m_akun = new Akun_model();
-
 		$user = $m_akun->login($username, sha1($password));
 		$user2 = $m_akun->login_nis($username, sha1($password));
 
 		if ($user) {
-			// Cek apakah akun sudah diaktivasi
 			if ($user->status_akun !== 'Aktif') {
 				$this->session->setFlashdata('warning', 'Akun Anda belum diaktivasi. Silakan cek email untuk link aktivasi.');
-				header("Location: " . base_url('signin'));
-				exit;
+				session_write_close();
+				return redirect()->to(base_url('signin'));
 			}
-			// Jika username password benar dan akun aktif
+
 			$this->session->set('username_calon_peserta_didik', $username);
 			$this->session->set('id_akun', $user->id_akun);
 			$this->session->set('nama_calon_peserta_didik', $user->username);
 			$this->session->set('jenis_akun', $user->jenis_akun);
-			header("Location: " . base_url('calon_peserta_didik/dasbor'));
-			exit;
+
+			session_write_close();
+			return redirect()->to(base_url('calon_peserta_didik/dasbor'));
 		} elseif ($user2) {
-			// Cek apakah akun sudah diaktivasi
 			if ($user2->status_akun !== 'Aktif') {
 				$this->session->setFlashdata('warning', 'Akun Anda belum diaktivasi. Silakan cek email untuk link aktivasi.');
-				header("Location: " . base_url('signin'));
-				exit;
+				session_write_close();
+				return redirect()->to(base_url('signin'));
 			}
-			// Jika username password benar dan akun aktif
+
 			$this->session->set('username_calon_peserta_didik', $username);
 			$this->session->set('id_akun', $user2->id_akun);
 			$this->session->set('nama_calon_peserta_didik', $user2->nama_calon_peserta_didik);
 			$this->session->set('jenis_akun', $user2->jenis_akun);
-			header("Location: " . base_url('calon_peserta_didik/dasbor'));
+
+			session_write_close();
+			return redirect()->to(base_url('calon_peserta_didik/dasbor'));
 		} else {
-			// jika username password salah
 			$this->session->setFlashdata('warning', 'Username atau password salah');
+			session_write_close();
 			return redirect()->to(base_url('signin'));
 		}
 	}
 
-	// check login
+	// check login calon peserta didik (bisa dieksekusi di controller)
 	public function checklogin_calon_peserta_didik()
 	{
-		$this->session = \Config\Services::session();
-		if ($this->session->get('username_calon_peserta_didik') == '') {
+		if (empty($this->session->get('username_calon_peserta_didik'))) {
 			$pengalihan = str_replace('index.php/', '', current_url());
 			$this->session->set('pengalihan_calon_peserta_didik', $pengalihan);
 			$this->session->setFlashdata('warning', 'Anda belum login');
-			header("Location: " . base_url('signin')) . '?redirect=' . $pengalihan;
+			session_write_close();
+			// Gunakan header native hanya sebagai fallback terakhir, tapi idealnya return redirect di controller
+			header("Location: " . base_url('signin') . '?redirect=' . $pengalihan);
 			exit;
 		}
 	}
-	// check login
+
+	// check login admin
 	public function checklogin()
 	{
-		$this->session = \Config\Services::session();
-		if ($this->session->get('username') == '') {
+		if (empty($this->session->get('username'))) {
 			$pengalihan = str_replace('index.php/', '', current_url());
 			$this->session->set('pengalihan', $pengalihan);
 			$this->session->setFlashdata('warning', 'Anda belum login');
-			header("Location: " . base_url('login')) . '?redirect=' . $pengalihan;
+			session_write_close();
+			header("Location: " . base_url('login') . '?redirect=' . $pengalihan);
 			exit;
 		}
 	}
 
-
-
-	// check logout
+	// logout admin
 	public function logout()
 	{
-		$this->session = \Config\Services::session();
 		$this->session->remove('username');
 		$this->session->remove('id_admin');
 		$this->session->remove('nama');
 		$this->session->remove('pengalihan');
 		$this->session->setFlashdata('sukses', 'Anda berhasil logout');
-		header("Location: " . base_url('login?logout=sukses'));
-		exit;
+		session_write_close();
+		return redirect()->to(base_url('login?logout=sukses'));
 	}
 
-	// logout_calon_peserta_didik
+	// logout calon peserta didik
 	public function logout_calon_peserta_didik()
 	{
-		$this->session = \Config\Services::session();
 		$this->session->remove('username_calon_peserta_didik');
 		$this->session->remove('id_akun');
 		$this->session->remove('jenis_akun');
@@ -155,7 +150,7 @@ class Simple_login
 		$this->session->remove('nisn');
 		$this->session->remove('pengalihan_calon_peserta_didik');
 		$this->session->setFlashdata('sukses', 'Anda berhasil logout');
-		header("Location: " . base_url('signin?logout=sukses'));
-		exit;
+		session_write_close();
+		return redirect()->to(base_url('signin?logout=sukses'));
 	}
 }

@@ -49,7 +49,7 @@ class Pendaftaran extends BaseController
 		$jenjang_pendidikan = $m_nav->jenjang_pendidikan();
 		$gelombang = $m_gelombang->detail($id_gelombang);
 
-		if (strlen(Session()->get('username_calon_peserta_didik')) < 6) {
+		if (empty(Session()->get('username_calon_peserta_didik'))) {
 			$this->session->setFlashdata('warning', 'Anda belum login');
 			return redirect()->to(base_url('signin'));
 		}
@@ -71,42 +71,42 @@ class Pendaftaran extends BaseController
 		) {
 
 			if ($this->request->getPost('identitas_wali') == 'Ayah') {
-				$agama_wali     = $this->request->getPost('agama_ayah');
-				$pekerjaan_wali  = $this->request->getPost('pekerjaan_ayah');
-				$jenjang_wali    = $this->request->getPost('jenjang_ayah');
-				$nama_wali       = $this->request->getPost('nama_ayah');
-				$alamat_wali     = $this->request->getPost('alamat_ayah');
-				$telepon_wali    = $this->request->getPost('telepon_ayah');
+				$agama_wali = $this->request->getPost('agama_ayah');
+				$pekerjaan_wali = $this->request->getPost('pekerjaan_ayah');
+				$jenjang_wali = $this->request->getPost('jenjang_ayah');
+				$nama_wali = $this->request->getPost('nama_ayah');
+				$alamat_wali = $this->request->getPost('alamat_ayah');
+				$telepon_wali = $this->request->getPost('telepon_ayah');
 			} elseif ($this->request->getPost('identitas_wali') == 'Ibu') {
-				$agama_wali     = $this->request->getPost('agama_ibu');
-				$pekerjaan_wali  = $this->request->getPost('pekerjaan_ibu');
-				$jenjang_wali    = $this->request->getPost('jenjang_ibu');
-				$nama_wali       = $this->request->getPost('nama_ibu');
-				$alamat_wali     = $this->request->getPost('alamat_ibu');
-				$telepon_wali    = $this->request->getPost('telepon_ibu');
+				$agama_wali = $this->request->getPost('agama_ibu');
+				$pekerjaan_wali = $this->request->getPost('pekerjaan_ibu');
+				$jenjang_wali = $this->request->getPost('jenjang_ibu');
+				$nama_wali = $this->request->getPost('nama_ibu');
+				$alamat_wali = $this->request->getPost('alamat_ibu');
+				$telepon_wali = $this->request->getPost('telepon_ibu');
 			} else {
-				$agama_wali     = $this->request->getPost('agama_wali');
-				$pekerjaan_wali  = $this->request->getPost('pekerjaan_wali');
-				$jenjang_wali    = $this->request->getPost('jenjang_wali');
-				$nama_wali       = $this->request->getPost('nama_wali');
-				$alamat_wali     = $this->request->getPost('alamat_wali');
-				$telepon_wali    = $this->request->getPost('telepon_wali');
+				$agama_wali = $this->request->getPost('agama_wali');
+				$pekerjaan_wali = $this->request->getPost('pekerjaan_wali');
+				$jenjang_wali = $this->request->getPost('jenjang_wali');
+				$nama_wali = $this->request->getPost('nama_wali');
+				$alamat_wali = $this->request->getPost('alamat_wali');
+				$telepon_wali = $this->request->getPost('telepon_wali');
 			}
 			$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 			$data = [
-				'id_admin'             => $this->session->get('id_admin') ? $this->session->get('id_admin') : null,
-				'id_gelombang'         => $id_gelombang,
-				'agama'                => $this->request->getPost('agama'),
-				'agama_ayah'           => $this->request->getPost('agama_ayah'),
-				'agama_ibu'            => $this->request->getPost('agama_ibu'),
-				'agama_wali'           => $agama_wali,
-				'pekerjaan_ayah'       => $this->request->getPost('pekerjaan_ayah'),
-				'pekerjaan_ibu'        => $this->request->getPost('pekerjaan_ibu'),
-				'pekerjaan_wali'       => $pekerjaan_wali,
-				'jenjang_ayah'         => $this->request->getPost('jenjang_ayah'),
-				'jenjang_ibu'          => $this->request->getPost('jenjang_ibu'),
-				'jenjang_wali'         => $jenjang_wali,
-				'id_akun'              => $akun->id_akun,
+				'id_admin' => $this->session->get('id_admin') ? $this->session->get('id_admin') : null,
+				'id_gelombang' => $id_gelombang,
+				'agama' => $this->request->getPost('agama'),
+				'agama_ayah' => $this->request->getPost('agama_ayah'),
+				'agama_ibu' => $this->request->getPost('agama_ibu'),
+				'agama_wali' => $agama_wali,
+				'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
+				'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
+				'pekerjaan_wali' => $pekerjaan_wali,
+				'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
+				'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
+				'jenjang_wali' => $jenjang_wali,
+				'id_akun' => $akun->id_akun,
 				'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan') ? $this->request->getPost('id_jenjang_pendidikan') : null,
 				'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
 				'slug_calon_peserta_didik' => $slug_calon_peserta_didik,
@@ -199,7 +199,7 @@ class Pendaftaran extends BaseController
 		$jenjang_pendidikan = $m_nav->jenjang_pendidikan();
 		$gelombang = $m_gelombang->detail($id_gelombang);
 
-		if (strlen(Session()->get('username_calon_peserta_didik')) < 6) {
+		if (empty(Session()->get('username_calon_peserta_didik'))) {
 			$this->session->setFlashdata('warning', 'Anda belum login');
 			return redirect()->to(base_url('signin'));
 		}
@@ -406,7 +406,8 @@ class Pendaftaran extends BaseController
 
 			// Loop through each jenis_dokumen file input
 			foreach ($_FILES['dokumen']['name'] as $id_jenis_dokumen => $filename) {
-				if (empty($filename)) continue; // Skip empty file inputs
+				if (empty($filename))
+					continue; // Skip empty file inputs
 
 				$file = new \CodeIgniter\Files\File($_FILES['dokumen']['tmp_name'][$id_jenis_dokumen]);
 				$namabaru = bin2hex(random_bytes(16)) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
@@ -415,7 +416,8 @@ class Pendaftaran extends BaseController
 
 				// Validate extension
 				$allowed = ['jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf'];
-				if (!in_array(strtolower($file_ext), $allowed)) continue;
+				if (!in_array(strtolower($file_ext), $allowed))
+					continue;
 
 				// Move file
 				move_uploaded_file(

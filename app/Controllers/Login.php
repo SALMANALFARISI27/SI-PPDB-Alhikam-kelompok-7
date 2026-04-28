@@ -19,7 +19,7 @@ class Login extends BaseController
             $username       = $this->request->getPost('username');
             $password       = $this->request->getPost('password');
             $pengalihan     = $this->request->getPost('pengalihan');
-            $this->simple_login->login($username,$password,$pengalihan);
+            return $this->simple_login->login($username,$password,$pengalihan);
         }
         $m_site     = new Konfigurasi_model();
         $site       = $m_site->listing();
@@ -147,7 +147,6 @@ class Login extends BaseController
     // logout
     public function logout()
     {
-        $this->session->destroy();
-        return redirect()->to(base_url('login?logout=sukses'));
+        return $this->simple_login->logout();
     }
 }

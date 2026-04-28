@@ -36,7 +36,7 @@ class Signin extends BaseController
 		) {
 			$username = $this->request->getPost('username');
 			$password = $this->request->getPost('password');
-			$this->simple_login->login_calon_peserta_didik($username, $password);
+			return $this->simple_login->login_calon_peserta_didik($username, $password);
 		}
 		// End validasi
 		$data = [
@@ -186,7 +186,6 @@ class Signin extends BaseController
 	// Logout
 	public function logout()
 	{
-		$this->session->destroy();
-		return redirect()->to(base_url('signin?logout=sukses'));
+		return $this->simple_login->logout_calon_peserta_didik();
 	}
 }

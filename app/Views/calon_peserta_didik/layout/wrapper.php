@@ -1,7 +1,7 @@
-<?php 
+<?php
 $session = \Config\Services::session();
-if($session->get('username_calon_peserta_didik')=="") {
-	$session->setFlashdata('sukses','Ooops... Anda belum login');
+if (empty($session->get('username_calon_peserta_didik'))) {
+	$session->setFlashdata('sukses', 'Ooops... Anda belum login');
 	return redirect()->to(base_url('signin'));
 }
 
@@ -11,7 +11,7 @@ echo view('admin/layout/head');
 require_once('header.php');
 require_once('menu.php');
 
-if($content) {
+if ($content) {
 	echo view($content);
 }
 
