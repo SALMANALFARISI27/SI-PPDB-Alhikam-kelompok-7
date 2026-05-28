@@ -1,6 +1,5 @@
 <?php
 namespace App\Controllers\Calon_peserta_didik;
-use CodeIgniter\Controller;
 use App\Models\Akun_model;
 
 class Akun extends BaseController

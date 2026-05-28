@@ -81,6 +81,67 @@
         </div>
         <!-- /.row -->
         
+        
+        <div class="row mb-14 mb-md-16">
+          <div class="col-xl-10 mx-auto mt-10">
+            <h2 class="display-4 mb-3 text-center">FAQ Pendaftaran PPDB</h2>
+            <p class="lead text-center mb-10 text-muted">Pertanyaan yang sering diajukan mengenai pendaftaran calon peserta didik baru.</p>
+            <div class="accordion accordion-wrapper" id="accordionFAQ">
+              <div class="card accordion-item mb-3">
+                <div class="card-header" id="headingOne">
+                  <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> 
+                    Apakah saya bisa mendaftar lebih dari satu jenjang/program pendidikan? 
+                  </button>
+                </div>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
+                  <div class="card-body">
+                    <p>Ya, Anda dapat mendaftar maksimal 2 pilihan program (misalnya SMP dan Pesantren) pada satu gelombang pendaftaran yang sama. Setelah Anda mendaftar program pertama, tombol "Daftar Online" akan berubah warna menjadi merah dengan tulisan <strong>"Daftar Program Kedua"</strong>.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card accordion-item mb-3">
+                <div class="card-header" id="headingTwo">
+                  <button class="collapsed accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> 
+                    Kapan pendaftaran gelombang selanjutnya dibuka? 
+                  </button>
+                </div>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFAQ">
+                  <div class="card-body">
+                    <p>Informasi jadwal pembukaan, penutupan, dan pengumuman untuk setiap gelombang dapat Anda lihat secara detail di menu <a href="<?php echo base_url('registrasi') ?>" class="text-primary">Pendaftaran</a>. Pantau terus halaman tersebut agar tidak tertinggal informasi terbaru.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card accordion-item mb-3">
+                <div class="card-header" id="headingThree">
+                  <button class="collapsed accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> 
+                    Bagaimana jika saya salah memasukkan biodata atau unggah dokumen? 
+                  </button>
+                </div>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
+                  <div class="card-body">
+                    <p>Anda dapat mengedit biodata dan memperbarui unggahan dokumen Anda melalui fitur <strong>Dashboard Siswa</strong> selama status pendaftaran Anda masih belum diproses atau dikunci oleh Panitia Admin PPDB.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card accordion-item mb-3">
+                <div class="card-header" id="headingFour">
+                  <button class="collapsed accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> 
+                    Muncul error "The email field must contain a unique value" saat mendaftar akun, apa maksudnya? 
+                  </button>
+                </div>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFAQ">
+                  <div class="card-body">
+                    <p>Error ini berarti alamat email tersebut sudah terdaftar di sistem kami. Kemungkinan pendaftaran akun Anda sebenarnya sudah berhasil sebelumnya. Silakan langsung menuju ke halaman <a href="<?php echo base_url('signin') ?>" class="text-primary">Login</a>. Pastikan juga kolom email Anda tidak ter-<em>autofill</em> oleh browser dengan akun yang lama.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.accordion -->
+          </div>
+          <!-- /column -->
+        </div>
+        <!-- /.row -->
+
       </div>
       <!-- /.container -->
     </section>

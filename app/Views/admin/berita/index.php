@@ -27,10 +27,10 @@
 		<button type="submit" name="submit" value="Publish" class="btn btn-info" title="Publikasikan">
 			<i class="fa fa-eye"></i>
 		</button>
-		<select name="jenis_berita" class="form-control">
-			<option value="Berita">Berita</option>
-			<option value="Profil">Profil</option>
-			<option value="Keunggulan">Keunggulan</option>
+		<select name="id_kategori_berita_profile" class="form-control">
+			<?php foreach($kategori as $kategori_item) { ?>
+			<option value="<?php echo $kategori_item->id_kategori_berita_profile ?>"><?php echo $kategori_item->nama_kategori ?></option>
+			<?php } ?>
 		</select>
 		<span class="input-group-append">
 			<button type="submit" name="submit" value="Update" class="btn btn-warning">

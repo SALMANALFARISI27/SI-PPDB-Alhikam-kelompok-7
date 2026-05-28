@@ -95,7 +95,8 @@ $this->website = new Website();
           <tr>
             <td class="font-bold">TTL</td>
             <td><?php echo $calon_peserta_didik->tempat_lahir ?>,
-              <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
+              <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?>
+            </td>
           </tr>
           <tr>
             <td class="font-bold">Alamat</td>
@@ -116,10 +117,6 @@ $this->website = new Website();
           <tr>
             <td class="font-bold">Kewarganegaraan</td>
             <td><?php echo $calon_peserta_didik->status_wn ?? 'WNI' ?></td>
-          </tr>
-          <tr>
-            <td class="font-bold">Kode Pendaftaran</td>
-            <td><strong><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></strong></td>
           </tr>
           <tr>
             <td class="font-bold">Periode</td>
@@ -165,7 +162,9 @@ $this->website = new Website();
           </tr>
           <tr>
             <td class="font-bold">Tanggal Pindah</td>
-            <td><?php echo (!empty($calon_peserta_didik->tanggal_pindah) && $calon_peserta_didik->tanggal_pindah != '0000-00-00') ? $this->website->tanggal_id($calon_peserta_didik->tanggal_pindah) : '-'; ?></td>
+            <td>
+              <?php echo (!empty($calon_peserta_didik->tanggal_pindah) && $calon_peserta_didik->tanggal_pindah != '0000-00-00') ? $this->website->tanggal_id($calon_peserta_didik->tanggal_pindah) : '-'; ?>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -174,7 +173,7 @@ $this->website = new Website();
       <table class="table table-bordered table-sm printer mt-2">
         <thead>
           <tr>
-            <th colspan="2" class="bg-dark text-white text-center">DATA KESEHATAN & LAINNYA</th>
+            <th colspan="2" class="bg-dark text-white text-center">DATA KESEHATAN & INFORMASI LAINNYA</th>
           </tr>
         </thead>
         <tbody>

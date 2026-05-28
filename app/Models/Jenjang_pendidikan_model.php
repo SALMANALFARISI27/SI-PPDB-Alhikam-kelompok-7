@@ -145,53 +145,16 @@ class Jenjang_pendidikan_model extends Model
     }
 
     // jenjang
-    public function jenjang_status_jenis_all($id_jenjang,$jenis_jenjang_pendidikan,$status_jenjang_pendidikan,$limit,$start)
-    {
-        $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, admin.nama');
-        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
-        $this->where( [ 'jenjang_pendidikan.id_jenjang'    => $id_jenjang,
-                        'jenjang_pendidikan.jenis_jenjang_pendidikan'   => $jenis_jenjang_pendidikan,
-                        'jenjang_pendidikan.status_jenjang_pendidikan'  => $status_jenjang_pendidikan,
-                    ]);
-        $this->limit((int)$limit,(int)$start);
-        $this->orderBy('jenjang_pendidikan.tanggal_publish','DESC');
-        $query = $this->get();
-        return $query->getResult();
-    }
+
 
     // total
-    public function total_jenjang_status_jenis($id_jenjang,$jenis_jenjang_pendidikan,$status_jenjang_pendidikan)
-    {
-        $this->table('jenjang_pendidikan');
-        $this->where( [ 'jenjang_pendidikan.id_jenjang'    => $id_jenjang,
-                        'jenjang_pendidikan.jenis_jenjang_pendidikan'   => $jenis_jenjang_pendidikan,
-                        'jenjang_pendidikan.status_jenjang_pendidikan'  => $status_jenjang_pendidikan,
-                    ]);
-        $query = $this->get();
-        return $query->getNumRows();
-    }
+
 
     // jenjang
-    public function jenjang_all($id_jenjang,$limit,$start)
-    {
-        $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, admin.nama');
-        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
-        $this->where( [  'jenjang_pendidikan.id_jenjang'    => $id_jenjang]);
-        $this->limit((int)$limit,(int)$start);
-        $this->orderBy('jenjang_pendidikan.tanggal_publish','DESC');
-        $query = $this->get();
-        return $query->getResult();
-    }
+
 
     // total
-    public function total_jenjang($id_jenjang)
-    {
-        $this->table('jenjang_pendidikan')->where('id_jenjang',$id_jenjang);
-        $query = $this->get();
-        return $query->getNumRows();
-    }
+
 
     // author
     public function author_all($id_admin)
@@ -227,12 +190,7 @@ class Jenjang_pendidikan_model extends Model
     }
 
     // total
-    public function total_jenis_jenjang_pendidikan($jenis_jenjang_pendidikan)
-    {
-        $this->table('jenjang_pendidikan')->where('jenis_jenjang_pendidikan',$jenis_jenjang_pendidikan);
-        $query = $this->get();
-        return $query->getNumRows();
-    }
+
 
     // status_jenjang_pendidikan
     public function status_jenjang_pendidikan_all($status_jenjang_pendidikan,$limit,$start)
@@ -248,27 +206,10 @@ class Jenjang_pendidikan_model extends Model
     }
 
     // jenjang
-    public function jenis_status_jenjang_pendidikan_all($jenis_jenjang_pendidikan,$status_jenjang_pendidikan,$limit,$start)
-    {
-        $this->table('jenjang_pendidikan');
-        $this->select('jenjang_pendidikan.*, admin.nama');
-        $this->join('admin','admin.id_admin = jenjang_pendidikan.id_admin','LEFT');
-        $this->where( [     'jenjang_pendidikan.jenis_jenjang_pendidikan'   => $jenis_jenjang_pendidikan,
-                            'jenjang_pendidikan.status_jenjang_pendidikan'  => $status_jenjang_pendidikan,  
-                        ]);
-        $this->limit((int)$limit,(int)$start);
-        $this->orderBy('jenjang_pendidikan.id_jenjang_pendidikan','DESC');
-        $query = $this->get();
-        return $query->getResult();
-    }
+
 
     // total
-    public function total_jenis_status_jenjang_pendidikan($jenis_jenjang_pendidikan,$status_jenjang_pendidikan)
-    {
-        $this->table('jenjang_pendidikan')->where('jenis_jenjang_pendidikan',$jenis_jenjang_pendidikan)->where('status_jenjang_pendidikan',$status_jenjang_pendidikan);
-        $query = $this->get();
-        return $query->getNumRows();
-    }
+
 
     // status_jenjang_pendidikan
     public function total_status_jenjang_pendidikan($status_jenjang_pendidikan)
@@ -299,14 +240,6 @@ class Jenjang_pendidikan_model extends Model
     }
 
     // detail
-    public function detail2($id_jenjang_pendidikan)
-    {
-        $this->table('jenjang_pendidikan');
-        $this->select('*');
-        $this->where('jenjang_pendidikan.id_jenjang_pendidikan',$id_jenjang_pendidikan);
-        $query = $this->get();
-        return $query->getRow();
-    }
 
     // read
     public function read($slug_jenjang_pendidikan)
@@ -336,12 +269,18 @@ class Jenjang_pendidikan_model extends Model
         $builder->update($data);
     }
 
-    // testing
-    public function copypaste($data)
+    // Nav jenjang_pendidikan
+    public function nav_jenjang()
     {
         $builder = $this->db->table('jenjang_pendidikan');
-        $builder->insert($data);
+        $builder->select('jenjang_pendidikan.id_jenjang_pendidikan,  MAX(jenjang_pendidikan.judul_jenjang_pendidikan) AS judul_jenjang_pendidikan, MAX(jenjang_pendidikan.slug_jenjang_pendidikan) AS slug_jenjang_pendidikan, MAX(jenjang_pendidikan.ringkasan) AS ringkasan, MAX(jenjang_pendidikan.gambar) AS gambar');
+        $builder->where(array('status_jenjang_pendidikan' => 'Publish'));
+        $builder->groupBy('jenjang_pendidikan.id_jenjang_pendidikan');
+        $query = $builder->get();
+        return $query->getResult();
     }
+
+    // testing
 
 }
 

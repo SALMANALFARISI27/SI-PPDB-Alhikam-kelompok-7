@@ -36,17 +36,7 @@
 
 
 	<div class="form-group row">
-		<label class="col-md-2">Kategori &amp; Status</label>
-		<div class="col-md-2">
-			<select name="id_kategori_ekstrakurikuler" class="form-control select2">
-				<?php foreach ($kategori_ekstrakurikuler as $kategori_ekstrakurikuler) { ?>
-					<option value="<?php echo $kategori_ekstrakurikuler->id_kategori_ekstrakurikuler ?>">
-						<?php echo $kategori_ekstrakurikuler->nama_kategori_ekstrakurikuler ?>
-					</option>
-				<?php } ?>
-			</select>
-			<small class="text-secondary">Kategori</small>
-		</div>
+		<label class="col-md-2">Status</label>
 		<div class="col-md-2">
 			<select name="status_ekstrakurikuler" class="form-control">
 				<option value="Publish">Publish</option>
@@ -60,16 +50,6 @@
 	<div class="form-group row">
 		<label class="col-md-2">Isi Ekstrakurikuler</label>
 		<div class="col-md-10">
-			<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-media">
-				<i class="fa fa-plus-circle"></i> Upload &amp; Kelola Media/File
-			</button>
-			<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-galeri">
-				<i class="fa fa-image"></i> Lihat Galeri
-			</button>
-			<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal"
-				data-target="#modal-download">
-				<i class="fa fa-download"></i> Lihat File
-			</button>
 			<textarea name="isi" class="form-control konten"><?php echo set_value('isi') ?></textarea>
 		</div>
 	</div>
@@ -86,8 +66,4 @@
 		</div>
 	</div>
 
-	<?php echo form_close();
-	echo view('admin/berita/media');
-	echo view('admin/berita/download');
-	echo view('admin/berita/galeri');
-	?>
+	<?php echo form_close(); ?>

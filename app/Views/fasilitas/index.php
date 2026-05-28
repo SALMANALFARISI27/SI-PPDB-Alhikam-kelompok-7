@@ -53,7 +53,6 @@
                   </a>
                 </h4>
                 <p class="mb-0 text-small">
-                  <span class="text-muted"><?php echo $fasilitas->nama_kategori_fasilitas ?></span> |
                   <span class="text-muted"><?php echo $fasilitas->kondisi_fasilitas ?></span>
                 </p>
                 <p class="mb-0 text-muted text-small">

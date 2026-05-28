@@ -4,7 +4,9 @@
   <a href="<?php echo base_url('admin/dasbor') ?>" class="brand-link">
     <img src="<?php echo $this->website->icon() ?>" alt="<?php echo $this->website->namaweb() ?>"
       class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light"><?php echo $this->website->singkatan() ?></span>
+    <span class="brand-text font-weight-light" style="font-size: 11px; line-height: 1.2; display: inline-block; vertical-align: middle; white-space: normal;">
+      <?php echo $this->website->namaweb() ?>
+    </span>
   </a>
 
   <style type="text/css" media="screen">
@@ -72,331 +74,133 @@
 
 
         <!-- berita -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "berita" || $uri->getSegment(2) == "kategori") {
+        <li class="nav-item <?php if ($uri->getSegment(2) == "berita" || $uri->getSegment(2) == "kategori_berita_profile") {
           echo 'menu-open';
         } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "berita" || $uri->getSegment(2) == "kategori") {
+          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "berita" || $uri->getSegment(2) == "kategori_berita_profile") {
             echo 'active';
           } ?>">
             <i class="nav-icon fas fa-newspaper"></i>
-            <p>Berita &amp; Profil <i class="right fas fa-angle-left"></i></p>
+            <p>Berita &amp; Profile <i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/berita') ?>" class="nav-link">
+              <a href="<?php echo base_url('admin/berita') ?>" class="nav-link <?php if ($uri->getSegment(2) == "berita") {
+                   echo 'active';
+                 } ?>">
                 <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data Berita &amp; Profil</p>
+                <p>Data Berita &amp; Profile</p>
               </a>
             </li>
+
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/berita/tambah') ?>" class="nav-link">
+              <a href="<?php echo base_url('admin/kategori_berita_profile') ?>" class="nav-link <?php if ($uri->getSegment(2) == "kategori_berita_profile") {
+                   echo 'active';
+                 } ?>">
                 <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah Berita &amp; Profil</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/kategori') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Kategori Berita &amp; Profil</p>
+                <p>Kategori Berita &amp; Profile</p>
               </a>
             </li>
           </ul>
         </li>
 
         <!-- galeri -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "galeri" || $uri->getSegment(2) == "kategori_galeri") {
-          echo 'menu-open';
-        } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "galeri" || $uri->getSegment(2) == "kategori_galeri") {
-            echo 'active';
-          } ?>">
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/galeri') ?>" class="nav-link <?php if ($uri->getSegment(2) == "galeri") {
+               echo 'active';
+             } ?>">
             <i class="nav-icon fas fa-image"></i>
-            <p>Galeri<i class="right fas fa-angle-left active"></i></p>
+            <p>Galeri</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/galeri') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data Galeri</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/galeri/tambah') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah Galeri</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/kategori_galeri') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Kategori Galeri</p>
-              </a>
-            </li>
-          </ul>
         </li>
 
-        <!-- download -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "download" || $uri->getSegment(2) == "kategori_download") {
-          echo 'menu-open';
-        } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "download" || $uri->getSegment(2) == "kategori_download") {
-            echo 'active';
-          } ?>">
+        <!-- unduhan -->
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/unduhan') ?>" class="nav-link <?php if ($uri->getSegment(2) == "unduhan") {
+               echo 'active';
+             } ?>">
             <i class="nav-icon fas fa-upload"></i>
-            <p>File &amp; Download<i class="right fas fa-angle-left"></i></p>
+            <p>Unduhan</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/download') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data File &amp; Download</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/download/tambah') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah File &amp; Download</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/kategori_download') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Kategori File &amp; Download</p>
-              </a>
-            </li>
-          </ul>
         </li>
 
         <!-- PRESTASI -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "prestasi" || $uri->getSegment(2) == "kategori_prestasi") {
-          echo 'menu-open';
-        } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "prestasi" || $uri->getSegment(2) == "kategori_prestasi") {
-            echo 'active';
-          } ?>">
-            <i class="nav-icon fas fa-certificate"></i>
-            <p>Prestasi<i class="right fas fa-angle-left"></i></p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/prestasi') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data Prestasi</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/prestasi/tambah') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah Prestasi</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/kategori_prestasi') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Kategori Prestasi</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-
-        <!-- video -->
         <li class="nav-item">
-          <a href="<?php echo base_url('admin/video') ?>" class="nav-link <?php if ($uri->getSegment(2) == "video") {
+          <a href="<?php echo base_url('admin/prestasi') ?>" class="nav-link <?php if ($uri->getSegment(2) == "prestasi") {
                echo 'active';
              } ?>">
-            <i class="nav-icon fab fa-youtube"></i>
-            <p>Video Youtube</p>
+            <i class="nav-icon fas fa-certificate"></i>
+            <p>Prestasi</p>
           </a>
         </li>
 
-        <!-- PORTFOLIO -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "portfolio" || $uri->getSegment(2) == "kategori_portfolio") {
-          echo 'menu-open';
-        } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "portfolio" || $uri->getSegment(2) == "kategori_portfolio") {
-            echo 'active';
-          } ?>">
+        <!-- PORTOFOLIO -->
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/portofolio') ?>" class="nav-link <?php if ($uri->getSegment(2) == "portofolio") {
+               echo 'active';
+             } ?>">
             <i class="nav-icon fas fa-tasks"></i>
-            <p>Portofolio<i class="right fas fa-angle-left"></i></p>
+            <p>Portofolio</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/portfolio') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data Portofolio</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/portfolio/tambah') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah Portofolio</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/kategori_portfolio') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Kategori Portofolio</p>
-              </a>
-            </li>
-          </ul>
         </li>
-
 
         <!-- Fasilitas -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "fasilitas" || $uri->getSegment(2) == "kategori_fasilitas") {
-          echo 'menu-open';
-        } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "fasilitas" || $uri->getSegment(2) == "kategori_fasilitas") {
-            echo 'active';
-          } ?>">
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/fasilitas') ?>" class="nav-link <?php if ($uri->getSegment(2) == "fasilitas") {
+               echo 'active';
+             } ?>">
             <i class="nav-icon fas fa-home"></i>
-            <p>Fasilitas <i class="right fas fa-angle-left"></i></p>
+            <p>Fasilitas</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/fasilitas') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data Fasilitas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/fasilitas/tambah') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah Fasilitas</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/kategori_fasilitas') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Kategori Fasilitas</p>
-              </a>
-            </li>
-          </ul>
         </li>
 
         <!-- EKSTRAKULIKULER -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "ekstrakurikuler" || $uri->getSegment(2) == "kategori_ekstrakurikuler") {
-          echo 'menu-open';
-        } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "ekstrakurikuler" || $uri->getSegment(2) == "kategori_ekstrakurikuler") {
-            echo 'active';
-          } ?>">
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/ekstrakurikuler') ?>" class="nav-link <?php if ($uri->getSegment(2) == "ekstrakurikuler") {
+               echo 'active';
+             } ?>">
             <i class="nav-icon fas fa-futbol"></i>
-            <p>Ekstrakurikuler <i class="right fas fa-angle-left"></i></p>
+            <p>Ekstrakurikuler</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/ekstrakurikuler') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data Ekstrakurikuler</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/ekstrakurikuler/tambah') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah Ekstrakurikuler</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/kategori_ekstrakurikuler') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Kategori Ekstrakurikuler</p>
-              </a>
-            </li>
-          </ul>
         </li>
 
         <!-- jenjang_pendidikan -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "jenjang_pendidikan") {
-          echo 'menu-open';
-        } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "jenjang_pendidikan") {
-            echo 'active';
-          } ?>">
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/jenjang_pendidikan') ?>" class="nav-link <?php if ($uri->getSegment(2) == "jenjang_pendidikan") {
+               echo 'active';
+             } ?>">
             <i class="nav-icon fas fa-chair"></i>
-            <p>Jenjang Pendidikan <i class="right fas fa-angle-left"></i></p>
+            <p>Jenjang Pendidikan</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/jenjang_pendidikan') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data Jenjang Pendidikan</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/jenjang_pendidikan/tambah') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah Jenjang Pendidikan</p>
-              </a>
-            </li>
-
-          </ul>
         </li>
-
-
-
-
 
         <!-- Staff -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "staff" || $uri->getSegment(2) == "kategori_staff") {
-          echo 'menu-open';
-        } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "staff" || $uri->getSegment(2) == "kategori_staff") {
-            echo 'active';
-          } ?>">
-            <i class="nav-icon fas fa-user-tie"></i>
-            <p>Staff <i class="right fas fa-angle-left"></i></p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/staff') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Data Staff</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/staff/tambah') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Tambah Staff</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/kategori_staff') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Kategori Staff</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <!-- master -->
-        <li class="nav-item <?php if ($uri->getSegment(2) == "link_website" || $uri->getSegment(2) == "jenjang" || $uri->getSegment(2) == "hubungan" || $uri->getSegment(2) == "pekerjaan" || $uri->getSegment(2) == "agama") {
-          echo 'menu-open';
-        } ?>">
-          <a href="#" class="nav-link <?php if ($uri->getSegment(2) == "link_website" || $uri->getSegment(2) == "jenjang" || $uri->getSegment(2) == "hubungan" || $uri->getSegment(2) == "pekerjaan" || $uri->getSegment(2) == "agama") {
-            echo 'active';
-          } ?>">
-            <i class="nav-icon fas fa-table"></i>
-            <p>Master Data <i class="right fas fa-angle-left"></i></p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/link_website') ?>" class="nav-link">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Link Website</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <!-- pengguna -->
         <li class="nav-item">
-          <a href="<?php echo base_url('admin/user') ?>" class="nav-link <?php if ($uri->getSegment(2) == "user") {
+          <a href="<?php echo base_url('admin/staff') ?>" class="nav-link <?php if ($uri->getSegment(2) == "staff") {
+               echo 'active';
+             } ?>">
+            <i class="nav-icon fas fa-user-tie"></i>
+            <p>Staff</p>
+          </a>
+        </li>
+
+        <!-- tautan -->
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/tautan') ?>" class="nav-link <?php if ($uri->getSegment(2) == "tautan") {
+               echo 'active';
+             } ?>">
+            <i class="nav-icon fas fa-table"></i>
+            <p>Tautan</p>
+          </a>
+        </li>
+
+        <!-- admin -->
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/admin') ?>" class="nav-link <?php if ($uri->getSegment(2) == "admin") {
                echo 'active';
              } ?>">
             <i class="nav-icon fas fa-user-lock"></i>
-            <p>Pengguna Sistem</p>
+            <p>Admin</p>
           </a>
         </li>
 
@@ -459,14 +263,6 @@
                 <p>Background Login</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/konfigurasi/yayasan') ?>" class="nav-link <?php if ($uri->getSegment(3) == "yayasan") {
-                   echo 'active';
-                 } ?>">
-                <i class="fa fa-arrow-right nav-icon"></i>
-                <p>Informasi Yayasan</p>
-              </a>
-            </li>
           </ul>
         </li>
       </ul>
@@ -499,18 +295,6 @@
         <div class="col-12">
           <!-- Default box -->
           <div class="card">
-            <!-- <div class="card-header">
-                <h3 class="card-title"><?php echo $title ?></h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div> -->
             <div class="card-body pt-4" style="min-height: 400px;">
 
               <?php

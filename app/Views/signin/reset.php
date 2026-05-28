@@ -38,7 +38,7 @@
               </form>
               <!-- /form -->
               <p class="mb-1">Kembali ke <a href="<?php echo base_url() ?>">Beranda</a> | <a href="<?php echo base_url('signin') ?>" class="hover">Login?</a></p>
-              <p class="mb-0">Belum punya akun? <a href="<?php echo base_url('pendaftaran/akun') ?>">Buat akun sekarang!</a></p>
+              <p class="mb-0">Belum punya akun? <a href="<?php echo base_url('registrasi/akun') ?>">Buat akun sekarang!</a></p>
           
             
               <!--/.social -->

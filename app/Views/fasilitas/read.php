@@ -52,10 +52,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="bg-light">Kategori</td>
-                    <td><?php echo $fasilitas->nama_kategori_fasilitas ?></td>
-                  </tr>
+
 
                   <tr>
                     <td class="bg-light">Kondisi Fasilitas</td>
@@ -126,7 +123,6 @@
                   </a>
                 </h5>
                 <p class="mb-0 text-small">
-                  <span class="text-muted"><?php echo $fasilitas->nama_kategori_fasilitas ?></span> |
                   <span class="text-muted"><?php echo $fasilitas->kondisi_fasilitas ?></span>
                 </p>
               </div>

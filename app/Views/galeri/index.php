@@ -25,10 +25,16 @@
             </div>
             <div class="card">
               <figure class="card-img-top">
-                <a href="<?php echo base_url('galeri/read/' . $galeri->slug_galeri) ?>">
+                <a href="<?php echo base_url('galeri/read/' . $galeri->slug_galeri) ?>" class="item-link">
                   <img class="img-fluid" src="<?php echo base_url('assets/upload/image/' . $galeri->gambar) ?>"
                     srcset="<?php echo base_url('assets/upload/image/' . $galeri->gambar) ?> 2x"
                     alt="<?php echo $galeri->judul_galeri ?>" />
+                  <?php if ($galeri->jenis_galeri == "Video") { ?>
+                    <span class="it-video-icon"
+                      style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255,0,0,0.8); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10;">
+                      <i class="fa fa-play"></i>
+                    </span>
+                  <?php } ?>
                 </a>
               </figure>
               <div class="card-body px-6 py-5">
@@ -37,7 +43,7 @@
                     <?php echo $galeri->judul_galeri ?>
                   </a>
                 </h4>
-                <p class="mb-0 text-small text-muted"><?php echo $galeri->nama_kategori_galeri ?></p>
+                <p class="mb-0 text-small text-muted"><?php echo $galeri->jenis_galeri ?></p>
                 <p class="mb-0 text-muted text-small">
                   <i class="uil uil-eye"></i> Dibaca <?php echo $galeri->hits ?> kali
                 </p>

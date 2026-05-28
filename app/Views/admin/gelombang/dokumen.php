@@ -21,7 +21,9 @@
           <thead>
             <tr>
               <th width="25%">Kode Pendaftaran</th>
-              <th><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></th>
+              <th>
+                <?php echo $calon_peserta_didik->kode_calon_peserta_didik ?>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -99,10 +101,14 @@
               $data_total += $data_id;
               ?>
               <tr>
-                <td class="text-center"><?php echo $no ?></td>
+                <td class="text-center">
+                  <?php echo $no ?>
+                </td>
                 <td>
                   <?php echo $jd->nama_jenis_dokumen ?>
-                  <small class="d-block text-muted"><?php echo $jd->keterangan ?></small>
+                  <small class="d-block text-muted">
+                    <?php echo $jd->keterangan ?>
+                  </small>
                 </td>
                 <td class="text-center">
                   <?php if ($jd->status_jenis_dokumen == 'Wajib') { ?>
@@ -125,8 +131,7 @@
                         href="<?php echo base_url('admin/gelombang/unduh/' . $check_dokumen->kode_dokumen . '/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
                         target="_blank"><i class="fa fa-download"></i></a>
                       <a class="btn btn-outline-danger btn-xs delete-link"
-                        href="<?php echo base_url('admin/gelombang/hapus/' . $check_dokumen->kode_dokumen . '/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>"
-                        onclick="return confirm('Yakin ingin menghapus dokumen ini?')">
+                        href="<?php echo base_url('admin/gelombang/hapus/' . $check_dokumen->kode_dokumen . '/' . $calon_peserta_didik->slug_calon_peserta_didik) ?>">
                         <i class="fa fa-trash"></i></a>
                     </div>
                     <?php include('lihat.php'); ?>

@@ -52,7 +52,7 @@
                     <?php echo $ekstrakurikuler->judul_ekstrakurikuler ?>
                   </a>
                 </h4>
-                <p class="mb-0 text-small text-muted"><?php echo $ekstrakurikuler->nama_kategori_ekstrakurikuler ?> |
+                <p class="mb-0 text-small text-muted">
                   <?php echo $ekstrakurikuler->nama_penanggung_jawab ?>
                 </p>
                 <ul class="post-meta d-flex flex-wrap gap-2 mb-0 mt-3 text-muted" style="font-size: 13px;">

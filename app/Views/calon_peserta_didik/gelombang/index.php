@@ -1,22 +1,17 @@
 <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
-    <p class="text-center">Halo <strong
-            class="text-danger"><?php echo Session()->get('nama_calon_peserta_didik') ?></strong>. Anda sudah berhasil
-        login.
+    <p class="text-center">
+        Halo <strong class="text-danger"><?php echo Session()->get('nama_calon_peserta_didik') ?></strong>. Anda sudah berhasil login.
         <br>Silakan klik Tombol <strong class="text-danger">Daftar Online</strong> untuk melakukan Proses PPDB.
     </p>
-
-
 <?php } else { ?>
-
-    <p class="text-center">Sudah punya Akun? <a href="<?php echo base_url('signin') ?>" class="hover">Login di sini</a>.
-        <br>Jika Anda Belum Memiliki Akun, silakan <a href="<?php echo base_url('pendaftaran/akun') ?>">Buat Akun</a>
-        terlebih dahulu.
-        <br>Tombol <strong>Daftar Online</strong> akan otomatis aktif jika Anda sudah melakukan login dengan akun yang sudah
-        Anda miliki.
+    <p class="text-center">
+        Sudah punya Akun? <a href="<?php echo base_url('signin') ?>" class="hover">Login di sini</a>.
+        <br>Jika Anda Belum Memiliki Akun, silakan <a href="<?php echo base_url('registrasi/akun') ?>">Buat Akun</a> terlebih dahulu.
+        <br>Tombol <strong>Daftar Online</strong> akan otomatis aktif jika Anda sudah melakukan login dengan akun yang sudah Anda miliki.
     </p>
 <?php } ?>
 
-<?php foreach ($gelombang as $gelombang) { ?> <!-- Gunakan $gelombang agar tidak konflik -->
+<?php foreach ($gelombang as $gelombang) { ?>
     <div class="card mb-2">
         <div class="card-body">
             <div class="row">
@@ -45,14 +40,22 @@
                             Lihat Detail &nbsp;<i class="fa fa-eye"></i>
                         </button>
                         <?php if (Session()->get('username_calon_peserta_didik') != '') { ?>
-                            <?php if (in_array($gelombang->id_gelombang, $registered_ids)) { ?>
+                            <?php 
+                            $count_reg = 0;
+                            foreach($registered_ids as $rid) {
+                                if($rid == $gelombang->id_gelombang) {
+                                    $count_reg++;
+                                }
+                            }
+                            if ($count_reg >= 2) { 
+                            ?>
                                 <a href="#" class="btn btn-secondary disabled btn-sm text-white mb-1">
-                                    <i class="fa fa-check-circle"></i>&nbsp; Sudah Daftar
+                                    <i class="fa fa-check-circle"></i>&nbsp; Sudah Daftar (Maksimal 2 Pilihan)
                                 </a>
                             <?php } else { ?>
                                 <a href="<?php echo base_url('calon_peserta_didik/pendaftaran/biodata/' . $gelombang->id_gelombang) ?>"
                                     class="btn btn-danger btn-sm text-white mb-1">
-                                    <i class="fa fa-edit"></i>&nbsp; Daftar Online
+                                    <i class="fa fa-edit"></i>&nbsp; <?php echo ($count_reg == 1) ? 'Daftar Program Kedua' : 'Daftar Online'; ?>
                                 </a>
                             <?php } ?>
                         <?php } else { ?>
@@ -60,7 +63,7 @@
                                 <i class="fa fa-edit"></i>&nbsp; Daftar Online
                             </a>
 
-                            <a href="<?php echo base_url('pendaftaran/akun') ?>" class="btn btn-success btn-sm text-white mb-1">
+                            <a href="<?php echo base_url('registrasi/akun') ?>" class="btn btn-success btn-sm text-white mb-1">
                                 <i class="fa fa-user-edit"></i>&nbsp; Buat akun
                             </a>
                             <a href="<?php echo base_url('signin') ?>" class="btn btn-info btn-sm text-white mb-1">

@@ -48,8 +48,6 @@
 		class="btn btn-danger btn-xs mb-1" target="_blank"><i class="fa fa-file-pdf"></i> Cetak</a>
 	<a href="<?php echo base_url('admin/gelombang/unduh_pengumuman/' . $gelombang->id_gelombang . '/' . $status_pendaftaran . '/' . $id_jenjang_pendidikan) ?>"
 		class="btn btn-danger btn-xs mb-1" target="_blank"><i class="fa fa-file-pdf"></i> Cetak Pengumuman</a>
-	<a href="<?php echo base_url('pendaftaran') ?>" class="btn btn-primary btn-xs mb-1" target="_blank"><i
-			class="fa fa-eye"></i> Baca</a>
 </p>
 
 <div class="row">

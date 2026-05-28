@@ -6,15 +6,22 @@ use CodeIgniter\Model;
 class Calon_peserta_didik_model extends Model
 {
 
-   public function __construct()
-    {
-        parent::__construct();
-        $this->db               = \Config\Database::connect();
-    }
-
     protected $table            = 'calon_peserta_didik';
     protected $primaryKey       = 'id_calon_peserta_didik';
-    protected $allowedFields    = ['*'];
+    protected $allowedFields    = [
+        'id_admin', 'id_gelombang', 'id_akun', 'id_jenjang_pendidikan', 'agama', 
+        'kode_calon_peserta_didik', 'slug_calon_peserta_didik', 'nis', 'nisn', 
+        'status_wn', 'negara_asal', 'nama_calon_peserta_didik', 'tempat_lahir', 
+        'tanggal_lahir', 'alamat', 'telepon', 'kode_pos', 'email', 'jenis_kelamin', 
+        'berkebutuhan_khusus', 'isi', 'nama_ayah', 'agama_ayah', 'jenjang_ayah', 
+        'pekerjaan_ayah', 'alamat_ayah', 'telepon_ayah', 'nama_ibu', 'agama_ibu', 
+        'jenjang_ibu', 'pekerjaan_ibu', 'alamat_ibu', 'telepon_ibu', 'nama_wali', 
+        'agama_wali', 'jenjang_wali', 'pekerjaan_wali', 'alamat_wali', 'telepon_wali', 
+        'identitas_wali', 'goldar_calon_peserta_didik', 'hobi_calon_peserta_didik', 
+        'penyakit_calon_peserta_didik', 'tinggi', 'berat', 'jenis_calon_peserta_didik', 
+        'asal_sekolah', 'alamat_sekolah_asal', 'tanggal_pindah', 'anak_ke', 
+        'jumlah_saudara', 'status_pendaftaran', 'tanggal'
+    ];
 
     // listing
     public function listing()
@@ -22,10 +29,8 @@ class Calon_peserta_didik_model extends Model
         $builder = $this->db->table('calon_peserta_didik');
         $builder->select('calon_peserta_didik.*,
                         jenjang_pendidikan.judul_jenjang_pendidikan,
-                 
                         gelombang.judul,
-                        gelombang.tahun_ajaran,
-                        jenjang_pendidikan.judul_jenjang_pendidikan');
+                        gelombang.tahun_ajaran');
    
         $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
         $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
@@ -131,65 +136,13 @@ class Calon_peserta_didik_model extends Model
     }
 
     // status_pendaftaran_gelombang
-    public function status_pendaftaran_gelombang($status_pendaftaran,$id_gelombang)
-    {
-        $builder = $this->db->table('calon_peserta_didik');
-        $builder->select('COUNT(*) AS total');
 
-        if($status_pendaftaran != 'Semua') {
-            $builder->where('status_pendaftaran',$status_pendaftaran);
-        }
-        
-        $builder->where('id_gelombang',$id_gelombang);
-        $query = $builder->get();
-        return $query->getRow();
-    }
 
     // paginasi
-    public function paginasi($limit,$start)
-    {
-        $builder = $this->db->table('calon_peserta_didik');
-        $builder->select('calon_peserta_didik.*,
-                        jenjang_pendidikan.judul_jenjang_pendidikan,
-                     
-                        gelombang.judul,
-                        gelombang.tahun_ajaran,
-                        jenjang_pendidikan.judul_jenjang_pendidikan');
-    
-        $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
-        $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
-        $builder->limit($limit,$start);
-        $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
+
 
     // paginasi
-    public function paginasi_cari($keywords,$limit,$start)
-    {
-        $builder = $this->db->table('calon_peserta_didik');
-        $builder->select('calon_peserta_didik.*,
-                        jenjang_pendidikan.judul_jenjang_pendidikan,
-                 
-                        gelombang.judul,
-                        gelombang.tahun_ajaran,
-                        jenjang_pendidikan.judul_jenjang_pendidikan');
-   
-        $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
-        $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
-        $builder->like('nama_calon_peserta_didik',$keywords,'BOTH');
-        $builder->orLike('email',$keywords,'BOTH');
-        $builder->orLike('nama_ayah',$keywords,'BOTH');
-        $builder->orLike('nama_ibu',$keywords,'BOTH');
-        $builder->orLike('nama_wali',$keywords,'BOTH');
-        $builder->orLike('alamat',$keywords,'BOTH');
-        $builder->orLike('telepon',$keywords,'BOTH');
-        $builder->orLike('alamat',$keywords,'BOTH');
-        $builder->limit($limit,$start);
-        $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
+
 
     // total
     public function total_cari($keywords)
@@ -220,13 +173,7 @@ class Calon_peserta_didik_model extends Model
     }
 
     // last_id
-    public function last_id()
-    {
-        $builder = $this->db->table('calon_peserta_didik');
-        $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
-        $query = $builder->get();
-        return $query->getRow();
-    }
+
 
     // detail
     public function detail($id_calon_peserta_didik)
@@ -248,46 +195,7 @@ class Calon_peserta_didik_model extends Model
     }
 
     // listing
-    public function login($username,$password)
-    {
-        $builder = $this->db->table('calon_peserta_didik');
-        $builder->select('calon_peserta_didik.*,
-                        jenjang_pendidikan.judul_jenjang_pendidikan,
-               
-                        gelombang.judul,
-                        gelombang.tahun_ajaran,
-                        jenjang_pendidikan.judul_jenjang_pendidikan');
-   
-        $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
-        $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
-        $builder->where([   'email'     => $username,
-                            'password'  => $password
-                        ]);
-        $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
-        $query = $builder->get();
-        return $query->getRow();
-    }
 
-    // listing
-    public function login_nis($username,$password)
-    {
-        $builder = $this->db->table('calon_peserta_didik');
-        $builder->select('calon_peserta_didik.*,
-                        jenjang_pendidikan.judul_jenjang_pendidikan,
-   
-                        gelombang.judul,
-                        gelombang.tahun_ajaran,
-                        jenjang_pendidikan.judul_jenjang_pendidikan');
-
-        $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
-        $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
-        $builder->where([   'nis'       => $username,
-                            'password'  => $password
-                        ]);
-        $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
-        $query = $builder->get();
-        return $query->getRow();
-    }
 
     // read
     public function read($slug_calon_peserta_didik)

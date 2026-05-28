@@ -29,18 +29,6 @@
 		<button type="submit" name="submit" value="Publish" class="btn btn-info" title="Publikasikan">
 			<i class="fa fa-eye"></i>
 		</button>
-		<select name="id_kategori_fasilitas" class="form-control">
-			<?php foreach ($kategori_fasilitas as $kategori_fasilitas) { ?>
-				<option value="<?php echo $kategori_fasilitas->id_kategori_fasilitas ?>">
-					<?php echo $kategori_fasilitas->nama_kategori_fasilitas ?>
-				</option>
-			<?php } ?>
-		</select>
-		<span class="input-group-append">
-			<button type="submit" name="submit" value="Update" class="btn btn-warning">
-				<i class="fa fa-search"></i> Update
-			</button>
-		</span>
 	</div>
 
 	<div class="table-responsive mailbox-messages mt-1">
@@ -55,7 +43,7 @@
 					</th>
 					<th width="8%" class="text-center">Gambar</th>
 					<th width="20%" class="text-center">Judul/Nama</th>
-					<th width="15%" class="text-center">Kategori &amp; Kondisi</th>
+					<th width="15%" class="text-center">Kondisi</th>
 					<th width="10%" class="text-center">Status</th>
 					<th width="12%" class="text-center">Author</th>
 					<th width="10%" class="text-center">Aksi</th>
@@ -100,8 +88,7 @@
 
 						<td>
 							<small>
-								<i class="fa fa-tags"></i> <?php echo $fasilitas->nama_kategori_fasilitas ?>
-								<br><i class="fa fa-check-circle"></i> <?php echo $fasilitas->kondisi_fasilitas ?>
+								<i class="fa fa-check-circle"></i> <?php echo $fasilitas->kondisi_fasilitas ?>
 							</small>
 						</td>
 

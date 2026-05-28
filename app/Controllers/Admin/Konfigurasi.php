@@ -1,9 +1,8 @@
 <?php
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
-use App\Models\Yayasan_model;
+
 
 class Konfigurasi extends BaseController
 {
@@ -29,7 +28,6 @@ class Konfigurasi extends BaseController
 				'id_konfigurasi' => $konfigurasi->id_konfigurasi,
 				'id_admin' => $this->session->get('id_admin'),
 				'namaweb' => $this->request->getPost('namaweb'),
-				'singkatan' => $this->request->getPost('singkatan'),
 				'tagline' => $this->request->getPost('tagline'),
 				'tentang' => $this->request->getPost('tentang'),
 				'deskripsi' => $this->request->getPost('deskripsi'),
@@ -152,63 +150,6 @@ class Konfigurasi extends BaseController
 		}
 	}
 
-	// yayasan
-	public function yayasan()
-	{
-
-		$m_yayasan = new Yayasan_model();
-		$yayasan = $m_yayasan->listing();
-		$id_yayasan = $yayasan->id_yayasan;
-		// Start validasi
-		if (
-			$this->request->getMethod() === 'POST' && $this->validate(
-				[
-					'nama_yayasan' => 'required|min_length[3]',
-				]
-			)
-		) {
-			// masuk database
-			$data = [
-				'id_yayasan' => $yayasan->id_yayasan,
-				'id_admin' => $this->session->get('id_admin'),
-				'nsp' => $this->request->getPost('nsp'),
-				'status_yayasan' => $this->request->getPost('status_yayasan'),
-				'alamat' => $this->request->getPost('alamat'),
-				'kelurahan' => $this->request->getPost('kelurahan'),
-				'kecamatan' => $this->request->getPost('kecamatan'),
-				'kabupaten' => $this->request->getPost('kabupaten'),
-				'provinsi' => $this->request->getPost('provinsi'),
-				'kode_pos' => $this->request->getPost('kode_pos'),
-				'telepon' => $this->request->getPost('telepon'),
-				'email' => $this->request->getPost('email'),
-				'luas_tanah' => $this->request->getPost('luas_tanah'),
-				'luas_bangunan' => $this->request->getPost('luas_bangunan'),
-				'status_tanah' => $this->request->getPost('status_tanah'),
-				'imb' => $this->request->getPost('imb'),
-				'nomor_sertifikat' => $this->request->getPost('nomor_sertifikat'),
-				'nama_yayasan' => $this->request->getPost('nama_yayasan'),
-				'tanggal_berdiri' => $this->website->tanggal_input($this->request->getPost('tanggal_berdiri')),
-				'jumlah_pegawai' => $this->request->getPost('jumlah_pegawai'),
-				'nilai_akreditasi' => $this->request->getPost('nilai_akreditasi'),
-				'tanggal_akreditasi' => $this->website->tanggal_input($this->request->getPost('tanggal_akreditasi')),
-				'tanggal_kadaluarsa' => $this->website->tanggal_input($this->request->getPost('tanggal_kadaluarsa')),
-				'nomor_izin' => $this->request->getPost('nomor_izin'),
-				'keterangan' => $this->request->getPost('keterangan'),
-
-			];
-			$m_yayasan->edit($data);
-			// masuk database
-			$this->session->setFlashdata('sukses', 'Data telah diupdate');
-			return redirect()->to(base_url('admin/konfigurasi/yayasan'));
-		} else {
-			$data = [
-				'title' => 'Informasi Yayasan',
-				'yayasan' => $yayasan,
-				'content' => 'admin/konfigurasi/yayasan'
-			];
-			echo view('admin/layout/wrapper', $data);
-		}
-	}
 
 	// banner
 	public function banner()
@@ -270,27 +211,6 @@ class Konfigurasi extends BaseController
 		}
 	}
 
-	// unduh
-	public function unduh()
-	{
-
-		$m_yayasan = new Yayasan_model();
-		$yayasan = $m_yayasan->listing();
-
-		$data = [
-			'title' => 'Informasi Yayasan',
-			'yayasan' => $yayasan,
-		];
-		$mpdf = new \Mpdf\Mpdf([
-			'default_font_size' => 11,
-			'default_font' => 'dejavusans'
-		]);
-		$html = view('admin/konfigurasi/cetak', $data);
-		$mpdf->WriteHTML($html);
-		$this->response->setHeader('Content-Type', 'application/pdf');
-		// buka di browser
-		$mpdf->Output('Informasi-Yayasan.pdf', 'I');
-	}
 
 
 	// logo

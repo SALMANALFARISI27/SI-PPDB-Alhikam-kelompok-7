@@ -1,7 +1,6 @@
 <?php
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Jenis_dokumen_model;
 
 class Jenis_dokumen extends BaseController

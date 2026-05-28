@@ -12,12 +12,6 @@ echo csrf_field();
 	</div>
 </div>
 
-<div class="form-group row">
-	<label class="col-3">Singkatan Website</label>
-	<div class="col-9">
-		<input type="text" name="singkatan" class="form-control" value="<?php echo $konfigurasi->singkatan ?>">
-	</div>
-</div>
 
 <div class="form-group row">
 	<label class="col-3">Tagline Website</label>
@@ -45,7 +39,7 @@ echo csrf_field();
 
 
 <hr>
-<h4>Informasi Profil Website/Aplikasi</h4>
+<h4>Informasi Profile Website/Aplikasi</h4>
 <hr>
 <div class="form-group row">
 	<label class="col-3">Tentang Website</label>

@@ -1,8 +1,6 @@
 <?php 
 namespace App\Controllers\Calon_peserta_didik;
 
-use CodeIgniter\Controller;
-
 class Dasbor extends BaseController
 {
 	public function index()

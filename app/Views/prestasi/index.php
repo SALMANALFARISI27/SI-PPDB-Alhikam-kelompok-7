@@ -42,7 +42,7 @@
                     </a>
                   </h4>
                   <p class="mb-0 text-small text-muted">
-                    <?php echo $prestasi->nama_kategori_prestasi ?> | <?php echo $prestasi->jenjang_prestasi ?>
+                    <?php echo $prestasi->jenjang_prestasi ?>
                   </p>
                   <p class="mb-0 text-muted text-small">
                     <i class="uil uil-eye"></i> Dilihat <?php echo $prestasi->hits ?> kali

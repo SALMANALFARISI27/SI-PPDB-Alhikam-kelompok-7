@@ -1,9 +1,7 @@
  <?php 
-use App\Models\Nav_model;
 use App\Models\Konfigurasi_model;
 use App\Libraries\Website;
 $this->website          = new Website(); 
-$m_nav                 = new Nav_model();
 $m_site                 = new Konfigurasi_model();
 ?>
 <section class="wrapper bg-soft-primary  bg-image" data-image-src="<?php echo $this->website->banner() ?>">

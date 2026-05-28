@@ -1,7 +1,6 @@
 <?php
 namespace App\Libraries;
 use App\Models\Admin_model;
-use App\Models\Calon_peserta_didik_model;
 use App\Models\Akun_model;
 
 class Simple_login
@@ -38,32 +37,12 @@ class Simple_login
 		}
 	}
 
-	// login calon peserta didik (hanya set session, tanpa redirect otomatis)
-	public function login_calon_peserta_didik_akun($username, $password)
-	{
-		$m_akun = new Akun_model();
-		$user = $m_akun->login($username, sha1($password));
-
-		if ($user) {
-			if ($user->status_akun !== 'Aktif') {
-				$this->session->setFlashdata('warning', 'Akun Anda belum diaktivasi. Silakan cek email untuk link aktivasi.');
-				return false;
-			}
-			$this->session->set('username_calon_peserta_didik', $username);
-			$this->session->set('id_akun', $user->id_akun);
-			$this->session->set('username', $user->username);
-			$this->session->set('jenis_akun', $user->jenis_akun);
-			return true;
-		}
-		return false;
-	}
 
 	// login calon peserta didik dengan redirect
 	public function login_calon_peserta_didik($username, $password)
 	{
 		$m_akun = new Akun_model();
 		$user = $m_akun->login($username, sha1($password));
-		$user2 = $m_akun->login_nis($username, sha1($password));
 
 		if ($user) {
 			if ($user->status_akun !== 'Aktif') {
@@ -76,20 +55,6 @@ class Simple_login
 			$this->session->set('id_akun', $user->id_akun);
 			$this->session->set('nama_calon_peserta_didik', $user->username);
 			$this->session->set('jenis_akun', $user->jenis_akun);
-
-			session_write_close();
-			return redirect()->to(base_url('calon_peserta_didik/dasbor'));
-		} elseif ($user2) {
-			if ($user2->status_akun !== 'Aktif') {
-				$this->session->setFlashdata('warning', 'Akun Anda belum diaktivasi. Silakan cek email untuk link aktivasi.');
-				session_write_close();
-				return redirect()->to(base_url('signin'));
-			}
-
-			$this->session->set('username_calon_peserta_didik', $username);
-			$this->session->set('id_akun', $user2->id_akun);
-			$this->session->set('nama_calon_peserta_didik', $user2->nama_calon_peserta_didik);
-			$this->session->set('jenis_akun', $user2->jenis_akun);
 
 			session_write_close();
 			return redirect()->to(base_url('calon_peserta_didik/dasbor'));

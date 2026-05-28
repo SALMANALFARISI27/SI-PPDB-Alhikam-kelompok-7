@@ -63,19 +63,7 @@
 	</div>
 
 	<div class="form-group row">
-		<label class="col-md-3">Kategori &amp; Status</label>
-		<div class="col-md-4">
-			<select name="id_kategori_fasilitas" class="form-control select2">
-				<?php foreach ($kategori_fasilitas as $kategori_fasilitas) { ?>
-					<option value="<?php echo $kategori_fasilitas->id_kategori_fasilitas ?>" <?php if ($fasilitas->id_kategori_fasilitas == $kategori_fasilitas->id_kategori_fasilitas) {
-						   echo 'selected';
-					   } ?>>
-						<?php echo $kategori_fasilitas->nama_kategori_fasilitas ?>
-					</option>
-				<?php } ?>
-			</select>
-			<small class="text-secondary">Kategori</small>
-		</div>
+		<label class="col-md-3">Status</label>
 		<div class="col-md-2">
 			<select name="status_fasilitas" class="form-control">
 				<option value="Publish">Publish</option>
@@ -109,8 +97,4 @@
 		</div>
 	</div>
 
-	<?php echo form_close();
-	echo view('admin/berita/media');
-	echo view('admin/berita/download');
-	echo view('admin/berita/galeri');
-	?>
+	<?php echo form_close(); ?>

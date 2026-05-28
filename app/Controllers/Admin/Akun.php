@@ -1,7 +1,6 @@
 <?php 
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Admin_model;
 
 class Akun extends BaseController
@@ -72,7 +71,7 @@ class Akun extends BaseController
 			// end update password
 
 	    }
-		$data = [	'title'			=> 'Profil Saya',
+		$data = [	'title'			=> 'Profile Saya',
 					'user'			=> $admin,
 					'content'		=> 'admin/akun/index'
 				];

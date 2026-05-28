@@ -27,18 +27,6 @@
 		<button type="submit" name="submit" value="Publish" class="btn btn-info" title="Publikasikan">
 			<i class="fa fa-eye"></i>
 		</button>
-		<select name="id_kategori_staff" class="form-control">
-			<?php foreach ($kategori_staff as $kategori_staff) { ?>
-				<option value="<?php echo $kategori_staff->id_kategori_staff ?>">
-					<?php echo $kategori_staff->nama_kategori_staff ?>
-				</option>
-			<?php } ?>
-		</select>
-		<span class="input-group-append">
-			<button type="submit" name="submit" value="Update" class="btn btn-warning">
-				<i class="fa fa-search"></i> Update
-			</button>
-		</span>
 	</div>
 
 	<div class="table-responsive mailbox-messages mt-1">
@@ -87,7 +75,6 @@
 						</td>
 						<td><?php echo $staff->nama ?>
 							<small>
-								<br><i class="fa fa-sitemap"></i> <?php echo $staff->nama_kategori_staff ?>
 								<br><i class="fa fa-sort-numeric-up"></i> No: <?php echo $staff->urutan ?>
 							</small>
 						</td>
@@ -127,7 +114,7 @@
 							<?php } ?>
 						</td>
 						<td class="text-center">
-							<a href="<?php echo base_url('admin/user?id_staff=' . $staff->id_staff) ?>"
+							<a href="<?php echo base_url('admin/admin?id_staff=' . $staff->id_staff) ?>"
 								class="btn btn-warning btn-sm"><i class="fa fa-lock"></i> Akses</a>
 							<a href="<?php echo base_url('admin/staff/edit/' . $staff->id_staff) ?>"
 								class="btn btn-secondary btn-sm"><i class="fa fa-edit"></i></a>

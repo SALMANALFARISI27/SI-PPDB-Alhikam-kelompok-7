@@ -2,7 +2,6 @@
 namespace App\Controllers;
 use App\Models\Konfigurasi_model;
 use App\Models\Jenjang_pendidikan_model;
-use App\Models\Nav_model;
 
 
 class Jenjang_pendidikan extends BaseController
@@ -34,11 +33,6 @@ class Jenjang_pendidikan extends BaseController
         return view('layout/wrapper', $data);
     }
 
-    // jenjang (Obsolete endpoint, safely returns 404 to gracefully avoid Jenjang_model DBException)
-    public function jenjang($id_jenjang)
-    {
-        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-    }
 
 
     // read
@@ -75,35 +69,6 @@ class Jenjang_pendidikan extends BaseController
         return view('layout/wrapper', $data);
     }
 
-    // profil
-    public function profil($id_jenjang_pendidikan)
-    {
-        $m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-        $m_nav = new Nav_model();
-        $jenjang_pendidikan = $m_jenjang_pendidikan->read($id_jenjang_pendidikan);
-
-        if (!$jenjang_pendidikan) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
-
-        $news = $m_nav->profil('Profil');
-
-        $data = array(
-            'id_jenjang_pendidikan' => $jenjang_pendidikan->id_jenjang_pendidikan,
-            'hits' => $jenjang_pendidikan->hits + 1
-        );
-        $m_jenjang_pendidikan->edit($data);
-
-        $data = [
-            'title' => $jenjang_pendidikan->judul_jenjang_pendidikan,
-            'description' => $jenjang_pendidikan->ringkasan,
-            'keywords' => $jenjang_pendidikan->judul_jenjang_pendidikan . ', ' . $jenjang_pendidikan->keywords,
-            'jenjang_pendidikan' => $jenjang_pendidikan,
-            'news' => $news,
-            'content' => 'jenjang_pendidikan/profil'
-        ];
-        return view('layout/wrapper', $data);
-    }
 
 
 

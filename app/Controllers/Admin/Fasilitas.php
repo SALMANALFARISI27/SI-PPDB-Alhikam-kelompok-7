@@ -1,9 +1,7 @@
 <?php
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Fasilitas_model;
-use App\Models\Kategori_fasilitas_model;
 
 class Fasilitas extends BaseController
 {
@@ -13,15 +11,12 @@ class Fasilitas extends BaseController
 	{
 
 		$m_fasilitas = new Fasilitas_model();
-		$m_kategori_fasilitas = new Kategori_fasilitas_model();
-		$kategori_fasilitas = $m_kategori_fasilitas->listing();
 		$fasilitas = $m_fasilitas->listing();
 		$title = 'Fasilitas (' . count($fasilitas) . ')';
 
 		$data = [
 			'title' => $title,
 			'fasilitas' => $fasilitas,
-			'kategori_fasilitas' => $kategori_fasilitas,
 			'content' => 'admin/fasilitas/index'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -32,8 +27,6 @@ class Fasilitas extends BaseController
 	{
 
 		$m_fasilitas = new Fasilitas_model();
-		$m_kategori_fasilitas = new Kategori_fasilitas_model();
-		$kategori_fasilitas = $m_kategori_fasilitas->listing();
 
 		// Start validasi
 		if (
@@ -63,7 +56,6 @@ class Fasilitas extends BaseController
 				// masuk database
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_fasilitas' => $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas' => strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas' => $this->request->getVar('judul_fasilitas'),
 					'kode_nomor_fasilitas' => $this->request->getVar('kode_nomor_fasilitas'),
@@ -80,7 +72,6 @@ class Fasilitas extends BaseController
 			} else {
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_fasilitas' => $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas' => strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas' => $this->request->getVar('judul_fasilitas'),
 					'kode_nomor_fasilitas' => $this->request->getVar('kode_nomor_fasilitas'),
@@ -98,7 +89,6 @@ class Fasilitas extends BaseController
 
 		$data = [
 			'title' => 'Tambah Fasilitas ',
-			'kategori_fasilitas' => $kategori_fasilitas,
 			'content' => 'admin/fasilitas/tambah'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -108,7 +98,6 @@ class Fasilitas extends BaseController
 	public function proses()
 	{
 
-		$m_kategori = new Kategori_fasilitas_model();
 		$m_fasilitas = new Fasilitas_model();
 		// proses
 		$pengalihan = $this->request->getVar('pengalihan');
@@ -120,17 +109,7 @@ class Fasilitas extends BaseController
 		}
 		// end check fasilitas
 		// proses
-		if ($submit == 'Update') {
-			for ($i = 0; $i < sizeof($id_fasilitas ?? []); $i++) {
-				$data = array(
-					'id_fasilitas' => $id_fasilitas[$i],
-					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_fasilitas' => $this->request->getVar('id_kategori_fasilitas')
-				);
-				$m_fasilitas->edit($data);
-			}
-			return redirect()->to($pengalihan)->with('sukses', 'Fasilitas berhasil diupdate jenis fasilitasnya');
-		} elseif ($submit == 'Publish') {
+		if ($submit == 'Publish') {
 			for ($i = 0; $i < sizeof($id_fasilitas ?? []); $i++) {
 				$data = array(
 					'id_fasilitas' => $id_fasilitas[$i],
@@ -164,9 +143,7 @@ class Fasilitas extends BaseController
 	public function edit($id_fasilitas)
 	{
 
-		$m_kategori_fasilitas = new Kategori_fasilitas_model();
 		$m_fasilitas = new Fasilitas_model();
-		$kategori_fasilitas = $m_kategori_fasilitas->listing();
 		$fasilitas = $m_fasilitas->detail($id_fasilitas);
 		// Start validasi
 		if (
@@ -197,7 +174,6 @@ class Fasilitas extends BaseController
 				$data = array(
 					'id_fasilitas' => $id_fasilitas,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_fasilitas' => $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas' => strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas' => $this->request->getVar('judul_fasilitas'),
 					'kode_nomor_fasilitas' => $this->request->getVar('kode_nomor_fasilitas'),
@@ -214,7 +190,6 @@ class Fasilitas extends BaseController
 				$data = array(
 					'id_fasilitas' => $id_fasilitas,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_fasilitas' => $this->request->getVar('id_kategori_fasilitas'),
 					'slug_fasilitas' => strtolower(url_title($this->request->getVar('judul_fasilitas'))),
 					'judul_fasilitas' => $this->request->getVar('judul_fasilitas'),
 					'kode_nomor_fasilitas' => $this->request->getVar('kode_nomor_fasilitas'),
@@ -231,7 +206,6 @@ class Fasilitas extends BaseController
 
 		$data = [
 			'title' => 'Edit Fasilitas : ' . $fasilitas->judul_fasilitas,
-			'kategori_fasilitas' => $kategori_fasilitas,
 			'fasilitas' => $fasilitas,
 			'content' => 'admin/fasilitas/edit'
 		];

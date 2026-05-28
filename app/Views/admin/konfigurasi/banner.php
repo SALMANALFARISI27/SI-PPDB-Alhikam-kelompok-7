@@ -49,8 +49,4 @@ echo csrf_field();
 	</div>
 </div>
 
-<?php echo form_close();
-echo view('admin/berita/media');
-echo view('admin/berita/download');
-echo view('admin/berita/galeri');
- ?>
+<?php echo form_close(); ?>

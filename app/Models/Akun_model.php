@@ -10,6 +10,17 @@ class Akun_model extends Model
     protected $primaryKey = 'id_akun';
     protected $allowedFields = [];
 
+    // listing
+    public function listing()
+    {
+        $builder = $this->db->table('akun');
+        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
+        $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
+        $builder->orderBy('akun.id_akun', 'DESC');
+        $query = $builder->get();
+        return $query->getResult();
+    }
+
     // total
     public function total()
     {
@@ -34,19 +45,7 @@ class Akun_model extends Model
         return $query->getRow();
     }
 
-    // login_nis
-    public function login_nis($username, $password)
-    {
-        $builder = $this->db->table('akun');
-        $builder->select('akun.*, calon_peserta_didik.nama_calon_peserta_didik, calon_peserta_didik.slug_calon_peserta_didik, calon_peserta_didik.nis, calon_peserta_didik.nisn');
-        $builder->join('calon_peserta_didik', 'calon_peserta_didik.id_akun = akun.id_akun', 'LEFT');
 
-        $builder->where('akun.id_akun', $username);
-        $builder->where('akun.password', $password);
-        $builder->orderBy('akun.id_akun', 'DESC');
-        $query = $builder->get();
-        return $query->getRow();
-    }
 
     // detail
     public function kode_akun($kode_akun)

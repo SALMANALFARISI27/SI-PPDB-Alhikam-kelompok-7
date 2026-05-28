@@ -13,8 +13,7 @@ class Fasilitas_model extends Model
     public function listing()
     {
         $builder = $this->db->table('fasilitas');
-        $builder->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
-        $builder->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
+        $builder->select('fasilitas.*, admin.nama');
         $builder->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
         $builder->orderBy('fasilitas.id_fasilitas','DESC');
         $query = $builder->get();
@@ -25,8 +24,7 @@ class Fasilitas_model extends Model
     public function read($slug_fasilitas)
     {
         $builder = $this->db->table('fasilitas');
-        $builder->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
-        $builder->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
+        $builder->select('fasilitas.*, admin.nama');
         $builder->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
         $builder->where('fasilitas.slug_fasilitas',$slug_fasilitas);
         $builder->orderBy('fasilitas.id_fasilitas','DESC');
@@ -38,11 +36,10 @@ class Fasilitas_model extends Model
     public function home($limit,$status_fasilitas)
     {
         $builder = $this->db->table('fasilitas');
-        $builder->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
-        $builder->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
+        $builder->select('fasilitas.*, admin.nama');
         $builder->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
         $builder->where('fasilitas.status_fasilitas',$status_fasilitas);
-        $this->limit((int)$limit);
+        $builder->limit((int)$limit);
         $builder->orderBy('fasilitas.id_fasilitas','DESC');
         $query = $builder->get();
         return $query->getResult();
@@ -52,8 +49,7 @@ class Fasilitas_model extends Model
     public function status_fasilitas($limit,$start,$status_fasilitas)
     {
         $builder = $this->db->table('fasilitas');
-        $builder->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
-        $builder->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
+        $builder->select('fasilitas.*, admin.nama');
         $builder->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
         $builder->where('fasilitas.status_fasilitas',$status_fasilitas);
         $builder->limit($limit,$start);
@@ -62,52 +58,10 @@ class Fasilitas_model extends Model
         return $query->getResult();
     }
 
-    // total_kategori_fasilitas
+    // total_status_fasilitas
     public function total_status_fasilitas($status_fasilitas)
     {
         $builder = $this->db->table('fasilitas');
-        $builder->where('status_fasilitas',$status_fasilitas);
-        $query = $builder->get();
-        return $query->getNumRows();
-    }
-
-    // kategori_fasilitas
-    public function kategori_fasilitas($limit, $start, $id_kategori_fasilitas)
-    {
-        $builder = $this->db->table('fasilitas');
-        $builder->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
-        $builder->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
-        $builder->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
-
-        $builder->where('kategori_fasilitas.slug_kategori_fasilitas',$id_kategori_fasilitas);
-        $builder->limit($limit,$start);
-
-        $builder->orderBy('fasilitas.id_fasilitas','DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
-
-    // kategori_fasilitas_home
-    public function kategori_fasilitas_status($limit, $start, $id_kategori_fasilitas,$status_fasilitas)
-    {
-        $builder = $this->db->table('fasilitas');
-        $builder->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
-        $builder->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
-        $builder->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
-        $builder->where(array(  'fasilitas.id_kategori_fasilitas' => $id_kategori_fasilitas,
-                                'fasilitas.status_fasilitas'      => $status_fasilitas
-                        ));
-        $builder->limit($limit,$start);
-        $builder->orderBy('fasilitas.id_fasilitas','DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
-
-    // total_kategori_fasilitas
-    public function total_kategori_fasilitas_status($id_kategori_fasilitas,$status_fasilitas)
-    {
-        $builder = $this->db->table('fasilitas');
-        $builder->where('id_kategori_fasilitas',$id_kategori_fasilitas);
         $builder->where('status_fasilitas',$status_fasilitas);
         $query = $builder->get();
         return $query->getNumRows();
@@ -117,8 +71,7 @@ class Fasilitas_model extends Model
     public function paginasi_admin($limit,$start)
     {
         $this->table('fasilitas');
-        $this->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
-        $this->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
+        $this->select('fasilitas.*, admin.nama');
         $this->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
         $this->limit((int)$limit,(int)$start);
         $this->orderBy('fasilitas.id_fasilitas','DESC');
@@ -130,8 +83,7 @@ class Fasilitas_model extends Model
     public function paginasi_admin_cari($keywords,$limit,$start)
     {
         $this->table('fasilitas');
-        $this->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
-        $this->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
+        $this->select('fasilitas.*, admin.nama');
         $this->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
         $this->like('fasilitas.judul_fasilitas',$keywords,'BOTH');
         $this->orLike('fasilitas.isi',$keywords,'BOTH');
@@ -145,8 +97,7 @@ class Fasilitas_model extends Model
     public function total_cari($keywords)
     {
         $this->table('fasilitas');
-        $this->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama AS nama_user');
-        $this->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
+        $this->select('fasilitas.*, admin.nama AS nama_user');
         $this->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
         $this->like('fasilitas.judul_fasilitas',$keywords,'BOTH');
         $this->orLike('fasilitas.isi',$keywords,'BOTH');
@@ -163,23 +114,12 @@ class Fasilitas_model extends Model
         return $query->getNumRows();
     }
 
-    // total_kategori_fasilitas
-    public function total_kategori_fasilitas($id_kategori_fasilitas)
-    {
-        $builder = $this->db->table('fasilitas');
-
-        $builder->where('id_kategori_fasilitas',$id_kategori_fasilitas);
-
-        $query = $builder->get();
-        return $query->getNumRows();
-    }
 
     // detail
     public function detail($id_fasilitas)
     {
         $builder = $this->db->table('fasilitas');
-        $builder->select('fasilitas.*, kategori_fasilitas.nama_kategori_fasilitas, kategori_fasilitas.slug_kategori_fasilitas, admin.nama');
-        $builder->join('kategori_fasilitas','kategori_fasilitas.id_kategori_fasilitas = fasilitas.id_kategori_fasilitas','LEFT');
+        $builder->select('fasilitas.*, admin.nama');
         $builder->join('admin','admin.id_admin = fasilitas.id_admin','LEFT');
         $builder->where('fasilitas.id_fasilitas',$id_fasilitas);
         $builder->orderBy('fasilitas.id_fasilitas','DESC');
@@ -202,45 +142,35 @@ class Fasilitas_model extends Model
         $builder->update($data);
     }
     
-    // slider
-    public function slider()
-    {
-        $builder = $this->db->table('fasilitas');
-        $builder->where('jenis_fasilitas','Homepage');
-        $builder->orderBy('fasilitas.id_fasilitas','DESC');
-        $builder->limit(5);
-        $query = $builder->get();
-        return $query->getRow();
-    }
+
 
     // fasilitas
-    public function jenis_fasilitas($jenis_fasilitas)
-    {
-        $builder = $this->db->table('fasilitas');
-        $builder->where('jenis_fasilitas',$jenis_fasilitas);
-        $builder->limit(5);
-        $builder->orderBy('fasilitas.id_fasilitas','DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
+
 
     // fasilitas
-    public function jenis_fasilitas_1($jenis_fasilitas)
-    {
-        $builder = $this->db->table('fasilitas');
-        $builder->where('jenis_fasilitas',$jenis_fasilitas);
-        $builder->orderBy('fasilitas.id_fasilitas','DESC');
-        $query = $builder->get();
-        return $query->getRow();
-    }
+
 
     // fasilitas
     public function fasilitas()
     {
         $builder = $this->db->table('fasilitas');
-        $builder->where('jenis_fasilitas','Fasilitas');
+        $builder->where('status_fasilitas','Publish');
         $builder->orderBy('fasilitas.id_fasilitas','DESC');
         $query = $builder->get();
         return $query->getResult();
     }
+
+    // Nav fasilitas
+    public function nav_fasilitas()
+    {
+        $builder = $this->db->table('fasilitas');
+        $builder->select('fasilitas.judul_fasilitas, fasilitas.slug_fasilitas, fasilitas.hits, fasilitas.gambar, fasilitas.id_fasilitas');
+        $builder->where(array('fasilitas.status_fasilitas' => 'Publish'));
+        $builder->limit(15);
+        $builder->orderBy('fasilitas.id_fasilitas', 'DESC');
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }
+
+

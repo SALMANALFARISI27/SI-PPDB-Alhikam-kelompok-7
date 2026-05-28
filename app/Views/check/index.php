@@ -59,7 +59,7 @@
                 </table></div>
 
                 <p class="text-right">
-                <a href="<?php echo base_url('pendaftaran/cetak/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-danger btn-sm w-100" target="_blank">
+                <a href="<?php echo base_url('calon_peserta_didik/pendaftaran/cetak/'.$calon_peserta_didik->slug_calon_peserta_didik) ?>" class="btn btn-danger btn-sm w-100" target="_blank">
                   <i class="fa fa-file-pdf"></i>&nbsp;Cetak Bukti Pendaftaran
                 </a>
               </p>

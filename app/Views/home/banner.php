@@ -7,17 +7,17 @@
             <div class="col-lg-6" data-cues="slideInDown" data-group="page-title" data-delay="900">
               <h1 class="display-4 fs-30 fs-md-40 mb-4 me-xl-5 me-xxl-0"
                 style="color: #FFD700; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-weight: bold;">
-                <?php echo $slider->judul_galeri ?>
+                <?php echo $site->tagline ?>
               </h1>
               <p class="lead fs-18 fs-md-23 lh-sm mb-7 pe-xxl-15 text-white" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">
-                <?php echo strip_tags($slider->isi) ?>
+                <?php echo strip_tags($site->deskripsi) ?>
               </p>
             </div>
             <!--/column -->
             <div class="col-lg-6">
               <img class="img-fluid rounded shadow-black"
-                src="<?php echo base_url('assets/upload/image/' . $slider->gambar) ?>"
-                srcset="<?php echo base_url('assets/upload/image/' . $slider->gambar) ?> 2x" data-cue="fadeIn"
+                src="<?php echo $this->website->logo() ?>"
+                data-cue="fadeIn"
                 data-delay="300" alt="" />
             </div>
             <!--/column -->
@@ -32,3 +32,4 @@
   </div>
   <!-- /.container-card -->
 </section>
+

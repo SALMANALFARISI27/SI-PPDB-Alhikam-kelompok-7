@@ -38,14 +38,7 @@ class Jenis_dokumen_model extends Model
     }
 
     // listing
-    public function group_status_jenis_dokumen()
-    {
-        $builder = $this->db->table('jenis_dokumen');
-        $builder->select('status_jenis_dokumen,COUNT(*) AS total');
-        $builder->groupBy('status_jenis_dokumen','DESC');
-        $query = $builder->get();
-        return $query->getResult();
-    }
+
 
     // listing
     public function group_status_jenis_dokumen_detail($status_jenis_dokumen)
@@ -59,15 +52,7 @@ class Jenis_dokumen_model extends Model
     }
 
     // listing
-    public function total_status_jenis_dokumen($status_jenis_dokumen)
-    {
-        $builder = $this->db->table('jenis_dokumen');
-        $builder->select('COUNT(*) AS total');
-        $builder->where('status_jenis_dokumen',$status_jenis_dokumen);
-        $builder->orderBy('jenis_dokumen.status_jenis_dokumen','ASC');
-        $query = $builder->get();
-        return $query->getRow();
-    }
+
 
     // total
     public function total()
@@ -105,9 +90,5 @@ class Jenis_dokumen_model extends Model
     }
 
     // tambah  log
-    public function jenis_dokumen_log($data)
-    {
-        $builder = $this->db->table('jenis_dokumen_logs');
-        $builder->insert($data);
-    }
+
 }

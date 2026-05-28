@@ -1,9 +1,8 @@
 <?php
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Berita_model;
-use App\Models\Kategori_model;
+use App\Models\Kategori_berita_profile_model;
 use App\Models\Admin_model;
 
 class Berita extends BaseController
@@ -14,10 +13,10 @@ class Berita extends BaseController
 	{
 
 		$m_berita = new Berita_model();
-		$m_kategori = new Kategori_model();
+		$m_kategori = new Kategori_berita_profile_model();
 		$kategori = $m_kategori->listing();
 		$berita = $m_berita->listing();
-		$title = 'Berita, Profil, (' . count($berita) . ')';
+		$title = 'Berita, Profile, (' . count($berita) . ')';
 
 		$data = [
 			'title' => $title,
@@ -28,23 +27,16 @@ class Berita extends BaseController
 		echo view('admin/layout/wrapper', $data);
 	}
 
-	// testing
-	public function testing()
-	{
-		$data = [
-			'title' => 'Unggah media',
-		];
-		echo view('admin/berita/unggah', $data);
-	}
+
 
 	// kategori
-	public function kategori($id_kategori)
+	public function kategori($id_kategori_berita_profile)
 	{
 
 		$m_berita = new Berita_model();
-		$m_kategori = new Kategori_model();
-		$kategori = $m_kategori->detail($id_kategori);
-		$berita = $m_berita->kategori($id_kategori);
+		$m_kategori = new Kategori_berita_profile_model();
+		$kategori = $m_kategori->detail($id_kategori_berita_profile);
+		$berita = $m_berita->kategori($id_kategori_berita_profile);
 		$total = count($berita);
 
 		$data = [
@@ -60,7 +52,6 @@ class Berita extends BaseController
 	{
 
 		$m_berita = new Berita_model();
-		$m_kategori = new Kategori_model();
 		$berita = $m_berita->jenis_publish($jenis_berita);
 
 		$data = [
@@ -76,7 +67,6 @@ class Berita extends BaseController
 	{
 
 		$m_berita = new Berita_model();
-		$m_kategori = new Kategori_model();
 		$berita = $m_berita->status_berita_all($status_berita, 99999, 0);
 
 		$data = [
@@ -92,7 +82,7 @@ class Berita extends BaseController
 	{
 
 		$m_berita = new Berita_model();
-		$m_kategori = new Kategori_model();
+		$m_kategori = new Kategori_berita_profile_model();
 		$m_admin = new Admin_model();
 		$admin = $m_admin->detail($id_admin);
 		$berita = $m_berita->author_all($id_admin);
@@ -110,7 +100,7 @@ class Berita extends BaseController
 	public function tambah()
 	{
 
-		$m_kategori = new Kategori_model();
+		$m_kategori = new Kategori_berita_profile_model();
 		$m_berita = new Berita_model();
 		$kategori = $m_kategori->listing();
 
@@ -142,7 +132,7 @@ class Berita extends BaseController
 				// masuk database
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori' => $this->request->getVar('id_kategori'),
+					'id_kategori_berita_profile' => $this->request->getVar('id_kategori_berita_profile'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
 					'ringkasan' => $this->request->getVar('ringkasan'),
@@ -159,7 +149,7 @@ class Berita extends BaseController
 			} else {
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori' => $this->request->getVar('id_kategori'),
+					'id_kategori_berita_profile' => $this->request->getVar('id_kategori_berita_profile'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
 					'ringkasan' => $this->request->getVar('ringkasan'),
@@ -188,7 +178,7 @@ class Berita extends BaseController
 	public function edit($id_berita)
 	{
 
-		$m_kategori = new Kategori_model();
+		$m_kategori = new Kategori_berita_profile_model();
 		$m_berita = new Berita_model();
 		$kategori = $m_kategori->listing();
 		$berita = $m_berita->detail($id_berita);
@@ -221,7 +211,7 @@ class Berita extends BaseController
 				$data = array(
 					'id_berita' => $id_berita,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori' => $this->request->getVar('id_kategori'),
+					'id_kategori_berita_profile' => $this->request->getVar('id_kategori_berita_profile'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
 					'ringkasan' => $this->request->getVar('ringkasan'),
@@ -239,7 +229,7 @@ class Berita extends BaseController
 				$data = array(
 					'id_berita' => $id_berita,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori' => $this->request->getVar('id_kategori'),
+					'id_kategori_berita_profile' => $this->request->getVar('id_kategori_berita_profile'),
 					'slug_berita' => strtolower(url_title($this->request->getVar('judul_berita'))),
 					'judul_berita' => $this->request->getVar('judul_berita'),
 					'ringkasan' => $this->request->getVar('ringkasan'),
@@ -268,7 +258,6 @@ class Berita extends BaseController
 	public function proses()
 	{
 
-		$m_kategori = new Kategori_model();
 		$m_berita = new Berita_model();
 		// proses
 		$pengalihan = $this->request->getVar('pengalihan');
@@ -285,11 +274,11 @@ class Berita extends BaseController
 				$data = array(
 					'id_berita' => $id_berita[$i],
 					'id_admin' => $this->session->get('id_admin'),
-					'jenis_berita' => $this->request->getVar('jenis_berita')
+					'id_kategori_berita_profile' => $this->request->getVar('id_kategori_berita_profile')
 				);
 				$m_berita->edit($data);
 			}
-			return redirect()->to($pengalihan)->with('sukses', 'Berita berhasil diupdate jenis beritanya');
+			return redirect()->to($pengalihan)->with('sukses', 'Berita berhasil diupdate kategorinya');
 		} elseif ($submit == 'Publish') {
 			for ($i = 0; $i < sizeof($id_berita ?? []); $i++) {
 				$data = array(

@@ -1,8 +1,8 @@
 <?php
-use App\Models\Nav_model;
+use App\Models\Berita_model;
 use App\Models\Konfigurasi_model;
-$m_menu = new Nav_model();
-$nav_profil = $m_menu->profil('Profil');
+$m_menu = new Berita_model();
+$nav_profile = $m_menu->nav_profile('Profile');
 $site_setting = $m_site->listing();
 ?>
 <style type="text/css" media="screen">
@@ -30,19 +30,21 @@ $site_setting = $m_site->listing();
       bottom: 20px !important;
       z-index: 9999 !important;
     }
+
     .progress-wrap.active-progress {
       opacity: 1 !important;
       visibility: visible !important;
       transform: translateY(0) !important;
     }
-    
+
     /* Force display post-meta list items and texts on mobile */
-    .post-meta li, 
-    .post-meta li.post-author, 
+    .post-meta li,
+    .post-meta li.post-author,
     .post-meta li.post-comments {
       display: inline-flex !important;
       align-items: center;
     }
+
     .post-meta li span {
       display: inline-block !important;
     }
@@ -59,7 +61,7 @@ $site_setting = $m_site->listing();
     align-items: center;
     justify-content: center;
     padding: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 
   .whatsapp-link i {
@@ -152,12 +154,9 @@ Footer Area
         <div class="widget">
           <h4 class="widget-title  mb-3 text-white">Tentang Kami</h4>
           <ul class="list-unstyled text-reset mb-0">
-            <li><a href="<?php echo base_url('profil') ?>">Profil Kami</a></li>
-            <li><a href="<?php echo base_url('berita') ?>">Berita dan Artikel</a></li>
-            <li><a href="<?php echo base_url('prestasi') ?>">Prestasi &amp; Penghargaan</a></li>
-            <li><a href="<?php echo base_url('download') ?>">Download File</a></li>
-            <li><a href="<?php echo base_url('galeri') ?>">Galeri Gambar</a></li>
-            <li><a href="<?php echo base_url('video') ?>">Galeri Video</a></li>
+            <li><a href="<?php echo base_url('berita') ?>">Berita</a></li>
+            <li><a href="<?php echo base_url('portofolio') ?>">Portofolio</a></li>
+            <li><a href="<?php echo base_url('galeri') ?>">Galeri</a></li>
           </ul>
         </div>
         <!-- /.widget -->

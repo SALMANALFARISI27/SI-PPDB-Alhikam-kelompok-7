@@ -1,17 +1,13 @@
 <?php
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
-use App\Models\Galeri_model;
-use App\Models\Berita_model;
 use App\Models\Calon_peserta_didik_model;
 use App\Models\Akun_model;
 use App\Models\Jenis_dokumen_model;
 use App\Models\Dokumen_model;
 use App\Models\Gelombang_model;
 use App\Models\Jenjang_pendidikan_model;
-use App\Models\Nav_model;
 
 class Gelombang extends BaseController
 {
@@ -373,129 +369,6 @@ class Gelombang extends BaseController
 		}
 	}
 
-	// biodata
-	public function biodata($id_gelombang)
-	{
-		$m_konfigurasi = new Konfigurasi_model();
-		$m_akun = new Akun_model();
-		$m_calon_peserta_didik = new Calon_peserta_didik_model();
-		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
-		$m_gelombang = new Gelombang_model();
-		$m_nav = new Nav_model();
-
-		$konfigurasi = $m_konfigurasi->listing();
-		$id_akun = $this->session->get('id_akun');
-		$akun = $m_akun->detail($id_akun);
-		$jenjang_pendidikan = $m_nav->jenjang_pendidikan();
-		$gelombang = $m_gelombang->detail($id_gelombang);
-
-		$calon_peserta_didik = $m_calon_peserta_didik->last_id();
-		if ($calon_peserta_didik) {
-			$urutan = $calon_peserta_didik->id_calon_peserta_didik + 1;
-		} else {
-			$urutan = 1;
-		}
-
-		// Start validasi
-		if ($this->request->getMethod() === 'POST' && $this->validate(['nama_calon_peserta_didik' => 'required'])) {
-
-			if ($this->request->getPost('identitas_wali') == 'Ayah') {
-				$agama_wali = $this->request->getPost('agama_ayah');
-				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_ayah');
-				$id_jenjang_wali = $this->request->getPost('jenjang_ayah');
-				$nama_wali = $this->request->getPost('nama_ayah');
-				$alamat_wali = $this->request->getPost('alamat_ayah');
-				$telepon_wali = $this->request->getPost('telepon_ayah');
-			} elseif ($this->request->getPost('identitas_wali') == 'Ibu') {
-				$agama_wali = $this->request->getPost('agama_ibu');
-				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_ibu');
-				$id_jenjang_wali = $this->request->getPost('jenjang_ibu');
-				$nama_wali = $this->request->getPost('nama_ibu');
-				$alamat_wali = $this->request->getPost('alamat_ibu');
-				$telepon_wali = $this->request->getPost('telepon_ibu');
-			} else {
-				$agama_wali = $this->request->getPost('agama_wali');
-				$id_pekerjaan_wali = $this->request->getPost('pekerjaan_wali');
-				$id_jenjang_wali = $this->request->getPost('jenjang_wali');
-				$nama_wali = $this->request->getPost('nama_wali');
-				$alamat_wali = $this->request->getPost('alamat_wali');
-				$telepon_wali = $this->request->getPost('telepon_wali');
-			}
-			$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
-			$data = [
-				'id_admin' => $this->session->get('id_admin'),
-				'id_gelombang' => $id_gelombang,
-				'agama' => $this->request->getPost('agama'),
-				'agama_ayah' => $this->request->getPost('agama_ayah'),
-				'agama_ibu' => $this->request->getPost('agama_ibu'),
-				'agama_wali' => $agama_wali,
-				'pekerjaan_ayah' => $this->request->getPost('pekerjaan_ayah'),
-				'pekerjaan_ibu' => $this->request->getPost('pekerjaan_ibu'),
-				'pekerjaan_wali' => $id_pekerjaan_wali,
-				'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
-				'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
-				'jenjang_wali' => $id_jenjang_wali,
-				'id_akun' => $akun->id_akun,
-				'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
-				'kode_calon_peserta_didik' => strtoupper(random_string('alnum', 8)),
-				'slug_calon_peserta_didik' => $slug_calon_peserta_didik,
-				'nis' => $this->request->getPost('nis'),
-				'nisn' => $this->request->getPost('nisn'),
-				'status_wn' => $this->request->getPost('status_wn'),
-				'negara_asal' => $this->request->getPost('negara_asal'),
-				'nama_calon_peserta_didik' => $this->request->getPost('nama_calon_peserta_didik'),
-				'tempat_lahir' => $this->request->getPost('tempat_lahir'),
-				'tanggal_lahir' => $this->website->tanggal_input($this->request->getPost('tanggal_lahir')),
-				'alamat' => $this->request->getPost('alamat'),
-				'telepon' => $this->request->getPost('telepon'),
-				'kode_pos' => $this->request->getPost('kode_pos'),
-				'email' => $this->request->getPost('email'),
-				'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
-				'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
-				'isi' => $this->request->getPost('isi'),
-				'nama_ayah' => $this->request->getPost('nama_ayah'),
-				'nama_ibu' => $this->request->getPost('nama_ibu'),
-				'nama_wali' => $nama_wali,
-				'alamat_ayah' => $this->request->getPost('alamat_ayah'),
-				'alamat_ibu' => $this->request->getPost('alamat_ibu'),
-				'alamat_wali' => $alamat_wali,
-				'telepon_ayah' => $this->request->getPost('telepon_ayah'),
-				'telepon_ibu' => $this->request->getPost('telepon_ibu'),
-				'telepon_wali' => $telepon_wali,
-				'goldar_calon_peserta_didik' => $this->request->getPost('goldar_calon_peserta_didik'),
-				'hobi_calon_peserta_didik' => $this->request->getPost('hobi_calon_peserta_didik'),
-				'penyakit_calon_peserta_didik' => $this->request->getPost('penyakit_calon_peserta_didik'),
-				'tinggi' => $this->request->getPost('tinggi'),
-				'berat' => $this->request->getPost('berat'),
-				'jenis_calon_peserta_didik' => $this->request->getPost('jenis_calon_peserta_didik'),
-				'asal_sekolah' => $this->request->getPost('asal_sekolah'),
-				'alamat_sekolah_asal' => $this->request->getPost('alamat_sekolah_asal'),
-				'tanggal_pindah' => $this->website->tanggal_input($this->request->getPost('tanggal_pindah')),
-				'anak_ke' => $this->request->getPost('anak_ke'),
-				'jumlah_saudara' => $this->request->getPost('jumlah_saudara'),
-				'status_pendaftaran' => $this->request->getPost('status_pendaftaran'),
-				'identitas_wali' => $this->request->getPost('identitas_wali')
-			];
-				// masuk database
-				$m_calon_peserta_didik->tambah($data);
-				$this->session->setFlashdata('sukses', 'Data telah ditambah');
-				return redirect()->to(base_url('admin/gelombang/dokumen/' . $slug_calon_peserta_didik));
-		} else {
-
-			$data = [
-				'title' => 'Isi Biodata Calon Peserta Didik',
-				'description' => 'Isi Data Calon Peserta Didik Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
-				'keywords' => 'Isi Data Calon Peserta Didik Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb,
-				'konfigurasi' => $konfigurasi,
-				'akun' => $akun,
-				'jenjang_pendidikan' => $jenjang_pendidikan,
-				'gelombang' => $gelombang,
-				'content' => 'admin/gelombang/biodata'
-			];
-			echo view('admin/layout/wrapper', $data);
-		}
-	}
-
 	// edit
 	public function edit_calon_peserta_didik($slug_calon_peserta_didik)
 	{
@@ -504,22 +377,13 @@ class Gelombang extends BaseController
 		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
 		$m_gelombang = new Gelombang_model();
-		$m_nav = new Nav_model();
 
 		$calon_peserta_didik = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
 		$id_gelombang = $calon_peserta_didik->id_gelombang;
 		$konfigurasi = $m_konfigurasi->listing();
-		$id_akun = $calon_peserta_didik->id_akun;
-		$akun = $m_akun->detail($id_akun);
-		$jenjang_pendidikan = $m_nav->jenjang_pendidikan();
+		$akun = $m_akun->listing();
+		$jenjang_pendidikan = $m_jenjang_pendidikan->nav_jenjang();
 		$gelombang = $m_gelombang->detail($id_gelombang);
-
-		$calon_peserta_didik = $m_calon_peserta_didik->last_id();
-		if ($calon_peserta_didik) {
-			$urutan = $calon_peserta_didik->id_calon_peserta_didik + 1;
-		} else {
-			$urutan = 1;
-		}
 
 		// Start validasi
 		if ($this->request->getMethod() === 'POST' && $this->validate(['nama_calon_peserta_didik' => 'required'])) {
@@ -546,7 +410,6 @@ class Gelombang extends BaseController
 				$alamat_wali = $this->request->getPost('alamat_wali');
 				$telepon_wali = $this->request->getPost('telepon_wali');
 			}
-			$slug_calon_peserta_didik = strtolower(url_title($this->request->getVar('nama_calon_peserta_didik'))) . '-' . strtoupper(random_string('alnum', 8));
 			$data = [
 				'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
 				'id_admin' => $this->session->get('id_admin'),
@@ -561,7 +424,7 @@ class Gelombang extends BaseController
 				'jenjang_ayah' => $this->request->getPost('jenjang_ayah'),
 				'jenjang_ibu' => $this->request->getPost('jenjang_ibu'),
 				'jenjang_wali' => $id_jenjang_wali,
-				'id_akun' => $akun->id_akun,
+				'id_akun' => $calon_peserta_didik->id_akun,
 				'id_jenjang_pendidikan' => $this->request->getPost('id_jenjang_pendidikan'),
 				'nis' => $this->request->getPost('nis'),
 				'nisn' => $this->request->getPost('nisn'),
@@ -600,9 +463,9 @@ class Gelombang extends BaseController
 				'identitas_wali' => $this->request->getPost('identitas_wali'),
 				'status_pendaftaran' => $this->request->getPost('status_pendaftaran')
 			];
-				$m_calon_peserta_didik->edit($data);
-				$this->session->setFlashdata('sukses', 'Data telah diupdate');
-				return redirect()->to(base_url('admin/gelombang/detail/' . $id_gelombang . '/' . $this->request->getPost('status_pendaftaran') . '/' . $this->request->getPost('id_jenjang_pendidikan')));
+			$m_calon_peserta_didik->edit($data);
+			$this->session->setFlashdata('sukses', 'Data telah diupdate');
+			return redirect()->to(base_url('admin/gelombang/detail/' . $id_gelombang . '/' . $this->request->getPost('status_pendaftaran') . '/' . $this->request->getPost('id_jenjang_pendidikan')));
 		} else {
 
 			$data = [
@@ -618,34 +481,6 @@ class Gelombang extends BaseController
 			];
 			echo view('admin/layout/wrapper', $data);
 		}
-	}
-
-	// review
-	public function review($slug_calon_peserta_didik)
-	{
-		$m_konfigurasi = new Konfigurasi_model();
-		$m_akun = new Akun_model();
-		$m_jenis_dokumen = new Jenis_dokumen_model();
-		$m_calon_peserta_didik = new Calon_peserta_didik_model();
-		$m_dokumen = new Dokumen_model();
-
-		$konfigurasi = $m_konfigurasi->listing();
-		$calon_peserta_didik = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
-		$jenis_dokumen = $m_jenis_dokumen->listing();
-		$akun = $m_akun->detail($calon_peserta_didik->id_akun);
-
-		$data = [
-			'title' => 'Review Pendaftar',
-			'description' => 'Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
-			'keywords' => 'Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->keywords,
-			'konfigurasi' => $konfigurasi,
-			'akun' => $akun,
-			'jenis_dokumen' => $jenis_dokumen,
-			'calon_peserta_didik' => $calon_peserta_didik,
-			'm_dokumen' => $m_dokumen,
-			'content' => 'admin/gelombang/review'
-		];
-		echo view('admin/layout/wrapper', $data);
 	}
 
 	// dokumen
@@ -731,82 +566,58 @@ class Gelombang extends BaseController
 		$m_dokumen = new Dokumen_model();
 
 		$calon_peserta_didik = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
+		
+		if (!$calon_peserta_didik) {
+			return redirect()->back()->with('warning', 'Data calon peserta didik tidak ditemukan.');
+		}
+
 		$akun = $m_akun->detail($calon_peserta_didik->id_akun);
 
-		if ($this->request->getMethod() === 'POST') {
+		if ($this->request->is('post')) {
 			$uploaded_count = 0;
+			$files = $this->request->getFiles();
 
 			// Loop through each jenis_dokumen file input
-			if (isset($_FILES['dokumen'])) {
-				foreach ($_FILES['dokumen']['name'] as $id_jenis_dokumen => $filename) {
-					if (empty($filename)) continue; // Skip empty file inputs
+			if (isset($files['dokumen'])) {
+				foreach ($files['dokumen'] as $id_jenis_dokumen => $file) {
+					if ($file->isValid() && !$file->hasMoved()) {
+						$namabaru = $file->getRandomName();
+						$file_ext = $file->getClientExtension();
+						$file_size = $file->getSizeByUnit('mb');
 
-					$namabaru = bin2hex(random_bytes(16)) . '.' . pathinfo($filename, PATHINFO_EXTENSION);
-					$file_ext = pathinfo($filename, PATHINFO_EXTENSION);
-					$file_size = $_FILES['dokumen']['size'][$id_jenis_dokumen] / (1024 * 1024); // Convert to MB
+						// Validate extension
+						$allowed = ['jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf'];
+						if (!in_array(strtolower($file_ext), $allowed)) {
+							continue;
+						}
 
-					// Validate extension
-					$allowed = ['jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf'];
-					if (!in_array(strtolower($file_ext), $allowed)) continue;
+						// Move file using CI4 method
+						$file->move(FCPATH . 'assets/upload/pendaftaran/', $namabaru);
 
-					// Move file
-					move_uploaded_file(
-						$_FILES['dokumen']['tmp_name'][$id_jenis_dokumen],
-						FCPATH . 'assets/upload/pendaftaran/' . $namabaru
-					);
-
-					// Save to database
-					$data = array(
-						'id_admin' => $this->session->get('id_admin'),
-						'id_akun' => $akun->id_akun,
-						'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
-						'id_jenis_dokumen' => $id_jenis_dokumen,
-						'kode_dokumen' => strtoupper(random_string('alnum', 32)),
-						'gambar' => $namabaru,
-						'file_ext' => $file_ext,
-						'file_size' => round($file_size, 2),
-					);
-					$m_dokumen->tambah($data);
-					$uploaded_count++;
+						// Save to database
+						$data = array(
+							'id_akun' => $akun->id_akun,
+							'id_calon_peserta_didik' => $calon_peserta_didik->id_calon_peserta_didik,
+							'id_jenis_dokumen' => $id_jenis_dokumen,
+							'kode_dokumen' => strtoupper(random_string('alnum', 32)),
+							'gambar' => $namabaru,
+							'file_ext' => $file_ext,
+							'file_size' => round($file_size, 2),
+						);
+						$m_dokumen->tambah($data);
+						$uploaded_count++;
+					}
 				}
 			}
 
 			if ($uploaded_count > 0) {
 				$this->session->setFlashdata('sukses', $uploaded_count . ' dokumen berhasil diunggah.');
 			} else {
-				$this->session->setFlashdata('warning', 'Tidak ada dokumen yang dipilih untuk diunggah.');
+				$this->session->setFlashdata('warning', 'Tidak ada dokumen yang dipilih atau dokumen tidak valid.');
 			}
 		}
 
 		return redirect()->to(base_url('admin/gelombang/dokumen/' . $slug_calon_peserta_didik));
-	}
-
-	// selesai
-	public function selesai($slug_calon_peserta_didik)
-	{
-		$m_konfigurasi = new Konfigurasi_model();
-		$m_akun = new Akun_model();
-		$m_jenis_dokumen = new Jenis_dokumen_model();
-		$m_calon_peserta_didik = new Calon_peserta_didik_model();
-		$m_dokumen = new Dokumen_model();
-
-		$konfigurasi = $m_konfigurasi->listing();
-		$calon_peserta_didik = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
-		$jenis_dokumen = $m_jenis_dokumen->listing();
-		$akun = $m_akun->detail($calon_peserta_didik->id_akun);
-
-		$data = [
-			'title' => 'Pendaftaran Berhasil',
-			'description' => 'Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
-			'keywords' => 'Pendaftaran Peserta Didik Baru ' . $konfigurasi->namaweb . ', ' . $konfigurasi->keywords,
-			'konfigurasi' => $konfigurasi,
-			'akun' => $akun,
-			'jenis_dokumen' => $jenis_dokumen,
-			'calon_peserta_didik' => $calon_peserta_didik,
-			'm_dokumen' => $m_dokumen,
-			'content' => 'admin/gelombang/selesai'
-		];
-		echo view('admin/layout/wrapper', $data);
 	}
 
 	// cetak
@@ -832,7 +643,6 @@ class Gelombang extends BaseController
 			'jenis_dokumen' => $jenis_dokumen,
 			'calon_peserta_didik' => $calon_peserta_didik,
 			'm_dokumen' => $m_dokumen,
-			'content' => 'admin/gelombang/selesai'
 		];
 		// echo view('layout/wrapper',$data);
 		$mpdf = new \Mpdf\Mpdf([
@@ -875,7 +685,7 @@ class Gelombang extends BaseController
 	{
 		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$this->session = \Config\Services::session();
-		
+
 		// Ambil data calon peserta didik dulu untuk mendapatkan id_akun-nya
 		$calon = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
 

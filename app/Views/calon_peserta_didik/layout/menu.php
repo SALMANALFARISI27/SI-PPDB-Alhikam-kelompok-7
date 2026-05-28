@@ -14,7 +14,9 @@ $site         = $konfigurasi->listing();
     <!-- Brand Logo -->
     <a href="<?php echo base_url('calon_peserta_didik/dasbor') ?>" class="brand-link">
       <img src="<?php echo base_url('assets/upload/image/'.$site->icon) ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><?php echo $site->singkatan ?></span>
+      <span class="brand-text font-weight-light" style="font-size: 11px; line-height: 1.2; display: inline-block; vertical-align: middle; white-space: normal;">
+        <?php echo $site->namaweb ?>
+      </span>
     </a>
 
     <!-- Sidebar -->

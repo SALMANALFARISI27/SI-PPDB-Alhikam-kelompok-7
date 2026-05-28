@@ -36,7 +36,8 @@
         <tr>
           <td class="font-bold">TTL</td>
           <td><?php echo $calon_peserta_didik->tempat_lahir ?>,
-            <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
+            <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?>
+          </td>
         </tr>
         <tr>
           <td class="font-bold">Alamat</td>

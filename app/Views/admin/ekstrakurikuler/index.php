@@ -33,19 +33,6 @@
 		</button>
 
 
-		<select name="id_kategori_ekstrakurikuler" class="form-control">
-			<?php foreach ($kategori_ekstrakurikuler as $kategori_ekstrakurikuler) { ?>
-				<option value="<?php echo $kategori_ekstrakurikuler->id_kategori_ekstrakurikuler ?>">
-					<?php echo $kategori_ekstrakurikuler->nama_kategori_ekstrakurikuler ?>
-				</option>
-			<?php } ?>
-		</select>
-		<span class="input-group-append">
-			<button type="submit" name="submit" value="Update" class="btn btn-warning">
-				<i class="fa fa-search"></i> Update
-			</button>
-		</span>
-	</div>
 
 	<div class="table-responsive mailbox-messages mt-1">
 
@@ -58,8 +45,7 @@
 						</button>
 					</th>
 					<th width="5%">Gambar</th>
-					<th width="35%" class="text-center">Judul</th>
-					<th width="15%" class="text-center">Kategori</th>
+					<th width="50%" class="text-center">Judul</th>
 					<th width="15%" class="text-center">Status</th>
 					<th width="15%" class="text-center">Author</th>
 					<th width="10%" class="text-center">Aksi</th>
@@ -97,9 +83,7 @@
 								<?php echo $ekstrakurikuler->nama_penanggung_jawab ?>
 							</small>
 						</td>
-						<td>
-							<?php echo $ekstrakurikuler->nama_kategori_ekstrakurikuler ?>
-						</td>
+
 						<td class="text-center">
 							<?php if ($ekstrakurikuler->status_ekstrakurikuler == 'Publish') { ?>
 								<span class="badge bg-info">

@@ -31,26 +31,21 @@
 	</div>
 
 	<div class="form-group row">
-		<label class="col-md-3">Kategori, &amp; Jenis</label>
-		<div class="col-md-3">
-			<select name="id_kategori_galeri" class="form-control">
-				<?php foreach ($kategori_galeri as $kategori_galeri) { ?>
-					<option value="<?php echo $kategori_galeri->id_kategori_galeri ?>" <?php if ($galeri->id_kategori_galeri == $kategori_galeri->id_kategori_galeri) {
-						   echo 'selected';
-					   } ?>>
-						<?php echo $kategori_galeri->nama_kategori_galeri ?>
-					</option>
-				<?php } ?>
-			</select>
-			<small class="text-secondary">Kategori</small>
+		<label class="col-md-3">URL Video (Youtube)</label>
+		<div class="col-md-9">
+			<input type="text" name="url_video" class="form-control" value="<?php echo $galeri->url_video ?>">
+			<small class="text-secondary">Contoh: https://www.youtube.com/watch?v=xyz</small>
 		</div>
+	</div>
+
+	<div class="form-group row">
+		<label class="col-md-3">Jenis &amp; Status</label>
 		<div class="col-md-3">
 			<select name="jenis_galeri" class="form-control">
-				<option value="Galeri">Galeri</option>
-				<option value="Homepage" <?php if ($galeri->jenis_galeri == "Homepage") {
+				<option value="Foto">Foto</option>
+				<option value="Video" <?php if ($galeri->jenis_galeri == "Video") {
 					echo 'selected';
-				} ?>>Homepage
-					Slider</option>
+				} ?>>Video</option>
 			</select>
 			<small class="text-secondary">Jenis konten</small>
 		</div>

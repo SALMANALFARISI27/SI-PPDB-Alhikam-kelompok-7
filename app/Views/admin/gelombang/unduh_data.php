@@ -1,139 +1,152 @@
-<?php  
+<?php
 use App\Libraries\Website;
-$this->website          = new Website(); 
+$this->website = new Website();
 ?>
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title><?php echo $title ?></title>
-<style><?php echo file_get_contents(FCPATH . 'assets/css/css-print.css'); ?></style>
+  <meta charset="utf-8">
+  <title><?php echo $title ?></title>
+  <style>
+    <?php echo file_get_contents(FCPATH . 'assets/css/css-print.css'); ?>
+  </style>
 </head>
 
 <body>
-<page size="A4" layout="portrait">
-<div class="cetak">
-<table>
-    <tbody>
-      <tr>
-        <td style="width: 1.8cm;">
-          <?php
-          $icon_url = $this->website->icon();
-          // Convert URL ke path file untuk mPDF
-          $icon_path = str_replace(base_url(), FCPATH, $icon_url);
-          if(file_exists($icon_path)) {
-            $icon_src = $icon_path;
-          } else {
-            $icon_src = $icon_url;
-          }
-          ?>
-          <img src="<?php echo $icon_src ?>" style="width: 1.5cm; height: auto;">
-        </td>
-        <td>
-          <h1>INFORMASI PENERIMAAN PESERTA DIDIK BARU
-            <br><?php echo $this->website->namaweb() ?>
-          </h1>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <hr><br>
+  <page size="A4" layout="portrait">
+    <div class="cetak">
+      <table>
+        <tbody>
+          <tr>
+            <td style="width: 1.8cm;">
+              <?php
+              $icon_url = $this->website->icon();
+              // Convert URL ke path file untuk mPDF
+              $icon_path = str_replace(base_url(), FCPATH, $icon_url);
+              if (file_exists($icon_path)) {
+                $icon_src = $icon_path;
+              } else {
+                $icon_src = $icon_url;
+              }
+              ?>
+              <img src="<?php echo $icon_src ?>" style="width: 1.5cm; height: auto;">
+            </td>
+            <td>
+              <h1>INFORMASI PENERIMAAN PESERTA DIDIK BARU
+                <br><?php echo $this->website->namaweb() ?>
+              </h1>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr><br>
 
-  <p class="text-center"><strong>PENGUMUMAN PENERIMAAN PESERTA DIDIK BARU<br><?php echo strtoupper($gelombang->judul) ?></strong></p>
+      <p class="text-center"><strong>PENGUMUMAN PENERIMAAN PESERTA DIDIK
+          BARU<br><?php echo strtoupper($gelombang->judul) ?></strong></p>
 
-  <table class="printer">
-      <thead>
-        <tr>
-          <th width="30%">Nama Periode</th>
-          <th><?php echo $gelombang->judul ?></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tanggal pelaksanaan</td>
-          <td>
-            <span class="text-secondary">Pembukaan:</span> <?php echo $this->website->hari($gelombang->tanggal_buka) ?>
-            <br><span class="text-secondary">Penutupan:</span> <?php echo $this->website->hari($gelombang->tanggal_tutup) ?>
-            <br><span class="text-secondary">Pengumuman:</span> <?php echo $this->website->hari($gelombang->tanggal_pengumuman) ?>
-          </td>
-        </tr>
-        <tr>
-          <td>Periode</td>
-          <td><?php echo $gelombang->tahun ?></td>
-        </tr>
-        <tr>
-          <td>Tahun Ajaran</td>
-          <td><?php echo $gelombang->tahun_ajaran ?></td>
-        </tr>
-        <tr>
-          <td>Status</td>
-          <td>
-            <?php if($gelombang->status_gelombang=='Buka') { ?>
-              <span class="badge bg-info">
-                <i class="fa fa-eye"></i> <?php echo $gelombang->status_gelombang ?>
-              </span>
-            <?php }else{ ?>
-              <span class="badge bg-secondary">
-                <i class="fa fa-eye-slash"></i> Not Published
-              </span>
-            <?php } ?>
-          </td>
-        </tr>
-        <tr>
-          <td>Jenjang Pendidikan</td>
-          <td><?php echo $judul_jenjang_pendidikan ?></td>
-        </tr>
-        <tr>
-              <td>Status Pendaftaran</td>
-              <td><?php echo $status_pendaftaran ?></td>
-            </tr>
-      </tbody>
-    </table>
+      <table class="printer">
+        <thead>
+          <tr>
+            <th width="30%">Nama Periode</th>
+            <th><?php echo $gelombang->judul ?></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tanggal pelaksanaan</td>
+            <td>
+              <span class="text-secondary">Pembukaan:</span>
+              <?php echo $this->website->hari($gelombang->tanggal_buka) ?>
+              <br><span class="text-secondary">Penutupan:</span>
+              <?php echo $this->website->hari($gelombang->tanggal_tutup) ?>
+              <br><span class="text-secondary">Pengumuman:</span>
+              <?php echo $this->website->hari($gelombang->tanggal_pengumuman) ?>
+            </td>
+          </tr>
+          <tr>
+            <td>Periode</td>
+            <td><?php echo $gelombang->tahun ?></td>
+          </tr>
+          <tr>
+            <td>Tahun Ajaran</td>
+            <td><?php echo $gelombang->tahun_ajaran ?></td>
+          </tr>
+          <tr>
+            <td>Status</td>
+            <td>
+              <?php if ($gelombang->status_gelombang == 'Buka') { ?>
+                <span class="badge bg-info">
+                  <i class="fa fa-eye"></i> <?php echo $gelombang->status_gelombang ?>
+                </span>
+              <?php } else { ?>
+                <span class="badge bg-secondary">
+                  <i class="fa fa-eye-slash"></i> Not Published
+                </span>
+              <?php } ?>
+            </td>
+          </tr>
+          <tr>
+            <td>Jenjang Pendidikan</td>
+            <td><?php echo $judul_jenjang_pendidikan ?></td>
+          </tr>
+          <tr>
+            <td>Status Pendaftaran</td>
+            <td><?php echo $status_pendaftaran ?></td>
+          </tr>
+        </tbody>
+      </table>
 
-    <table class="printer">
-      <thead>
-        <tr>
-          <th width="30%"><?php echo $judul_jenjang_pendidikan ?></th>
-          <th>Jumlah</th>
-        </tr>
-      </thead>
-      <tbody>
+      <table class="printer">
+        <thead>
+          <tr>
+            <th width="30%"><?php echo $judul_jenjang_pendidikan ?></th>
+            <th>Jumlah</th>
+          </tr>
+        </thead>
+        <tbody>
 
-    <tr>
-      <td>Jumlah Pendaftar</td>
-      <td>
-        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Semua',$id_jenjang_pendidikan)->total); ?>
-      </td>
-    </tr>
-    <tr>
-      <td>Jumlah Menunggu</td>
-      <td>
-        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Menunggu',$id_jenjang_pendidikan)->total); ?>
-      </td>
-    </tr>
-    <tr>
-      <td>Jumlah Diterima</td>
-      <td>
-        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Diterima',$id_jenjang_pendidikan)->total); ?>
-      </td>
-    </tr>
-    <tr>
-      <td>Jumlah Tidak Diterima</td>
-      <td>
-        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Tidak-Diterima',$id_jenjang_pendidikan)->total); ?>
-      </td>
-    </tr>
-    <tr>
-      <td>Jumlah Diperiksa</td>
-      <td>
-        <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang,'Diperiksa',$id_jenjang_pendidikan)->total); ?>
-      </td>
-    </tr>
+          <tr>
+            <td>Jumlah Pendaftar</td>
+            <td>
+              <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang, 'Semua', $id_jenjang_pendidikan)->total); ?>
+            </td>
+          </tr>
+          <tr>
+            <td>Jumlah Menunggu</td>
+            <td>
+              <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang, 'Menunggu', $id_jenjang_pendidikan)->total); ?>
+            </td>
+          </tr>
+          <tr>
+            <td>Jumlah Diterima Tahap 1</td>
+            <td>
+              <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang, 'Diterima-Tahap-1', $id_jenjang_pendidikan)->total); ?>
+            </td>
+          </tr>
+          <tr>
+            <td>Jumlah Tidak Diterima</td>
+            <td>
+              <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang, 'Tidak-Diterima', $id_jenjang_pendidikan)->total); ?>
+            </td>
+          </tr>
+          <tr>
+            <td>Jumlah Diperiksa</td>
+            <td>
+              <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang, 'Diperiksa', $id_jenjang_pendidikan)->total); ?>
+            </td>
+          </tr>
+          <tr>
+            <td>Jumlah Lulus</td>
+            <td>
+              <?php echo $this->website->angka($m_calon_peserta_didik->total_gelombang_status_calon_peserta_didik($id_gelombang, 'Lulus', $id_jenjang_pendidikan)->total); ?>
+            </td>
+          </tr>
 
-  </tbody>
-</table>
-    
-    <table class="printer">
+        </tbody>
+      </table>
+
+      <table class="printer">
         <thead>
           <tr>
             <th width="5%" class="text-center align-middle">NO</th>
@@ -142,45 +155,50 @@ $this->website          = new Website();
             <th width="20%" class="align-middle text-center">TTL</th>
             <th width="20%" class="align-middle">PROGRAM/JENJANG</th>
             <th width="6%" class="align-middle">Status</th>
-        </tr>
-  </thead>
-  <tbody>
-    <?php 
-    $i=1; foreach($calon_peserta_didik as $calon_peserta_didik) { 
-      $wajib          = $m_jenis_dokumen->group_status_jenis_dokumen_detail('Wajib');
-      $tidak_wajib      = $m_jenis_dokumen->group_status_jenis_dokumen_detail('Tidak Wajib');
-      $dokumen_wajib      = $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik,$wajib->status_jenis_dokumen); 
-      $dokumen_tidak_wajib  = $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik,$tidak_wajib->status_jenis_dokumen);
-    ?>
-    <tr>
-      <td class="text-center"><?php echo $i ?></td>
-      <td><?php echo $calon_peserta_didik->nama_calon_peserta_didik ?></td>
-      <td><?php echo $calon_peserta_didik->jenis_kelamin ?></td>
-      <td><?php echo $calon_peserta_didik->tempat_lahir ?>, <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?></td>
-      <td><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?></td>
-        <td>
-            <?php if($calon_peserta_didik->status_pendaftaran=='Menunggu') { ?>
-                    <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
-                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Diterima') { ?>
-                    <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
-                  <?php }elseif($calon_peserta_didik->status_pendaftaran=='Tidak-Diterima') { ?>
-                    <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
-                  <?php }else{ ?>
-                    <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;<?php echo $calon_peserta_didik->status_pendaftaran ?></span>
-                  <?php } ?>
-        </td>
-      
-    </tr>
-    <?php $i++; } ?>
-  </tbody>
-</table>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          $i = 1;
+          foreach ($calon_peserta_didik as $calon_peserta_didik) {
+            $wajib = $m_jenis_dokumen->group_status_jenis_dokumen_detail('Wajib');
+            $tidak_wajib = $m_jenis_dokumen->group_status_jenis_dokumen_detail('Tidak Wajib');
+            $dokumen_wajib = $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik, $wajib->status_jenis_dokumen);
+            $dokumen_tidak_wajib = $m_dokumen->total_check($calon_peserta_didik->id_calon_peserta_didik, $tidak_wajib->status_jenis_dokumen);
+            ?>
+            <tr>
+              <td class="text-center"><?php echo $i ?></td>
+              <td><?php echo $calon_peserta_didik->nama_calon_peserta_didik ?></td>
+              <td><?php echo $calon_peserta_didik->jenis_kelamin ?></td>
+              <td><?php echo $calon_peserta_didik->tempat_lahir ?>,
+                <?php echo $this->website->tanggal_id($calon_peserta_didik->tanggal_lahir) ?>
+              </td>
+              <td><?php echo $calon_peserta_didik->judul_jenjang_pendidikan ?></td>
+              <td>
+                <?php if ($calon_peserta_didik->status_pendaftaran == 'Menunggu') { ?>
+                  <span class="badge badge-warning"><i class="fa fa-clock"></i>&nbsp;Menunggu</span>
+                <?php } elseif ($calon_peserta_didik->status_pendaftaran == 'Diterima-Tahap-1') { ?>
+                  <span class="badge badge-success"><i class="fa fa-check-circle"></i>&nbsp;Diterima Tahap 1</span>
+                <?php } elseif ($calon_peserta_didik->status_pendaftaran == 'Tidak-Diterima') { ?>
+                  <span class="badge badge-danger"><i class="fa fa-times-circle"></i>&nbsp;Tidak Diterima</span>
+                <?php } elseif ($calon_peserta_didik->status_pendaftaran == 'Lulus') { ?>
+                  <span class="badge badge-primary"><i class="fa fa-graduation-cap"></i>&nbsp;Lulus</span>
+                <?php } else { ?>
+                  <span class="badge badge-info"><i class="fa fa-tasks"></i>&nbsp;Diperiksa</span>
+                <?php } ?>
+              </td>
 
-<br>
-<p style="font-size: 12px;">
-  <strong>Nb :</strong> Bagi calon peserta didik yang diterima harap cek pengumuman untuk jadwal tahap seleksi dan informasi lainnya.
-</p>
+            </tr>
+            <?php $i++;
+          } ?>
+        </tbody>
+      </table>
 
-</div>
-</page>
+      <br>
+
+
+    </div>
+  </page>
 </body>
+
 </html>

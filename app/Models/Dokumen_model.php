@@ -79,20 +79,7 @@ class Dokumen_model extends Model
     }
 
     // jenis_dokumen
-    public function jenis_dokumen_all($id_jenis_dokumen,$jenis_dokumen,$limit,$start)
-    {
-        $this->table('dokumen');
-        $this->select('dokumen.*, jenis_dokumen.nama_jenis_dokumen, jenis_dokumen.slug_jenis_dokumen, calon_peserta_didik.nama_calon_peserta_didik');
-        $this->join('jenis_dokumen','jenis_dokumen.id_jenis_dokumen = dokumen.id_jenis_dokumen','LEFT');
-        $this->join('calon_peserta_didik','calon_peserta_didik.id_calon_peserta_didik = dokumen.id_calon_peserta_didik','LEFT');
-        $this->where( [ 'dokumen.id_jenis_dokumen' => $id_jenis_dokumen,
-                        'dokumen.jenis_dokumen'       => $jenis_dokumen
-                    ]);
-        $this->limit((int)$limit,(int)$start);
-        $this->orderBy('dokumen.id_dokumen','DESC');
-        $query = $this->get();
-        return $query->getResult();
-    }
+
 
     // total
     public function total_author($id_calon_peserta_didik)
@@ -103,12 +90,7 @@ class Dokumen_model extends Model
     }
 
     // total
-    public function total_jenis_dokumen($jenis_dokumen)
-    {
-        $this->table('dokumen')->where('jenis_dokumen',$jenis_dokumen);
-        $query = $this->get();
-        return $query->getNumRows();
-    }
+
 
     // total
     public function total()
@@ -196,12 +178,6 @@ class Dokumen_model extends Model
         $builder->delete($data);
     }
 
-    // testing
-    public function copypaste($data)
-    {
-        $builder = $this->db->table('dokumen');
-        $builder->insert($data);
-    }
 
     // hapus_calon
     public function hapus_calon($id_calon_peserta_didik)

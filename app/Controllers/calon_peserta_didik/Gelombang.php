@@ -1,17 +1,8 @@
 <?php
 namespace App\Controllers\Calon_peserta_didik;
 
-use CodeIgniter\Controller;
-use App\Models\Konfigurasi_model;
-use App\Models\Galeri_model;
-use App\Models\Berita_model;
 use App\Models\Calon_peserta_didik_model;
-use App\Models\Akun_model;
-use App\Models\Jenis_dokumen_model;
-use App\Models\Dokumen_model;
 use App\Models\Gelombang_model;
-use App\Models\Jenjang_pendidikan_model;
-use App\Models\Nav_model;
 
 class Gelombang extends BaseController
 {

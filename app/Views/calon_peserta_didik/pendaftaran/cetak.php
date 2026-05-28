@@ -41,6 +41,33 @@ $this->website = new Website();
         </tbody>
       </table>
       <hr><br>
+      <table class="printer">
+        <thead>
+          <tr>
+            <th width="35%">Kode Pendaftaran</th>
+            <th><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Status Pendaftaran</td>
+            <td>
+              <?php if ($calon_peserta_didik->status_pendaftaran == 'Menunggu') { ?>
+                <span class="badge badge-warning">Menunggu</span>
+              <?php } elseif ($calon_peserta_didik->status_pendaftaran == 'Diterima-Tahap-1') { ?>
+                <span class="badge badge-success">Diterima Tahap 1</span>
+              <?php } elseif ($calon_peserta_didik->status_pendaftaran == 'Tidak-Diterima') { ?>
+                <span class="badge badge-danger">Tidak Diterima</span>
+              <?php } elseif ($calon_peserta_didik->status_pendaftaran == 'Lulus') { ?>
+                <span class="badge badge-primary">Lulus</span>
+              <?php } else { ?>
+                <span class="badge badge-info">Diperiksa</span>
+              <?php } ?>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       <!-- DATA DASAR -->
       <table class="table table-bordered table-sm printer">
         <thead>
@@ -89,10 +116,6 @@ $this->website = new Website();
           <tr>
             <td class="font-bold">Kewarganegaraan</td>
             <td><?php echo $calon_peserta_didik->status_wn ?? 'WNI' ?></td>
-          </tr>
-          <tr>
-            <td class="font-bold">Kode Pendaftaran</td>
-            <td><strong><?php echo $calon_peserta_didik->kode_calon_peserta_didik ?></strong></td>
           </tr>
           <tr>
             <td class="font-bold">Periode</td>

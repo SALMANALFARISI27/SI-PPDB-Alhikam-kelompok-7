@@ -1,3 +1,4 @@
+<?php if ($fasilitas) { ?>
 <!-- /section -->
 <section id="snippet-fasilitas" class="wrapper bg-light wrapper-border">
   <div class="container py-8 py-md-12">
@@ -8,13 +9,13 @@
       data-items-md="2" data-items-xs="1">
       <div class="swiper">
         <div class="swiper-wrapper">
-          <?php foreach ($fasilitas as $fasilitas) { ?>
+          <?php foreach ($fasilitas as $fasilitas_item) { ?>
             <div class="swiper-slide">
               <article>
                 <figure class="overlay overlay-1 hover-scale rounded mb-5">
-                  <a href="<?php echo base_url('fasilitas/read/' . $fasilitas->slug_fasilitas) ?>">
-                    <img src="<?php echo base_url('assets/upload/image/' . $fasilitas->gambar) ?>"
-                      alt="<?php echo $fasilitas->judul_fasilitas ?>" />
+                  <a href="<?php echo base_url('fasilitas/read/' . $fasilitas_item->slug_fasilitas) ?>">
+                    <img src="<?php echo base_url('assets/upload/image/' . $fasilitas_item->gambar) ?>"
+                      alt="<?php echo $fasilitas_item->judul_fasilitas ?>" />
                   </a>
                   <figcaption>
                     <h5 class="from-top mb-0">Lihat detail...</h5>
@@ -22,13 +23,12 @@
                 </figure>
                 <div class="post-header">
                   <div class="post-category text-line text-warning">
-                    <a href="<?php echo base_url('fasilitas/kategori/' . $fasilitas->slug_kategori_fasilitas) ?>"
-                      class="hover text-warning" rel="category"><?php echo $fasilitas->nama_kategori_fasilitas ?></a>
+                    <?php echo $fasilitas_item->kondisi_fasilitas ?>
                   </div>
                   <!-- /.post-category -->
                   <h2 class="post-title h3 mt-1 mb-3">
                     <a class="link-dark"
-                      href="<?php echo base_url('fasilitas/read/' . $fasilitas->slug_fasilitas) ?>"><?php echo $fasilitas->judul_fasilitas ?></a>
+                      href="<?php echo base_url('fasilitas/read/' . $fasilitas_item->slug_fasilitas) ?>"><?php echo $fasilitas_item->judul_fasilitas ?></a>
                   </h2>
                 </div>
 
@@ -47,4 +47,5 @@
   <!-- /.container -->
 
 </section>
+<?php } ?>
 <!-- /section -->

@@ -1,3 +1,4 @@
+<?php if ($prestasi) { ?>
 <!-- /section -->
 <section id="snippet-1" class="wrapper bg-dark text-white wrapper-border">
   <div class="container py-8 py-md-12">
@@ -7,12 +8,12 @@
       data-items-md="2" data-items-xs="1">
       <div class="swiper">
         <div class="swiper-wrapper">
-          <?php foreach ($prestasi as $prestasi) { ?>
+          <?php foreach ($prestasi as $prestasi_item) { ?>
             <div class="swiper-slide">
               <article>
                 <figure class="overlay overlay-1 hover-scale rounded mb-5">
-                  <a href="<?php echo base_url('prestasi/read/' . $prestasi->slug_prestasi) ?>">
-                    <img src="<?php echo base_url('assets/upload/image/' . $prestasi->gambar) ?>" alt="" />
+                  <a href="<?php echo base_url('prestasi/read/' . $prestasi_item->slug_prestasi) ?>">
+                    <img src="<?php echo base_url('assets/upload/image/' . $prestasi_item->gambar) ?>" alt="" />
                   </a>
                   <figcaption>
                     <h5 class="from-top mb-0">Lihat detail...</h5>
@@ -20,13 +21,12 @@
                 </figure>
                 <div class="post-header">
                   <div class="post-category text-line text-warning">
-                    <a href="<?php echo base_url('prestasi/kategori/' . $prestasi->slug_kategori_prestasi) ?>"
-                      class="hover text-warning" rel="category"><?php echo $prestasi->nama_kategori_prestasi ?></a>
+                    <?php echo $prestasi_item->jenjang_prestasi ?>
                   </div>
                   <!-- /.post-category -->
                   <h2 class="post-title h3 mt-1 mb-3">
                     <a class="link-light"
-                      href="<?php echo base_url('prestasi/read/' . $prestasi->slug_prestasi) ?>"><?php echo $prestasi->judul_prestasi ?></a>
+                      href="<?php echo base_url('prestasi/read/' . $prestasi_item->slug_prestasi) ?>"><?php echo $prestasi_item->judul_prestasi ?></a>
                   </h2>
                 </div>
 
@@ -45,4 +45,5 @@
   <!-- /.container -->
 
 </section>
+<?php } ?>
 <!-- /section -->

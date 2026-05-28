@@ -1,9 +1,7 @@
 <?php
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Ekstrakurikuler_model;
-use App\Models\Kategori_ekstrakurikuler_model;
 
 class Ekstrakurikuler extends BaseController
 {
@@ -13,15 +11,12 @@ class Ekstrakurikuler extends BaseController
 	{
 
 		$m_ekstrakurikuler = new Ekstrakurikuler_model();
-		$m_kategori_ekstrakurikuler = new Kategori_ekstrakurikuler_model();
-		$kategori_ekstrakurikuler = $m_kategori_ekstrakurikuler->listing();
 		$ekstrakurikuler = $m_ekstrakurikuler->listing();
 		$title = 'Ekstrakurikuler (' . count($ekstrakurikuler) . ')';
 
 		$data = [
 			'title' => $title,
 			'ekstrakurikuler' => $ekstrakurikuler,
-			'kategori_ekstrakurikuler' => $kategori_ekstrakurikuler,
 			'content' => 'admin/ekstrakurikuler/index'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -32,8 +27,6 @@ class Ekstrakurikuler extends BaseController
 	{
 
 		$m_ekstrakurikuler = new Ekstrakurikuler_model();
-		$m_kategori_ekstrakurikuler = new Kategori_ekstrakurikuler_model();
-		$kategori_ekstrakurikuler = $m_kategori_ekstrakurikuler->listing();
 
 		// Start validasi
 		if (
@@ -63,7 +56,6 @@ class Ekstrakurikuler extends BaseController
 				// masuk database
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler'),
 					'slug_ekstrakurikuler' => strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
 					'judul_ekstrakurikuler' => $this->request->getVar('judul_ekstrakurikuler'),
 					'nama_penanggung_jawab' => $this->request->getVar('nama_penanggung_jawab'),
@@ -78,7 +70,6 @@ class Ekstrakurikuler extends BaseController
 			} else {
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler'),
 					'slug_ekstrakurikuler' => strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
 					'judul_ekstrakurikuler' => $this->request->getVar('judul_ekstrakurikuler'),
 					'nama_penanggung_jawab' => $this->request->getVar('nama_penanggung_jawab'),
@@ -94,7 +85,6 @@ class Ekstrakurikuler extends BaseController
 
 		$data = [
 			'title' => 'Tambah Ekstrakurikuler ',
-			'kategori_ekstrakurikuler' => $kategori_ekstrakurikuler,
 			'content' => 'admin/ekstrakurikuler/tambah'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -104,7 +94,6 @@ class Ekstrakurikuler extends BaseController
 	public function proses()
 	{
 
-		$m_kategori = new Kategori_ekstrakurikuler_model();
 		$m_ekstrakurikuler = new Ekstrakurikuler_model();
 		// proses
 		$pengalihan = $this->request->getVar('pengalihan');
@@ -116,17 +105,7 @@ class Ekstrakurikuler extends BaseController
 		}
 		// end check ekstrakurikuler
 		// proses
-		if ($submit == 'Update') {
-			for ($i = 0; $i < sizeof($id_ekstrakurikuler ?? []); $i++) {
-				$data = array(
-					'id_ekstrakurikuler' => $id_ekstrakurikuler[$i],
-					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler')
-				);
-				$m_ekstrakurikuler->edit($data);
-			}
-			return redirect()->to($pengalihan)->with('sukses', 'Ekstrakurikuler berhasil diupdate jenis ekstrakurikulernya');
-		} elseif ($submit == 'Publish') {
+		if ($submit == 'Publish') {
 			for ($i = 0; $i < sizeof($id_ekstrakurikuler ?? []); $i++) {
 				$data = array(
 					'id_ekstrakurikuler' => $id_ekstrakurikuler[$i],
@@ -160,9 +139,7 @@ class Ekstrakurikuler extends BaseController
 	public function edit($id_ekstrakurikuler)
 	{
 
-		$m_kategori_ekstrakurikuler = new Kategori_ekstrakurikuler_model();
 		$m_ekstrakurikuler = new Ekstrakurikuler_model();
-		$kategori_ekstrakurikuler = $m_kategori_ekstrakurikuler->listing();
 		$ekstrakurikuler = $m_ekstrakurikuler->detail($id_ekstrakurikuler);
 		// Start validasi
 		if (
@@ -193,7 +170,6 @@ class Ekstrakurikuler extends BaseController
 				$data = array(
 					'id_ekstrakurikuler' => $id_ekstrakurikuler,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler'),
 					'slug_ekstrakurikuler' => strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
 					'judul_ekstrakurikuler' => $this->request->getVar('judul_ekstrakurikuler'),
 					'nama_penanggung_jawab' => $this->request->getVar('nama_penanggung_jawab'),
@@ -208,7 +184,6 @@ class Ekstrakurikuler extends BaseController
 				$data = array(
 					'id_ekstrakurikuler' => $id_ekstrakurikuler,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_ekstrakurikuler' => $this->request->getVar('id_kategori_ekstrakurikuler'),
 					'slug_ekstrakurikuler' => strtolower(url_title($this->request->getVar('judul_ekstrakurikuler'))),
 					'judul_ekstrakurikuler' => $this->request->getVar('judul_ekstrakurikuler'),
 					'nama_penanggung_jawab' => $this->request->getVar('nama_penanggung_jawab'),
@@ -222,7 +197,6 @@ class Ekstrakurikuler extends BaseController
 
 		$data = [
 			'title' => 'Edit Ekstrakurikuler: ' . $ekstrakurikuler->judul_ekstrakurikuler,
-			'kategori_ekstrakurikuler' => $kategori_ekstrakurikuler,
 			'ekstrakurikuler' => $ekstrakurikuler,
 			'content' => 'admin/ekstrakurikuler/edit'
 		];

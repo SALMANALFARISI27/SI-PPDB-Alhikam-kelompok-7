@@ -51,15 +51,6 @@
 	<div class="form-group row">
 		<label class="col-3">Keterangan</label>
 		<div class="col-9">
-			<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-media">
-				<i class="fa fa-plus-circle"></i> Upload &amp; Kelola Media/File
-			</button>
-			<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-galeri">
-				<i class="fa fa-image"></i> Lihat Galeri
-			</button>
-			<button type="button" class="btn btn-secondary btn-sm mb-1" data-toggle="modal" data-target="#modal-download">
-				<i class="fa fa-download"></i> Lihat File
-			</button>
 			<textarea name="isi" placeholder="Keterangan" class="form-control konten"><?php echo set_value('isi') ?></textarea>
 		</div>
 	</div>
@@ -93,8 +84,4 @@
 			<button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
 		</div>
 	</div>
-<?php echo form_close(); 
-echo view('admin/berita/media');
-echo view('admin/berita/download');
-echo view('admin/berita/galeri');
-?>
+<?php echo form_close(); ?>

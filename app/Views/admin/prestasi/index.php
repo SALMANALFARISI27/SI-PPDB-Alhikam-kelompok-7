@@ -29,18 +29,6 @@
 		<button type="submit" name="submit" value="Publish" class="btn btn-info" title="Publikasikan">
 			<i class="fa fa-eye"></i>
 		</button>
-		<select name="id_kategori_prestasi" class="form-control">
-			<?php foreach ($kategori_prestasi as $kategori_prestasi) { ?>
-				<option value="<?php echo $kategori_prestasi->id_kategori_prestasi ?>">
-					<?php echo $kategori_prestasi->nama_kategori_prestasi ?>
-				</option>
-			<?php } ?>
-		</select>
-		<span class="input-group-append">
-			<button type="submit" name="submit" value="Update" class="btn btn-warning">
-				<i class="fa fa-search"></i> Update
-			</button>
-		</span>
 	</div>
 
 	<div class="table-responsive mailbox-messages mt-1">
@@ -54,8 +42,7 @@
 						</button>
 					</th>
 					<th width="5%" class="text-center">Gambar</th>
-					<th width="35%" class="text-center">Judul</th>
-					<th width="15%" class="text-center">Kategori &amp; Jenis</th>
+					<th width="50%" class="text-center">Judul</th>
 					<th width="15%" class="text-center">Status</th>
 					<th width="15%" class="text-center">Author</th>
 					<th width="10%" class="text-center">Aksi</th>
@@ -100,8 +87,7 @@
 
 						<td>
 							<small>
-								<i class="fa fa-tags"></i> <?php echo $prestasi->nama_kategori_prestasi ?>
-								<br><i class="fa fa-home"></i> <?php echo $prestasi->jenjang_prestasi ?>
+								<i class="fa fa-home"></i> <?php echo $prestasi->jenjang_prestasi ?>
 							</small>
 						</td>
 

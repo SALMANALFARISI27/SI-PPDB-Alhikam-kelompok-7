@@ -2,7 +2,7 @@
 	<div class="col-md-7" id="pwd">
 		<div class="card">
 			<div class="card-header" id="user">
-				<h4>Update Profil User</h4>
+				<h4>Update Profile User</h4>
 			</div>
 			<div class="card-body">
 				<?php

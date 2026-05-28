@@ -3,8 +3,6 @@
 namespace App\Controllers\Admin;
 
 use CodeIgniter\Controller;
-use CodeIgniter\HTTP\CLIRequest;
-use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
@@ -59,7 +57,6 @@ abstract class BaseController extends Controller
         $this->session          = \Config\Services::session();
         $this->db               = \Config\Database::connect();
         $this->pager            = \Config\Services::pager();
-        $uri                    = service('uri');
         $this->simple_login     = new Simple_login(); 
         $this->website          = new Website(); 
         $this->simple_login->checklogin();

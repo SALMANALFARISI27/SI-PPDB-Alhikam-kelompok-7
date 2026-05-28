@@ -1,18 +1,12 @@
 <?php
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
-
 use App\Models\Konfigurasi_model;
 use App\Models\Akun_model;
 
 class Signin extends BaseController
 {
 
-	public function __construct()
-	{
-		helper('form');
-	}
 
 	// Homepage
 	public function index()
@@ -46,7 +40,7 @@ class Signin extends BaseController
 			'session' => $session,
 			'content' => 'signin/index'
 		];
-		echo view('layout/wrapper-pendaftaran', $data);
+		return view('layout/wrapper-pendaftaran', $data);
 		// End proses
 	}
 
@@ -131,7 +125,7 @@ class Signin extends BaseController
 			'keywords' => 'Reset Password ' . $konfigurasi->namaweb,
 			'content' => 'signin/reset'
 		];
-		echo view('layout/wrapper-pendaftaran', $data);
+		return view('layout/wrapper-pendaftaran', $data);
 	}
 
 	// password
@@ -181,7 +175,7 @@ class Signin extends BaseController
 			'token_reset' => $token_reset,
 			'content' => 'signin/password'
 		];
-		echo view('layout/wrapper-pendaftaran', $data);
+		return view('layout/wrapper-pendaftaran', $data);
 	}
 	// Logout
 	public function logout()

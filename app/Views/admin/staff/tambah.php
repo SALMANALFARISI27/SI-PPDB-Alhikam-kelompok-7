@@ -46,15 +46,7 @@
 </div>
 
 <div class="form-group row">
-	<label class="col-3">Jenis, Status Staff</label>
-	<div class="col-3">
-		<select name="id_kategori_staff" class="form-control">
-			<?php foreach($kategori_staff as $kategori_staff) { ?>
-				<option value="<?php echo $kategori_staff->id_kategori_staff ?>"><?php echo $kategori_staff->nama_kategori_staff ?></option>
-			<?php } ?>
-		</select>
-		<small class="text-secondary">Jenis Staff</small>
-	</div>
+	<label class="col-3">Status Staff</label>
 	<div class="col-3">
 		<select name="status_staff" class="form-control">
 			<option value="Publish">Publish</option>

@@ -1,7 +1,6 @@
 <?php
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Jenjang_pendidikan_model;
 use App\Models\Admin_model;
 
@@ -24,14 +23,6 @@ class Jenjang_pendidikan extends BaseController
 		echo view('admin/layout/wrapper', $data);
 	}
 
-	// testing
-	public function testing()
-	{
-		$data = [
-			'title' => 'Unggah media',
-		];
-		echo view('admin/jenjang_pendidikan/unggah', $data);
-	}
 
 
 	// jenis_jenjang_pendidikan

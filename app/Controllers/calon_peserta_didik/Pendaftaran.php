@@ -1,17 +1,13 @@
 <?php
 namespace App\Controllers\Calon_peserta_didik;
 
-use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
-use App\Models\Galeri_model;
-use App\Models\Berita_model;
 use App\Models\Calon_peserta_didik_model;
 use App\Models\Akun_model;
 use App\Models\Jenis_dokumen_model;
 use App\Models\Dokumen_model;
 use App\Models\Gelombang_model;
 use App\Models\Jenjang_pendidikan_model;
-use App\Models\Nav_model;
 
 class Pendaftaran extends BaseController
 {
@@ -41,24 +37,16 @@ class Pendaftaran extends BaseController
 		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
 		$m_gelombang = new Gelombang_model();
-		$m_nav = new Nav_model();
 
 		$konfigurasi = $m_konfigurasi->listing();
 		$id_akun = $this->session->get('id_akun');
 		$akun = $m_akun->detail($id_akun);
-		$jenjang_pendidikan = $m_nav->jenjang_pendidikan();
+		$jenjang_pendidikan = $m_jenjang_pendidikan->nav_jenjang();
 		$gelombang = $m_gelombang->detail($id_gelombang);
 
 		if (empty(Session()->get('username_calon_peserta_didik'))) {
 			$this->session->setFlashdata('warning', 'Anda belum login');
 			return redirect()->to(base_url('signin'));
-		}
-
-		$calon_peserta_didik = $m_calon_peserta_didik->last_id();
-		if ($calon_peserta_didik) {
-			$urutan = $calon_peserta_didik->id_calon_peserta_didik + 1;
-		} else {
-			$urutan = 1;
 		}
 
 		// Start validasi
@@ -189,26 +177,18 @@ class Pendaftaran extends BaseController
 		$m_calon_peserta_didik = new Calon_peserta_didik_model();
 		$m_jenjang_pendidikan = new Jenjang_pendidikan_model();
 		$m_gelombang = new Gelombang_model();
-		$m_nav = new Nav_model();
 
 		$calon_peserta_didik = $m_calon_peserta_didik->read($slug_calon_peserta_didik);
 		$id_gelombang = $calon_peserta_didik->id_gelombang;
 		$konfigurasi = $m_konfigurasi->listing();
 		$id_akun = $this->session->get('id_akun');
 		$akun = $m_akun->detail($id_akun);
-		$jenjang_pendidikan = $m_nav->jenjang_pendidikan();
+		$jenjang_pendidikan = $m_jenjang_pendidikan->nav_jenjang();
 		$gelombang = $m_gelombang->detail($id_gelombang);
 
 		if (empty(Session()->get('username_calon_peserta_didik'))) {
 			$this->session->setFlashdata('warning', 'Anda belum login');
 			return redirect()->to(base_url('signin'));
-		}
-
-		$calon_peserta_didik = $m_calon_peserta_didik->last_id();
-		if ($calon_peserta_didik) {
-			$urutan = $calon_peserta_didik->id_calon_peserta_didik + 1;
-		} else {
-			$urutan = 1;
 		}
 
 		// Start validasi

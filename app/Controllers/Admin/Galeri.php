@@ -1,9 +1,7 @@
 <?php
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Galeri_model;
-use App\Models\Kategori_galeri_model;
 
 class Galeri extends BaseController
 {
@@ -13,37 +11,23 @@ class Galeri extends BaseController
 	{
 
 		$m_galeri = new Galeri_model();
-		$m_kategori_galeri = new Kategori_galeri_model();
-		$kategori_galeri = $m_kategori_galeri->listing();
 		$galeri = $m_galeri->listing();
-		$title = 'Galeri Gambar (' . count($galeri) . ')';
+		$title = 'Galeri (' . count($galeri) . ')';
 
 		$data = [
 			'title' => $title,
 			'galeri' => $galeri,
-			'kategori_galeri' => $kategori_galeri,
 			'content' => 'admin/galeri/index'
 		];
 		echo view('admin/layout/wrapper', $data);
 	}
 
-	// Show all
-	public function show()
-	{
-		header('Content-Type: application/json; charset=utf-8');
-		$this->simple_login->checklogin();
-		$m_galeri = new Galeri_model();
-		$data = $m_galeri->listing();
-		echo json_encode($data);
-	}
 
 	// Tambah
 	public function tambah()
 	{
 
 		$m_galeri = new Galeri_model();
-		$m_kategori_galeri = new Kategori_galeri_model();
-		$kategori_galeri = $m_kategori_galeri->listing();
 
 		// Start validasi
 		if (
@@ -71,11 +55,11 @@ class Galeri extends BaseController
 				// masuk database
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_galeri' => $this->request->getVar('id_kategori_galeri'),
 					'slug_galeri' => strtolower(url_title($this->request->getVar('judul_galeri'))),
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
+					'url_video' => $this->request->getVar('url_video'),
 					'status_galeri' => $this->request->getVar('status_galeri'),
 					'gambar' => $namabaru,
 				);
@@ -84,11 +68,11 @@ class Galeri extends BaseController
 			} else {
 				$data = array(
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_galeri' => $this->request->getVar('id_kategori_galeri'),
 					'slug_galeri' => strtolower(url_title($this->request->getVar('judul_galeri'))),
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
+					'url_video' => $this->request->getVar('url_video'),
 					'status_galeri' => $this->request->getVar('status_galeri'),
 				);
 				$m_galeri->tambah($data);
@@ -98,7 +82,6 @@ class Galeri extends BaseController
 
 		$data = [
 			'title' => 'Tambah Galeri',
-			'kategori_galeri' => $kategori_galeri,
 			'content' => 'admin/galeri/tambah'
 		];
 		echo view('admin/layout/wrapper', $data);
@@ -108,7 +91,6 @@ class Galeri extends BaseController
 	public function proses()
 	{
 
-		$m_kategori = new Kategori_galeri_model();
 		$m_galeri = new Galeri_model();
 		// proses
 		$pengalihan = $this->request->getVar('pengalihan');
@@ -120,17 +102,7 @@ class Galeri extends BaseController
 		}
 		// end check galeri
 		// proses
-		if ($submit == 'Update') {
-			for ($i = 0; $i < sizeof($id_galeri ?? []); $i++) {
-				$data = array(
-					'id_galeri' => $id_galeri[$i],
-					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_galeri' => $this->request->getVar('id_kategori_galeri')
-				);
-				$m_galeri->edit($data);
-			}
-			return redirect()->to($pengalihan)->with('sukses', 'Galeri berhasil diupdate jenis galerinya');
-		} elseif ($submit == 'Publish') {
+		if ($submit == 'Publish') {
 			for ($i = 0; $i < sizeof($id_galeri ?? []); $i++) {
 				$data = array(
 					'id_galeri' => $id_galeri[$i],
@@ -164,9 +136,7 @@ class Galeri extends BaseController
 	public function edit($id_galeri)
 	{
 
-		$m_kategori_galeri = new Kategori_galeri_model();
 		$m_galeri = new Galeri_model();
-		$kategori_galeri = $m_kategori_galeri->listing();
 		$galeri = $m_galeri->detail($id_galeri);
 		// Start validasi
 		if (
@@ -194,11 +164,11 @@ class Galeri extends BaseController
 				$data = array(
 					'id_galeri' => $id_galeri,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_galeri' => $this->request->getVar('id_kategori_galeri'),
 					'slug_galeri' => strtolower(url_title($this->request->getVar('judul_galeri'))),
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
+					'url_video' => $this->request->getVar('url_video'),
 					'status_galeri' => $this->request->getVar('status_galeri'),
 					'gambar' => $namabaru,
 				);
@@ -208,11 +178,11 @@ class Galeri extends BaseController
 				$data = array(
 					'id_galeri' => $id_galeri,
 					'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_galeri' => $this->request->getVar('id_kategori_galeri'),
 					'slug_galeri' => strtolower(url_title($this->request->getVar('judul_galeri'))),
 					'judul_galeri' => $this->request->getVar('judul_galeri'),
 					'jenis_galeri' => $this->request->getVar('jenis_galeri'),
 					'isi' => $this->request->getVar('isi'),
+					'url_video' => $this->request->getVar('url_video'),
 					'status_galeri' => $this->request->getVar('status_galeri'),
 				);
 				$m_galeri->edit($data);
@@ -222,7 +192,6 @@ class Galeri extends BaseController
 
 		$data = [
 			'title' => 'Edit Galeri: ' . $galeri->judul_galeri,
-			'kategori_galeri' => $kategori_galeri,
 			'galeri' => $galeri,
 			'content' => 'admin/galeri/edit'
 		];

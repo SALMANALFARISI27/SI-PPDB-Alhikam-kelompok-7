@@ -43,10 +43,7 @@
                         <td class="text-dark">Penanggung Jawab</td>
                         <td class="text-dark"><?php echo $ekstrakurikuler->nama_penanggung_jawab ?></td>
                       </tr>
-                      <tr>
-                        <td class="text-dark">Kategori</td>
-                        <td class="text-dark"><?php echo $ekstrakurikuler->nama_kategori_ekstrakurikuler ?></td>
-                      </tr>
+
                     </tbody>
                   </table>
                 </div>
@@ -95,7 +92,7 @@
                     <?php echo $ekstrakurikuler->judul_ekstrakurikuler ?>
                   </a>
                 </h5>
-                <p class="mb-0 text-small text-muted"><?php echo $ekstrakurikuler->nama_kategori_ekstrakurikuler ?> |
+                <p class="mb-0 text-small text-muted">
                   <?php echo $ekstrakurikuler->nama_penanggung_jawab ?>
                 </p>
               </div>

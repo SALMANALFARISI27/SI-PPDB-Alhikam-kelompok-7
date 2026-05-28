@@ -1,7 +1,6 @@
 <?php
 namespace App\Libraries;
 use App\Models\Konfigurasi_model;
-use App\Models\Yayasan_model;
 
 class Website
 {
@@ -13,35 +12,12 @@ class Website
 		return $konfigurasi->namaweb;
 	}
 
-	// singkatan
-	public function singkatan()
-	{
-		$m_konfigurasi = new Konfigurasi_model();
-		$konfigurasi = $m_konfigurasi->listing();
-		return $konfigurasi->singkatan;
-	}
-
-	// website
-	public function website()
-	{
-		$m_konfigurasi = new Konfigurasi_model();
-		$konfigurasi = $m_konfigurasi->listing();
-		return $konfigurasi->website;
-	}
-
-
 	// fitur_pendaftaran
 	public function fitur_pendaftaran()
 	{
 		$m_konfigurasi = new Konfigurasi_model();
 		$konfigurasi = $m_konfigurasi->listing();
 		return $konfigurasi->fitur_pendaftaran;
-	}
-
-	// kepsek
-	public function kepsek()
-	{
-		return '';
 	}
 
 	// whatsapp
@@ -61,13 +37,6 @@ class Website
 		return $pesan;
 	}
 
-	// namasekolah
-	public function namasekolah()
-	{
-		$m_konfigurasi = new Yayasan_model();
-		$konfigurasi = $m_konfigurasi->listing();
-		return $konfigurasi->nama_yayasan;
-	}
 
 	// alamat
 	public function alamat()
@@ -124,16 +93,6 @@ class Website
 		$konfigurasi = $m_konfigurasi->listing();
 		return $konfigurasi->nama_instagram;
 	}
-
-
-	// website
-	public function websitenya()
-	{
-		$m_konfigurasi = new Konfigurasi_model();
-		$konfigurasi = $m_konfigurasi->listing();
-		return $konfigurasi->website;
-	}
-
 
 	// description
 	public function description()

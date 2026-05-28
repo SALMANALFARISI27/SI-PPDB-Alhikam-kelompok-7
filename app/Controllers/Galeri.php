@@ -1,36 +1,61 @@
 <?php
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
 use App\Models\Konfigurasi_model;
 use App\Models\Galeri_model;
 
 class Galeri extends BaseController
 {
-	// Galeri
+	// Galeri Foto
 	public function index()
 	{
 		$pager = service('pager');
 		$m_konfigurasi = new Konfigurasi_model();
 		$m_galeri = new Galeri_model();
 		$konfigurasi = $m_konfigurasi->listing();
-		$total = $m_galeri->total();
+		$total = $m_galeri->total_jenis('Foto');
 		$page = (int) ($this->request->getGet('page') ?? 1);
 		$perPage = $this->website->paginasi_depan();
 		$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
 		$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
-		$galeri = $m_galeri->paginasi_admin($perPage, $page);
+		$galeri = $m_galeri->paginasi_jenis('Foto', $perPage, $page);
 
 		$data = [
-			'title' => 'GALERI GAMBAR',
-			'description' => 'Galeri Gambar ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
-			'keywords' => 'Galeri Gambar ' . $konfigurasi->namaweb,
+			'title' => 'GALERI FOTO',
+			'description' => 'Galeri Foto ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
+			'keywords' => 'Galeri Foto ' . $konfigurasi->namaweb,
 			'galeri' => $galeri,
 			'pagination' => $pager_links,
 			'konfigurasi' => $konfigurasi,
 			'content' => 'galeri/index'
 		];
-		echo view('layout/wrapper', $data);
+		return view('layout/wrapper', $data);
+	}
+
+	// Galeri Video
+	public function video()
+	{
+		$pager = service('pager');
+		$m_konfigurasi = new Konfigurasi_model();
+		$m_galeri = new Galeri_model();
+		$konfigurasi = $m_konfigurasi->listing();
+		$total = $m_galeri->total_jenis('Video');
+		$page = (int) ($this->request->getGet('page') ?? 1);
+		$perPage = $this->website->paginasi_depan();
+		$pager_links = $pager->makeLinks($page, $perPage, $total, 'bootstrap_pagination');
+		$page = ($this->request->getGet('page')) ? ($this->request->getGet('page') - 1) * $perPage : 0;
+		$galeri = $m_galeri->paginasi_jenis('Video', $perPage, $page);
+
+		$data = [
+			'title' => 'GALERI VIDEO',
+			'description' => 'Galeri Video ' . $konfigurasi->namaweb . ', ' . $konfigurasi->tentang,
+			'keywords' => 'Galeri Video ' . $konfigurasi->namaweb,
+			'galeri' => $galeri,
+			'pagination' => $pager_links,
+			'konfigurasi' => $konfigurasi,
+			'content' => 'galeri/video'
+		];
+		return view('layout/wrapper', $data);
 	}
 
 	// Read
@@ -61,7 +86,7 @@ class Galeri extends BaseController
 			'galeri_list' => $galeri_list,
 			'content' => 'galeri/read'
 		];
-		echo view('layout/wrapper', $data);
+		return view('layout/wrapper', $data);
 	}
 
 }

@@ -29,19 +29,6 @@
 			<i class="fa fa-eye"></i>
 		</button>
 
-		<select name="id_kategori_galeri" class="form-control">
-			<?php foreach ($kategori_galeri as $kategori_galeri) { ?>
-				<option value="<?php echo $kategori_galeri->id_kategori_galeri ?>">
-					<?php echo $kategori_galeri->nama_kategori_galeri ?>
-				</option>
-			<?php } ?>
-		</select>
-
-		<span class="input-group-append">
-			<button type="submit" name="submit" value="Update" class="btn btn-warning">
-				<i class="fa fa-search"></i> Update
-			</button>
-		</span>
 	</div>
 
 	<div class="table-responsive mailbox-messages mt-1">
@@ -57,7 +44,7 @@
 					<th width="8%" class="text-center">Gambar</th>
 					<th width="35%" class="text-center">Judul</th>
 					<th width="10%" class="text-center">Status</th>
-					<th width="15%" class="text-center">Kategori &amp; Jenis</th>
+					<th width="15%" class="text-center">Jenis</th>
 					<th width="15%" class="text-center">Author</th>
 					<th width="10%" class="text-center">Aksi</th>
 				</tr>
@@ -84,12 +71,8 @@
 							<?php } ?>
 						</td>
 
-						<td class="text-center">
+						<td class="text-left">
 							<?php echo $galeri->judul_galeri ?>
-							<small>
-								<textarea title="Copy link gambar/file ini" class="form-control"
-									rows="2"><?php echo base_url('assets/upload/image/' . $galeri->gambar) ?></textarea>
-							</small>
 						</td>
 
 						<td class="text-center">
@@ -102,9 +85,12 @@
 
 						<td class="text-center">
 							<small>
-								<i class="fa fa-tags"></i> <?php echo $galeri->nama_kategori_galeri ?>
-								<br>
-								<i class="fa fa-home"></i> <?php echo $galeri->jenis_galeri ?>
+								<?php if ($galeri->jenis_galeri == "Video") { ?>
+									<i class="fa fa-video"></i>
+								<?php } else { ?>
+									<i class="fa fa-image"></i>
+								<?php } ?>
+								<?php echo $galeri->jenis_galeri ?>
 							</small>
 						</td>
 

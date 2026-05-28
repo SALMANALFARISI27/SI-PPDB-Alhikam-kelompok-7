@@ -1,9 +1,7 @@
 <?php 
 namespace App\Controllers\Admin;
 
-use CodeIgniter\Controller;
 use App\Models\Prestasi_model;
-use App\Models\Kategori_prestasi_model;
 
 class Prestasi extends BaseController
 {
@@ -12,15 +10,12 @@ class Prestasi extends BaseController
 	public function index()
 	{
 		
-		$m_prestasi 			= new Prestasi_model();
-		$m_kategori_prestasi 	= new Kategori_prestasi_model();
-		$kategori_prestasi 	= $m_kategori_prestasi->listing();
+		$m_prestasi = new Prestasi_model();
 		$prestasi = $m_prestasi->listing();
 		$title = 'Prestasi dan Penghargaan (' . count($prestasi) . ')';
 
 		$data = [	'title'				=> $title,
 					'prestasi'			=> $prestasi,
-					'kategori_prestasi'	=> $kategori_prestasi,
 					'content'			=> 'admin/prestasi/index'
 				];
 		echo view('admin/layout/wrapper',$data);
@@ -30,9 +25,7 @@ class Prestasi extends BaseController
 	public function tambah()
 	{
 		
-		$m_prestasi 			= new Prestasi_model();
-		$m_kategori_prestasi 	= new Kategori_prestasi_model();
-		$kategori_prestasi 	= $m_kategori_prestasi->listing();
+		$m_prestasi = new Prestasi_model();
 
 		// Start validasi
 		if($this->request->getMethod() === 'POST' && $this->validate(
@@ -56,7 +49,6 @@ class Prestasi extends BaseController
 	        	// masuk database
 	        	$data = array(
 	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi'),
 					'slug_prestasi'			=> strtolower(url_title($this->request->getVar('judul_prestasi'))),
 					'judul_prestasi'		=> $this->request->getVar('judul_prestasi'),
 					'nama_penerima'			=> $this->request->getVar('nama_penerima'),
@@ -74,7 +66,6 @@ class Prestasi extends BaseController
         	}else{
         		$data = array(
 	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi'),
 					'slug_prestasi'			=> strtolower(url_title($this->request->getVar('judul_prestasi'))),
 					'judul_prestasi'		=> $this->request->getVar('judul_prestasi'),
 					'nama_penerima'			=> $this->request->getVar('nama_penerima'),
@@ -92,7 +83,6 @@ class Prestasi extends BaseController
         }
 
 		$data = [	'title'				=> 'Tambah Prestasi dan Penghargaan',
-					'kategori_prestasi'	=> $kategori_prestasi,
 					'content'			=> 'admin/prestasi/tambah'
 				];
 		echo view('admin/layout/wrapper',$data);
@@ -102,8 +92,7 @@ class Prestasi extends BaseController
 	public function proses()
 	{
 		
-		$m_kategori 	= new Kategori_prestasi_model();
-		$m_prestasi 		= new Prestasi_model();
+		$m_prestasi = new Prestasi_model();
 		// proses
 		$pengalihan = $this->request->getVar('pengalihan');
 		$submit 	= $this->request->getVar('submit');
@@ -115,16 +104,7 @@ class Prestasi extends BaseController
 		}
 		// end check prestasi
 		// proses
-		if($submit=='Update') {
-   			for($i=0; $i < sizeof($id_prestasi ?? []);$i++) {
-				$data = array(	'id_prestasi'				=> $id_prestasi[$i],
-								'id_admin' => $this->session->get('id_admin'),
-								'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi')
-							);
-   				$m_prestasi->edit($data);
-   			}
-   			return redirect()->to($pengalihan)->with('sukses', 'Prestasi berhasil diupdate jenis prestasinya');
-		}elseif($submit=='Publish') {
+		if($submit=='Publish') {
 			for($i=0; $i < sizeof($id_prestasi ?? []);$i++) {
 				$data = array(	'id_prestasi'		=> $id_prestasi[$i],
 								'id_admin' => $this->session->get('id_admin'),
@@ -156,10 +136,8 @@ class Prestasi extends BaseController
 	public function edit($id_prestasi)
 	{
 		
-		$m_kategori_prestasi 	= new Kategori_prestasi_model();
-		$m_prestasi 			= new Prestasi_model();
-		$kategori_prestasi 	= $m_kategori_prestasi->listing();
-		$prestasi 			= $m_prestasi->detail($id_prestasi);
+		$m_prestasi = new Prestasi_model();
+		$prestasi = $m_prestasi->detail($id_prestasi);
 		// Start validasi
 		if($this->request->getMethod() === 'POST' && $this->validate(
 			[
@@ -183,7 +161,6 @@ class Prestasi extends BaseController
 			    $data = array(
 	        		'id_prestasi'			=> $id_prestasi,
 	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi'),
 					'slug_prestasi'			=> strtolower(url_title($this->request->getVar('judul_prestasi'))),
 					'judul_prestasi'		=> $this->request->getVar('judul_prestasi'),
 					'nama_penerima'			=> $this->request->getVar('nama_penerima'),
@@ -201,7 +178,6 @@ class Prestasi extends BaseController
 				$data = array(
 	        		'id_prestasi'			=> $id_prestasi,
 	        		'id_admin' => $this->session->get('id_admin'),
-					'id_kategori_prestasi'	=> $this->request->getVar('id_kategori_prestasi'),
 					'slug_prestasi'			=> strtolower(url_title($this->request->getVar('judul_prestasi'))),
 					'judul_prestasi'		=> $this->request->getVar('judul_prestasi'),
 					'nama_penerima'			=> $this->request->getVar('nama_penerima'),
@@ -218,7 +194,6 @@ class Prestasi extends BaseController
 		}
 
 		$data = [	'title'				=> 'Edit Prestasi dan Penghargaan: '.$prestasi->judul_prestasi,
-					'kategori_prestasi'	=> $kategori_prestasi,
 					'prestasi'			=> $prestasi,
 					'content'			=> 'admin/prestasi/edit'
 				];

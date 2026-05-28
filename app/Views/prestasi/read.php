@@ -51,10 +51,7 @@
                     <td class="bg-light">Tingkat</td>
                     <td><?php echo $prestasi->jenjang_prestasi ?></td>
                   </tr>
-                  <tr>
-                    <td class="bg-light">Bidang</td>
-                    <td><?php echo $prestasi->nama_kategori_prestasi ?></td>
-                  </tr>
+
                   <tr>
                     <td class="bg-light">Penghargaan/Hadiah</td>
                     <td><?php echo $prestasi->hadiah_prestasi ?></td>
@@ -106,7 +103,7 @@
                   </a>
                 </h5>
                 <p class="mb-0 text-small text-muted">
-                  <?php echo $prestasi->nama_kategori_prestasi ?> | <?php echo $prestasi->jenjang_prestasi ?>
+                  <?php echo $prestasi->jenjang_prestasi ?>
                 </p>
                 <p class="mb-0 text-muted text-small">
                   <i class="uil uil-eye"></i> Dibaca <?php echo $prestasi->hits ?> kali

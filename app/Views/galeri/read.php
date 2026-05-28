@@ -16,91 +16,80 @@
   <div class="container pt-12 pt-md-14 pb-13 pb-md-15">
 
     <!--/.row -->
-    <div class="row grid-view gx-md-8 gx-xl-10 gy-8 gy-lg-0">
-
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <img src="<?php echo base_url('assets/upload/image/' . $galeri->gambar) ?>"
-              class="img img-fluid img-thumbnail w-100">
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered tabelku">
-                <thead>
-                  <tr>
-                    <th width="25%">Judul</th>
-                    <th><?php echo $galeri->judul_galeri ?></th>
-                  </tr>
-                </thead>
-                <tbody>
-
-
-                  <tr>
-                    <td class="bg-light">Keterangan</td>
-                    <td><?php echo $galeri->isi ?></td>
-                  </tr>
-                  <tr>
-                    <td class="bg-light">Dibaca</td>
-                    <td><?php echo $galeri->hits ?> Kali</td>
-                  </tr>
-                </tbody>
-              </table>
+    <?php if ($galeri->jenis_galeri == "Video") {
+      // Extract video ID from Youtube URL
+      $url = $galeri->url_video;
+      preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+      $video_id = $match[1] ?? '';
+      ?>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card shadow-lg mb-10">
+            <div class="card-body p-0 overflow-hidden" style="border-radius: 10px;">
+              <?php if ($video_id) { ?>
+                <div class="ratio ratio-16x9">
+                  <iframe src="https://www.youtube.com/embed/<?php echo $video_id ?>" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                </div>
+              <?php } else { ?>
+                <div class="p-10 text-center">
+                  <p class="text-danger">URL Video tidak valid.</p>
+                </div>
+              <?php } ?>
             </div>
           </div>
-          <div class="card-footer">
-            Tanggal: <?php echo $this->website->tanggal_bulan_menit($galeri->tanggal) ?>
-          </div>
-        </div>
 
-      </div>
-    </div>
-
-    <!--/.row -->
-    <div class="row grid-view gx-md-8 gx-xl-10 gy-8 gy-lg-0 mt-5 justify-content-center">
-      <div class="col-xl-12">
-        <h3 class="text-center mt-5 mb-5">Lihat Galeri Lainnya....</h3>
-      </div>
-      <?php $no = 1;
-      foreach ($galeri_list as $galeri) { ?>
-        <div class="col-md-6 col-lg-3 mb-8">
-          <div class="position-relative">
-            <div class="shape rounded bg-soft-blue rellax d-md-block" data-rellax-speed="0"
-              style="bottom: -0.75rem; right: -0.75rem; width: 98%; height: 98%; z-index:0">
-            </div>
-            <div class="card">
-              <figure class="card-img-top">
-                <a href="<?php echo base_url('galeri/read/' . $galeri->id_galeri) ?>">
-                  <img class="img-fluid" src="<?php echo base_url('assets/upload/image/' . $galeri->gambar) ?>"
-                    srcset="<?php echo base_url('assets/upload/image/' . $galeri->gambar) ?> 2x"
-                    alt="<?php echo $galeri->judul_galeri ?>" />
-                </a>
-              </figure>
-              <div class="card-body px-6 py-5">
-                <h5 class="mb-1">
-                  <a href="<?php echo base_url('galeri/read/' . $galeri->id_galeri) ?>">
-                    <?php echo $galeri->judul_galeri ?>
-                  </a>
-                </h5>
-                <p class="mb-0 text-small text-muted"><?php echo $galeri->nama_kategori_galeri ?></p>
-                <p class="mb-0 text-muted text-small">
-                  <i class="uil uil-eye"></i> Dibaca <?php echo $galeri->hits ?> kali
-                </p>
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="content mb-6">
+                <?php echo $galeri->isi ?>
               </div>
-              <!--/.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /div -->
-        </div>
-        <!--/column -->
-      <?php } ?>
 
-    </div>
-    <!--/.row -->
+              <hr class="my-5">
+
+              <div class="d-flex text-muted fs-15">
+                <div class="me-5"><i class="uil uil-eye"></i> Dilihat <?php echo $galeri->hits ?> kali</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <?php } else { ?>
+      <!-- Layout for Photo -->
+      <div class="row grid-view gx-md-8 gx-xl-10 gy-8 gy-lg-0">
+        <div class="col-md-6">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <img src="<?php echo base_url('assets/upload/image/' . $galeri->gambar) ?>"
+                class="img img-fluid img-thumbnail w-100">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td class="bg-light" width="25%">Keterangan</td>
+                      <td><?php echo $galeri->isi ?></td>
+                    </tr>
+                    <tr>
+                      <td class="bg-light">Dibaca</td>
+                      <td><?php echo $galeri->hits ?> Kali</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <?php } ?>
   </div>
 </section>

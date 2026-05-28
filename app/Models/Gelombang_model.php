@@ -107,9 +107,5 @@ class Gelombang_model extends Model
     }
 
     // tambah  log
-    public function gelombang_log($data)
-    {
-        $builder = $this->db->table('gelombang_logs');
-        $builder->insert($data);
-    }
+
 }
