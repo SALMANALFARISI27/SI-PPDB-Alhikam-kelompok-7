@@ -31,7 +31,7 @@ class Admin_model extends Model
     {
         $builder = $this->db->table('admin');
         $builder->select('*');
-        $builder->orderBy('id_admin','DESC');
+        $builder->orderBy('id_admin','ASC');
         $query = $builder->get();
         return $query->getResult();
     }

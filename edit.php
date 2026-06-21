@@ -34,6 +34,13 @@ echo csrf_field();
 	</div>
 </div>
 
+<div class="form-group row">
+	<label class="col-3">Password Baru</label>
+	<div class="col-9">
+		<input type="text" name="password" class="form-control" placeholder="Masukan Password Baru" value="">
+		<small class="text-danger">Minimal 6 karakter dan maksimal 32 karakter atau biarkan kosong</small>
+	</div>
+</div>
 
 <div class="form-group row">
 	<label class="col-3"></label>
