@@ -1,6 +1,5 @@
 <?php
 
-include('popup.php');
 include('banner.php');
 include('jenjang.php');
 include('about.php');

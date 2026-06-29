@@ -42,7 +42,6 @@ class Home extends BaseController
     {
         $site = $this->konfigurasi_model->listing();
         $galeri = $this->galeri_model->jenis_galeri_pop('Homepage');
-        $popup = $this->galeri_model->jenis_galeri_pop('Pop Up');
         $berita = $this->berita_model->beranda('Berita', 6);
         $staff = $this->staff_model->home(6);
         $prestasi = $this->prestasi_model->home(6, 'Publish');
@@ -56,7 +55,6 @@ class Home extends BaseController
             'description' => $site->deskripsi,
             'site' => $site,
             'slider' => $galeri,
-            'popup' => $popup,
             'berita' => $berita,
             'staff' => $staff,
             'prestasi' => $prestasi,
