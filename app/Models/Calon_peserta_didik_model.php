@@ -231,6 +231,40 @@ class Calon_peserta_didik_model extends Model
         return $query->getRow();
     }
 
+    // akun_latest - ambil data biodata terbaru dari akun
+    public function akun_latest($id_akun)
+    {
+        $builder = $this->db->table('calon_peserta_didik');
+        $builder->select('calon_peserta_didik.*,
+                        jenjang_pendidikan.judul_jenjang_pendidikan,
+                        jenjang_pendidikan.jenis_jenjang_pendidikan,
+                        gelombang.judul,
+                        gelombang.tahun_ajaran');
+        $builder->join('gelombang','gelombang.id_gelombang = calon_peserta_didik.id_gelombang','LEFT');
+        $builder->join('jenjang_pendidikan','jenjang_pendidikan.id_jenjang_pendidikan = calon_peserta_didik.id_jenjang_pendidikan','LEFT');
+        $builder->where('calon_peserta_didik.id_akun', $id_akun);
+        $builder->orderBy('calon_peserta_didik.id_calon_peserta_didik','DESC');
+        $builder->limit(1);
+        $query = $builder->get();
+        return $query->getRow();
+    }
+
+    // akun_registered_jenjang - ambil list id_jenjang_pendidikan yang sudah didaftarkan akun ini
+    public function akun_registered_jenjang($id_akun, $id_gelombang)
+    {
+        $builder = $this->db->table('calon_peserta_didik');
+        $builder->select('id_jenjang_pendidikan');
+        $builder->where('id_akun', $id_akun);
+        $builder->where('id_gelombang', $id_gelombang);
+        $query = $builder->get();
+        $rows = $query->getResult();
+        $ids = [];
+        foreach ($rows as $row) {
+            $ids[] = $row->id_jenjang_pendidikan;
+        }
+        return $ids;
+    }
+
     // edit
     public function edit($data)
     {

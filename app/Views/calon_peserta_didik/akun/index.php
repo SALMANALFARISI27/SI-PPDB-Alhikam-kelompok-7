@@ -41,21 +41,13 @@
 	<div class="col-md-7">
 		<div class="card">
 			<div class="card-header bg-light">
-				<strong>UPDATE AKUN</strong>
+				<strong>GANTI PASSWORD</strong>
 			</div>
 			<div class="card-body">
 				<?php echo form_open(base_url('calon_peserta_didik/akun')) ?>
-				<div class="form-group mb-4">
-					<input type="text" class="form-control" name="username" value="<?php echo $akun->username ?>"
-						placeholder="Name" id="loginName">
-					<label for="loginName" class="text-primary">Username</label>
-				</div>
+			
 
-				<div class="form-group mb-4">
-					<input type="email" class="form-control" name="email" value="<?php echo $akun->email ?>"
-						placeholder="Email" id="loginEmail">
-					<label for="loginEmail" class="text-primary">Email</label>
-				</div>
+			
 
 
 				<div class="form-group mb-4">
@@ -88,11 +80,7 @@
 				</div>
 
 
-				<div class="form-group mb-4">
-					<input type="text" class="form-control" name="telepon" value="<?php echo $akun->telepon ?>"
-						placeholder="Telepon/HP" id="Telepon">
-					<label for="loginEmail" class="text-primary">Telepon/HP</label>
-				</div>
+				
 
 
 

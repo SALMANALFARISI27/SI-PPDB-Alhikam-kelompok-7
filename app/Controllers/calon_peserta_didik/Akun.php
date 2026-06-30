@@ -15,7 +15,6 @@ class Akun extends BaseController
 			$this->request->getMethod() === 'POST' && $this->validate(
 				[
 					'username' => 'required',
-					'email' => 'required|valid_email',
 					'password' => 'min_length[6]|max_length[32]',
 					'telepon' => 'required',
 					'konfirmasi_password' => 'required|matches[password]',
@@ -26,7 +25,7 @@ class Akun extends BaseController
 				'id_akun' => $id_akun,
 				'username' => $this->request->getVar('username'),
 				'status_akun' => $akun->status_akun,
-				'email' => $this->request->getVar('email'),
+				'email' => $akun->email, // email tidak dapat diubah
 				'telepon' => $this->request->getVar('telepon'),
 			);
 			// Only update password if user actually typed a new one (min 6 chars)

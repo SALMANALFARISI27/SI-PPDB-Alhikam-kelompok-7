@@ -146,7 +146,7 @@
                     $has_pending = true;
                     ?>
                     <input type="file" name="dokumen[<?php echo $id_jenis_dokumen ?>]" class="form-control form-control-sm"
-                      accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx,.xls,.xlsx,.zip,.rar">
+                      accept=".jpg,.jpeg,.png,.pdf">
                   <?php } else { ?>
                     <span class="text-success"><i class="fa fa-check"></i> Terunggah</span>
                   <?php } ?>

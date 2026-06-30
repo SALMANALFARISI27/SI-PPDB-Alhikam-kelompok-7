@@ -41,8 +41,14 @@ class Pendaftaran extends BaseController
 		$konfigurasi = $m_konfigurasi->listing();
 		$id_akun = $this->session->get('id_akun');
 		$akun = $m_akun->detail($id_akun);
-		$jenjang_pendidikan = $m_jenjang_pendidikan->nav_jenjang();
+		$jenjang_pendidikan = $m_jenjang_pendidikan->main();
 		$gelombang = $m_gelombang->detail($id_gelombang);
+
+		// Ambil biodata terakhir dari akun ini (untuk auto-fill jika sudah pernah daftar)
+		$existing_biodata = $m_calon_peserta_didik->akun_latest($id_akun);
+
+		// Ambil list id_jenjang yang sudah terdaftar di gelombang ini oleh akun ini
+		$registered_jenjang = $m_calon_peserta_didik->akun_registered_jenjang($id_akun, $id_gelombang);
 
 		if (empty(Session()->get('username_calon_peserta_didik'))) {
 			$this->session->setFlashdata('warning', 'Anda belum login');
@@ -108,7 +114,7 @@ class Pendaftaran extends BaseController
 				'alamat' => $this->request->getPost('alamat'),
 				'telepon' => $this->request->getPost('telepon'),
 				'kode_pos' => $this->request->getPost('kode_pos'),
-				'email' => $this->request->getPost('email'),
+				'email' => $akun->email, // email selalu dari akun yang login
 				'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 				'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
 				'isi' => $this->request->getPost('isi'),
@@ -151,6 +157,8 @@ class Pendaftaran extends BaseController
 			}
 			// masuk database
 			$m_calon_peserta_didik->tambah($data);
+
+
 			$this->session->setFlashdata('sukses', 'Data telah disimpan');
 			return redirect()->to(base_url('calon_peserta_didik/pendaftaran/dokumen/' . $slug_calon_peserta_didik));
 
@@ -163,11 +171,14 @@ class Pendaftaran extends BaseController
 				'akun' => $akun,
 				'jenjang_pendidikan' => $jenjang_pendidikan,
 				'gelombang' => $gelombang,
+				'existing_biodata' => $existing_biodata,    // data lama untuk auto-fill
+				'registered_jenjang' => $registered_jenjang, // jenjang yang sudah terdaftar di gelombang ini
 				'content' => 'calon_peserta_didik/pendaftaran/biodata'
 			];
 			echo view('calon_peserta_didik/layout/wrapper', $data);
 		}
 	}
+
 
 	// edit
 	public function edit($slug_calon_peserta_didik)
@@ -248,7 +259,7 @@ class Pendaftaran extends BaseController
 				'alamat' => $this->request->getPost('alamat'),
 				'telepon' => $this->request->getPost('telepon'),
 				'kode_pos' => $this->request->getPost('kode_pos'),
-				'email' => $this->request->getPost('email'),
+				'email' => $akun->email,
 				'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
 				'berkebutuhan_khusus' => $this->request->getPost('berkebutuhan_khusus'),
 				'isi' => $this->request->getPost('isi'),
@@ -330,7 +341,7 @@ class Pendaftaran extends BaseController
 					'id_jenis_dokumen' => 'required',
 					'gambar' => [
 						'uploaded[gambar]',
-						'ext_in[gambar,jpg,jpeg,png,gif,zip,rar,doc,docx,xls,xlsx,ppt,pptx,pdf]',
+						'ext_in[gambar,jpg,jpeg,png,pdf]',
 						'max_size[gambar,24096]',
 					],
 				]
@@ -395,7 +406,7 @@ class Pendaftaran extends BaseController
 				$file_size = $_FILES['dokumen']['size'][$id_jenis_dokumen] / (1024 * 1024); // Convert to MB
 
 				// Validate extension
-				$allowed = ['jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf'];
+				$allowed = ['jpg', 'jpeg', 'png', 'pdf'];
 				if (!in_array(strtolower($file_ext), $allowed))
 					continue;
 

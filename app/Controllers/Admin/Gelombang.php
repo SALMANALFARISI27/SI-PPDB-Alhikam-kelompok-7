@@ -517,7 +517,7 @@ class Gelombang extends BaseController
 					'id_jenis_dokumen' => 'required',
 					'gambar' => [
 						'uploaded[gambar]',
-						'ext_in[gambar,jpg,jpeg,png,gif,zip,rar,doc,docx,xls,xlsx,ppt,pptx,pdf]',
+						'ext_in[gambar,jpg,jpeg,png,pdf]',
 						'max_size[gambar,24096]',
 					],
 				]
@@ -586,7 +586,7 @@ class Gelombang extends BaseController
 						$file_size = $file->getSizeByUnit('mb');
 
 						// Validate extension
-						$allowed = ['jpg', 'jpeg', 'png', 'gif', 'zip', 'rar', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf'];
+						$allowed = ['jpg', 'jpeg', 'png', 'pdf'];
 						if (!in_array(strtolower($file_ext), $allowed)) {
 							continue;
 						}

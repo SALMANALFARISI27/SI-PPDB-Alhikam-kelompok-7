@@ -155,8 +155,8 @@
                 <small class="text-warning">Telepon/HP</small>
               </div>
               <div class="col-md-5">
-                <input type="email" name="email" class="form-control" placeholder="Email" value="<?php if(isset($_POST['submit'])) { echo set_value('email'); }else{ echo $calon_peserta_didik->email; } ?>" required>
-                <small class="text-warning">Email (Username)</small>
+                <input type="email" name="email_display" class="form-control bg-light" placeholder="Email" value="<?php echo htmlspecialchars($akun->email) ?>" readonly>
+                <small class="text-info"><i class="fa fa-lock"></i> Email otomatis dari akun Anda dan tidak dapat diubah.</small>
               </div>
             </div>
           
